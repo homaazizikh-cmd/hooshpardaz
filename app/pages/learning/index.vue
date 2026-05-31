@@ -116,6 +116,14 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+// --- 1. سئوی قدرتمند با متاتگ‌های اختصاصی ---
+useSeoMeta({
+  title: 'مسیر یادگیری و مقالات',
+  description: 'مجله تخصصی هوش‌پرداز؛ مطالعه جدیدترین مقالات برنامه‌نویسی، هوش مصنوعی، رباتیک و بررسی مسیرهای شغلی دنیای تکنولوژی.',
+  ogTitle: 'مسیر یادگیری و وبلاگ آکادمی هوش‌پرداز',
+  ogImage: '/images/Banner.jpg'
+})
+
 // دسته‌بندی‌ها
 const categories = ['همه', 'هوش مصنوعی', 'برنامه‌نویسی', 'کودکان و نوجوانان', 'طراحی و UI/UX', 'بازار کار'];
 const activeCategory = ref('همه');
@@ -180,9 +188,30 @@ const filteredPosts = computed(() => {
   return posts.value.filter(post => post.category === activeCategory.value);
 })
 
+// --- 2. کدهای جادویی اسکیما (Schema) برای درک بهتر گوگل از مقالات شما ---
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "مسیر یادگیری هوش‌پرداز",
+  "description": "جدیدترین مقالات، آموزش‌ها و اخبار دنیای تکنولوژی",
+  "url": "https://hoooshpardaz.ir/learning",
+  "blogPost": posts.value.map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": post.image,
+    "datePublished": post.date
+  }))
+};
+
 useHead({
-  title: 'وبلاگ و یادگیری | هوش پرداز'
-})
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify(schemaData)
+    }
+  ]
+});
 </script>
 
 <style scoped>

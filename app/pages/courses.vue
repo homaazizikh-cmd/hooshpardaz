@@ -69,7 +69,7 @@
             <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/80 flex flex-col gap-4">
               
               <div class="flex justify-between items-center bg-blue-50 dark:bg-blue-900/20 px-4 py-3 rounded-2xl border border-blue-100 dark:border-blue-800/30 shadow-inner">
-                <span class="text-gray-600 dark:text-gray-300 font-bold text-sm">سرمایه‌گذاری:</span>
+                <span class="text-gray-600 dark:text-gray-300 font-bold text-sm">سرمایه‌گذاری شما:</span>
                 <div class="flex items-center gap-1.5 text-blue-600 dark:text-brand-accent1">
                   <span class="text-2xl font-black drop-shadow-sm tracking-tight">{{ course.price }}</span>
                   <span class="text-xs font-bold opacity-80">تومان</span>
@@ -101,7 +101,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-// سئوی اختصاصی صفحه دوره‌ها
+// --- 1. سئوی متاتگ‌های اختصاصی صفحه ---
 useSeoMeta({
   title: 'دوره‌های آموزشی',
   description: 'لیست کامل دوره‌های آموزش برنامه‌نویسی، هوش مصنوعی، رباتیک و هنرهای دیجیتال در آکادمی هوش‌پرداز برای تمامی سنین.',
@@ -119,22 +119,15 @@ const departments = [
 ];
 
 const courses = [
-  // دپارتمان مهارت‌های کاربردی و سخت
   { id: 13, title: 'مهارت‌های هفت‌گانه (ICDL)', dept: 'maharat', price: '۴,۵۰۰,۰۰۰', desc: 'یادگیری کامل نرم‌افزارهای آفیس و مبانی کامپیوتر.', image: '/images/ICDL.jpg' },
   { id: 5, title: 'رباتیک بزرگسال', dept: 'maharat', price: '۱۲,۰۰۰,۰۰۰', desc: 'طراحی، ساخت و برنامه‌نویسی میکروکنترلرها و ربات‌های هوشمند.', image: '/images/Robatic.jpg' },
   { id: 10, title: 'اسکرچ (Scratch)', dept: 'maharat', price: '۵,۰۰۰,۰۰۰', desc: 'آموزش منطق برنامه‌نویسی و تفکر الگوریتمی برای کودکان.', image: '/images/Scratch.jpg' },
   { id: 12, title: 'رباتیک دانش‌آموزی', dept: 'maharat', price: '۷,۵۰۰,۰۰۰', desc: 'آشنایی با سخت‌افزار، الکترونیک و ربات‌های حرکتی.', image: '/images/Robatoc-childern.jpg' },
-  
-  // دپارتمان پایتون
   { id: 1, title: 'پایتون مقدماتی', dept: 'python', price: '۸,۰۰۰,۰۰۰', desc: 'شروع قدرتمند برای ورود به دنیای برنامه‌نویسی تجاری.', image: '/images/Python-M.jpg' },
   { id: 2, title: 'پایتون پیشرفته', dept: 'python', price: '۱۰,۰۰۰,۰۰۰', desc: 'مسلط به مباحث پیشرفته پایتون و شیءگرایی برای بازار کار.', image: '/images/Python-P.jpg' },
   { id: 11, title: 'پایتون کودکان', dept: 'python', price: '۶,۵۰۰,۰۰۰', desc: 'زبان پایتون با بیانی ساده و جذاب برای نوجوانان.', image: '/images/Python-childern.jpg' },
-  
-  // دپارتمان هوش مصنوعی
   { id: 3, title: 'ابزارهای هوش مصنوعی', dept: 'ai', price: '۷,۰۰۰,۰۰۰', desc: 'تسلط بر ابزارهای کاربردی و مولد هوش مصنوعی برای افزایش بهره‌وری.', image: '/images/Ai-tools.jpg' },
   { id: 4, title: 'ماشین لرنینگ', dept: 'ai', price: '۱۲,۰۰۰,۰۰۰', desc: 'تحلیل داده‌ها، الگوریتم‌ها و ساخت مدل‌های هوشمند یادگیری ماشین.', image: '/images/Machine learning.jpg' },
-  
-  // دپارتمان دیزاین
   { id: 6, title: 'فتوشاپ (Photoshop)', dept: 'design', price: '۷,۰۰۰,۰۰۰', desc: 'خلق جهان‌های بصری و ورود به بازار کار طراحی و ادیت عکس.', image: '/images/Photoshop.jpg' },
   { id: 7, title: 'ایلاستریتور (Illustrator)', dept: 'design', price: '۷,۰۰۰,۰۰۰', desc: 'طراحی برداری، خلق کاراکترها و نشان‌های تجاری حرفه‌ای.', image: '/images/Illustrator.jpg' },
   { id: 8, title: 'ایندیزاین (InDesign)', dept: 'design', price: '۶,۵۰۰,۰۰۰', desc: 'صفحه‌آرایی حرفه‌ای مجلات، کتاب‌ها و کاتالوگ‌های فیزیکی و دیجیتال.', image: '/images/Indesign.jpg' },
@@ -147,10 +140,38 @@ const getDepartmentName = (id) => {
   const dept = departments.find(d => d.id === id);
   return dept ? dept.name : '';
 };
+
+// --- 2. تولید کدهای هوشمند اسکیما (Schema Markup) برای خوانایی ربات‌های گوگل ---
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": courses.map((course, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Course",
+      "name": course.title,
+      "description": course.desc,
+      "provider": {
+        "@type": "Organization",
+        "name": "آکادمی هوش‌پرداز",
+        "sameAs": "https://hoooshpardaz.ir"
+      }
+    }
+  }))
+};
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify(schemaData)
+    }
+  ]
+});
 </script>
 
 <style scoped>
-/* انیمیشن نرم برای ظاهر و محو شدن کارت‌ها هنگام فیلتر کردن */
 .fade-move,
 .fade-enter-active,
 .fade-leave-active {
