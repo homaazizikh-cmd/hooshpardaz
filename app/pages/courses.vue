@@ -1,55 +1,113 @@
 <template>
-  <div class="container mx-auto px-4 py-12">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-4">دپارتمان‌های آموزشی آکادمی</h2>
-      <p class="text-brand-light font-medium">برای مشاهده دوره‌های اختصاصی هر حوزه، روی دپارتمان مورد نظر کلیک کنید</p>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
-      <div v-for="dept in departments" :key="dept.id" 
-           @click="activeDepartment = dept.id"
-           :class="activeDepartment === dept.id ? 'ring-4 ring-brand-accent2 shadow-xl transform scale-105' : 'hover:shadow-soft hover:-translate-y-1 opacity-90 hover:opacity-100'"
-           class="cursor-pointer transition-all duration-300 rounded-2xl overflow-hidden relative group">
-        
-        <div class="w-full aspect-[4/5] bg-gray-100 overflow-hidden">
-          <img :src="dept.image" :alt="dept.name" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent opacity-95"></div>
-        <div class="absolute bottom-0 left-0 right-0 p-4 text-center">
-          <h3 class="text-white font-black text-xs sm:text-base md:text-lg leading-tight">{{ dept.name }}</h3>
-        </div>
+  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark pt-28 pb-20 transition-colors duration-500 overflow-hidden">
+    
+    <section class="container mx-auto px-4 text-center mb-16 relative">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+      
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/10 text-brand-accent1 text-sm font-bold mb-6 border border-gray-200 dark:border-white/20 backdrop-blur-md shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-brand-accent1 animate-ping"></span>
+        مسیرهای آموزشی تخصصی
       </div>
-    </div>
+      
+      <h1 class="text-4xl md:text-6xl font-black text-gray-800 dark:text-white mb-6 relative z-10 leading-tight">
+        دپارتمان‌های <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent1 to-blue-600 drop-shadow-sm">آکادمی هوش‌پرداز</span>
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto relative z-10 leading-relaxed font-medium">
+        برای مشاهده دوره‌های اختصاصی هر حوزه، روی دپارتمان مورد نظر کلیک کنید و مسیر آینده شغلی خود را انتخاب کنید.
+      </p>
+    </section>
 
-    <div>
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-2 h-8 bg-brand-accent2 rounded-full"></div>
-        <h3 class="text-2xl font-black text-brand-dark">دوره‌های دپارتمان {{ getDepartmentName(activeDepartment) }}</h3>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div v-for="course in filteredCourses" :key="course.id" class="bg-white rounded-3xl overflow-hidden shadow-soft border border-gray-100 flex flex-col group hover:shadow-md transition">
-          <div class="w-full aspect-[3/4] overflow-hidden">
-            <img :src="course.image" :alt="course.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+    <section class="container mx-auto px-4 mb-20 relative z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div v-for="dept in departments" :key="dept.id" 
+             @click="activeDepartment = dept.id"
+             :class="activeDepartment === dept.id 
+                ? 'ring-4 ring-brand-accent1 shadow-[0_15px_30px_-10px_rgba(56,189,248,0.5)] scale-105 z-10' 
+                : 'border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:-translate-y-2 opacity-80 hover:opacity-100'"
+             class="cursor-pointer transition-all duration-500 rounded-[2rem] overflow-hidden relative group bg-white dark:bg-gray-800">
+          
+          <div class="w-full aspect-[4/5] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+            <img :src="dept.image" :alt="dept.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent transition-opacity duration-300"
+                 :class="activeDepartment === dept.id ? 'opacity-90' : 'opacity-70 group-hover:opacity-90'"></div>
           </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h4 class="text-lg font-black text-brand-dark mb-2">{{ course.title }}</h4>
-            <p class="text-sm text-brand-light mb-5 flex-grow leading-relaxed">{{ course.desc }}</p>
-            <div class="border-t border-gray-50 pt-4">
-              <div class="text-left font-black text-brand-accent2 mb-4">{{ course.price }} تومان</div>
-              <NuxtLink :to="`/register?course=${encodeURIComponent(course.title)}`" class="block text-center w-full bg-brand-dark hover:bg-brand-light text-white py-2.5 rounded-xl text-sm font-bold transition shadow-sm">
-                ثبت‌نام در این دوره
+          
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center transform transition-transform duration-300"
+               :class="activeDepartment === dept.id ? 'translate-y-0' : 'translate-y-2 group-hover:translate-y-0'">
+            <div v-if="activeDepartment === dept.id" class="w-8 h-1 bg-brand-accent1 mx-auto rounded-full mb-3 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
+            <h3 class="text-white font-black text-sm md:text-lg leading-tight">{{ dept.name }}</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container mx-auto px-4 relative z-10">
+      <div class="flex items-center gap-4 mb-10 border-b border-gray-200 dark:border-gray-800 pb-4">
+        <div class="w-3 h-10 bg-brand-accent1 rounded-full shadow-[0_0_15px_rgba(56,189,248,0.5)]"></div>
+        <h3 class="text-2xl md:text-3xl font-black text-gray-800 dark:text-white">
+          دوره‌های دپارتمان <span class="text-brand-accent1">{{ getDepartmentName(activeDepartment) }}</span>
+        </h3>
+      </div>
+
+      <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative">
+        <div v-for="course in filteredCourses" :key="course.id" 
+             class="bg-white dark:bg-gray-800 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col group hover:shadow-2xl hover:shadow-brand-accent1/10 hover:-translate-y-3 transition-all duration-500 relative">
+
+          <div class="w-full aspect-[3/4] overflow-hidden relative bg-gray-200 dark:bg-gray-700">
+            <img :src="course.image" :alt="course.title" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500"></div>
+          </div>
+          
+          <div class="p-6 md:p-7 flex flex-col flex-grow relative">
+            <div class="absolute -top-6 right-6 w-12 h-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center text-2xl z-10 transform group-hover:rotate-12 transition-transform duration-300">
+              🎓
+            </div>
+            
+            <h4 class="text-xl font-black text-gray-800 dark:text-white mb-3 mt-2 group-hover:text-brand-accent1 transition-colors">{{ course.title }}</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 flex-grow leading-loose text-justify">{{ course.desc }}</p>
+            
+            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/80 flex flex-col gap-4">
+              
+              <div class="flex justify-between items-center bg-blue-50 dark:bg-blue-900/20 px-4 py-3 rounded-2xl border border-blue-100 dark:border-blue-800/30 shadow-inner">
+                <span class="text-gray-600 dark:text-gray-300 font-bold text-sm">سرمایه‌گذاری:</span>
+                <div class="flex items-center gap-1.5 text-blue-600 dark:text-brand-accent1">
+                  <span class="text-2xl font-black drop-shadow-sm tracking-tight">{{ course.price }}</span>
+                  <span class="text-xs font-bold opacity-80">تومان</span>
+                </div>
+              </div>
+
+              <NuxtLink :to="`/register?course=${encodeURIComponent(course.title)}`" 
+                        class="relative overflow-hidden flex items-center justify-center w-full bg-brand-dark hover:bg-brand-accent1 dark:bg-gray-700 dark:hover:bg-brand-accent1 text-white py-4 rounded-2xl text-sm md:text-base font-bold transition-all duration-300 shadow-md hover:shadow-[0_10px_20px_-10px_rgba(56,189,248,0.6)] group/btn">
+                <span class="relative z-10 flex items-center gap-2">
+                  ثبت‌نام در دوره
+                  <svg class="w-5 h-5 rotate-180 transform group-hover/btn:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
               </NuxtLink>
             </div>
+
           </div>
         </div>
+      </TransitionGroup>
+      
+      <div v-if="filteredCourses.length === 0" class="text-center py-16 bg-white/50 dark:bg-gray-800/50 rounded-3xl backdrop-blur-sm border border-gray-100 dark:border-gray-700 mt-8">
+        <div class="text-5xl mb-4 opacity-50">⏳</div>
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">دوره‌ای یافت نشد</h3>
+        <p class="text-gray-500 dark:text-gray-400">دوره‌های این دپارتمان در حال به‌روزرسانی هستند.</p>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
+
+// سئوی اختصاصی صفحه دوره‌ها
+useSeoMeta({
+  title: 'دوره‌های آموزشی',
+  description: 'لیست کامل دوره‌های آموزش برنامه‌نویسی، هوش مصنوعی، رباتیک و هنرهای دیجیتال در آکادمی هوش‌پرداز برای تمامی سنین.',
+  ogTitle: 'دوره‌های تخصصی آکادمی هوش‌پرداز',
+  ogImage: '/images/Banner.jpg'
+});
 
 const activeDepartment = ref('python');
 
@@ -90,3 +148,20 @@ const getDepartmentName = (id) => {
   return dept ? dept.name : '';
 };
 </script>
+
+<style scoped>
+/* انیمیشن نرم برای ظاهر و محو شدن کارت‌ها هنگام فیلتر کردن */
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+}
+.fade-leave-active {
+  position: absolute;
+}
+</style>

@@ -239,7 +239,7 @@ const benefits = [
   { icon: '📜', title: 'ارائه مدرک معتبر', link: '/courses' }
 ];
 
-// مسیرهای آموزشی (آیکون‌ها اضافه شدند)
+// مسیرهای آموزشی
 const paths = [
   { name: 'مسیر کودکان و نوجوانان', slug: 'teenagers', desc: 'از یادگیری اسکرچ و بلوک‌های منطقی تا طراحی بازی‌های جذاب رباتیک.', icon: '🎮' },
   { name: 'مسیر برنامه‌نویسی و AI', slug: 'coding', desc: 'از مبانی الگوریتم و پایتون تا پیاده‌سازی مدل‌های پیشرفته هوش مصنوعی.', icon: '💻' },
@@ -276,7 +276,6 @@ const finalOutput = '> Executing logic_core.py...\n> Compiling Neural Network...
 let i = 0;
 
 onMounted(() => {
-  // تاخیر کوتاه قبل از شروع تایپ برای طبیعی‌تر شدن
   setTimeout(() => {
     const typeInterval = setInterval(() => {
       if (i < finalOutput.length) {
@@ -285,22 +284,34 @@ onMounted(() => {
       } else {
         clearInterval(typeInterval);
       }
-    }, 40); // سرعت تایپ
+    }, 40);
   }, 1500);
 });
 
-useHead({
-  title: 'آکادمی هوش پرداز | پلتفرم آموزش برنامه‌نویسی و هوش مصنوعی'
+// اضافه شدن سئوی داینامیک و فوق حرفه‌ای
+useSeoMeta({
+  title: 'آموزش برنامه‌نویسی و هوش مصنوعی', 
+  description: 'به آکادمی هوش‌پرداز خوش آمدید. برترین پلتفرم آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای تمام سنین، همراه با تست استعدادیابی هوشمند.',
+  
+  // تنظیمات Open Graph برای شبکه‌های اجتماعی (تلگرام، واتساپ، لینکدین)
+  ogTitle: 'آکادمی برنامه‌نویسی و هوش مصنوعی هوش‌پرداز',
+  ogDescription: 'آینده‌ات را با هوش‌پرداز کدنویسی کن! آموزش از صفر تا ورود به بازار کار به همراه منتورینگ اختصاصی.',
+  ogImage: '/images/Banner.jpg', // عکسی که در شبکه‌های اجتماعی نمایش داده می‌شود
+  ogUrl: 'https://hoooshpardaz.ir',
+  
+  // تنظیمات برای توییتر (ایکس)
+  twitterTitle: 'آکادمی هوش‌پرداز',
+  twitterDescription: 'یادگیری برنامه‌نویسی و هوش مصنوعی برای کودکان و بزرگسالان.',
+  twitterImage: '/images/Banner.jpg',
+  twitterCard: 'summary_large_image'
 })
 </script>
 
 <style scoped>
-/* انیمیشن پالس نرم برای نورهای بک‌گراند */
 .animate-pulse-slow {
   animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* رفع مشکل فوکوس خط دور اسلایدر مرورگرها */
 input[type=range] {
   -webkit-appearance: none;
   background: transparent;
