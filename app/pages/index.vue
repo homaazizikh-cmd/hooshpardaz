@@ -52,7 +52,7 @@
           <p class="text-blue-100 text-lg max-w-xl font-medium">با پاسخ به ۱۵ سوال هدفمند و مبتنی بر روانشناسی شناختی، در کمتر از ۲ دقیقه مسیر شغلی ایده‌آل خود را پیدا کنید.</p>
         </div>
         
-        <NuxtLink to="/talent-test" class="relative z-10 bg-white text-blue-600 px-8 py-5 rounded-2xl font-black shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105 transition-all duration-300 flex items-center gap-3 whitespace-nowrap text-lg">
+        <NuxtLink to="/talent" class="relative z-10 bg-white text-blue-600 px-8 py-5 rounded-2xl font-black shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105 transition-all duration-300 flex items-center gap-3 whitespace-nowrap text-lg">
           شروع استعدادیابی
           <span class="animate-pulse text-xl">✨</span>
         </NuxtLink>
