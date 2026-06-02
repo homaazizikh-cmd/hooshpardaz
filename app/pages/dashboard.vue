@@ -44,7 +44,7 @@
           <h2 class="text-lg font-bold text-slate-800 dark:text-white mb-4">🎯 نتایج استعدادیابی</h2>
           
           <div v-if="testResult" class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-2xl text-purple-700 dark:text-purple-300 font-bold text-center">
-             نتیجه آزمون: {{ testResult.score }} از 100
+             نتیجه آخرین آزمون شما: {{ testResult.score }} از 100
           </div>
           <div v-else class="text-slate-500 dark:text-slate-400 text-sm text-center py-10 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
             شما هنوز در آزمون شرکت نکرده‌اید.
@@ -56,6 +56,8 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from 'vue'
+
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const pending = ref(true)
@@ -70,22 +72,33 @@ onMounted(async () => {
     return
   }
 
-  // ۱. دریافت دوره‌ها از دیتابیس
-  const { data: courses } = await supabase
-    .from('user_courses')
-    .select('course_name')
-    .eq('user_id', user.value.id)
-  userCourses.value = courses
+  try {
+    // ۱. دریافت دوره‌ها از دیتابیس
+    const { data: courses } = await supabase
+      .from('user_courses')
+      .select('course_name')
+      .eq('user_id', user.value.id)
+    
+    userCourses.value = courses || []
 
-  // ۲. دریافت نتایج تست از دیتابیس
-  const { data: result } = await supabase
-    .from('test_results')
-    .select('score')
-    .eq('user_id', user.value.id)
-    .single() // چون معمولاً یک نتیجه داریم
-  testResult.value = result
-
-  pending.value = false
+    // ۲. دریافت نتایج تست از دیتابیس (رفع باگ single و دریافت جدیدترین نمره)
+    const { data: testData } = await supabase
+      .from('test_results')
+      .select('score')
+      .eq('user_id', user.value.id)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      
+    // اگر دیتایی بود، اولین مورد (جدیدترین) را ذخیره کن
+    if (testData && testData.length > 0) {
+      testResult.value = testData[0]
+    }
+  } catch (error) {
+    console.error('خطا در بارگذاری اطلاعات داشبورد:', error)
+  } finally {
+    // در هر شرایطی لودینگ قطع شود تا صفحه گیر نکند
+    pending.value = false
+  }
 })
 
 const userName = computed(() => user.value?.user_metadata?.full_name || 'کاربر')

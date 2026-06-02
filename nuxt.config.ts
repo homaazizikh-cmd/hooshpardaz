@@ -42,7 +42,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'fa_IR' },
 
-        // 👇 کد تایید گوگل سرچ کنسول دقیقاً اینجا اضافه شد 👇
+        // کد تایید گوگل سرچ کنسول
         { name: 'google-site-verification', content: 'JKvx7He1sUiY8wx3iK8va6ZD-8sE--rGTwSDpYAKEW8' }
       ],
       link: [
@@ -50,7 +50,9 @@ export default defineNuxtConfig({
           rel: 'stylesheet', 
           href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap' 
         },
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        // 👇 کدهای جدید فاوآیکون برای گوگل و دستگاه‌های هوشمند 👇
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'apple-touch-icon', href: '/favicon.png' }
       ]
     }
   },

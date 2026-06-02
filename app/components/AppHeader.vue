@@ -10,18 +10,25 @@
   >
     <div class="container mx-auto px-4 flex justify-between items-center">
       
+      <!-- بخش لوگو (بروزرسانی شده) -->
       <div class="flex justify-start z-50 w-auto md:w-1/4">
-        <NuxtLink to="/" class="text-2xl font-black text-brand-dark dark:text-white transition-transform hover:scale-105 shrink-0">
-          هوش<span class="text-brand-accent1">پرداز</span>
+        <NuxtLink to="/" class="transition-transform hover:scale-105 shrink-0 flex items-center">
+          <!-- لوگوی تیره برای پس‌زمینه روشن (حالت روز) -->
+          <img src="/images/logo-light.png" alt="هوش پرداز" class="h-10 md:h-12 w-auto block dark:hidden" />
+          
+          <!-- لوگوی روشن (نئونی/سفید) برای پس‌زمینه تیره (حالت شب) -->
+          <img src="/images/logo-dark.png" alt="هوش پرداز" class="h-10 md:h-12 w-auto hidden dark:block" />
         </NuxtLink>
       </div>
       
+      <!-- منوی دسکتاپ -->
       <nav class="hidden md:flex flex-1 justify-center items-center gap-4 lg:gap-7 font-bold text-sm dark:text-gray-300">
         <NuxtLink v-for="link in menuLinks" :key="link.path" :to="link.path" active-class="text-brand-accent1" class="hover:text-brand-accent1 transition whitespace-nowrap">
           {{ link.name }}
         </NuxtLink>
       </nav>
 
+      <!-- بخش دکمه‌ها و پروفایل -->
       <div class="flex justify-end items-center gap-3 z-50 w-auto md:w-1/4">
         
         <NuxtLink v-if="!user" to="/login" class="hidden md:flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-lg shadow-blue-600/30 whitespace-nowrap transform hover:-translate-y-0.5">
@@ -45,8 +52,10 @@
     </div>
   </header>
 
+  <!-- پس‌زمینه تیره برای منوی موبایل -->
   <div v-if="isMobileMenuOpen" @click="toggleMobileMenu" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity"></div>
 
+  <!-- منوی موبایل -->
   <aside :class="['fixed top-0 right-0 h-full w-64 bg-white dark:bg-brand-dark shadow-2xl z-40 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col pt-24 border-l border-gray-200 dark:border-gray-800', isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full']" dir="rtl">
     
     <div class="px-4 pb-4 border-b border-gray-100 dark:border-gray-800 mb-2">
@@ -75,7 +84,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const supabase = useSupabaseClient()
-const user = useSupabaseUser() // گرفتن اطلاعات کاربر لاگین شده
+const user = useSupabaseUser()
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
@@ -102,7 +111,6 @@ const toggleDark = () => {
   document.documentElement.classList.toggle('dark')
 }
 
-// خروج از حساب در موبایل
 const handleLogout = async () => {
   await supabase.auth.signOut()
   isMobileMenuOpen.value = false
