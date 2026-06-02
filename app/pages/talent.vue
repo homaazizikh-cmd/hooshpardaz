@@ -113,9 +113,10 @@
                     {{ finalResult.desc }}
                   </p>
                   
-                  <div class="mb-8 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 flex items-center gap-3">
-                     <span class="text-xl">💾</span>
-                     <span class="font-bold text-sm text-green-700 dark:text-green-400">{{ saveMessage }}</span>
+                  <div v-if="saveMessage" class="mb-8 p-4 rounded-xl border flex items-center gap-3 transition-colors"
+                       :class="isSuccessDb ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-700 dark:text-green-400' : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-700 dark:text-red-400'">
+                     <span class="text-xl">{{ isSuccessDb ? '✅' : '❌' }}</span>
+                     <span class="font-bold text-sm">{{ saveMessage }}</span>
                   </div>
                   
                   <div class="flex flex-col sm:flex-row items-center gap-4">
@@ -142,10 +143,8 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-// سئو و عنوان صفحه
 useHead({ title: 'آزمون استعدادیابی هوشمند | هوش‌پرداز' })
 
-// اتصال به سوپابیس
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 
@@ -153,8 +152,8 @@ const currentStep = ref(0);
 const isAnalyzing = ref(false);
 const showResult = ref(false);
 const saveMessage = ref('');
+const isSuccessDb = ref(false); // متغیر جدید برای تشخیص رنگ باکس پیام
 
-// امتیازات مخفی هر دسته‌بندی (حداکثر هر کدام ۱۰ امتیاز)
 const scores = ref({
   logic: 0,
   creative: 0,
@@ -173,7 +172,7 @@ const questions = [
   { text: "آیا تماشای ویدیوهای سرهم کردن موتورها و گجت‌ها را دوست دارید؟", cat: "mechanical" },
   { text: "آیا برای کارهای روزانه خود برنامه‌ریزی مرحله‌به‌مرحله می‌کنید؟", cat: "logic" },
   { text: "آیا به طراحی کاراکترها یا خلق داستان‌های جدید فکر می‌کنید؟", cat: "creative" },
-  { text: "آیا از سرهم کردن پازل‌های سه‌بعدی یا لگوهای پیچیده لذت می‌برید؟", mechanical: "mechanical" }, // اصلاح کی‌ورد
+  { text: "آیا از سرهم کردن پازل‌های سه‌بعدی یا لگوهای پیچیده لذت می‌برید؟", cat: "mechanical" }, // غلط املایی اینجا برطرف شد
   { text: "آیا در بازی‌های کامپیوتری، بازی‌های استراتژیک را ترجیح می‌دهید؟", cat: "logic" },
   { text: "آیا انتخاب فونت مناسب برای ارائه‌های درسی برایتان مهم است؟", cat: "creative" },
   { text: "آیا تا به حال سعی کرده‌اید یک وسیله خراب را خودتان تعمیر کنید؟", cat: "mechanical" }
@@ -203,7 +202,7 @@ const radarPoints = computed(() => {
 });
 
 const answer = (points) => {
-  const currentCat = questions[currentStep.value].cat || 'mechanical'; // fallback for the fixed typo
+  const currentCat = questions[currentStep.value].cat || 'mechanical';
   scores.value[currentCat] += points;
   
   if (currentStep.value < questions.length - 1) {
@@ -212,15 +211,15 @@ const answer = (points) => {
     }, 150);
   } else {
     setTimeout(() => {
+      // فقط متغیر لودینگ را فعال کن و بقیه کار را به تابع بسپار
       isAnalyzing.value = true;
-      calculateAndSaveResult(); // اجرای متد اتصال به دیتابیس
+      calculateAndSaveResult();
     }, 150);
   }
 };
 
 const finalResult = ref({});
 
-// ترکیب محاسبه، نمایش و ذخیره‌سازی در سوپابیس
 const calculateAndSaveResult = async () => {
   const maxScore = Math.max(scores.value.logic, scores.value.creative, scores.value.mechanical);
   
@@ -241,12 +240,14 @@ const calculateAndSaveResult = async () => {
     };
   }
 
+  // ایجاد مکث نمایشی ۲ ثانیه‌ای برای دیدن انیمیشن چرخشی (UX بهتر)
+  await new Promise(resolve => setTimeout(resolve, 2000));
+
   try {
-    // محاسبه درصد کلی (از مجموع ۳۰ امتیاز ممکن)
     const totalScoreRaw = scores.value.logic + scores.value.creative + scores.value.mechanical;
     const finalScorePercentage = Math.round((totalScoreRaw / 30) * 100);
 
-    // ارسال به سوپابیس
+    // ارسال قطعی به سوپابیس
     const { error } = await supabase
       .from('test_results')
       .insert([
@@ -257,30 +258,33 @@ const calculateAndSaveResult = async () => {
       ]);
 
     if (error) throw error;
+    
+    // اگر موفقیت آمیز بود
+    isSuccessDb.value = true;
     saveMessage.value = "نتیجه آزمون و نمودار شما با موفقیت در داشبورد ثبت شد.";
     
   } catch (err) {
+    // اگر خطا داشت
     console.error('خطا در ذخیره‌سازی:', err);
-    saveMessage.value = "آزمون تمام شد، اما ذخیره نتیجه با مشکل مواجه شد.";
-  }
-
-  // بعد از اتمام عملیات دیتابیس (حدود ۲.۵ ثانیه طول دادن برای زیبایی)
-  setTimeout(() => {
+    isSuccessDb.value = false;
+    saveMessage.value = "آزمون تمام شد، اما اجازه ذخیره نتیجه در دیتابیس داده نشد.";
+  } finally {
+    // فقط وقتی که تکلیف دیتابیس (موفق یا ناموفق) مشخص شد، صفحه نتایج را نشان بده
     isAnalyzing.value = false;
     showResult.value = true;
-  }, 2500); 
+  }
 };
 
 const resetTest = () => {
   showResult.value = false;
   isAnalyzing.value = false;
   currentStep.value = 0;
+  saveMessage.value = '';
   scores.value = { logic: 0, creative: 0, mechanical: 0 };
 };
 </script>
 
 <style scoped>
-/* انیمیشن جابجایی نرم بین مراحل */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -294,7 +298,6 @@ const resetTest = () => {
   opacity: 0;
 }
 
-/* انیمیشن ظاهر شدن نتیجه */
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }
@@ -304,7 +307,6 @@ const resetTest = () => {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* افکت سایه نورانی برای رادار */
 .shadow-glow {
   filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
 }
