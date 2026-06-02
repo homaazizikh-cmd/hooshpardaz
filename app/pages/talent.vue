@@ -172,7 +172,7 @@ const questions = [
   { text: "آیا تماشای ویدیوهای سرهم کردن موتورها و گجت‌ها را دوست دارید؟", cat: "mechanical" },
   { text: "آیا برای کارهای روزانه خود برنامه‌ریزی مرحله‌به‌مرحله می‌کنید؟", cat: "logic" },
   { text: "آیا به طراحی کاراکترها یا خلق داستان‌های جدید فکر می‌کنید؟", cat: "creative" },
-  { text: "آیا از سرهم کردن پازل‌های سه‌بعدی یا لگوهای پیچیده لذت می‌برید؟", cat: "mechanical" }, // غلط املایی اینجا برطرف شد
+  { text: "آیا از سرهم کردن پازل‌های سه‌بعدی یا لگوهای پیچیده لذت می‌برید؟", cat: "mechanical" }, 
   { text: "آیا در بازی‌های کامپیوتری، بازی‌های استراتژیک را ترجیح می‌دهید؟", cat: "logic" },
   { text: "آیا انتخاب فونت مناسب برای ارائه‌های درسی برایتان مهم است؟", cat: "creative" },
   { text: "آیا تا به حال سعی کرده‌اید یک وسیله خراب را خودتان تعمیر کنید؟", cat: "mechanical" }
@@ -247,12 +247,13 @@ const calculateAndSaveResult = async () => {
     const totalScoreRaw = scores.value.logic + scores.value.creative + scores.value.mechanical;
     const finalScorePercentage = Math.round((totalScoreRaw / 30) * 100);
 
-    // ارسال قطعی به سوپابیس
+    // 🌟 تغییر کلیدی اینجاست: اضافه شدن ایمیل کاربر به دیتابیس
     const { error } = await supabase
       .from('test_results')
       .insert([
         { 
           user_id: user.value.id, 
+          email: user.value.email, // ایمیل کاربر هم به دیتابیس فرستاده می‌شود
           score: finalScorePercentage || 0 
         }
       ]);
