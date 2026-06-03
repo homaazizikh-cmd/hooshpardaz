@@ -6,9 +6,11 @@
       <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
         <div>
           <h1 class="text-4xl md:text-5xl font-black text-gray-800 dark:text-white mb-3">
-            مسیر <span class="text-blue-600 dark:text-brand-accent1">یادگیری</span>
+            وبلاگ و مسیر <span class="text-blue-600 dark:text-brand-accent1">یادگیری</span>
           </h1>
-          <p class="text-gray-500 dark:text-gray-400 font-medium">جدیدترین مقالات، آموزش‌ها و اخبار دنیای تکنولوژی</p>
+          <p class="text-gray-500 dark:text-gray-400 font-medium">
+            جدیدترین <strong>مقالات آموزش برنامه‌نویسی</strong>، <strong>هوش مصنوعی</strong> و <strong>رباتیک</strong>
+          </p>
         </div>
         
         <div class="relative w-full md:w-96">
@@ -40,7 +42,13 @@
 
       <div v-if="activeCategory === 'همه' && !searchQuery" class="mb-16 bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col lg:flex-row group cursor-pointer transition-all hover:shadow-2xl">
         <div class="lg:w-1/2 relative overflow-hidden h-72 lg:h-auto">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="مقاله ویژه" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+          <NuxtImg 
+            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+            alt="بهترین مقالات آموزش برنامه‌نویسی و هوش مصنوعی" 
+            format="webp"
+            preload
+            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+          />
           <div class="absolute top-6 right-6 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">پیشنهاد سردبیر</div>
         </div>
         
@@ -60,7 +68,13 @@
           
           <div class="flex items-center justify-between mt-auto">
             <div class="flex items-center gap-3">
-              <img src="https://i.pravatar.cc/150?img=11" alt="نویسنده" class="w-10 h-10 rounded-full border-2 border-gray-200 dark:border-gray-600">
+              <NuxtImg 
+                src="https://i.pravatar.cc/150?img=11" 
+                alt="نویسنده مقالات هوش پرداز" 
+                format="webp"
+                loading="lazy"
+                class="w-10 h-10 rounded-full border-2 border-gray-200 dark:border-gray-600"
+              />
               <div>
                 <p class="text-sm font-bold text-gray-800 dark:text-white">مهندس احمدی</p>
                 <p class="text-xs text-gray-500">۱۰ دقیقه مطالعه</p>
@@ -78,11 +92,17 @@
       </div>
 
       <TransitionGroup v-else name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <NuxtLink v-for="(post, index) in filteredPosts" :key="post.id + '-' + index" :to="'/learning/' + post.id" 
+        <NuxtLink v-for="(post, index) in filteredPosts" :key="post.id + '-' + index" :to="'/learning/' + post.id" :title="post.title"
                   class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
           
           <div class="relative h-56 overflow-hidden bg-gray-200 dark:bg-gray-700">
-            <img :src="post.image || '/images/default-blog.jpg'" :alt="post.title" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+            <NuxtImg 
+              :src="post.image || '/images/default-blog.jpg'" 
+              :alt="`مقاله ${post.title} در آکادمی هوش پرداز`" 
+              format="webp"
+              loading="lazy"
+              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
             <div class="absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-gray-800 dark:text-white text-xs font-bold px-3 py-1.5 rounded-lg">
               {{ post.category }}
             </div>
@@ -128,12 +148,17 @@ import { ref, computed } from 'vue';
 
 const supabase = useSupabaseClient();
 
-// متاتگ‌های سئو
+// 💡 سئو: ارتقای چشم‌گیر متاتگ‌ها برای صفحه لیست مقالات
 useSeoMeta({
-  title: 'مسیر یادگیری و مقالات',
-  description: 'مجله تخصصی هوش‌پرداز؛ مطالعه جدیدترین مقالات برنامه‌نویسی، هوش مصنوعی، رباتیک و بررسی مسیرهای شغلی دنیای تکنولوژی.',
-  ogTitle: 'مسیر یادگیری و وبلاگ آکادمی هوش‌پرداز',
-  ogImage: '/images/Banner.jpg'
+  title: 'وبلاگ و مقالات آموزش برنامه‌نویسی، هوش مصنوعی و رباتیک | هوش‌پرداز',
+  description: 'مجله تخصصی هوش‌پرداز؛ مطالعه جدیدترین مقالات آموزش برنامه‌نویسی، پایتون، هوش مصنوعی، رباتیک و بررسی مسیرهای شغلی دنیای تکنولوژی.',
+  keywords: 'وبلاگ برنامه نویسی, مقالات هوش مصنوعی, آموزش پایتون, اخبار تکنولوژی, مقالات رباتیک, یادگیری برنامه نویسی',
+  ogTitle: 'وبلاگ آکادمی هوش‌پرداز | جدیدترین مقالات تکنولوژی',
+  ogDescription: 'مطالعه رایگان صدها مقاله آموزشی در زمینه برنامه‌نویسی، هوش مصنوعی و طراحی رابط کاربری.',
+  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg',
+  ogUrl: 'https://hoooshpardaz.ir/learning',
+  ogType: 'website',
+  twitterCard: 'summary_large_image'
 });
 
 const searchQuery = ref('');
@@ -252,23 +277,52 @@ const filteredPosts = computed(() => {
 const schemaData = computed(() => ({
   "@context": "https://schema.org",
   "@type": "Blog",
-  "name": "مسیر یادگیری هوش‌پرداز",
-  "description": "جدیدترین مقالات، آموزش‌ها و اخبار دنیای تکنولوژی",
+  "name": "وبلاگ و مسیر یادگیری هوش‌پرداز",
+  "description": "جدیدترین مقالات، آموزش‌ها و اخبار دنیای تکنولوژی، برنامه‌نویسی و هوش مصنوعی",
   "url": "https://hoooshpardaz.ir/learning",
   "blogPost": allPosts.value.map(post => ({
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.excerpt,
     "image": post.image,
-    "datePublished": post.date
+    "url": `https://hoooshpardaz.ir/learning/${post.id}`
   }))
 }));
 
 useHead({
+  // سئو: تگ کانونیکال برای جلوگیری از تشخیص محتوای تکراری توسط ربات‌های گوگل
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://hoooshpardaz.ir/learning'
+    }
+  ],
   script: [
     {
       type: 'application/ld+json',
       children: computed(() => JSON.stringify(schemaData.value))
+    },
+    // سئو: اضافه کردن BreadcrumbList برای نمایش مسیر زیبا (خانه > یادگیری) در سرچ گوگل
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "خانه",
+            "item": "https://hoooshpardaz.ir"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "مسیر یادگیری و وبلاگ",
+            "item": "https://hoooshpardaz.ir/learning"
+          }
+        ]
+      })
     }
   ]
 });

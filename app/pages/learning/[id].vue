@@ -13,7 +13,13 @@
 
       <header class="relative w-full aspect-[21/9] md:aspect-[21/8] rounded-[2.5rem] overflow-hidden shadow-2xl mb-12 group">
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent z-10"></div>
-        <img :src="post.image" :alt="post.title" class="w-full h-full object-cover relative z-0 transform group-hover:scale-105 transition-transform duration-1000">
+        <NuxtImg 
+          :src="post.image" 
+          :alt="`مقاله ${post.title} در آکادمی هوش پرداز`" 
+          format="webp"
+          preload
+          class="w-full h-full object-cover relative z-0 transform group-hover:scale-105 transition-transform duration-1000"
+        />
         
         <div class="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-20">
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-200 mb-5 font-bold">
@@ -46,9 +52,9 @@
 
           <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-700 flex flex-wrap items-center gap-3">
             <span class="text-gray-500 dark:text-gray-400 font-bold text-sm">برچسب‌ها:</span>
-            <span v-for="tag in post.tags" :key="tag" class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-sm font-medium hover:bg-brand-accent1 hover:text-white transition-colors cursor-pointer">
+            <a :href="`/learning?tag=${tag}`" v-for="tag in post.tags" :key="tag" class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-sm font-medium hover:bg-brand-accent1 hover:text-white transition-colors cursor-pointer">
               #{{ tag }}
-            </span>
+            </a>
           </div>
         </main>
 
@@ -57,7 +63,13 @@
             
             <div class="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
               <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-r from-blue-600 to-brand-accent1 opacity-20"></div>
-              <img :src="post.authorImg" :alt="post.author" class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 shadow-lg mx-auto relative z-10 object-cover bg-white">
+              <NuxtImg 
+                :src="post.authorImg" 
+                :alt="`نویسنده مقاله: ${post.author}`" 
+                format="webp"
+                loading="lazy"
+                class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 shadow-lg mx-auto relative z-10 object-cover bg-white"
+              />
               <h3 class="text-xl font-black text-gray-800 dark:text-white mt-4 mb-1">{{ post.author }}</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-4">{{ post.authorRole }}</p>
               <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6">
@@ -233,12 +245,23 @@ const { data: post } = await useAsyncData(`post-${route.params.id}`, async () =>
 // 💡 سئوی داینامیک و فوق‌العاده قوی (کاملاً بهینه‌شده برای SSR و گوگل)
 useSeoMeta({
   title: computed(() => post.value ? `${post.value.title} | وبلاگ هوش‌پرداز` : 'خواندن مقاله'),
-  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی هوش‌پرداز'),
+  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی هوش‌پرداز در زمینه برنامه‌نویسی و هوش مصنوعی'),
+  
+  // تنظیمات Open Graph برای نمایش جذاب در تلگرام، لینکدین و...
   ogTitle: computed(() => post.value ? post.value.title : 'وبلاگ هوش‌پرداز'),
-  ogDescription: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی هوش‌پرداز'),
-  ogImage: computed(() => post.value ? post.value.image : '/images/Banner.jpg'),
+  ogDescription: computed(() => post.value ? post.value.excerpt : 'جدیدترین مقالات آموزشی هوش‌پرداز'),
+  ogImage: computed(() => post.value ? post.value.image : 'https://hoooshpardaz.ir/images/Banner.jpg'),
+  ogType: 'article', // سئو: مشخص کردن اینکه این صفحه یک "مقاله" است
+  ogUrl: computed(() => `https://hoooshpardaz.ir/learning/${route.params.id}`), // سئو: آدرس دقیق صفحه
+
+  // تنظیمات اختصاصی Article برای شبکه‌های اجتماعی
   articleAuthor: computed(() => post.value ? post.value.author : 'هوش پرداز'),
-  articlePublishedTime: computed(() => post.value ? post.value.date : '')
+  articlePublishedTime: computed(() => post.value ? post.value.date : ''),
+  
+  // تنظیمات Twitter Card
+  twitterCard: 'summary_large_image',
+  twitterTitle: computed(() => post.value ? post.value.title : 'وبلاگ هوش‌پرداز'),
+  twitterImage: computed(() => post.value ? post.value.image : 'https://hoooshpardaz.ir/images/Banner.jpg')
 });
 
 const schemaData = computed(() => {
@@ -251,7 +274,8 @@ const schemaData = computed(() => {
     "datePublished": post.value.date,
     "author": {
       "@type": "Person",
-      "name": post.value.author
+      "name": post.value.author,
+      "url": "https://hoooshpardaz.ir/about" // اضافه شدن لینک نویسنده برای اعتبار بیشتر در گوگل
     },
     "publisher": {
       "@type": "Organization",
@@ -261,11 +285,22 @@ const schemaData = computed(() => {
         "url": "https://hoooshpardaz.ir/favicon.ico"
       }
     },
-    "description": post.value.excerpt
+    "description": post.value.excerpt,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://hoooshpardaz.ir/learning/${post.value.id}`
+    }
   }
 });
 
 useHead({
+  // سئو: جلوگیری از مشکل داپلیکیت کانتنت با تگ Canonical
+  link: [
+    {
+      rel: 'canonical',
+      href: computed(() => `https://hoooshpardaz.ir/learning/${route.params.id}`)
+    }
+  ],
   script: [
     {
       type: 'application/ld+json',

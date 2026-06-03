@@ -3,8 +3,19 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxt/image' // 👈 ماژول بهینه‌سازی تصاویر (سئو و سرعت) اضافه شد
   ],
+
+  // 👈 تنظیمات حرفه‌ای Nuxt Image اضافه شد
+  image: {
+    format: ['webp'], // تبدیل خودکار تصاویر به WebP برای سرعت بیشتر
+    domains: [
+      'images.unsplash.com', // اجازه بهینه‌سازی برای عکس‌های آنسپلاش
+      'i.pravatar.cc',       // اجازه بهینه‌سازی برای عکس‌های تستی پروفایل
+      'https://rrelkadkixesdzydcwgt.supabase.co' // 🔴 مهم: آدرس پروژه Supabase خود را اینجا جایگزین کنید (بدون https://)
+    ]
+  },
 
   site: {
     url: 'https://hoooshpardaz.ir',
@@ -50,7 +61,7 @@ export default defineNuxtConfig({
           rel: 'stylesheet', 
           href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap' 
         },
-        // 👇 کدهای جدید فاوآیکون برای گوگل و دستگاه‌های هوشمند 👇
+        // 👇 کدهای فاوآیکون برای گوگل و دستگاه‌های هوشمند 👇
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'apple-touch-icon', href: '/favicon.png' }
       ]

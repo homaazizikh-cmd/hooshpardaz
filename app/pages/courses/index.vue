@@ -27,7 +27,13 @@
              class="cursor-pointer transition-all duration-500 rounded-[2rem] overflow-hidden relative group bg-white dark:bg-gray-800">
           
           <div class="w-full aspect-[4/5] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
-            <img :src="dept.image" :alt="dept.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <NuxtImg 
+              :src="dept.image" 
+              :alt="`دپارتمان آموزشی ${dept.name} در هوش‌پرداز`" 
+              format="webp"
+              preload
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent transition-opacity duration-300"
                  :class="activeDepartment === dept.id ? 'opacity-90' : 'opacity-70 group-hover:opacity-90'"></div>
           </div>
@@ -44,9 +50,9 @@
     <section class="container mx-auto px-4 relative z-10">
       <div class="flex items-center gap-4 mb-10 border-b border-gray-200 dark:border-gray-800 pb-4">
         <div class="w-3 h-10 bg-brand-accent1 rounded-full shadow-[0_0_15px_rgba(56,189,248,0.5)]"></div>
-        <h3 class="text-2xl md:text-3xl font-black text-gray-800 dark:text-white">
+        <h2 class="text-2xl md:text-3xl font-black text-gray-800 dark:text-white">
           دوره‌های دپارتمان <span class="text-brand-accent1">{{ getDepartmentName(activeDepartment) }}</span>
-        </h3>
+        </h2>
       </div>
 
       <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative">
@@ -54,7 +60,13 @@
              class="bg-white dark:bg-gray-800 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col group hover:shadow-2xl hover:shadow-brand-accent1/10 hover:-translate-y-3 transition-all duration-500 relative">
 
           <div class="w-full aspect-[3/4] overflow-hidden relative bg-gray-200 dark:bg-gray-700">
-            <img :src="course.image || '/images/default-course.jpg'" :alt="course.title" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+            <NuxtImg 
+              :src="course.image || '/images/default-course.jpg'" 
+              :alt="`دوره آنلاین ${course.title} در آکادمی هوش‌پرداز`" 
+              format="webp"
+              loading="lazy"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
             <div class="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500"></div>
           </div>
           
@@ -63,7 +75,7 @@
               🎓
             </div>
             
-            <h4 class="text-xl font-black text-gray-800 dark:text-white mb-3 mt-2 group-hover:text-brand-accent1 transition-colors">{{ course.title }}</h4>
+            <h3 class="text-xl font-black text-gray-800 dark:text-white mb-3 mt-2 group-hover:text-brand-accent1 transition-colors">{{ course.title }}</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 flex-grow leading-loose text-justify line-clamp-3">{{ course.desc }}</p>
             
             <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/80 flex flex-col gap-4">
@@ -93,9 +105,10 @@
 <script setup>
 import { ref, computed } from 'vue';
 
+// سئو صفحه ارتقا یافته
 useSeoMeta({
-  title: 'دوره‌های آموزشی',
-  description: 'لیست کامل دوره‌های آموزش برنامه‌نویسی، هوش مصنوعی، رباتیک و هنرهای دیجیتال در آکادمی هوش‌پرداز برای تمامی سنین.',
+  title: 'لیست دوره‌های برنامه‌نویسی و هوش مصنوعی',
+  description: 'لیست کامل دوره‌های آموزش برنامه‌نویسی، هوش مصنوعی، رباتیک و هنرهای دیجیتال در آکادمی هوش‌پرداز برای تمامی سنین با ارائه مدرک.',
   ogTitle: 'دوره‌های تخصصی آکادمی هوش‌پرداز',
   ogImage: '/images/Banner.jpg'
 });

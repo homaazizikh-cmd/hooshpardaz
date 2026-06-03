@@ -3,7 +3,13 @@
     
     <section class="relative min-h-[85vh] flex items-center justify-center py-28 overflow-hidden bg-brand-dark">
       <div class="absolute inset-0 opacity-30 dark:opacity-20 mix-blend-overlay">
-        <img src="/images/Banner.jpg" class="w-full h-full object-cover">
+        <NuxtImg 
+          src="/images/Banner.jpg" 
+          class="w-full h-full object-cover" 
+          alt="آکادمی هوش پرداز - دوره آنلاین هوش مصنوعی و رباتیک"
+          format="webp"
+          preload
+        />
       </div>
       
       <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-pulse-slow"></div>
@@ -21,10 +27,10 @@
         </h1>
         
         <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
-          آموزش مهارت‌های آینده، از پایتون تا هوش مصنوعی، با رویکرد ورود مستقیم به بازار کار و خلق پروژه‌های واقعی.
+          آموزش مهارت‌های آینده؛ از <strong>دوره آنلاین پایتون</strong> تا <strong>هوش مصنوعی</strong> و <strong>دوره رباتیک</strong>، با رویکرد ورود مستقیم به بازار کار و خلق پروژه‌های واقعی.
         </p>
         
-        <NuxtLink to="/courses" class="inline-flex items-center gap-3 bg-brand-accent1 text-white px-10 py-5 rounded-2xl font-bold hover:bg-blue-500 shadow-[0_10px_30px_-10px_rgba(56,189,248,0.6)] hover:shadow-[0_20px_40px_-10px_rgba(56,189,248,0.8)] hover:-translate-y-1 transition-all duration-300 text-lg">
+        <NuxtLink to="/courses" title="مشاهده دوره‌های آنلاین هوش مصنوعی و برنامه‌نویسی" class="inline-flex items-center gap-3 bg-brand-accent1 text-white px-10 py-5 rounded-2xl font-bold hover:bg-blue-500 shadow-[0_10px_30px_-10px_rgba(56,189,248,0.6)] hover:shadow-[0_20px_40px_-10px_rgba(56,189,248,0.8)] hover:-translate-y-1 transition-all duration-300 text-lg">
           مشاهده مسیرهای آموزشی
           <svg class="w-6 h-6 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </NuxtLink>
@@ -36,7 +42,7 @@
         <NuxtLink v-for="item in benefits" :key="item.title" :to="item.link" 
                   class="group p-6 md:p-8 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl shadow-xl dark:shadow-none border border-white/40 dark:border-gray-700 text-center hover:-translate-y-2 hover:border-brand-accent1 dark:hover:border-brand-accent1 transition-all duration-300">
           <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{{ item.icon }}</div>
-          <h4 class="font-bold text-gray-800 dark:text-white">{{ item.title }}</h4>
+          <h2 class="font-bold text-gray-800 dark:text-white text-base">{{ item.title }}</h2>
         </NuxtLink>
       </div>
     </section>
@@ -48,7 +54,7 @@
         
         <div class="relative z-10 mb-8 md:mb-0 text-center md:text-right">
           <div class="inline-block bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full mb-4 border border-white/30">سیستم اختصاصی هوش‌پرداز</div>
-          <h3 class="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">نمی‌دانید کدام مسیر برای شما مناسب‌تر است؟</h3>
+          <h2 class="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">استعدادیابی برنامه‌نویسی؛ کدام مسیر برای شما مناسب‌تر است؟</h2>
           <p class="text-blue-100 text-lg max-w-xl font-medium">با پاسخ به ۱۵ سوال هدفمند و مبتنی بر روانشناسی شناختی، در کمتر از ۲ دقیقه مسیر شغلی ایده‌آل خود را پیدا کنید.</p>
         </div>
         
@@ -61,7 +67,7 @@
 
     <section class="py-16 container mx-auto px-4">
       <div class="text-center mb-16">
-        <h3 class="text-3xl md:text-4xl font-black dark:text-white mb-4">نقشه راه یادگیری <span class="text-brand-accent1">هوش‌پرداز</span></h3>
+        <h2 class="text-3xl md:text-4xl font-black dark:text-white mb-4">نقشه راه دوره‌های آنلاین <span class="text-brand-accent1">هوش‌پرداز</span></h2>
         <p class="text-gray-500 dark:text-gray-400 font-medium">مسیر شفاف و گام‌به‌گام برای رسیدن به تخصص</p>
       </div>
       
@@ -74,7 +80,7 @@
             {{ path.icon }}
           </div>
           
-          <h4 class="text-2xl font-bold mb-3 dark:text-white group-hover:text-brand-accent1 transition-colors">{{ path.name }}</h4>
+          <h3 class="text-2xl font-bold mb-3 dark:text-white group-hover:text-brand-accent1 transition-colors">{{ path.name }}</h3>
           <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">{{ path.desc }}</p>
           
           <div class="inline-flex items-center gap-2 text-brand-accent1 font-bold">
@@ -106,7 +112,7 @@
       <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center relative z-10">
         <div class="order-2 lg:order-1">
           <div class="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold px-4 py-2 rounded-full mb-6">دپارتمان برنامه‌نویسی</div>
-          <h3 class="text-3xl md:text-5xl font-black text-gray-800 dark:text-white mb-6 leading-tight">کدنویسی را به <span class="text-brand-accent1">زبان ماشین</span> لمس کنید</h3>
+          <h2 class="text-3xl md:text-5xl font-black text-gray-800 dark:text-white mb-6 leading-tight">دوره آنلاین برنامه‌نویسی؛ کدنویسی را به <span class="text-brand-accent1">زبان ماشین</span> لمس کنید</h2>
           <p class="text-gray-600 dark:text-gray-400 text-lg leading-loose mb-10 text-justify">
             در این دپارتمان، ما از همان روز اول شما را با محیط‌های واقعی توسعه (IDE) درگیر می‌کنیم. خبری از تئوری‌های خسته‌کننده نیست؛ شما الگوریتم می‌نویسید و سیستم آن را اجرا می‌کند.
           </p>
@@ -143,12 +149,25 @@
 
     <section class="py-24 container mx-auto px-4 text-center">
       <div class="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-bold px-4 py-2 rounded-full mb-6">دپارتمان طراحی دیجیتال</div>
-      <h3 class="text-3xl md:text-5xl font-black mb-6 dark:text-white text-gray-800">تفاوت را با چشمان خود ببینید</h3>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 dark:text-white text-gray-800">تفاوت را با چشمان خود ببینید</h2>
       <p class="text-gray-500 dark:text-gray-400 mb-14 max-w-2xl mx-auto text-lg">خروجی خام را با جادوی هنرهای دیجیتال در دپارتمان طراحی ما مقایسه کنید. اسلایدر را به چپ و راست بکشید.</p>
       
       <div class="relative w-full max-w-5xl mx-auto aspect-[16/9] md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800" dir="ltr">
-        <img src="/images/Design-Before.jpg" class="absolute inset-0 w-full h-full object-cover" alt="طراحی خام">
-        <img src="/images/Design-After.jpg" class="absolute inset-0 w-full h-full object-cover" :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" alt="طراحی نهایی">
+        <NuxtImg 
+          src="/images/Design-Before.jpg" 
+          class="absolute inset-0 w-full h-full object-cover" 
+          alt="طراحی خام پروژه"
+          format="webp"
+          loading="lazy"
+        />
+        <NuxtImg 
+          src="/images/Design-After.jpg" 
+          class="absolute inset-0 w-full h-full object-cover" 
+          :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" 
+          alt="طراحی نهایی پروژه هوش پرداز"
+          format="webp"
+          loading="lazy"
+        />
         <input type="range" min="0" max="100" v-model="sliderValue" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
         
         <div class="absolute top-0 bottom-0 w-1 bg-white pointer-events-none shadow-[0_0_10px_rgba(0,0,0,0.5)] z-10" :style="{ left: sliderValue + '%' }">
@@ -166,7 +185,7 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
           <div>
-            <h3 class="text-3xl md:text-4xl font-black dark:text-white mb-2 text-gray-800">گالری پروژه‌های برتر دانشجویان</h3>
+            <h2 class="text-3xl md:text-4xl font-black dark:text-white mb-2 text-gray-800">گالری پروژه‌های برتر دوره‌های هوش مصنوعی و رباتیک</h2>
             <p class="text-gray-500 dark:text-gray-400 font-medium">ما به نتیجه کار هنرجویانمان افتخار می‌کنیم.</p>
           </div>
           <NuxtLink to="/projects" class="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl font-bold hover:border-brand-accent1 hover:text-brand-accent1 dark:text-white transition-colors">مشاهده همه پروژه‌ها</NuxtLink>
@@ -175,22 +194,34 @@
         <div class="grid md:grid-cols-2 gap-8">
           <div class="group relative rounded-[2rem] overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 cursor-pointer">
             <div class="aspect-[4/3] w-full overflow-hidden bg-gray-200 dark:bg-gray-700">
-              <img src="/images/Project-1.jpg" alt="پروژه برنامه‌نویسی" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+              <NuxtImg 
+                src="/images/Project-1.jpg" 
+                alt="پروژه برنامه‌نویسی تشخیص چهره" 
+                format="webp"
+                loading="lazy"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              />
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/60 to-transparent opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 md:p-10">
               <span class="inline-block bg-brand-accent1 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 w-max">هوش مصنوعی</span>
-              <h4 class="text-white text-2xl md:text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">طراحی سیستم تشخیص چهره</h4>
+              <h3 class="text-white text-2xl md:text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">طراحی سیستم تشخیص چهره</h3>
               <p class="text-gray-300 text-sm md:text-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">پروژه پایانی مسیر برنامه‌نویسی با استفاده از پایتون و OpenCV.</p>
             </div>
           </div>
 
           <div class="group relative rounded-[2rem] overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 cursor-pointer">
             <div class="aspect-[4/3] w-full overflow-hidden bg-gray-200 dark:bg-gray-700">
-              <img src="/images/Project-2.jpg" alt="پروژه رباتیک" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+              <NuxtImg 
+                src="/images/Project-2.jpg" 
+                alt="پروژه ساخت بازوی رباتیک" 
+                format="webp"
+                loading="lazy"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              />
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/60 to-transparent opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 md:p-10">
               <span class="inline-block bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 w-max">الکترونیک دیجیتال</span>
-              <h4 class="text-white text-2xl md:text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">ساخت بازوی رباتیک هوشمند</h4>
+              <h3 class="text-white text-2xl md:text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">ساخت بازوی رباتیک هوشمند</h3>
               <p class="text-gray-300 text-sm md:text-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">پیاده‌سازی صفر تا صد سخت‌افزار، بردهای آردوینو و منطق حرکتی.</p>
             </div>
           </div>
@@ -200,7 +231,7 @@
 
     <section class="py-24 container mx-auto px-4 max-w-4xl">
       <div class="text-center mb-14">
-        <h3 class="text-3xl md:text-4xl font-black mb-4 dark:text-white text-gray-800">سوالات پرتکرار شما</h3>
+        <h2 class="text-3xl md:text-4xl font-black mb-4 dark:text-white text-gray-800">سوالات متداول درباره دوره‌های آنلاین</h2>
         <p class="text-gray-500 dark:text-gray-400 font-medium">پاسخ به دغدغه‌های همیشگی قبل از شروع مسیر.</p>
       </div>
       
@@ -210,9 +241,9 @@
              :class="{'shadow-md border-brand-accent1 dark:border-brand-accent1': activeFaq === index}">
           
           <button @click="toggleFaq(index)" class="w-full text-right p-6 flex justify-between items-center focus:outline-none">
-            <h4 class="font-bold text-lg dark:text-white" :class="{'text-brand-accent1': activeFaq === index, 'text-gray-800': activeFaq !== index}">
+            <h3 class="font-bold text-lg dark:text-white" :class="{'text-brand-accent1': activeFaq === index, 'text-gray-800': activeFaq !== index}">
               {{ faq.q }}
-            </h4>
+            </h3>
             <div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center flex-shrink-0 transition-transform duration-300"
                  :class="{'rotate-45 bg-brand-accent1 text-white': activeFaq === index}">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
@@ -288,23 +319,60 @@ onMounted(() => {
   }, 1500);
 });
 
-// اضافه شدن سئوی داینامیک و فوق حرفه‌ای
+// سئوی داینامیک و فوق حرفه‌ای
 useSeoMeta({
-  title: 'آموزش برنامه‌نویسی و هوش مصنوعی', 
+  title: 'آکادمی هوش‌پرداز | دوره آنلاین برنامه‌نویسی، هوش مصنوعی و رباتیک', 
   description: 'به آکادمی هوش‌پرداز خوش آمدید. برترین پلتفرم آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای تمام سنین، همراه با تست استعدادیابی هوشمند.',
+  keywords: 'دوره آنلاین, هوش مصنوعی, دوره آنلاین هوش مصنوعی, رباتیک, دوره رباتیک, آموزش برنامه نویسی, استعدادیابی برنامه نویسی',
   
-  // تنظیمات Open Graph برای شبکه‌های اجتماعی (تلگرام، واتساپ، لینکدین)
   ogTitle: 'آکادمی برنامه‌نویسی و هوش مصنوعی هوش‌پرداز',
   ogDescription: 'آینده‌ات را با هوش‌پرداز کدنویسی کن! آموزش از صفر تا ورود به بازار کار به همراه منتورینگ اختصاصی.',
-  ogImage: '/images/Banner.jpg', // عکسی که در شبکه‌های اجتماعی نمایش داده می‌شود
+  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg',
   ogUrl: 'https://hoooshpardaz.ir',
   
-  // تنظیمات برای توییتر (ایکس)
   twitterTitle: 'آکادمی هوش‌پرداز',
   twitterDescription: 'یادگیری برنامه‌نویسی و هوش مصنوعی برای کودکان و بزرگسالان.',
-  twitterImage: '/images/Banner.jpg',
+  twitterImage: 'https://hoooshpardaz.ir/images/Banner.jpg',
   twitterCard: 'summary_large_image'
 })
+
+// Schema Markup برای سایت و سوالات متداول
+const faqSchema = faqs.map(faq => ({
+  "@type": "Question",
+  "name": faq.q,
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": faq.a
+  }
+}));
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "آکادمی هوش‌پرداز",
+        "alternateName": "Hooshpardaz Academy",
+        "url": "https://hoooshpardaz.ir",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://hoooshpardaz.ir/courses?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqSchema
+      })
+    }
+  ]
+});
 </script>
 
 <style scoped>

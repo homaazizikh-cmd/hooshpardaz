@@ -12,7 +12,7 @@
         <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed font-medium">
           برای اینکه بتوانیم نقشه شناختی ذهن شما را تحلیل کرده و نتیجه را برای همیشه در پروفایل اختصاصی شما ذخیره کنیم، لطفاً ابتدا وارد حساب کاربری خود شوید.
         </p>
-        <NuxtLink to="/login" class="inline-flex px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl font-bold transition-all shadow-[0_10px_20px_-10px_rgba(37,99,235,0.6)] transform hover:-translate-y-1">
+        <NuxtLink to="/login" title="ورود و ثبت‌نام در آکادمی هوش‌پرداز" class="inline-flex px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl font-bold transition-all shadow-[0_10px_20px_-10px_rgba(37,99,235,0.6)] transform hover:-translate-y-1">
           ورود / ثبت‌نام در سایت
         </NuxtLink>
       </div>
@@ -20,7 +20,7 @@
       <template v-else>
         
         <div class="mb-10 text-center transition-all duration-500" v-if="!showResult && !isAnalyzing">
-          <h1 class="text-3xl md:text-4xl font-black text-gray-800 dark:text-white mb-3">استعدادیاب <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">هوشمند</span></h1>
+          <h1 class="text-3xl md:text-4xl font-black text-gray-800 dark:text-white mb-3">استعدادیاب <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">هوشمند</span> برنامه‌نویسی</h1>
           <p class="text-gray-500 dark:text-gray-400 font-medium mb-8">به غریزه خود اعتماد کنید و سریع پاسخ دهید.</p>
           
           <div class="max-w-xl mx-auto">
@@ -82,7 +82,7 @@
               <div class="grid lg:grid-cols-2 gap-12 items-center mb-6">
                 
                 <div class="relative w-full max-w-[320px] mx-auto aspect-square drop-shadow-2xl bg-gray-50 dark:bg-gray-900/50 rounded-full p-4 border border-gray-100 dark:border-gray-700/50">
-                  <svg viewBox="0 0 300 300" class="w-full h-full">
+                  <svg viewBox="0 0 300 300" class="w-full h-full" role="img" aria-label="نمودار رادار استعدادیابی برنامه‌نویسی">
                     <polygon points="150,50 236.6,200 63.4,200" fill="none" stroke="currentColor" stroke-width="1" class="text-gray-200 dark:text-gray-600" />
                     <polygon points="150,83.3 207.7,183.3 92.3,183.3" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4,4" class="text-gray-300 dark:text-gray-500" />
                     <polygon points="150,116.6 178.8,166.6 121.2,166.6" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2" class="text-gray-300 dark:text-gray-500" />
@@ -143,10 +143,52 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-useHead({ title: 'آزمون استعدادیابی هوشمند | هوش‌پرداز' })
-
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
+
+// 💡 سئو: ارتقای استثنایی متاتگ‌ها برای کلمات کلیدی پرجستجو
+useSeoMeta({
+  title: 'تست استعدادیابی برنامه‌نویسی و هوش مصنوعی رایگان | هوش‌پرداز',
+  description: 'آیا برای برنامه‌نویس شدن ساخته شده‌اید؟ با شرکت در آزمون آنلاین و رایگان استعدادیابی هوش‌پرداز، نقشه شناختی ذهن خود را دریافت کنید و مسیر شغلی مناسب خود را بیابید.',
+  keywords: 'تست استعداد یابی, استعدادیابی برنامه نویسی, تست آنلاین, هوش مصنوعی, آزمون روانشناسی برنامه نویسی',
+  ogTitle: 'تست استعدادیابی برنامه‌نویسی و تکنولوژی | هوش‌پرداز',
+  ogDescription: 'با پاسخ به ۱۵ سوال روانشناختی، استعداد پنهان خود را در دنیای کدنویسی و هوش مصنوعی کشف کنید.',
+  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg',
+  ogUrl: 'https://hoooshpardaz.ir/talent',
+  twitterCard: 'summary_large_image'
+})
+
+// 💡 سئو: معرفی این صفحه به عنوان یک ابزار/نرم‌افزار (Web Application) به گوگل
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://hoooshpardaz.ir/talent'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "سیستم استعدادیابی هوش‌پرداز",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0", // رایگان بودن را به گوگل اعلام می‌کنیم (جذابیت برای کلیک)
+          "priceCurrency": "IRT"
+        },
+        "description": "ابزار آنلاین برای کشف استعدادهای نهفته در زمینه برنامه‌نویسی، رباتیک و هوش مصنوعی بر پایه تحلیل شناختی.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "آکادمی هوش‌پرداز"
+        }
+      })
+    }
+  ]
+})
 
 const currentStep = ref(0);
 const isAnalyzing = ref(false);

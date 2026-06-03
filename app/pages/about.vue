@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark transition-colors duration-500 overflow-hidden">
+  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark transition-colors duration-500 overflow-hidden" dir="rtl">
     
     <section class="relative pt-32 pb-40 px-4 bg-slate-900 overflow-hidden rounded-b-[3rem] md:rounded-b-[5rem]">
       <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 opacity-20 rounded-full blur-[100px] mix-blend-screen pointer-events-none"></div>
@@ -22,7 +22,7 @@
             </h1>
             
             <p class="text-gray-400 text-lg md:text-xl font-medium leading-relaxed mb-8 max-w-xl">
-              اگر به دنبال یادگیری برنامه‌نویسی و هوش مصنوعی هستید، در جای درستی قرار دارید. ما در هوش‌پرداز با روش‌های نوین، شما را به یک متخصص حرفه‌ای تبدیل می‌کنیم.
+              اگر به دنبال یادگیری <strong>برنامه‌نویسی</strong> و <strong>هوش مصنوعی</strong> هستید، در جای درستی قرار دارید. ما در هوش‌پرداز با روش‌های نوین، شما را به یک متخصص حرفه‌ای تبدیل می‌کنیم.
             </p>
 
             <div class="flex flex-wrap gap-6 mb-10">
@@ -41,23 +41,20 @@
             </div>
 
             <div class="flex flex-wrap gap-4">
-              <NuxtLink to="/courses" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-1">
+              <NuxtLink to="/courses" title="مشاهده دوره‌های آموزشی هوش پرداز" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-1">
                 ثبت‌نام دوره رایگان
               </NuxtLink>
-              <NuxtLink to="/contact" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1">
+              <NuxtLink to="/contact" title="تماس با آکادمی هوش پرداز" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1">
                 تماس با ما →
               </NuxtLink>
             </div>
           </div>
 
-          <!-- المان‌های گرافیکی (سمت چپ) -->
           <div class="w-full lg:w-1/2 relative min-h-[400px] flex items-center justify-center mt-10 lg:mt-0">
-            <!-- هاله نورانی پس‌زمینه بنر -->
             <div class="absolute w-[80%] h-[80%] bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-[4rem] rotate-6 opacity-30 blur-3xl"></div>
-            <!-- بنر اصلی -->
             <img 
               src="/images/about-banner.png" 
-              alt="بنر درباره ما هوش پرداز" 
+              alt="آکادمی برنامه‌نویسی و هوش مصنوعی هوش‌پرداز" 
               class="relative z-10 w-full max-w-lg h-auto object-contain drop-shadow-2xl transition-transform hover:scale-105 duration-700" 
             />
           </div>
@@ -68,7 +65,7 @@
 
     <div class="container mx-auto max-w-6xl px-4 relative z-20 -mt-20">
       <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl dark:shadow-none dark:border dark:border-gray-700 p-8 md:p-12 backdrop-blur-xl transition-colors duration-500">
-        <h3 class="text-center text-gray-500 dark:text-gray-400 font-bold mb-8 text-lg">اعدادی که بخشی از <span class="text-blue-600 dark:text-blue-400">مسیر رشد</span> ما را نشان می‌دهند</h3>
+        <h2 class="text-center text-gray-500 dark:text-gray-400 font-bold mb-8 text-lg">اعدادی که بخشی از <span class="text-blue-600 dark:text-blue-400">مسیر رشد</span> ما را نشان می‌دهند</h2>
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-x-reverse divide-gray-100 dark:divide-gray-700">
           <div class="text-center">
@@ -134,7 +131,7 @@
               {{ step.number }}
             </div>
 
-            <h4 class="text-xl font-bold text-gray-800 dark:text-white mt-12 mb-4">{{ step.title }}</h4>
+            <h3 class="text-xl font-bold text-gray-800 dark:text-white mt-12 mb-4">{{ step.title }}</h3>
             <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{{ step.desc }}</p>
             
             <div class="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-blue-600 to-indigo-500 rounded-t-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -144,7 +141,7 @@
     </section>
 
     <section class="py-20 container mx-auto max-w-7xl px-4 text-center">
-      <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-12">همکاران ما</h3>
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-12">همکاران و حامیان ما</h2>
       
       <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 dark:opacity-40">
         <div class="text-xl font-black tracking-widest grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer text-gray-800 dark:text-white">VALENTURA</div>
@@ -167,7 +164,55 @@ const steps = ref([
   { number: '۰۴', title: 'رشد و بهبود', desc: 'ما بر اساس بازخورد کاربران، تجربه آموزشی را به‌طور مداوم بهتر می‌کنیم.' }
 ])
 
+// 💡 سئو: ارتقای شدید متاتگ‌ها با کامپوزبل قدرتمند useSeoMeta
+useSeoMeta({
+  title: 'درباره آکادمی هوش‌پرداز | مرجع آموزش برنامه‌نویسی و هوش مصنوعی',
+  description: 'آکادمی هوش‌پرداز پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی با آموزش ۱۰۰٪ پروژه‌محور و منتورینگ اختصاصی. مسیر رشد خود را با ما آغاز کنید.',
+  keywords: 'درباره هوش پرداز, آموزش هوش مصنوعی, آموزش برنامه نویسی, آکادمی برنامه نویسی, منتورینگ برنامه نویسی',
+  ogTitle: 'درباره آکادمی هوش‌پرداز',
+  ogDescription: 'با هوش‌پرداز، دروازه‌ای به دنیای مدرن تکنولوژی، برنامه‌نویسی و هوش مصنوعی باز کنید.',
+  ogImage: 'https://hoooshpardaz.ir/images/about-banner.png',
+  ogUrl: 'https://hoooshpardaz.ir/about',
+  twitterCard: 'summary_large_image'
+})
+
+// 💡 سئو: جادوی Schema.org برای معرفی رسمی آکادمی به گوگل (Knowledge Panel)
 useHead({
-  title: 'درباره ما | هوش پرداز'
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://hoooshpardaz.ir/about'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            // معرفی این صفحه به عنوان یک صفحه استاندارد "درباره ما"
+            "@type": "AboutPage",
+            "name": "درباره آکادمی هوش‌پرداز",
+            "url": "https://hoooshpardaz.ir/about",
+            "description": "آکادمی هوش‌پرداز، پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی."
+          },
+          {
+            // معرفی آکادمی شما به عنوان یک "سازمان آموزشی" در گوگل
+            "@type": "EducationalOrganization",
+            "name": "آکادمی هوش‌پرداز",
+            "alternateName": "Hooshpardaz Academy",
+            "url": "https://hoooshpardaz.ir",
+            "logo": "https://hoooshpardaz.ir/logo.png",
+            "description": "ارائه دوره‌های تخصصی آموزش برنامه‌نویسی، پایتون، هوش مصنوعی و رباتیک با متدهای نوین و پروژه‌محور برای کودکان، نوجوانان و بزرگسالان.",
+            "sameAs": [
+              "https://instagram.com/hooshpardaz", // لینک شبکه‌های اجتماعی خود را اینجا بگذارید
+              "https://t.me/hoooshpardaz"
+            ]
+          }
+        ]
+      })
+    }
+  ]
 })
 </script>
