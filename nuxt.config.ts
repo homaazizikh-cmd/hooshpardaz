@@ -4,16 +4,16 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
     '@nuxtjs/sitemap',
-    '@nuxt/image' // 👈 ماژول بهینه‌سازی تصاویر (سئو و سرعت) اضافه شد
+    '@nuxt/image'
   ],
 
-  // 👈 تنظیمات حرفه‌ای Nuxt Image اضافه شد
+  // تنظیمات بهینه‌سازی تصاویر
   image: {
-    format: ['webp'], // تبدیل خودکار تصاویر به WebP برای سرعت بیشتر
+    format: ['webp'],
     domains: [
-      'images.unsplash.com', // اجازه بهینه‌سازی برای عکس‌های آنسپلاش
-      'i.pravatar.cc',       // اجازه بهینه‌سازی برای عکس‌های تستی پروفایل
-      'https://rrelkadkixesdzydcwgt.supabase.co' // 🔴 مهم: آدرس پروژه Supabase خود را اینجا جایگزین کنید (بدون https://)
+      'images.unsplash.com',
+      'i.pravatar.cc',
+      'rrelkadkixesdzydcwgt.supabase.co' // 🔴 فقط آدرس دامین پروژه خود را بدون https:// اینجا قرار دهید
     ]
   },
 
@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     redirect: false
   },
 
+  // تنظیمات vite برای ابزارهای توسعه
   vite: {
     optimizeDeps: {
       include: [
@@ -61,7 +62,6 @@ export default defineNuxtConfig({
           rel: 'stylesheet', 
           href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap' 
         },
-        // 👇 کدهای فاوآیکون برای گوگل و دستگاه‌های هوشمند 👇
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'apple-touch-icon', href: '/favicon.png' }
       ]
