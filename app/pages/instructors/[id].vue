@@ -46,20 +46,23 @@
               {{ instructor.title }}
             </p>
 
-            <div class="w-full">
-              <div class="text-right mb-4 flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                CORE_SKILLS
+            <div class="w-full mt-2">
+              <div class="text-right mb-4 flex items-center justify-center lg:justify-start gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                ACTIVE_MODULES
               </div>
               
-              <div class="flex flex-col gap-3 w-full">
-                <div v-for="(skill, i) in instructor.skills" :key="skill" class="w-full">
-                  <div class="flex justify-between text-[11px] font-mono mb-1 dark:text-slate-300">
-                    <span>{{ skill }}</span>
-                    <span class="text-blue-600 dark:text-cyan-500">{{ 95 - (i * 5) }}%</span>
+              <div class="flex flex-col gap-2.5 w-full">
+                <div v-for="skill in instructor.skills" :key="skill" class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 group-hover:border-blue-200 dark:group-hover:border-cyan-500/30 transition-all duration-300">
+                  <div class="flex items-center gap-3">
+                     <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-blue-100/50 dark:bg-[#0f172a] border border-blue-200/50 dark:border-slate-800 text-blue-600 dark:text-cyan-400 shadow-inner">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                     </div>
+                     <span class="text-[11px] md:text-xs font-bold text-slate-700 dark:text-slate-200 tracking-wide">{{ skill }}</span>
                   </div>
-                  <div class="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-500 dark:to-blue-600 rounded-full" :style="`width: ${95 - (i * 5)}%`"></div>
+                  <div class="flex items-center gap-1.5">
+                     <span class="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-cyan-500 animate-pulse"></span>
+                     <span class="text-[9px] font-mono text-slate-400 dark:text-slate-500 tracking-widest">LOADED</span>
                   </div>
                 </div>
               </div>
@@ -162,13 +165,13 @@
 <script setup>
 const route = useRoute();
 
-// لیست دقیق ۸ استاد (همان اطلاعات صفحه قبل برای هماهنگی)
+// این لیست را پیدا کنید و دقیقاً با کدهای زیر جایگزین کنید
 const instructors = [
   { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: 'متخصص پایتون و AI', bio: 'توسعه‌دهنده ارشد و پژوهشگر هوش مصنوعی. ایشان با سال‌ها تجربه در پیاده‌سازی مدل‌های یادگیری ماشین (Machine Learning) و شبکه‌های عصبی عمیق، رویکردی کاملاً پروژه‌محور در کلاس‌های خود دارند. هدف اصلی کلاس‌های ایشان، رساندن هنرجو از سطح صفر به توانایی ساخت اپلیکیشن‌های هوشمند واقعی است.', skills: ['Python', 'Machine_Learning', 'Deep_Learning', 'TensorFlow'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
-  { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با بیش از ۸ سال تجربه در پروژه‌های استارتاپی. کلاس‌های ایشان فقط آموزش نرم‌افزار نیست، بلکه آموزش \"دیدن\" و \"خلق کردن\" است. هنرجویان ایشان به راحتی جذب بازار کار طراحی محصول و گرافیک تبلیغاتی می‌شوند.', skills: ['UI/UX', 'Photoshop', 'Illustrator', 'Figma'], image_url: '/images/instructors/paniz-borna.jpg' },
+  { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با بیش از ۸ سال تجربه در پروژه‌های استارتاپی. کلاس‌های ایشان فقط آموزش نرم‌افزار نیست، بلکه آموزش "دیدن" و "خلق کردن" است. هنرجویان ایشان به راحتی جذب بازار کار طراحی محصول و گرافیک تبلیغاتی می‌شوند.', skills: ['UI/UX', 'Photoshop', 'Illustrator', 'Figma'], image_url: '/images/instructors/paniz-borna.jpg' },
   { id: 3, name: 'ملینا دهقانی', dept: 'python', title: 'منتور برنامه‌نویسی', bio: 'کارشناس نرم‌افزار و متخصص در آموزش مفاهیم پایه برنامه‌نویسی و پایتون با رویکرد گیمیفیکیشن و استعدادیابی کودکان و نوجوانان. صبر و حوصله بی‌نظیر ایشان در کنار دانش فنی بالا، باعث می‌شود سخت‌ترین مفاهیم الگوریتمی برای رده‌های سنی پایین به یک بازی جذاب تبدیل شود.', skills: ['Python_Kids', 'Algorithm', 'Mentoring', 'Scratch'], image_url: '/images/instructors/melina-dehghani.jpg' },
   { id: 4, name: 'حسین عزیزی', dept: 'maharat', title: 'متخصص مکاترونیک', bio: 'طراح سیستم‌های تعبیه‌شده و رباتیک. منتور ارشد تیم‌های المپیاد و مدرس دوره‌های تخصصی الکترونیک و آردوینو. در کارگاه‌های ایشان، تئوری جای خود را به ساختن ربات‌های واقعی و برنامه‌نویسی میکروکنترلرها می‌دهد.', skills: ['Robotics', 'Arduino', 'C++', 'IoT'], image_url: '/images/instructors/hossein-azizi.jpg' },
-  { id: 5, name: 'دکتر فرانک خزایی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد هوش مصنوعی (Generative AI). مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری. ایشان به شما می‌آموزند چگونه از دل هزاران ردیف داده، اطلاعات ارزشمند استخراج کنید.', skills: ['Data_Science', 'Big_Data', 'NLP', 'ChatGPT_API'], image_url: '/images/instructors/sara-mehrabi.jpg' },
+  { id: 5, name: 'دکتر سارا مهرابی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد هوش مصنوعی (Generative AI). مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری. ایشان به شما می‌آموزند چگونه از دل هزاران ردیف داده، اطلاعات ارزشمند استخراج کنید.', skills: ['Data_Science', 'Big_Data', 'NLP', 'ChatGPT_API'], image_url: '/images/instructors/sara-mehrabi.jpg' },
   { id: 6, name: 'امیرحسین کیانی', dept: 'python', title: 'توسعه‌دهنده بک‌اند', bio: 'برنامه‌نویس ارشد سرور با تسلط کامل بر فریم‌ورک‌های پایتونی مثل جنگو و فست‌ای‌پی‌آی. عاشق به چالش کشیدن هنرجویان با حل مشکلات پیچیده سیستمی و آماده‌سازی آن‌ها برای شرکت در مصاحبه‌های استخدامی دشوار.', skills: ['Django', 'FastAPI', 'PostgreSQL', 'Docker'], image_url: '/images/instructors/amirhossein-kiani.jpg' },
   { id: 7, name: 'نغمه شفیعی', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر. در دوره‌های ایشان یاد می‌گیرید چگونه محصولی طراحی کنید که کاربران عاشق استفاده از آن شوند.', skills: ['Figma', 'Product_Design', 'Prototyping', 'User_Research'], image_url: '/images/instructors/naghmeh-shafiei.jpg' },
   { id: 8, name: 'مهندس رضا تهرانی', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر (ICDL) و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع و مطمئن به بازار کار اداری و سازمانی با جدیدترین متدهای آموزشی روز.', skills: ['ICDL', 'Excel_Expert', 'Windows', 'Word'], image_url: '/images/instructors/reza-tehrani.jpg' }

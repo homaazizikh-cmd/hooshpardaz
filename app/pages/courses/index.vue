@@ -1,46 +1,52 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark pt-28 pb-20 transition-colors duration-500 overflow-hidden">
+  <div class="min-h-screen bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-slate-200 pt-28 pb-24 overflow-hidden relative transition-colors duration-500 font-sans">
     
-    <section class="container mx-auto px-4 text-center mb-16 relative">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] pointer-events-none"></div>
-      
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-white/10 text-brand-accent1 text-sm font-bold mb-6 border border-gray-200 dark:border-white/20 backdrop-blur-md shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-brand-accent1 animate-ping"></span>
-        مسیرهای آموزشی تخصصی
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+    <div class="absolute top-0 left-1/4 w-[800px] h-[600px] bg-blue-400/10 dark:bg-blue-600/10 blur-[150px] rounded-full pointer-events-none animate-pulse duration-1000"></div>
+    <div class="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-purple-400/10 dark:bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+
+    <section class="container mx-auto px-4 text-center mb-16 relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md shadow-sm dark:shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+        <span class="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 animate-ping"></span>
+        SYSTEM_DEPARTMENTS
       </div>
       
-      <h1 class="text-4xl md:text-6xl font-black text-gray-800 dark:text-white mb-6 relative z-10 leading-tight">
-        دپارتمان‌های <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent1 to-blue-600 drop-shadow-sm">آکادمی هوش‌پرداز</span>
+      <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 relative z-10 leading-tight tracking-tight">
+        دپارتمان‌های <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">آکادمی هوش‌پرداز</span>
       </h1>
-      <p class="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto relative z-10 leading-relaxed font-medium">
-        برای مشاهده دوره‌های اختصاصی هر حوزه، روی دپارتمان مورد نظر کلیک کنید و مسیر آینده شغلی خود را انتخاب کنید.
+      <p class="text-slate-600 dark:text-slate-400 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        برای استخراج دوره‌های تخصصی هر حوزه، روی ماژول دپارتمان مورد نظر کلیک کنید و مسیر ارتقای خود را انتخاب کنید.
       </p>
     </section>
 
-    <section class="container mx-auto px-4 mb-20 relative z-10">
+    <section class="container mx-auto px-4 mb-24 relative z-20">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         <div v-for="dept in departments" :key="dept.id" 
              @click="activeDepartment = dept.id"
              :class="activeDepartment === dept.id 
-                ? 'ring-4 ring-brand-accent1 shadow-[0_15px_30px_-10px_rgba(56,189,248,0.5)] scale-105 z-10' 
-                : 'border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:-translate-y-2 opacity-80 hover:opacity-100'"
-             class="cursor-pointer transition-all duration-500 rounded-[2rem] overflow-hidden relative group bg-white dark:bg-gray-800">
+                ? 'border-blue-500 dark:border-cyan-500 shadow-lg dark:shadow-[0_0_25px_rgba(6,182,212,0.4)] scale-105 z-10' 
+                : 'border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-slate-600 opacity-80 hover:opacity-100'"
+             class="cursor-pointer transition-all duration-500 rounded-[2rem] overflow-hidden relative group bg-white dark:bg-[#090e1a] border-2">
           
-          <div class="w-full aspect-[4/5] bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+          <div class="w-full aspect-[4/5] overflow-hidden relative bg-slate-100 dark:bg-slate-900">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] z-10 mix-blend-overlay opacity-50"></div>
+            
             <NuxtImg 
               :src="dept.image" 
               :alt="`دپارتمان آموزشی ${dept.name} در هوش‌پرداز`" 
               format="webp"
               preload
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              class="w-full h-full object-cover transition-transform duration-700"
+              :class="activeDepartment === dept.id ? 'scale-110' : 'group-hover:scale-110'"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent transition-opacity duration-300"
-                 :class="activeDepartment === dept.id ? 'opacity-90' : 'opacity-70 group-hover:opacity-90'"></div>
+            
+            <div class="absolute inset-0 transition-opacity duration-300 z-10"
+                 :class="activeDepartment === dept.id ? 'bg-gradient-to-t from-blue-900/90 via-slate-900/40 to-transparent' : 'bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent'"></div>
           </div>
           
-          <div class="absolute bottom-0 left-0 right-0 p-5 text-center transform transition-transform duration-300"
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center transform transition-transform duration-300 z-20"
                :class="activeDepartment === dept.id ? 'translate-y-0' : 'translate-y-2 group-hover:translate-y-0'">
-            <div v-if="activeDepartment === dept.id" class="w-8 h-1 bg-brand-accent1 mx-auto rounded-full mb-3 shadow-[0_0_10px_rgba(56,189,248,0.8)]"></div>
+            <div v-if="activeDepartment === dept.id" class="w-8 h-1 bg-blue-500 dark:bg-cyan-400 mx-auto rounded-full mb-3 shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
             <h3 class="text-white font-black text-sm md:text-lg leading-tight">{{ dept.name }}</h3>
           </div>
         </div>
@@ -48,55 +54,82 @@
     </section>
 
     <section class="container mx-auto px-4 relative z-10">
-      <div class="flex items-center gap-4 mb-10 border-b border-gray-200 dark:border-gray-800 pb-4">
-        <div class="w-3 h-10 bg-brand-accent1 rounded-full shadow-[0_0_15px_rgba(56,189,248,0.5)]"></div>
-        <h2 class="text-2xl md:text-3xl font-black text-gray-800 dark:text-white">
-          دوره‌های دپارتمان <span class="text-brand-accent1">{{ getDepartmentName(activeDepartment) }}</span>
+      
+      <div class="flex items-center gap-4 mb-12 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <div class="w-2 h-10 bg-blue-600 dark:bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.5)]"></div>
+        <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+          دوره‌های استخراج‌شده: 
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">
+            {{ getDepartmentName(activeDepartment) }}
+          </span>
         </h2>
       </div>
 
       <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative">
-        <div v-for="course in filteredCourses" :key="course.id" 
-             class="bg-white dark:bg-gray-800 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col group hover:shadow-2xl hover:shadow-brand-accent1/10 hover:-translate-y-3 transition-all duration-500 relative">
+        <div v-for="(course, index) in filteredCourses" :key="course.id" 
+             class="group relative flex flex-col">
 
-          <div class="w-full aspect-[3/4] overflow-hidden relative bg-gray-200 dark:bg-gray-700">
-            <NuxtImg 
-              :src="course.image || '/images/default-course.jpg'" 
-              :alt="`دوره آنلاین ${course.title} در آکادمی هوش‌پرداز`" 
-              format="webp"
-              loading="lazy"
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-            />
-            <div class="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500"></div>
-          </div>
-          
-          <div class="p-6 md:p-7 flex flex-col flex-grow relative">
-            <div class="absolute -top-6 right-6 w-12 h-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center text-2xl z-10 transform group-hover:rotate-12 transition-transform duration-300">
-              🎓
+          <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 dark:from-cyan-500 dark:via-blue-500 dark:to-purple-600 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-75 transition duration-500 group-hover:duration-200"></div>
+
+          <div class="relative h-full bg-white dark:bg-[#090e1a] rounded-[2rem] overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-slate-700/50 flex flex-col transition-all duration-300 z-10">
+            
+            <div class="w-full aspect-[3/4] overflow-hidden relative bg-slate-100 dark:bg-slate-900">
+              <div class="absolute top-0 inset-x-0 h-6 bg-black/50 backdrop-blur-md z-20 flex items-center px-3 gap-1.5 border-b border-white/10">
+                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="ml-auto text-[9px] font-mono text-white/50">DATA_SET: 0{{ index + 1 }}</span>
+              </div>
+              <NuxtImg 
+                :src="course.image || '/images/default-course.jpg'" 
+                :alt="`دوره آنلاین ${course.title} در آکادمی هوش‌پرداز`" 
+                format="webp"
+                loading="lazy"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
             
-            <h3 class="text-xl font-black text-gray-800 dark:text-white mb-3 mt-2 group-hover:text-brand-accent1 transition-colors">{{ course.title }}</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 flex-grow leading-loose text-justify line-clamp-3">{{ course.desc }}</p>
-            
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/80 flex flex-col gap-4">
+            <div class="p-6 md:p-7 flex flex-col flex-grow relative bg-white dark:bg-transparent">
               
-              <NuxtLink :to="`/courses/${course.id}`" 
-                        class="relative overflow-hidden flex items-center justify-center w-full bg-brand-dark hover:bg-brand-accent1 dark:bg-gray-700 dark:hover:bg-brand-accent1 text-white py-4 rounded-2xl text-sm md:text-base font-bold transition-all duration-300 shadow-md hover:shadow-[0_10px_20px_-10px_rgba(56,189,248,0.6)] group/btn">
-                <span class="relative z-10 flex items-center gap-2">
-                  مشاهده زمان‌بندی و جزئیات
-                  <svg class="w-5 h-5 rotate-180 transform group-hover/btn:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </span>
-              </NuxtLink>
-            </div>
+              <div class="absolute -top-8 right-6 w-14 h-14 bg-white dark:bg-[#0f172a] rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-2xl z-30 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                🎓
+              </div>
+              
+              <div class="flex justify-between items-center w-full mt-4 mb-2 text-[10px] font-mono text-slate-400 dark:text-slate-500">
+                <span class="tracking-widest">COURSE_ID: {{ course.id }}</span>
+                <span class="text-green-500 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>ACTIVE</span>
+              </div>
 
+              <h3 class="text-xl font-black text-slate-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
+                {{ course.title }}
+              </h3>
+              
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow leading-relaxed text-justify line-clamp-3">
+                {{ course.desc }}
+              </p>
+              
+              <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800/80">
+                <NuxtLink :to="`/courses/${course.id}`" 
+                          class="relative overflow-hidden flex items-center justify-center w-full py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-cyan-500/50 text-sm font-black text-slate-600 dark:text-slate-400 group-hover:text-blue-700 dark:group-hover:text-white transition-all duration-300 group/btn">
+                  <div class="absolute inset-0 w-0 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-500 dark:to-purple-600 transition-all duration-500 ease-out group-hover/btn:w-full opacity-10 dark:opacity-20"></div>
+                  <span class="relative z-10 flex items-center gap-2">
+                    اسکن زمان‌بندی و جزئیات
+                    <svg class="w-4 h-4 transform rotate-180 group-hover/btn:-translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </span>
+                </NuxtLink>
+              </div>
+
+            </div>
           </div>
         </div>
       </TransitionGroup>
       
-      <div v-if="filteredCourses.length === 0" class="text-center py-16 bg-white/50 dark:bg-gray-800/50 rounded-3xl backdrop-blur-sm border border-gray-100 dark:border-gray-700 mt-8">
-        <div class="text-5xl mb-4 opacity-50">⏳</div>
-        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">دوره‌ای یافت نشد</h3>
-        <p class="text-gray-500 dark:text-gray-400">دوره‌های این دپارتمان در حال به‌روزرسانی هستند.</p>
+      <div v-if="filteredCourses.length === 0" class="text-center py-20 bg-white/50 dark:bg-slate-900/30 rounded-[3rem] backdrop-blur-md border border-slate-200 dark:border-slate-800 border-dashed mt-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent"></div>
+        <div class="text-6xl mb-4 opacity-50 grayscale relative z-10">📡</div>
+        <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-2 relative z-10">هیچ دیتایی یافت نشد</h3>
+        <p class="text-slate-500 font-mono text-sm relative z-10">UPDATING_SERVER... PLEASE_WAIT.</p>
       </div>
     </section>
   </div>
