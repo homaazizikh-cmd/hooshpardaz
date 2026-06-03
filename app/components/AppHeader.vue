@@ -103,9 +103,10 @@ const isMobileMenuOpen = ref(false)
 
 const menuLinks = [
   { name: 'صفحه اصلی', path: '/' },
-  { name: 'دوره ها', path: '/courses' },
+  { name: 'دوره‌ها', path: '/courses' },
   { name: 'یادگیری', path: '/learning' },
   { name: 'استعدادیابی', path: '/talent' },
+  { name: 'اساتید', path: '/instructors' }, // این گزینه به منوی اصلی اضافه شد
   { name: 'درباره ما', path: '/about' },
   { name: 'تماس با ما', path: '/contact' }
 ]
