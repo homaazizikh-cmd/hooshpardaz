@@ -7,13 +7,19 @@ export default defineNuxtConfig({
     '@nuxt/image'
   ],
 
+  // 👈 تنظیمات مهم: این بخش به سرور اجازه می‌دهد متغیرهای .env را بخواند
+  runtimeConfig: {
+    telegramToken: process.env.NUXT_TELEGRAM_TOKEN,
+    telegramChatId: process.env.NUXT_TELEGRAM_CHAT_ID,
+  },
+
   // تنظیمات بهینه‌سازی تصاویر
   image: {
     format: ['webp'],
     domains: [
       'images.unsplash.com',
       'i.pravatar.cc',
-      'rrelkadkixesdzydcwgt.supabase.co' // 🔴 فقط آدرس دامین پروژه خود را بدون https:// اینجا قرار دهید
+      'rrelkadkixesdzydcwgt.supabase.co' // 🔴 حتماً بدون https:// باشد
     ]
   },
 
