@@ -54,7 +54,7 @@
              class="bg-white dark:bg-gray-800 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col group hover:shadow-2xl hover:shadow-brand-accent1/10 hover:-translate-y-3 transition-all duration-500 relative">
 
           <div class="w-full aspect-[3/4] overflow-hidden relative bg-gray-200 dark:bg-gray-700">
-            <img :src="course.image" :alt="course.title" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+            <img :src="course.image || '/images/default-course.jpg'" :alt="course.title" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
             <div class="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-500"></div>
           </div>
           
@@ -64,7 +64,7 @@
             </div>
             
             <h4 class="text-xl font-black text-gray-800 dark:text-white mb-3 mt-2 group-hover:text-brand-accent1 transition-colors">{{ course.title }}</h4>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 flex-grow leading-loose text-justify">{{ course.desc }}</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 flex-grow leading-loose text-justify line-clamp-3">{{ course.desc }}</p>
             
             <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/80 flex flex-col gap-4">
               
@@ -100,6 +100,7 @@ useSeoMeta({
   ogImage: '/images/Banner.jpg'
 });
 
+const supabase = useSupabaseClient();
 const activeDepartment = ref('python');
 
 const departments = [
@@ -109,8 +110,8 @@ const departments = [
   { id: 'maharat', name: 'مهارت‌های کاربردی و سخت', image: '/images/DP-Maharat.jpg' }
 ];
 
-// لیست کامل دوره‌ها به همراه تاریخ و زمان‌بندی
-const courses = [
+// 💡 لیست دوره‌های دستی و باارزش شما (حفظ شد)
+const manualCourses = [
   { 
     id: 13, 
     title: 'مهارت‌های هفت‌گانه (ICDL)', 
@@ -243,7 +244,43 @@ const courses = [
   }
 ];
 
-const filteredCourses = computed(() => courses.filter(c => c.dept === activeDepartment.value));
+// 🚀 دریافت دوره‌های جدید از دیتابیس به صورت داینامیک
+const { data: dbCourses } = await useAsyncData('public-courses-list', async () => {
+  const { data, error } = await supabase
+    .from('courses')
+    .select('*')
+    .order('created_at', { ascending: false });
+    
+  if (error) {
+    console.error("خطا در دریافت دوره‌ها:", error);
+    return [];
+  }
+  return data || [];
+});
+
+// 🤝 تلفیق: چسباندن دوره‌های دیتابیس به دوره‌های دستی شما
+const allCourses = computed(() => {
+  const dbActive = (dbCourses.value || [])
+    .filter(c => c.is_published === true || c.is_published === 'true')
+    .map(c => ({
+      id: c.id,
+      title: c.title,
+      dept: c.dept,
+      price: c.price,
+      desc: c.description, 
+      image: c.image_url, 
+      schedule: c.schedule,
+      startDate: c.start_date
+    }));
+    
+  // اول دوره‌های جدید دیتابیس، بعد دوره‌های قدیمیِ دستی شما قرار می‌گیرد
+  return [...dbActive, ...manualCourses];
+});
+
+// فیلتر نهایی بر اساس تبِ انتخاب شده
+const filteredCourses = computed(() => {
+  return allCourses.value.filter(c => c.dept === activeDepartment.value);
+});
 
 const getDepartmentName = (id) => {
   const dept = departments.find(d => d.id === id);
@@ -251,10 +288,10 @@ const getDepartmentName = (id) => {
 };
 
 // --- تولید کدهای هوشمند اسکیما ---
-const schemaData = {
+const schemaData = computed(() => ({
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "itemListElement": courses.map((course, index) => ({
+  "itemListElement": allCourses.value.map((course, index) => ({
     "@type": "ListItem",
     "position": index + 1,
     "item": {
@@ -268,13 +305,13 @@ const schemaData = {
       }
     }
   }))
-};
+}));
 
 useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify(schemaData)
+      children: computed(() => JSON.stringify(schemaData.value))
     }
   ]
 });
@@ -293,5 +330,12 @@ useHead({
 }
 .fade-leave-active {
   position: absolute;
+}
+/* اعمال محدودیت ۳ خطی برای توضیحات که ظاهر کارت‌ها به هم نریزد */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

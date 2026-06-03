@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark transition-colors duration-500 pt-28 pb-20">
+  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark transition-colors duration-500 pt-28 pb-20" dir="rtl">
     
     <div class="container mx-auto px-4 max-w-7xl">
       
@@ -13,6 +13,7 @@
         
         <div class="relative w-full md:w-96">
           <input 
+            v-model="searchQuery"
             type="text" 
             placeholder="جستجو در مقالات..." 
             class="w-full bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white rounded-2xl pl-4 pr-12 py-4 outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm backdrop-blur-md"
@@ -37,7 +38,7 @@
         </button>
       </div>
 
-      <div v-if="activeCategory === 'همه'" class="mb-16 bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col lg:flex-row group cursor-pointer transition-all hover:shadow-2xl">
+      <div v-if="activeCategory === 'همه' && !searchQuery" class="mb-16 bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col lg:flex-row group cursor-pointer transition-all hover:shadow-2xl">
         <div class="lg:w-1/2 relative overflow-hidden h-72 lg:h-auto">
           <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="مقاله ویژه" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
           <div class="absolute top-6 right-6 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">پیشنهاد سردبیر</div>
@@ -72,12 +73,16 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <NuxtLink v-for="(post, index) in filteredPosts" :key="index" :to="'/learning/' + post.id" 
+      <div v-if="pending" class="text-center py-20 text-blue-600 font-bold">
+        در حال دریافت جدیدترین مقالات... ⏳
+      </div>
+
+      <TransitionGroup v-else name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <NuxtLink v-for="(post, index) in filteredPosts" :key="post.id + '-' + index" :to="'/learning/' + post.id" 
                   class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 group hover:-translate-y-2 transition-transform duration-300 flex flex-col">
           
           <div class="relative h-56 overflow-hidden bg-gray-200 dark:bg-gray-700">
-            <img :src="post.image" :alt="post.title" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+            <img :src="post.image || '/images/default-blog.jpg'" :alt="post.title" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
             <div class="absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-gray-800 dark:text-white text-xs font-bold px-3 py-1.5 rounded-lg">
               {{ post.category }}
             </div>
@@ -101,9 +106,14 @@
           </div>
           
         </NuxtLink>
+      </TransitionGroup>
+
+      <div v-if="!pending && filteredPosts.length === 0" class="text-center py-16 bg-white dark:bg-gray-800 rounded-3xl border border-gray-100 dark:border-gray-700">
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">مقاله‌ای یافت نشد!</h3>
+        <p class="text-gray-500">جستجوی خود را تغییر دهید یا تب دیگری را انتخاب کنید.</p>
       </div>
 
-      <div class="mt-16 text-center">
+      <div v-if="filteredPosts.length > 0" class="mt-16 text-center">
         <button class="px-8 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-bold rounded-xl border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
           مشاهده مقالات بیشتر
         </button>
@@ -114,22 +124,33 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 
-// --- 1. سئوی قدرتمند با متاتگ‌های اختصاصی ---
+const supabase = useSupabaseClient();
+
+// متاتگ‌های سئو
 useSeoMeta({
   title: 'مسیر یادگیری و مقالات',
   description: 'مجله تخصصی هوش‌پرداز؛ مطالعه جدیدترین مقالات برنامه‌نویسی، هوش مصنوعی، رباتیک و بررسی مسیرهای شغلی دنیای تکنولوژی.',
   ogTitle: 'مسیر یادگیری و وبلاگ آکادمی هوش‌پرداز',
   ogImage: '/images/Banner.jpg'
-})
+});
 
-// دسته‌بندی‌ها
-const categories = ['همه', 'هوش مصنوعی', 'برنامه‌نویسی', 'کودکان و نوجوانان', 'طراحی و UI/UX', 'بازار کار'];
+const searchQuery = ref('');
 const activeCategory = ref('همه');
 
-// دیتای تستی برای مقالات
-const posts = ref([
+// دسته‌بندی‌های سایت
+const categories = ['همه', 'هوش مصنوعی', 'برنامه‌نویسی', 'اخبار تکنولوژی', 'کودکان و نوجوانان', 'طراحی و UI/UX', 'بازار کار'];
+
+// مترجم دسته‌بندی‌های دیتابیس به فارسی (برای همگام‌سازی با تب‌ها)
+const categoryMap = {
+  'tech': 'اخبار تکنولوژی',
+  'tutorial': 'برنامه‌نویسی',
+  'ai': 'هوش مصنوعی'
+};
+
+// مقالات اختصاصی خودتان (دست‌نخورده باقی ماندند)
+const manualPosts = [
   {
     id: 1,
     title: 'چرا یادگیری برنامه‌نویسی برای کودکان ضروری است؟',
@@ -178,44 +199,82 @@ const posts = ref([
     date: '۲۸ فروردین ۱۴۰۳',
     image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
   }
-])
+];
 
-// فیلتر کردن مقالات بر اساس دسته‌بندی انتخاب شده
+// دریافت مقالات از دیتابیس
+const { data: dbBlogs, pending } = await useAsyncData('public-blogs', async () => {
+  const { data, error } = await supabase
+    .from('blogs')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) console.error(error);
+  return data || [];
+});
+
+// تلفیق مقالات دیتابیس و مقالات دستی
+const allPosts = computed(() => {
+  const dynamicPosts = (dbBlogs.value || [])
+    .filter(b => b.is_published === true || b.is_published === 'true')
+    .map(b => ({
+      id: b.id,
+      title: b.title,
+      excerpt: b.content, // متن کوتاه شده به صورت خودکار توسط CSS اعمال میشود
+      category: categoryMap[b.category] || 'مقاله آموزشی',
+      date: new Date(b.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }),
+      image: b.image_url || '/images/default-blog.jpg'
+    }));
+
+  return [...dynamicPosts, ...manualPosts];
+});
+
+// فیلتر نهایی (دسته‌بندی + کادر جستجو)
 const filteredPosts = computed(() => {
-  if (activeCategory.value === 'همه') {
-    return posts.value;
-  }
-  return posts.value.filter(post => post.category === activeCategory.value);
-})
+  let result = allPosts.value;
 
-// --- 2. کدهای جادویی اسکیما (Schema) برای درک بهتر گوگل از مقالات شما ---
-const schemaData = {
+  // فیلتر تب‌ها
+  if (activeCategory.value !== 'همه') {
+    result = result.filter(post => post.category === activeCategory.value);
+  }
+
+  // فیلتر سرچ زنده
+  if (searchQuery.value.trim()) {
+    const q = searchQuery.value.toLowerCase();
+    result = result.filter(post => 
+      post.title.toLowerCase().includes(q) || 
+      post.excerpt.toLowerCase().includes(q)
+    );
+  }
+
+  return result;
+});
+
+// تولید کدهای سئو گوگل (Schema)
+const schemaData = computed(() => ({
   "@context": "https://schema.org",
   "@type": "Blog",
   "name": "مسیر یادگیری هوش‌پرداز",
   "description": "جدیدترین مقالات، آموزش‌ها و اخبار دنیای تکنولوژی",
   "url": "https://hoooshpardaz.ir/learning",
-  "blogPost": posts.value.map(post => ({
+  "blogPost": allPosts.value.map(post => ({
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.excerpt,
     "image": post.image,
     "datePublished": post.date
   }))
-};
+}));
 
 useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify(schemaData)
+      children: computed(() => JSON.stringify(schemaData.value))
     }
   ]
 });
 </script>
 
 <style scoped>
-/* مخفی کردن اسکرول بار برای فیلتر دسته‌بندی‌ها در موبایل */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
@@ -224,7 +283,6 @@ useHead({
     scrollbar-width: none;
 }
 
-/* برای سه خط کردن متن (Excerpt) در کارت‌ها */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -236,5 +294,19 @@ useHead({
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
   overflow: hidden;
+}
+
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+.fade-leave-active {
+  position: absolute;
 }
 </style>

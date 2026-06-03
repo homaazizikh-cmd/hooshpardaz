@@ -15,7 +15,7 @@
         <NuxtLink to="/admin/courses" active-class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition">
           <span>🎓</span> مدیریت دوره‌ها
         </NuxtLink>
-        <NuxtLink to="/admin/blog" active-class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+        <NuxtLink to="/admin/blogs" active-class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition">
           <span>📝</span> مدیریت بلاگ
         </NuxtLink>
       </nav>

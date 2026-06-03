@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark transition-colors duration-500 pt-28 pb-20 font-sans">
+  <div class="min-h-screen bg-gray-50 dark:bg-brand-dark transition-colors duration-500 pt-28 pb-20 font-sans" dir="rtl">
     
     <article class="container mx-auto px-4 max-w-6xl" v-if="post">
       
@@ -41,7 +41,7 @@
             {{ post.excerpt }}
           </blockquote>
           
-          <div class="prose prose-lg max-w-none dark:prose-invert text-gray-600 dark:text-gray-300 leading-loose text-justify space-y-6 article-content" v-html="post.content">
+          <div class="prose prose-lg max-w-none dark:prose-invert text-gray-600 dark:text-gray-300 leading-loose text-justify space-y-6 article-content whitespace-pre-wrap" v-html="post.content">
           </div>
 
           <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-700 flex flex-wrap items-center gap-3">
@@ -57,7 +57,7 @@
             
             <div class="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
               <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-r from-blue-600 to-brand-accent1 opacity-20"></div>
-              <img :src="post.authorImg" :alt="post.author" class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 shadow-lg mx-auto relative z-10 object-cover">
+              <img :src="post.authorImg" :alt="post.author" class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 shadow-lg mx-auto relative z-10 object-cover bg-white">
               <h3 class="text-xl font-black text-gray-800 dark:text-white mt-4 mb-1">{{ post.author }}</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-4">{{ post.authorRole }}</p>
               <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6">
@@ -98,14 +98,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const post = ref(null)
+const supabase = useSupabaseClient()
 
-// داده‌های بسیار جامع و غنی برای مقالات (شامل تگ‌های HTML برای رندر در صفحه)
-const posts = [
+// لیست مقالات دستی شما
+const manualPosts = [
   { 
     id: 1, 
     title: 'چرا یادگیری برنامه‌نویسی برای کودکان ضروری است؟', 
@@ -156,9 +156,6 @@ const posts = [
       
       <h3>طراح UI چه می‌کند؟</h3>
       <p>طراح رابط کاربری (User Interface) پس از دریافت وایرفریم‌ها از طراح UX، به آن‌ها رنگ، روح و زیبایی می‌بخشد. انتخاب تایپوگرافی، پالت رنگی، طراحی آیکون‌ها و ایجاد حس بصری لذت‌بخش در تخصص طراح UI است.</p>
-      
-      <h2>بازار کار کدام بهتر است؟</h2>
-      <p>در شرکت‌های بزرگ، این دو نقش از هم تفکیک شده‌اند؛ اما در اکثر استارتاپ‌ها و شرکت‌های متوسط، به فردی نیاز است که هر دو مهارت را داشته باشد (Product Designer). یادگیری ابزاری مانند <strong>فیگما (Figma)</strong> دروازه ورود به هر دو این تخصص‌هاست.</p>
     `
   },
   { 
@@ -179,12 +176,6 @@ const posts = [
       
       <h3>۱. فریم‌ورک Django (جنگو): پادشاه بلامنازع</h3>
       <p>جنگو با شعار "فریم‌ورکی برای کمال‌گرایان عجول" شناخته می‌شود. این فریم‌ورک به صورت پیش‌فرض پنل ادمین، سیستم احراز هویت و اتصال امن به دیتابیس (ORM) را در اختیار شما می‌گذارد. اگر پروژه شما بزرگ است، جنگو بهترین انتخاب است.</p>
-      
-      <h3>۲. فریم‌ورک Flask (فلسک): سبک و سریع</h3>
-      <p>برخلاف جنگو، فلسک یک "میکرو فریم‌ورک" است. در فلسک هیچ چیز به شما تحمیل نمی‌شود؛ شما فقط هسته اصلی را دارید و هر ابزاری (مثل دیتابیس) که نیاز داشتید را به صورت دستی اضافه می‌کنید. این ابزار برای ساخت API های کوچک فوق‌العاده است.</p>
-      
-      <h3>۳. فریم‌ورک FastAPI: ستاره نوظهور</h3>
-      <p>جدیدترین و شاید هیجان‌انگیزترین عضو خانواده پایتون! FastAPI همانطور که از نامش پیداست، روی <strong>سرعت</strong> تمرکز دارد. عملکرد این فریم‌ورک به لطف پشتیبانی از کدهای غیرهمزمان (Asynchronous) با زبان‌هایی مثل NodeJS و Go رقابت می‌کند.</p>
     `
   },
   { 
@@ -203,137 +194,107 @@ const posts = [
       <h2>انقلاب هوش مصنوعی مولد</h2>
       <p>با معرفی مدل‌های زبانی بزرگ مانند ChatGPT و ابزارهای تولید تصویر مثل Midjourney، موجی از شگفتی و البته ترس بازار کار جهانی را فرا گرفت. سوال اصلی این است: آیا تکنولوژی جدید آمده تا جایگزین انسان شود؟</p>
       <p>تاریخ نشان داده است که هر انقلاب صنعتی، مشاغل تکراری را از بین برده اما مشاغل جدیدی خلق کرده است. هوش مصنوعی قرار نیست برنامه‌نویس‌ها، نویسندگان یا طراحان را بیکار کند؛ بلکه <strong>"فردی که از هوش مصنوعی استفاده می‌کند، جایگزین فردی خواهد شد که از آن استفاده نمی‌کند!"</strong></p>
-      
-      <h3>کدام مهارت‌ها در آینده حیاتی هستند؟</h3>
-      <ul>
-        <li><strong>مهندسی پرامپت (Prompt Engineering):</strong> هنر صحبت کردن با ماشین! اینکه بدانید چگونه دقیق‌ترین دستور را به هوش مصنوعی بدهید تا بهترین خروجی را بگیرید.</li>
-        <li><strong>تفکر نقادانه:</strong> هوش مصنوعی ممکن است اطلاعات غلط تولید کند (Hallucination). توانایی ارزیابی خروجی ماشین، ارزش بالایی پیدا کرده است.</li>
-        <li><strong>هوش هیجانی و همدلی:</strong> کارهایی که نیاز به درک عمیق احساسات انسانی، مشاوره و رهبری تیم‌ها دارند، هرگز توسط کدهای کامپیوتری قابل کپی نیستند.</li>
-      </ul>
-    `
-  },
-  { 
-    id: 5, 
-    title: 'چگونه یک رزومه برنامه‌نویسی حرفه‌ای بنویسیم؟', 
-    excerpt: 'نکات کلیدی برای نوشتن رزومه‌ای که مدیران فنی شرکت‌های بزرگ نتوانند آن را نادیده بگیرند.', 
-    category: 'بازار کار', 
-    date: '۲ اردیبهشت ۱۴۰۳', 
-    readTime: '۷ دقیقه',
-    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    author: 'مریم حسینی',
-    authorRole: 'مدیر منابع انسانی (HR)',
-    authorImg: 'https://i.pravatar.cc/150?img=20',
-    tags: ['رزومه_نویسی', 'استخدام', 'مصاحبه'],
-    content: `
-      <h2>عبور از فیلتر اولیه (ATS)</h2>
-      <p>بسیاری از رزومه‌های برنامه‌نویسان تازه‌کار هرگز توسط یک انسان خوانده نمی‌شوند! شرکت‌های بزرگ از سیستم‌های نرم‌افزاری به نام ATS برای اسکن اولیه کلمات کلیدی رزومه‌ها استفاده می‌کنند. بنابراین اولین قدم، استفاده از یک قالب استاندارد، متنی و بدون گرافیک‌های گیج‌کننده است.</p>
-      
-      <h3>سه بخش طلایی یک رزومه فنی</h3>
-      <ul>
-        <li><strong>خلاصه حرفه‌ای:</strong> در ۳ خط بنویسید چه کسی هستید، با چه تکنولوژی‌هایی کار می‌کنید و به دنبال چه ارزشی هستید.</li>
-        <li><strong>بخش پروژه‌ها (مهم‌ترین بخش):</strong> اگر سابقه کار شرکتی ندارید، پروژه‌های شخصی خود را بنویسید. حتماً لینک گیت‌هاب (GitHub) و لینک دموی زنده پروژه را قرار دهید.</li>
-        <li><strong>مهارت‌های نرم (Soft Skills):</strong> مهارت‌های فنی شما را استخدام می‌کنند، اما مهارت‌های نرم (کار تیمی، حل مسئله، مدیریت زمان) باعث پیشرفت شما در سازمان می‌شوند.</li>
-      </ul>
-      
-      <h2>اشتباهات مهلک در رزومه نویسی</h2>
-      <p>دادن درصد به مهارت‌ها (مثلاً Python 90%) یک اشتباه بزرگ است. هیچ معیاری برای سنجش این ۹۰ درصد وجود ندارد! به جای آن بنویسید: "تجربه ساخت ۳ پروژه تجاری با فریم‌ورک جنگو و اتصال به درگاه بانکی". این جمله قدرت واقعی شما را نشان می‌دهد.</p>
-    `
-  },
-  { 
-    id: 6, 
-    title: 'ساخت اولین بازی با اسکرچ (مخصوص نوجوانان)', 
-    excerpt: 'در این آموزش تصویری یاد می‌گیریم چگونه بدون نیاز به نوشتن حتی یک خط کد سخت، یک بازی جذاب با اسکرچ بسازیم.', 
-    category: 'کودکان و نوجوانان', 
-    date: '۲۸ فروردین ۱۴۰۳', 
-    readTime: '۴ دقیقه',
-    image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    author: 'مهندس احمدی',
-    authorRole: 'مدرس دپارتمان کودکان',
-    authorImg: 'https://i.pravatar.cc/150?img=11',
-    tags: ['بازی_سازی', 'Scratch', 'خلاقیت'],
-    content: `
-      <h2>اسکرچ (Scratch) چیست؟</h2>
-      <p>اسکرچ یک محیط برنامه‌نویسی گرافیکی است که توسط دانشگاه MIT طراحی شده است. در اینجا خبری از تایپ کدهای پیچیده و خطاهای گیج‌کننده (Syntax Error) نیست. شما برنامه‌ها را با کشیدن و رها کردن (Drag & Drop) بلوک‌های رنگی می‌سازید.</p>
-      
-      <h3>مراحل ساخت یک بازی ساده</h3>
-      <p>فرض کنید می‌خواهیم بازی کلاسیک گرفتن سیب توسط یک کاراکتر را بسازیم:</p>
-      <ul>
-        <li><strong>گام اول (شخصیت‌ها):</strong> ابتدا یک کاراکتر اصلی (مثلاً یک گربه) و یک شیء (مثلاً یک سیب) را از منوی اسپریت‌ها (Sprites) انتخاب کنید.</li>
-        <li><strong>گام دوم (حرکت):</strong> به بخش کدهای گربه بروید و با استفاده از بلوک‌های "Event" تعیین کنید که وقتی کلیدهای فلش کیبورد فشرده شدند، کاراکتر روی محور X جابجا شود.</li>
-        <li><strong>گام سوم (منطق بازی):</strong> کدی بنویسید که سیب به صورت تصادفی از بالای صفحه به پایین بیاید. سپس با یک بلوک "If" (شرطی) بررسی کنید که اگر سیب به گربه برخورد کرد، یک امتیاز به متغیر Score اضافه شود!</li>
-      </ul>
-      <p>شما موفق شدید! با همین مفاهیم ساده، درک عمیقی از حلقه‌ها، متغیرها و دستورات شرطی در ذهن کودک شکل می‌گیرد.</p>
     `
   }
 ]
 
-onMounted(() => {
-  const articleId = Number(route.params.id)
-  post.value = posts.find(p => p.id === articleId)
+const categoryMap = { tech: 'اخبار تکنولوژی', tutorial: 'آموزش برنامه‌نویسی', ai: 'هوش مصنوعی' };
 
-  // اعمال سئوی دینامیک برای هر مقاله (SEO & Schema) پس از پیدا شدن مقاله
-  if (post.value) {
-    useSeoMeta({
-      title: `${post.value.title} | وبلاگ هوش‌پرداز`,
-      description: post.value.excerpt,
-      ogTitle: post.value.title,
-      ogDescription: post.value.excerpt,
-      ogImage: post.value.image,
-      articleAuthor: post.value.author,
-      articlePublishedTime: post.value.date
-    })
-
-    const schemaData = {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": post.value.title,
-      "image": post.value.image,
-      "datePublished": post.value.date,
-      "author": {
-        "@type": "Person",
-        "name": post.value.author
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "آکادمی هوش‌پرداز",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://hoooshpardaz.ir/favicon.ico"
-        }
-      },
-      "description": post.value.excerpt
+// 🚀 دریافت هوشمند مقاله با استفاده از useAsyncData
+const { data: post } = await useAsyncData(`post-${route.params.id}`, async () => {
+  // ۱. بررسی می‌کنیم آیا در دیتابیس وجود دارد؟
+  const { data, error } = await supabase.from('blogs').select('*').eq('id', route.params.id).single();
+  
+  if (data) {
+    return {
+      id: data.id,
+      title: data.title,
+      content: data.content,
+      excerpt: data.content.substring(0, 180) + '...', // خلاصه برای نمایش در کادر آبی
+      category: categoryMap[data.category] || 'مقاله آموزشی',
+      date: new Date(data.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }),
+      readTime: '۵ دقیقه', 
+      image: data.image_url || '/images/default-blog.jpg',
+      author: data.author || 'تیم هوش‌پرداز',
+      authorRole: 'مدرس و کارشناس آکادمی',
+      // 💡 دریافت عکس نویسنده از دیتابیس
+      authorImg: data.author_image_url || 'https://i.pravatar.cc/150?img=60',
+      tags: ['هوش‌پرداز', 'آموزش'] 
     }
-
-    useHead({
-      script: [
-        {
-          type: 'application/ld+json',
-          children: JSON.stringify(schemaData)
-        }
-      ]
-    })
   }
-})
+  
+  // ۲. اگر در دیتابیس نبود، در مقالات دستی می‌گردیم
+  const manualFound = manualPosts.find(p => p.id == route.params.id);
+  if (manualFound) return manualFound;
+
+  return null;
+});
+
+// 💡 سئوی داینامیک و فوق‌العاده قوی (کاملاً بهینه‌شده برای SSR و گوگل)
+useSeoMeta({
+  title: computed(() => post.value ? `${post.value.title} | وبلاگ هوش‌پرداز` : 'خواندن مقاله'),
+  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی هوش‌پرداز'),
+  ogTitle: computed(() => post.value ? post.value.title : 'وبلاگ هوش‌پرداز'),
+  ogDescription: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی هوش‌پرداز'),
+  ogImage: computed(() => post.value ? post.value.image : '/images/Banner.jpg'),
+  articleAuthor: computed(() => post.value ? post.value.author : 'هوش پرداز'),
+  articlePublishedTime: computed(() => post.value ? post.value.date : '')
+});
+
+const schemaData = computed(() => {
+  if (!post.value) return {};
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.value.title,
+    "image": post.value.image,
+    "datePublished": post.value.date,
+    "author": {
+      "@type": "Person",
+      "name": post.value.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "آکادمی هوش‌پرداز",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hoooshpardaz.ir/favicon.ico"
+      }
+    },
+    "description": post.value.excerpt
+  }
+});
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: computed(() => JSON.stringify(schemaData.value))
+    }
+  ]
+});
 </script>
 
-<style>
-/* استایل‌های اختصاصی برای رندر محتوای داخل v-html تا ظاهر حرفه‌ای مقاله حفظ شود */
+<style scoped>
+.whitespace-pre-wrap {
+  white-space: pre-wrap; 
+}
 .article-content h2 {
   font-size: 1.75rem;
   font-weight: 900;
-  color: #1f2937; /* gray-800 */
+  color: #1f2937;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.3;
 }
 .dark .article-content h2 {
-  color: #f9fafb; /* gray-50 */
+  color: #f9fafb;
 }
 
 .article-content h3 {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #374151; /* gray-700 */
+  color: #374151;
   margin-top: 2rem;
   margin-bottom: 1rem;
   display: flex;
@@ -345,11 +306,11 @@ onMounted(() => {
   display: inline-block;
   width: 10px;
   height: 10px;
-  background-color: #38bdf8; /* brand-accent1 */
+  background-color: #38bdf8;
   border-radius: 50%;
 }
 .dark .article-content h3 {
-  color: #d1d5db; /* gray-300 */
+  color: #d1d5db;
 }
 
 .article-content p {
@@ -371,7 +332,7 @@ onMounted(() => {
   content: '✓';
   position: absolute;
   right: 0;
-  color: #2563eb; /* blue-600 */
+  color: #2563eb;
   font-weight: bold;
 }
 .dark .article-content li::before {
