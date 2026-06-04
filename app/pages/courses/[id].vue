@@ -201,7 +201,7 @@ const courses = [
     image: '/images/Scratch.jpg', 
     schedule: { days: 'یکشنبه‌ها و سه‌شنبه‌ها', time: 'ساعت ۱۷:۰۰ الی ۱۹:۰۰' }, 
     startDate: '۱۰ مرداد ۱۴۰۵', 
-    instructor: { id: 3, name: 'ملینا دهقانی', title: 'منتور برنامه‌نویسی', skills: ['Scratch', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/melina-dehghani.jpg' } 
+    instructor: { id: 3, name: 'داود قبادی', title: 'منتور برنامه‌نویسی', skills: ['Scratch', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' } 
   },
   { 
     id: 12, 
