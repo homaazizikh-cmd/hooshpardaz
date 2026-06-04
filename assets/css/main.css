@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Dana';
+  src: url('/fonts/Dana-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANYekan';
+  src: url('/fonts/IRANYekan.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn.woff2') format('woff2');
+  font-display: swap;
+}
+
+/* تزریق فونت‌ها به ساختار پیش‌فرض بدون دستکاری کلاس تگ‌ها */
+@layer base {
+  /* تمام تیترهای بزرگ و کوچک آکادمی فونت دانا می‌گیرند */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Dana', sans-serif !important;
+  }
+
+  /* متن‌های داخل پاراگراف و سوالات متداول به فونت وزیرمتن مجهز می‌شوند */
+  p, description, .faq-answer {
+    font-family: 'Vazirmatn', sans-serif;
+  }
+}
