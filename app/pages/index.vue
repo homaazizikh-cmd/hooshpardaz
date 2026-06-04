@@ -79,7 +79,7 @@
       </div>
     </section>
 
-    <section class="py-16 container mx-auto px-4 md:px-8">
+<section class="py-16 container mx-auto px-4 md:px-8">
       <div class="text-center mb-20">
         <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">مسیرهای <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">یادگیری</span></h2>
         <p class="text-gray-500 dark:text-gray-400 font-light text-xl">نقشه راه شفاف و گام‌به‌گام برای تبدیل شدن به یک متخصص تراز اول.</p>
@@ -87,17 +87,18 @@
       
       <div class="grid md:grid-cols-3 gap-8">
         <NuxtLink v-for="(path, index) in paths" :key="path.name" :to="'/roadmap/' + path.slug" 
-                  class="bg-white dark:bg-[#080b12] p-8 rounded-[2.5rem] border border-gray-200 dark:border-white/5 hover:border-brand-accent1/50 dark:hover:border-brand-accent1/30 transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden shadow-xl dark:shadow-none">
-          <div class="absolute top-0 right-0 w-40 h-40 bg-brand-accent1/5 dark:bg-brand-accent1/10 rounded-bl-full blur-2xl group-hover:bg-brand-accent1/20 transition-colors pointer-events-none"></div>
+                  :class="['bg-white dark:bg-[#080b12] p-8 rounded-[2.5rem] border border-gray-200 dark:border-white/5 transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden shadow-xl dark:shadow-none', path.color.borderHover]">
           
-          <div class="w-16 h-16 bg-blue-50 dark:bg-white/[0.03] border border-blue-100 dark:border-white/10 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:bg-brand-accent1/20 transition-all duration-500">
+          <div :class="['absolute top-0 right-0 w-40 h-40 rounded-bl-full blur-2xl transition-colors pointer-events-none', path.color.glow]"></div>
+          
+          <div :class="['relative w-16 h-16 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-all duration-500', path.color.iconBg]">
             {{ path.icon }}
           </div>
           
-          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-brand-accent1 dark:group-hover:text-cyan-400 transition-colors">{{ path.name }}</h3>
-          <p class="text-gray-600 dark:text-gray-400 mb-10 font-light leading-relaxed">{{ path.desc }}</p>
+          <h3 :class="['relative text-2xl font-bold mb-4 text-gray-900 dark:text-white transition-colors', path.color.titleHover]">{{ path.name }}</h3>
+          <p class="relative text-gray-600 dark:text-gray-400 mb-10 font-light leading-relaxed">{{ path.desc }}</p>
           
-          <div class="inline-flex items-center gap-2 text-brand-accent1 dark:text-cyan-500 font-bold text-sm">
+          <div :class="['relative inline-flex items-center gap-2 font-bold text-sm', path.color.linkText]">
             شروع مسیر 
             <svg class="w-5 h-5 rotate-180 transition-transform group-hover:-translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </div>
@@ -105,36 +106,37 @@
       </div>
     </section>
 
-    <section class="py-32 relative overflow-hidden border-y border-gray-200 dark:border-white/5 bg-gray-100/50 dark:bg-white/[0.01]">
+<section class="py-32 relative overflow-hidden border-y border-gray-200 dark:border-white/5 bg-gray-100/50 dark:bg-white/[0.01]">
       <div class="absolute -right-40 top-20 w-96 h-96 bg-brand-accent1/10 dark:bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
       
-      <div class="container mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-20 items-center relative z-10">
+      <div class="container mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 md:gap-20 items-center relative z-10">
         <div class="order-2 lg:order-1">
           <div class="inline-block bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-8 shadow-sm dark:shadow-none">دپارتمان برنامه‌نویسی</div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 leading-tight">کدنویسی را به <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800 dark:from-gray-400 dark:to-gray-100">زبان ماشین</span> لمس کنید</h2>
-          <p class="text-gray-600 dark:text-gray-400 text-lg font-light leading-loose mb-10 text-justify">
+          <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">کدنویسی را به <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800 dark:from-gray-400 dark:to-gray-100">زبان ماشین</span> لمس کنید</h2>
+          <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg font-light leading-loose mb-8 md:mb-10 text-justify">
             ما محیط‌های توسعه را شبیه‌سازی نمی‌کنیم؛ ما شما را مستقیماً وارد محیط حرفه‌ای (IDE) می‌کنیم. خبری از تئوری‌های خسته‌کننده نیست؛ شما الگوریتم می‌نویسید و سیستم آن را اجرا می‌کند.
           </p>
-          <NuxtLink to="/roadmap/coding" class="inline-flex items-center gap-2 text-brand-accent1 dark:text-cyan-400 font-bold text-lg hover:text-blue-600 dark:hover:text-white transition-colors group">
+          <NuxtLink to="/roadmap/coding" class="inline-flex items-center gap-2 text-brand-accent1 dark:text-cyan-400 font-bold text-base md:text-lg hover:text-blue-600 dark:hover:text-white transition-colors group">
             مشاهده سرفصل‌های پایتون 
             <span class="group-hover:-translate-x-2 transition-transform">←</span>
           </NuxtLink>
         </div>
         
-        <div class="order-1 lg:order-2 relative group" dir="ltr">
+        <div class="order-1 lg:order-2 relative group w-full max-w-[100vw] overflow-hidden" dir="ltr">
           <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-[2rem] blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <div class="relative bg-[#09090b] rounded-[2rem] shadow-2xl border border-white/10 overflow-hidden">
-            <div class="bg-white/[0.05] border-b border-white/5 px-6 py-4 flex items-center justify-between">
-              <div class="flex gap-2">
-                <div class="w-3.5 h-3.5 rounded-full bg-[#ff5f56]"></div>
-                <div class="w-3.5 h-3.5 rounded-full bg-[#ffbd2e]"></div>
-                <div class="w-3.5 h-3.5 rounded-full bg-[#27c93f]"></div>
+          <div class="relative bg-[#09090b] rounded-[1.5rem] md:rounded-[2rem] shadow-2xl border border-white/10 w-full overflow-hidden">
+            <div class="bg-white/[0.05] border-b border-white/5 px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+              <div class="flex gap-1.5 md:gap-2">
+                <div class="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#ff5f56]"></div>
+                <div class="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#ffbd2e]"></div>
+                <div class="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#27c93f]"></div>
               </div>
-              <span class="text-gray-400 text-xs font-mono tracking-widest uppercase">main.py — Hooshpardaz</span>
-              <div class="w-10"></div> 
+              <span class="text-gray-400 text-[10px] md:text-xs font-mono tracking-widest uppercase truncate ml-2">main.py — Hooshpardaz</span>
+              <div class="w-10 hidden md:block"></div> 
             </div>
-            <div class="p-8 font-mono text-sm md:text-base text-gray-300 min-h-[300px] leading-relaxed overflow-x-auto">
-              <pre><code class="text-pink-500">def</code> <span class="text-blue-400">build_future</span>():
+            
+            <div class="p-4 md:p-8 font-mono text-xs md:text-base text-gray-300 min-h-[200px] md:min-h-[300px] leading-relaxed overflow-x-auto w-full">
+              <pre class="min-w-max"><code class="text-pink-500">def</code> <span class="text-blue-400">build_future</span>():
     skills = [<span class="text-green-400">'Python'</span>, <span class="text-green-400">'AI'</span>, <span class="text-green-400">'Robotics'</span>]
     student = Student(skills)
     
@@ -142,7 +144,7 @@
         <code class="text-pink-500">return</code> <span class="text-green-400">"Hired in Tech Market!"</span>
         
 <span class="text-gray-500 italic"># Console Output:</span>
-<span class="text-yellow-300">{{ typedCode }}</span><span class="animate-pulse bg-cyan-400 text-cyan-400 w-2 h-5 inline-block align-middle ml-1">_</span></pre>
+<span class="text-yellow-300">{{ typedCode }}</span><span class="animate-pulse bg-cyan-400 text-cyan-400 w-2 h-4 md:h-5 inline-block align-middle ml-1">_</span></pre>
             </div>
           </div>
         </div>
@@ -225,19 +227,21 @@
       <h2 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">تفاوت را با چشمان خود ببینید</h2>
       <p class="text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto text-lg font-light">خروجی خام را با جادوی هنرهای دیجیتال در دپارتمان طراحی ما مقایسه کنید. اسلایدر را به چپ و راست بکشید.</p>
       
-      <div class="relative w-full max-w-5xl mx-auto aspect-[16/9] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-white dark:border-white/10" dir="ltr">
-        <NuxtImg src="/images/Design-Before.jpg" class="absolute inset-0 w-full h-full object-cover" alt="طراحی خام پروژه" format="webp" loading="lazy" />
-        <NuxtImg src="/images/Design-After.jpg" class="absolute inset-0 w-full h-full object-cover" :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" alt="طراحی نهایی پروژه هوش پرداز" format="webp" loading="lazy" />
-        <input type="range" min="0" max="100" v-model="sliderValue" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
+      <div class="relative w-full max-w-5xl mx-auto aspect-[16/9] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-white dark:border-white/10 select-none" dir="ltr" style="-webkit-user-drag: none;">
         
-        <div class="absolute top-0 bottom-0 w-1 bg-brand-accent1 dark:bg-cyan-400 pointer-events-none shadow-[0_0_15px_rgba(56,189,248,0.8)] dark:shadow-[0_0_15px_rgba(34,211,238,1)] z-10" :style="{ left: sliderValue + '%' }">
-          <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 bg-white dark:bg-[#0a0c10] rounded-full flex items-center justify-center shadow-2xl text-gray-900 dark:text-white font-black border-4 border-brand-accent1 dark:border-cyan-400">
-            <svg class="w-6 h-6 text-brand-accent1 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+        <NuxtImg src="/images/Design-Before.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" alt="طراحی خام پروژه" format="webp" loading="lazy" />
+        <NuxtImg src="/images/Design-After.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" alt="طراحی نهایی پروژه هوش پرداز" format="webp" loading="lazy" />
+        
+        <input type="range" min="0" max="100" step="0.1" v-model.number="sliderValue" class="absolute inset-0 w-full h-full cursor-ew-resize z-50 custom-slider opacity-0" style="touch-action: none;">
+        
+        <div class="absolute top-0 bottom-0 w-1 bg-brand-accent1 dark:bg-cyan-400 pointer-events-none shadow-[0_0_15px_rgba(56,189,248,0.8)] dark:shadow-[0_0_15px_rgba(34,211,238,1)] z-40" :style="{ left: sliderValue + '%' }">
+          <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 md:w-14 md:h-14 bg-white dark:bg-[#0a0c10] rounded-full flex items-center justify-center shadow-2xl text-gray-900 dark:text-white font-black border-4 border-brand-accent1 dark:border-cyan-400">
+            <svg class="w-5 h-5 md:w-6 md:h-6 text-brand-accent1 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
           </div>
         </div>
         
-        <div class="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-xl text-sm font-bold z-0 border border-white/10">بعد (After)</div>
-        <div class="absolute bottom-6 right-6 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-xl text-sm font-bold z-0 border border-white/10">قبل (Before)</div>
+        <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 bg-black/60 backdrop-blur-md text-white px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-bold z-30 border border-white/10 pointer-events-none">بعد (After)</div>
+        <div class="absolute bottom-4 md:bottom-6 right-4 md:right-6 bg-black/60 backdrop-blur-md text-white px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-bold z-30 border border-white/10 pointer-events-none">قبل (Before)</div>
       </div>
     </section>
 
@@ -313,9 +317,45 @@ const benefits = [
 ];
 
 const paths = [
-  { name: 'کودکان و نوجوانان', slug: 'teenagers', desc: 'از یادگیری اسکرچ و بلوک‌های منطقی تا طراحی بازی‌های جذاب رباتیک.', icon: '🎮' },
-  { name: 'برنامه‌نویسی و AI', slug: 'coding', desc: 'از مبانی الگوریتم و پایتون تا پیاده‌سازی مدل‌های پیشرفته هوش مصنوعی.', icon: '💻' },
-  { name: 'طراحی رابط کاربری', slug: 'design', desc: 'از مبانی روانشناسی رنگ‌ها و فتوشاپ تا دیزاین حرفه‌ای UI/UX.', icon: '🎨' }
+  { 
+    name: 'کودکان و نوجوانان', 
+    slug: 'teenagers', 
+    desc: 'از یادگیری اسکرچ و بلوک‌های منطقی تا طراحی بازی‌های جذاب رباتیک.', 
+    icon: '🎮',
+    color: {
+      borderHover: 'hover:border-orange-500/50 dark:hover:border-orange-400/50',
+      glow: 'bg-orange-500/5 dark:bg-orange-400/10 group-hover:bg-orange-500/20',
+      iconBg: 'group-hover:bg-orange-500/20',
+      titleHover: 'group-hover:text-orange-600 dark:group-hover:text-orange-400',
+      linkText: 'text-orange-600 dark:text-orange-400'
+    }
+  },
+  { 
+    name: 'برنامه‌نویسی و AI', 
+    slug: 'coding', 
+    desc: 'از مبانی الگوریتم و پایتون تا پیاده‌سازی مدل‌های پیشرفته هوش مصنوعی.', 
+    icon: '💻',
+    color: {
+      borderHover: 'hover:border-cyan-500/50 dark:hover:border-cyan-400/50',
+      glow: 'bg-cyan-500/5 dark:bg-cyan-400/10 group-hover:bg-cyan-500/20',
+      iconBg: 'group-hover:bg-cyan-500/20',
+      titleHover: 'group-hover:text-cyan-600 dark:group-hover:text-cyan-400',
+      linkText: 'text-cyan-600 dark:text-cyan-400'
+    }
+  },
+  { 
+    name: 'طراحی رابط کاربری', 
+    slug: 'design', 
+    desc: 'از مبانی روانشناسی رنگ‌ها و فتوشاپ تا دیزاین حرفه‌ای UI/UX.', 
+    icon: '🎨',
+    color: {
+      borderHover: 'hover:border-pink-500/50 dark:hover:border-pink-400/50',
+      glow: 'bg-pink-500/5 dark:bg-pink-400/10 group-hover:bg-pink-500/20',
+      iconBg: 'group-hover:bg-pink-500/20',
+      titleHover: 'group-hover:text-pink-600 dark:group-hover:text-pink-400',
+      linkText: 'text-pink-600 dark:text-pink-400'
+    }
+  }
 ];
 
 const instructors = [
@@ -394,9 +434,39 @@ useSeoMeta({
   -webkit-mask-image: linear-gradient(to top, transparent, black 50%, black 100%, transparent);
 }
 
-input[type=range] {
+/* تنظیمات فوق‌حرفه‌ای برای اسلایدر لمسی و موس */
+.custom-slider {
   -webkit-appearance: none;
+  appearance: none;
   background: transparent;
+  outline: none;
+}
+
+/* مسیر اسلایدر را به کل ارتفاع عکس گسترش می‌دهیم */
+.custom-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+}
+
+/* دستگیره نامرئی را به اندازه کل ارتفاع بزرگ می‌کنیم تا هرکجای عکس کلیک شد کار کند */
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px;
+  height: 1000px; /* یک ترفند عالی برای پوشش کامل عمودی */
+  background: rgba(0,0,0,0.001); /* شفافیت تقریباً ۱۰۰٪ برای جلوگیری از باگ مرورگرها */
+  cursor: ew-resize;
+}
+
+.custom-slider::-moz-range-thumb {
+  width: 50px;
+  height: 1000px;
+  background: rgba(0,0,0,0.001);
+  cursor: ew-resize;
+  border: none;
+
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
