@@ -51,7 +51,7 @@
             <div class="hidden dark:block absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none"></div>
 
             <div class="flex justify-between items-center w-full mb-8 text-[10px] font-mono text-slate-400 dark:text-slate-600">
-              <span class="tracking-widest">[ SYS_ID: 0{{ index + 1 }} ]</span>
+              <span class="tracking-widest">[ SYS_ID: 0{{ instructor.id }} ]</span>
               <span class="flex items-center gap-1 group-hover:text-blue-600 dark:group-hover:text-cyan-500 transition-colors">
                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z"/></svg>
                 ACTIVE
@@ -63,9 +63,9 @@
               <div class="absolute -inset-1 border border-slate-200 dark:border-slate-800 border-dashed rounded-full group-hover:border-purple-400/50 dark:group-hover:border-purple-500/50 group-hover:animate-[spin_6s_linear_infinite_reverse] transition-all duration-500"></div>
               
               <img 
-                :src="instructor.image_url" 
-                :alt="instructor.name" 
-                class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500 relative z-10 shadow-lg dark:shadow-2xl bg-slate-100 dark:bg-slate-800"
+                :src="instructor.image_url || '/images/default-avatar.png'" 
+                :alt="`عکس ${instructor.name}`" 
+                class="w-full h-full object-cover rounded-full border-4 border-white dark:border-[#090e1a] shadow-lg dark:shadow-2xl bg-slate-100 dark:bg-slate-800 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 relative z-10" 
               />
             </div>
 
@@ -84,13 +84,13 @@
 
             <div class="mt-auto flex flex-wrap justify-center gap-2 mb-8 z-10">
               <span 
-                v-for="skill in instructor.skills.slice(0, 3)" 
+                v-for="skill in (instructor.skills || []).slice(0, 3)" 
                 :key="skill" 
                 class="text-[10px] px-2.5 py-1 rounded bg-slate-50 dark:bg-[#0f172a] text-blue-600 dark:text-cyan-500 border border-slate-200 dark:border-slate-800 font-mono group-hover:border-blue-300 dark:group-hover:border-cyan-500/30 transition-colors"
               >
                 > {{ skill }}
               </span>
-              <span v-if="instructor.skills.length > 3" class="text-[10px] px-2 py-1 rounded bg-slate-50 dark:bg-[#0f172a] text-slate-500 border border-slate-200 dark:border-slate-800 font-mono">
+              <span v-if="(instructor.skills || []).length > 3" class="text-[10px] px-2 py-1 rounded bg-slate-50 dark:bg-[#0f172a] text-slate-500 border border-slate-200 dark:border-slate-800 font-mono">
                 +{{ instructor.skills.length - 3 }}
               </span>
             </div>
@@ -120,9 +120,17 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
+const supabase = useSupabaseClient();
+
+// 🚀 سئوی داینامیک و متاتگ‌های اشتراک‌گذاری
 useSeoMeta({
-  title: 'هسته پردازش و منتورها | آکادمی هوش‌پرداز',
-  description: 'آشنایی با تیم نخبگان و متخصصان ارشد آکادمی هوش‌پرداز.',
+  title: 'اساتید و متخصصین ارشد هوش مصنوعی و برنامه‌نویسی',
+  description: 'آشنایی با تیم نخبگان، پژوهشگران و منتورهای ارشد آکادمی هوش‌پرداز در دپارتمان‌های هوش مصنوعی، برنامه‌نویسی پایتون، طراحی گرافیک و مهارت‌های کامپیوتری.',
+  ogTitle: 'هسته پردازش و اساتید آکادمی هوش‌پرداز',
+  ogDescription: 'با برترین اساتید برنامه‌نویسی و هوش مصنوعی ایران در آکادمی هوش‌پرداز آشنا شوید و مسیر شغلی خود را آغاز کنید.',
+  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg', 
+  twitterCard: 'summary_large_image',
 });
 
 const departments = [
@@ -135,20 +143,80 @@ const departments = [
 
 const activeDept = ref('all');
 
-// لیست اساتید با اسامی شما و ۴ نفر رندوم مرتبط
-const instructors = [
+// 🔒 اسامی قدیمی شما کاملاً و مو به مو حفظ شدند
+const manualInstructors = [
   { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: 'متخصص پایتون و AI', bio: 'توسعه‌دهنده ارشد و پژوهشگر هوش مصنوعی. متخصص در پیاده‌سازی مدل‌های یادگیری ماشین و معماری‌های پیشرفته پایتون.', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
   { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با سال‌ها تجربه در پروژه‌های استارتاپی.', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
-  { id: 3, name: 'ملینا دهقانی', dept: 'python', title: 'منتور برنامه‌نویسی', bio: 'کارشناس نرم‌افزار و متخصص در آموزش مفاهیم پایه برنامه‌نویسی و پایتون با رویکرد گیمیفیکیشن و استعدادیابی.', skills: ['Python', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/melina-dehghani.jpg' },
+  { id: 3, name: 'داود قبادی', dept: 'python', title: 'منتور برنامه‌نویسی', bio: 'کارشناس نرم‌افزار و متخصص در آموزش مفاهیم پایه برنامه‌نویسی و پایتون با رویکرد گیمیفیکیشن و استعدادیابی.', skills: ['Python', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' },
   { id: 4, name: 'حسین عزیزی', dept: 'maharat', title: 'متخصص مکاترونیک', bio: 'طراح سیستم‌های تعبیه‌شده و رباتیک. منتور تیم‌های المپیاد و مدرس دوره‌های تخصصی الکترونیک و آردوینو.', skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' },
-  { id: 5, name: 'دکتر فرانک خزایی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد AI. مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری.', skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
-  { id: 6, name: 'امیرحسین کیانی', dept: 'python', title: 'توسعه‌دهنده بک‌اند', bio: 'برنامه‌نویس ارشد سرور با تسلط کامل بر فریم‌ورک‌های جنگو و فست‌ای‌پی‌آی. عاشق حل چالش‌های پیچیده سیستمی.', skills: ['Django', 'FastAPI', 'PostgreSQL'], image_url: '/images/instructors/amirhossein-kiani.jpg' },
-  { id: 7, name: 'نغمه شفیعی', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر.', skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/naghmeh-shafiei.jpg' },
-  { id: 8, name: 'مهندس رضا تهرانی', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع به بازار کار.', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/reza-tehrani.jpg' }
+  { id: 5, name: 'فرانک خزایی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد AI. مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری.', skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
+  { id: 6, name: 'مجید مهربخش', dept: 'python', title: 'توسعه‌دهنده بک‌اند', bio: 'برنامه‌نویس ارشد سرور با تسلط کامل بر فریم‌ورک‌های جنگو و فست‌ای‌پی‌آی. عاشق حل چالش‌های پیچیده سیستمی.', skills: ['Django', 'FastAPI', 'PostgreSQL'], image_url: '/images/instructors/majid-mehrbakhsh.jpg' },
+  { id: 7, name: 'نیوشا خاوری', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر.', skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/niusha-khavari.jpg' },
+  { id: 8, name: 'مهدیه روشن', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع به بازار کار.', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mahdieh-rishan.jpg' }
 ];
 
+// 📊 دریافت زنده اساتید جدید ثبت‌شده در پنل مدیریت از دیتابیس Supabase
+const { data: dbInstructors } = await useAsyncData('instructors-dynamic-data', async () => {
+  const { data, error } = await supabase
+    .from('instructors')
+    .select('*')
+    .order('id', { ascending: true }); // 👈 اینجا از false به true تغییر کرد
+    
+  if (error) {
+    console.error("خطا در دریافت اساتید از دیتابیس:", error);
+    return [];
+  }
+  return data || [];
+});
+
+// 🤝 تلفیق هوشمند: چسباندن اساتید دیتابیس به اساتید دستی شما
+const allInstructors = computed(() => {
+  const dbActive = (dbInstructors.value || []).map(i => ({
+    id: i.id,
+    name: i.name,
+    dept: i.dept,
+    title: i.title,
+    bio: i.bio,
+    skills: Array.isArray(i.skills) ? i.skills : [],
+    image_url: i.image_url
+  }));
+  
+  // اساتید جدید دیتابیس اول و اساتید ثابت قدیمی شما بعد از آن‌ها قرار می‌گیرند
+  return [...dbActive, ...manualInstructors];
+});
+
+// فیلتر نهایی بر اساس دپارتمان فعال
 const filteredInstructors = computed(() => {
-  if (activeDept.value === 'all') return instructors;
-  return instructors.filter(ins => ins.dept === activeDept.value);
+  if (activeDept.value === 'all') return allInstructors.value;
+  return allInstructors.value.filter(ins => ins.dept === activeDept.value);
+});
+
+// 🚀 اسکیما گوگل (Schema Markup) کاملاً داینامیک و متصل به تلفیق جدید
+const schemaData = computed(() => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "لیست اساتید و منتورهای آکادمی هوش‌پرداز",
+  "description": "معرفی مدرسین و متخصصان ارشد دپارتمان‌های هوش مصنوعی, برنامه‌نویسی و گرافیک در آکادمی هوش‌پرداز.",
+  "itemListElement": allInstructors.value.map((instructor, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Person",
+      "name": instructor.name,
+      "jobTitle": instructor.title,
+      "description": instructor.bio,
+      "image": `https://hoooshpardaz.ir${instructor.image_url}`,
+      "url": `https://hoooshpardaz.ir/instructors/${instructor.id}`
+    }
+  }))
+}));
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: computed(() => JSON.stringify(schemaData.value))
+    }
+  ]
 });
 </script>

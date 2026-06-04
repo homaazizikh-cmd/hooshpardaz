@@ -163,21 +163,21 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 const route = useRoute();
 
-// این لیست را پیدا کنید و دقیقاً با کدهای زیر جایگزین کنید
 const instructors = [
   { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: 'متخصص پایتون و AI', bio: 'توسعه‌دهنده ارشد و پژوهشگر هوش مصنوعی. ایشان با سال‌ها تجربه در پیاده‌سازی مدل‌های یادگیری ماشین (Machine Learning) و شبکه‌های عصبی عمیق، رویکردی کاملاً پروژه‌محور در کلاس‌های خود دارند. هدف اصلی کلاس‌های ایشان، رساندن هنرجو از سطح صفر به توانایی ساخت اپلیکیشن‌های هوشمند واقعی است.', skills: ['Python', 'Machine_Learning', 'Deep_Learning', 'TensorFlow'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
   { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با بیش از ۸ سال تجربه در پروژه‌های استارتاپی. کلاس‌های ایشان فقط آموزش نرم‌افزار نیست، بلکه آموزش "دیدن" و "خلق کردن" است. هنرجویان ایشان به راحتی جذب بازار کار طراحی محصول و گرافیک تبلیغاتی می‌شوند.', skills: ['UI/UX', 'Photoshop', 'Illustrator', 'Figma'], image_url: '/images/instructors/paniz-borna.jpg' },
-  { id: 3, name: 'ملینا دهقانی', dept: 'python', title: 'منتور برنامه‌نویسی', bio: 'کارشناس نرم‌افزار و متخصص در آموزش مفاهیم پایه برنامه‌نویسی و پایتون با رویکرد گیمیفیکیشن و استعدادیابی کودکان و نوجوانان. صبر و حوصله بی‌نظیر ایشان در کنار دانش فنی بالا، باعث می‌شود سخت‌ترین مفاهیم الگوریتمی برای رده‌های سنی پایین به یک بازی جذاب تبدیل شود.', skills: ['Python_Kids', 'Algorithm', 'Mentoring', 'Scratch'], image_url: '/images/instructors/melina-dehghani.jpg' },
+  { id: 3, name: 'داود قبادی', dept: 'python', title: 'منتور برنامه‌نویسی', bio: 'کارشناس نرم‌افزار و متخصص در آموزش مفاهیم پایه برنامه‌نویسی و پایتون با رویکرد گیمیفیکیشن و استعدادیابی کودکان و نوجوانان. صبر و حوصله بی‌نظیر ایشان در کنار دانش فنی بالا، باعث می‌شود سخت‌ترین مفاهیم الگوریتمی برای رده‌های سنی پایین به یک بازی جذاب تبدیل شود.', skills: ['Python_Kids', 'Algorithm', 'Mentoring', 'Scratch'], image_url: '/images/instructors/davood-ghobadi.jpg' },
   { id: 4, name: 'حسین عزیزی', dept: 'maharat', title: 'متخصص مکاترونیک', bio: 'طراح سیستم‌های تعبیه‌شده و رباتیک. منتور ارشد تیم‌های المپیاد و مدرس دوره‌های تخصصی الکترونیک و آردوینو. در کارگاه‌های ایشان، تئوری جای خود را به ساختن ربات‌های واقعی و برنامه‌نویسی میکروکنترلرها می‌دهد.', skills: ['Robotics', 'Arduino', 'C++', 'IoT'], image_url: '/images/instructors/hossein-azizi.jpg' },
-  { id: 5, name: 'دکتر سارا مهرابی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد هوش مصنوعی (Generative AI). مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری. ایشان به شما می‌آموزند چگونه از دل هزاران ردیف داده، اطلاعات ارزشمند استخراج کنید.', skills: ['Data_Science', 'Big_Data', 'NLP', 'ChatGPT_API'], image_url: '/images/instructors/sara-mehrabi.jpg' },
-  { id: 6, name: 'امیرحسین کیانی', dept: 'python', title: 'توسعه‌دهنده بک‌اند', bio: 'برنامه‌نویس ارشد سرور با تسلط کامل بر فریم‌ورک‌های پایتونی مثل جنگو و فست‌ای‌پی‌آی. عاشق به چالش کشیدن هنرجویان با حل مشکلات پیچیده سیستمی و آماده‌سازی آن‌ها برای شرکت در مصاحبه‌های استخدامی دشوار.', skills: ['Django', 'FastAPI', 'PostgreSQL', 'Docker'], image_url: '/images/instructors/amirhossein-kiani.jpg' },
-  { id: 7, name: 'نغمه شفیعی', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر. در دوره‌های ایشان یاد می‌گیرید چگونه محصولی طراحی کنید که کاربران عاشق استفاده از آن شوند.', skills: ['Figma', 'Product_Design', 'Prototyping', 'User_Research'], image_url: '/images/instructors/naghmeh-shafiei.jpg' },
-  { id: 8, name: 'مهندس رضا تهرانی', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر (ICDL) و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع و مطمئن به بازار کار اداری و سازمانی با جدیدترین متدهای آموزشی روز.', skills: ['ICDL', 'Excel_Expert', 'Windows', 'Word'], image_url: '/images/instructors/reza-tehrani.jpg' }
+  { id: 5, name: 'فرانک خزاعی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد هوش مصنوعی (Generative AI). مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری. ایشان به شما می‌آموزند چگونه از دل هزاران ردیف داده، اطلاعات ارزشمند استخراج کنید.', skills: ['Data_Science', 'Big_Data', 'NLP', 'ChatGPT_API'], image_url: '/images/instructors/faranak-khazaei.jpg' },
+  { id: 6, name: 'مجید مهربخش', dept: 'python', title: 'توسعه‌دهنده بک‌اند', bio: 'برنامه‌نویس ارشد سرور با تسلط کامل بر فریم‌ورک‌های پایتونی مثل جنگو و فست‌ای‌پی‌آی. عاشق به چالش کشیدن هنرجویان با حل مشکلات پیچیده سیستمی و آماده‌سازی آن‌ها برای شرکت در مصاحبه‌های استخدامی دشوار.', skills: ['Django', 'FastAPI', 'PostgreSQL', 'Docker'], image_url: '/images/instructors/majid-mehrbakhsh.jpg' },
+  { id: 7, name: 'نیوشا خاوری', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر. در دوره‌های ایشان یاد می‌گیرید چگونه محصولی طراحی کنید که کاربران عاشق استفاده از آن شوند.', skills: ['Figma', 'Product_Design', 'Prototyping', 'User_Research'], image_url: '/images/instructors/niusha-khavari.jpg' },
+  { id: 8, name: 'مهدیه روشن', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر (ICDL) و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع و مطمئن به بازار کار اداری و سازمانی با جدیدترین متدهای آموزشی روز.', skills: ['ICDL', 'Excel_Expert', 'Windows', 'Word'], image_url: '/images/instructors/mahdieh-roshan.jpg' }
 ];
 
-// لیست دوره‌ها جهت استخراج دوره‌های این استاد
 const allCourses = [
   { id: 13, title: 'مهارت‌های هفت‌گانه (ICDL)', price: '۴,۵۰۰,۰۰۰', instructor_id: 8, image: '/images/ICDL.jpg' },
   { id: 5, title: 'رباتیک بزرگسال', price: '۱۲,۰۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatic.jpg' },
@@ -194,23 +194,56 @@ const allCourses = [
   { id: 9, title: 'تصویرسازی اسکیچ', price: '۶,۰۰۰,۰۰۰', instructor_id: 7, image: '/images/Sketch.jpg' }
 ];
 
-// پیدا کردن استاد فعلی
 const instructor = computed(() => {
   return instructors.find(i => i.id === parseInt(route.params.id));
 });
 
-// پیدا کردن دوره‌هایی که مدرس آن‌ها، همین استاد است
 const instructorCourses = computed(() => {
   if (!instructor.value) return [];
   return allCourses.filter(c => c.instructor_id === instructor.value.id);
 });
 
-// سئوی اختصاصی برای هر استاد
-if (instructor.value) {
-  useSeoMeta({
-    title: `${instructor.value.name} (${instructor.value.title}) | هوش‌پرداز`,
-    description: instructor.value.bio.substring(0, 150) + '...',
-    ogImage: instructor.value.image_url,
-  });
-}
+// 🚀 سئوی فوق‌پیشرفته (Dynamic Meta Tags)
+useSeoMeta({
+  title: () => instructor.value ? `رزومه و دوره‌های ${instructor.value.name} | آکادمی هوش‌پرداز` : 'پروفایل استاد پیدا نشد',
+  description: () => instructor.value ? instructor.value.bio.substring(0, 160) : '',
+  ogTitle: () => instructor.value ? `${instructor.value.name} - ${instructor.value.title}` : '',
+  ogDescription: () => instructor.value ? instructor.value.bio.substring(0, 160) : '',
+  ogImage: () => instructor.value ? `https://hoooshpardaz.ir${instructor.value.image_url}` : '',
+  ogType: 'profile',
+  twitterCard: 'summary_large_image',
+});
+
+// 🧠 تزریق کدهای ساختاریافته گوگل (Person Schema)
+useHead({
+  link: [
+    { 
+      rel: 'canonical', 
+      href: () => instructor.value ? `https://hoooshpardaz.ir/instructors/${instructor.value.id}` : 'https://hoooshpardaz.ir/instructors' 
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: computed(() => {
+        if (!instructor.value) return null;
+        return JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": instructor.value.name,
+          "jobTitle": instructor.value.title,
+          "description": instructor.value.bio,
+          "image": `https://hoooshpardaz.ir${instructor.value.image_url}`,
+          "url": `https://hoooshpardaz.ir/instructors/${instructor.value.id}`,
+          "affiliation": {
+            "@type": "Organization",
+            "name": "آکادمی هوش‌پرداز",
+            "url": "https://hoooshpardaz.ir"
+          },
+          "knowsAbout": instructor.value.skills
+        })
+      })
+    }
+  ]
+});
 </script>

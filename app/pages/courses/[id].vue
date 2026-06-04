@@ -267,7 +267,7 @@ const courses = [
     image: '/images/Machine learning.jpg', 
     schedule: { days: 'جمعه‌ها (وبینار زنده پرسش و پاسخ)', time: 'ساعت ۰۹:۰۰ صبح الی ۱۳:۰۰' }, 
     startDate: '۳۰ تیر ۱۴۰۵', 
-    instructor: { id: 5, name: 'دکتر سارا مهرابی', title: 'پژوهشگر داده‌کاوی', skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' } 
+    instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
   },
   { 
     id: 6, 
