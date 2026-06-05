@@ -174,12 +174,12 @@ const courses = [
     id: 13, 
     title: 'مهارت‌های هفت‌گانه (ICDL)', 
     dept: 'maharat', 
-    price: '۴,۵۰۰,۰۰۰', 
+    price: '۶,۵۰۰,۰۰۰', 
     desc: 'یادگیری کامل نرم‌افزارهای آفیس و مبانی کامپیوتر.', 
     image: '/images/ICDL.jpg', 
     schedule: { days: 'روزهای زوج (شنبه، دوشنبه، چهارشنبه)', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, 
     startDate: '۱۵ تیر ۱۴۰۵', 
-    instructor: { id: 8, name: 'مهندس رضا تهرانی', title: 'مدرس مهارت‌های نرم', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/reza-tehrani.jpg' } 
+    instructor: { id: 1, name: 'مهدی خزاعی', title: 'مدرس مهارت‌های نرم', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
   },
   { 
     id: 5, 
@@ -234,7 +234,7 @@ const courses = [
     image: '/images/Python-P.jpg', 
     schedule: { days: 'پنج‌شنبه‌ها (کلاس آنلاین تعاملی)', time: 'ساعت ۱۵:۰۰ الی ۱۹:۰۰' }, 
     startDate: '۱۲ مرداد ۱۴۰۵', 
-    instructor: { id: 6, name: 'امیرحسین کیانی', title: 'توسعه‌دهنده بک‌اند', skills: ['Django', 'FastAPI', 'PostgreSQL'], image_url: '/images/instructors/amirhossein-kiani.jpg' } 
+    instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
   },
   { 
     id: 11, 
@@ -311,7 +311,7 @@ const courses = [
     image: '/images/Sketch.jpg', 
     schedule: { days: 'روزهای فرد (یکشنبه و سه‌شنبه)', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, 
     startDate: '۱۵ شهریور ۱۴۰۵', 
-    instructor: { id: 7, name: 'نغمه شفیعی', title: 'طراح محصول', skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/naghmeh-shafiei.jpg' } 
+    instructor: { id: 7, name: 'علی رضایی', title: 'طراح محصول', skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/ali-rezaei.jpg' } 
   }
 ];
 

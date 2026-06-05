@@ -21,6 +21,9 @@
         <NuxtLink to="/admin/instructors" active-class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition">
           <span>👨‍🏫</span> مدیریت اساتید
         </NuxtLink>
+        <NuxtLink to="/admin/projects" active-class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 rounded-xl font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+          <span>📁</span> مدیریت پروژه‌ها
+        </NuxtLink>
       </nav>
 
       <div class="p-4 border-t border-gray-100 dark:border-gray-700 space-y-2">

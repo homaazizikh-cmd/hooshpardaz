@@ -90,7 +90,7 @@
           <div class="w-16 h-16 bg-orange-100 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-[0_0_30px_rgba(249,115,22,0.3)]">📜</div>
           <h2 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">ارائه مدرک <span class="text-orange-600 dark:text-orange-400">معتبر</span></h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 font-light leading-loose mb-6 text-justify">
-            پایان دوره شما، آغاز مسیر حرفه‌ای است. با انجام موفقیت‌آمیز پروژه‌های پایانی، مدرک معتبر و دوزبانه آکادمی هوش‌پرداز (با کد رهگیری اختصاصی) به شما اعطا می‌شود که برای ارائه به شرکت‌های داخلی و خارجی اعتبار بالایی دارد.
+            پایان دوره شما، آغاز مسیر حرفه‌ای است. با انجام موفقیت‌آمیز پروژه‌های پایانی، مدرک معتبر آکادمی هوش‌پرداز (با کد رهگیری اختصاصی) به شما اعطا می‌شود که برای ارائه اعتبار بالایی دارد.
           </p>
           <ul class="space-y-4 font-bold text-gray-700 dark:text-gray-300">
             <li class="flex items-center gap-3"><svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> گواهینامه دوزبانه (فارسی و انگلیسی)</li>

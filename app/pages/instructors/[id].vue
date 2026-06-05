@@ -174,16 +174,16 @@ const instructors = [
   { id: 4, name: 'حسین عزیزی', dept: 'maharat', title: 'متخصص مکاترونیک', bio: 'طراح سیستم‌های تعبیه‌شده و رباتیک. منتور ارشد تیم‌های المپیاد و مدرس دوره‌های تخصصی الکترونیک و آردوینو. در کارگاه‌های ایشان، تئوری جای خود را به ساختن ربات‌های واقعی و برنامه‌نویسی میکروکنترلرها می‌دهد.', skills: ['Robotics', 'Arduino', 'C++', 'IoT'], image_url: '/images/instructors/hossein-azizi.jpg' },
   { id: 5, name: 'فرانک خزاعی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد هوش مصنوعی (Generative AI). مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری. ایشان به شما می‌آموزند چگونه از دل هزاران ردیف داده، اطلاعات ارزشمند استخراج کنید.', skills: ['Data_Science', 'Big_Data', 'NLP', 'ChatGPT_API'], image_url: '/images/instructors/faranak-khazaei.jpg' },
   { id: 6, name: 'مجید مهربخش', dept: 'python', title: 'توسعه‌دهنده بک‌اند', bio: 'برنامه‌نویس ارشد سرور با تسلط کامل بر فریم‌ورک‌های پایتونی مثل جنگو و فست‌ای‌پی‌آی. عاشق به چالش کشیدن هنرجویان با حل مشکلات پیچیده سیستمی و آماده‌سازی آن‌ها برای شرکت در مصاحبه‌های استخدامی دشوار.', skills: ['Django', 'FastAPI', 'PostgreSQL', 'Docker'], image_url: '/images/instructors/majid-mehrbakhsh.jpg' },
-  { id: 7, name: 'نیوشا خاوری', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر. در دوره‌های ایشان یاد می‌گیرید چگونه محصولی طراحی کنید که کاربران عاشق استفاده از آن شوند.', skills: ['Figma', 'Product_Design', 'Prototyping', 'User_Research'], image_url: '/images/instructors/niusha-khavari.jpg' },
+  { id: 7, name: 'علی رضایی', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر. در دوره‌های ایشان یاد می‌گیرید چگونه محصولی طراحی کنید که کاربران عاشق استفاده از آن شوند.', skills: ['Figma', 'Product_Design', 'Prototyping', 'User_Research'], image_url: '/images/instructors/niusha-khavari.jpg' },
   { id: 8, name: 'مهدیه روشن', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر (ICDL) و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع و مطمئن به بازار کار اداری و سازمانی با جدیدترین متدهای آموزشی روز.', skills: ['ICDL', 'Excel_Expert', 'Windows', 'Word'], image_url: '/images/instructors/mahdieh-roshan.jpg' }
 ];
 
 const allCourses = [
-  { id: 13, title: 'مهارت‌های هفت‌گانه (ICDL)', price: '۴,۵۰۰,۰۰۰', instructor_id: 8, image: '/images/ICDL.jpg' },
+  { id: 1, title: 'مهارت‌های هفت‌گانه (ICDL)', price: '۴,۵۰۰,۰۰۰', instructor_id: 8, image: '/images/ICDL.jpg' },
   { id: 5, title: 'رباتیک بزرگسال', price: '۱۲,۰۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatic.jpg' },
-  { id: 12, title: 'رباتیک دانش‌آموزی', price: '۷,۵۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatoc-childern.jpg' },
-  { id: 10, title: 'اسکرچ (Scratch)', price: '۵,۰۰۰,۰۰۰', instructor_id: 3, image: '/images/Scratch.jpg' },
-  { id: 11, title: 'پایتون کودکان', price: '۶,۵۰۰,۰۰۰', instructor_id: 3, image: '/images/Python-childern.jpg' },
+  { id: 1, title: 'رباتیک دانش‌آموزی', price: '۷,۵۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatoc-childern.jpg' },
+  { id: 3, title: 'اسکرچ (Scratch)', price: '۵,۰۰۰,۰۰۰', instructor_id: 3, image: '/images/Scratch.jpg' },
+  { id: 1, title: 'پایتون کودکان', price: '۶,۵۰۰,۰۰۰', instructor_id: 3, image: '/images/Python-childern.jpg' },
   { id: 1, title: 'پایتون مقدماتی', price: '۸,۰۰۰,۰۰۰', instructor_id: 1, image: '/images/Python-M.jpg' },
   { id: 2, title: 'پایتون پیشرفته', price: '۱۰,۰۰۰,۰۰۰', instructor_id: 6, image: '/images/Python-P.jpg' },
   { id: 3, title: 'ابزارهای هوش مصنوعی', price: '۷,۰۰۰,۰۰۰', instructor_id: 5, image: '/images/Ai-tools.jpg' },
@@ -191,7 +191,7 @@ const allCourses = [
   { id: 6, title: 'فتوشاپ (Photoshop)', price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Photoshop.jpg' },
   { id: 7, title: 'ایلاستریتور (Illustrator)', price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Illustrator.jpg' },
   { id: 8, title: 'ایندیزاین (InDesign)', price: '۶,۵۰۰,۰۰۰', instructor_id: 2, image: '/images/Indesign.jpg' },
-  { id: 9, title: 'تصویرسازی اسکیچ', price: '۶,۰۰۰,۰۰۰', instructor_id: 7, image: '/images/Sketch.jpg' }
+  { id: 2, title: 'تصویرسازی اسکیچ', price: '۶,۰۰۰,۰۰۰', instructor_id: 7, image: '/images/Sketch.jpg' }
 ];
 
 const instructor = computed(() => {
