@@ -16,7 +16,7 @@
           </div>
           <div>
             <h1 class="text-2xl font-black text-slate-800 dark:text-white mb-1">سلام، {{ userName }} عزیز! 👋</h1>
-            <p class="text-slate-500 dark:text-slate-400 text-sm">به پنل کاربری هوش‌پرداز خوش آمدید.</p>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">به پنل کاربری داناورس خوش آمدید.</p>
           </div>
         </div>
 

@@ -12,7 +12,7 @@
         <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed font-medium">
           برای اینکه بتوانیم نقشه شناختی ذهن شما را تحلیل کرده و نتیجه را برای همیشه در پروفایل اختصاصی شما ذخیره کنیم، لطفاً ابتدا وارد حساب کاربری خود شوید.
         </p>
-        <NuxtLink to="/login" title="ورود و ثبت‌نام در آکادمی هوش‌پرداز" class="inline-flex px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl font-bold transition-all shadow-[0_10px_20px_-10px_rgba(37,99,235,0.6)] transform hover:-translate-y-1">
+        <NuxtLink to="/login" title="ورود و ثبت‌نام در آکادمی داناورس" class="inline-flex px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl font-bold transition-all shadow-[0_10px_20px_-10px_rgba(37,99,235,0.6)] transform hover:-translate-y-1">
           ورود / ثبت‌نام در سایت
         </NuxtLink>
       </div>
@@ -148,13 +148,13 @@ const user = useSupabaseUser()
 
 // 💡 سئو: ارتقای استثنایی متاتگ‌ها برای کلمات کلیدی پرجستجو
 useSeoMeta({
-  title: 'تست استعدادیابی برنامه‌نویسی و هوش مصنوعی رایگان | هوش‌پرداز',
-  description: 'آیا برای برنامه‌نویس شدن ساخته شده‌اید؟ با شرکت در آزمون آنلاین و رایگان استعدادیابی هوش‌پرداز، نقشه شناختی ذهن خود را دریافت کنید و مسیر شغلی مناسب خود را بیابید.',
+  title: 'تست استعدادیابی برنامه‌نویسی و هوش مصنوعی رایگان | داناورس',
+  description: 'آیا برای برنامه‌نویس شدن ساخته شده‌اید؟ با شرکت در آزمون آنلاین و رایگان استعدادیابی داناورس، نقشه شناختی ذهن خود را دریافت کنید و مسیر شغلی مناسب خود را بیابید.',
   keywords: 'تست استعداد یابی, استعدادیابی برنامه نویسی, تست آنلاین, هوش مصنوعی, آزمون روانشناسی برنامه نویسی',
-  ogTitle: 'تست استعدادیابی برنامه‌نویسی و تکنولوژی | هوش‌پرداز',
+  ogTitle: 'تست استعدادیابی برنامه‌نویسی و تکنولوژی | داناورس',
   ogDescription: 'با پاسخ به ۱۵ سوال روانشناختی، استعداد پنهان خود را در دنیای کدنویسی و هوش مصنوعی کشف کنید.',
-  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg',
-  ogUrl: 'https://hoooshpardaz.ir/talent',
+  ogImage: 'https://danaverse.ir/images/Banner.jpg',
+  ogUrl: 'https://danaverse.ir/talent',
   twitterCard: 'summary_large_image'
 })
 
@@ -163,7 +163,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: 'https://hoooshpardaz.ir/talent'
+      href: 'https://danaverse.ir/talent'
     }
   ],
   script: [
@@ -172,7 +172,7 @@ useHead({
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "سیستم استعدادیابی هوش‌پرداز",
+        "name": "سیستم استعدادیابی داناورس",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Web",
         "offers": {
@@ -183,7 +183,7 @@ useHead({
         "description": "ابزار آنلاین برای کشف استعدادهای نهفته در زمینه برنامه‌نویسی، رباتیک و هوش مصنوعی بر پایه تحلیل شناختی.",
         "publisher": {
           "@type": "Organization",
-          "name": "آکادمی هوش‌پرداز"
+          "name": "آکادمی داناورس"
         }
       })
     }

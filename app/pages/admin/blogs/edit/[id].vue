@@ -162,7 +162,7 @@ const updateBlog = async () => {
     const { error: updateError } = await supabase.from('blogs').update({ 
       title: form.value.title, 
       category: form.value.category,
-      author: form.value.author || 'تیم تولید محتوای هوش‌پرداز',
+      author: form.value.author || 'تیم تولید محتوای داناورس',
       content: form.value.content,
       is_published: form.value.is_published,
       image_url: finalImageUrl,

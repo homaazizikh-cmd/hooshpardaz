@@ -18,7 +18,7 @@
         پل ارتباطی ما و شما
       </div>
       <h2 class="text-4xl md:text-5xl font-black text-slate-800 dark:text-white mb-6 tracking-tight">
-        تماس با <span class="text-transparent bg-clip-text bg-gradient-to-l from-blue-600 to-cyan-400">هوش‌پرداز</span>
+        تماس با <span class="text-transparent bg-clip-text bg-gradient-to-l from-blue-600 to-cyan-400">داناورس</span>
       </h2>
       <p class="text-slate-500 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
         ما همیشه مشتاق شنیدن ایده‌ها، سوالات و نظرات شما هستیم. تیم منتورینگ و پشتیبانی هوش‌پردار در کوتاه‌ترین زمان پاسخگوی شماست.
@@ -178,6 +178,6 @@ const autoClearNotification = () => {
 };
 
 useHead({
-  title: 'تماس با ما | هوش پرداز'
+  title: 'تماس با ما | داناورس'
 });
 </script>

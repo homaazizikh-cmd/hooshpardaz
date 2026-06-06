@@ -8,7 +8,7 @@
 
       <div class="container mx-auto px-4 relative z-10 text-center">
         <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/10 text-sm font-bold mb-8 shadow-sm">
-          تفاوت هوش‌پرداز چیست؟
+          تفاوت داناورس چیست؟
         </div>
         <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-gray-900 dark:text-white mb-8 tracking-tighter leading-tight">
           فراتر از یک آموزشگاه، <br>
@@ -17,7 +17,7 @@
           </span>
         </h1>
         <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
-          ما تئوری‌های خسته‌کننده دانشگاهی را دور ریخته‌ایم. در هوش‌پرداز، شما از روز اول مثل یک مهندس ارشد کار می‌کنید.
+          ما تئوری‌های خسته‌کننده دانشگاهی را دور ریخته‌ایم. در داناورس، شما از روز اول مثل یک مهندس ارشد کار می‌کنید.
         </p>
       </div>
     </section>
@@ -59,7 +59,7 @@
         </div>
         <div class="w-full md:w-1/2 relative z-10">
           <div class="relative rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl dark:shadow-[0_0_40px_rgba(168,85,247,0.15)] group-hover:-translate-y-3 transition-transform duration-700">
-            <NuxtImg src="/images/benefit-mentor.webp" alt="منتورینگ هوش پرداز" class="w-full h-full object-cover aspect-[4/3] filter dark:brightness-90" format="webp" loading="lazy" />
+            <NuxtImg src="/images/benefit-mentor.webp" alt="منتورینگ داناورس" class="w-full h-full object-cover aspect-[4/3] filter dark:brightness-90" format="webp" loading="lazy" />
           </div>
         </div>
       </section>
@@ -90,7 +90,7 @@
           <div class="w-16 h-16 bg-orange-100 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-[0_0_30px_rgba(249,115,22,0.3)]">📜</div>
           <h2 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">ارائه مدرک <span class="text-orange-600 dark:text-orange-400">معتبر</span></h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 font-light leading-loose mb-6 text-justify">
-            پایان دوره شما، آغاز مسیر حرفه‌ای است. با انجام موفقیت‌آمیز پروژه‌های پایانی، مدرک معتبر آکادمی هوش‌پرداز (با کد رهگیری اختصاصی) به شما اعطا می‌شود که برای ارائه اعتبار بالایی دارد.
+            پایان دوره شما، آغاز مسیر حرفه‌ای است. با انجام موفقیت‌آمیز پروژه‌های پایانی، مدرک معتبر آکادمی داناورس (با کد رهگیری اختصاصی) به شما اعطا می‌شود که برای ارائه اعتبار بالایی دارد.
           </p>
           <ul class="space-y-4 font-bold text-gray-700 dark:text-gray-300">
             <li class="flex items-center gap-3"><svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> گواهینامه دوزبانه (فارسی و انگلیسی)</li>
@@ -99,7 +99,7 @@
         </div>
         <div class="w-full md:w-1/2 relative z-10">
           <div class="relative rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl dark:shadow-[0_0_40px_rgba(249,115,22,0.15)] group-hover:-translate-y-3 transition-transform duration-700">
-            <NuxtImg src="/images/benefit-certificate.webp" alt="مدرک معتبر هوش پرداز" class="w-full h-full object-cover aspect-[4/3] filter dark:brightness-90" format="webp" loading="lazy" />
+            <NuxtImg src="/images/benefit-certificate.webp" alt="مدرک معتبر داناورس" class="w-full h-full object-cover aspect-[4/3] filter dark:brightness-90" format="webp" loading="lazy" />
           </div>
         </div>
       </section>
@@ -121,8 +121,8 @@
 
 <script setup>
 useSeoMeta({
-  title: 'چرا هوش‌پرداز؟ | تفاوت‌ها و مزایای آکادمی',
-  description: 'در هوش‌پرداز با آموزش ۱۰۰٪ پروژه‌محور، منتورینگ اختصاصی و پشتیبانی ورود به بازار کار، در کمترین زمان به یک متخصص تبدیل شوید.',
+  title: 'چرا داناورس؟ | تفاوت‌ها و مزایای آکادمی',
+  description: 'در داناورس با آموزش ۱۰۰٪ پروژه‌محور، منتورینگ اختصاصی و پشتیبانی ورود به بازار کار، در کمترین زمان به یک متخصص تبدیل شوید.',
 })
 </script>
 

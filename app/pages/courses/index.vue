@@ -12,7 +12,7 @@
       </div>
       
       <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 relative z-10 leading-tight tracking-tight">
-        دپارتمان‌های <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">آکادمی هوش‌پرداز</span>
+        دپارتمان‌های <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">آکادمی داناورس</span>
       </h1>
       <p class="text-slate-600 dark:text-slate-400 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
         برای استخراج دوره‌های تخصصی هر حوزه، روی ماژول دپارتمان مورد نظر کلیک کنید و مسیر ارتقای خود را انتخاب کنید.
@@ -33,7 +33,7 @@
             
             <NuxtImg 
               :src="dept.image" 
-              :alt="`دپارتمان آموزشی ${dept.name} در هوش‌پرداز`" 
+              :alt="`دپارتمان آموزشی ${dept.name} در داناورس`" 
               format="webp"
               preload
               class="w-full h-full object-cover transition-transform duration-700"
@@ -82,7 +82,7 @@
               </div>
               <NuxtImg 
                 :src="course.image || '/images/default-course.jpg'" 
-                :alt="`دوره آنلاین ${course.title} در آکادمی هوش‌پرداز`" 
+                :alt="`دوره آنلاین ${course.title} در آکادمی داناورس`" 
                 format="webp"
                 loading="lazy"
                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
@@ -141,8 +141,8 @@ import { ref, computed } from 'vue';
 // سئو صفحه ارتقا یافته
 useSeoMeta({
   title: 'لیست دوره‌های برنامه‌نویسی و هوش مصنوعی',
-  description: 'لیست کامل دوره‌های آموزش برنامه‌نویسی، هوش مصنوعی، رباتیک و هنرهای دیجیتال در آکادمی هوش‌پرداز برای تمامی سنین با ارائه مدرک.',
-  ogTitle: 'دوره‌های تخصصی آکادمی هوش‌پرداز',
+  description: 'لیست کامل دوره‌های آموزش برنامه‌نویسی، هوش مصنوعی، رباتیک و هنرهای دیجیتال در آکادمی داناورس برای تمامی سنین با ارائه مدرک.',
+  ogTitle: 'دوره‌های تخصصی آکادمی داناورس',
   ogImage: '/images/Banner.jpg'
 });
 
@@ -346,8 +346,8 @@ const schemaData = computed(() => ({
       "description": course.desc,
       "provider": {
         "@type": "Organization",
-        "name": "آکادمی هوش‌پرداز",
-        "sameAs": "https://hoooshpardaz.ir"
+        "name": "آکادمی داناورس",
+        "sameAs": "https://danaverse.ir"
       }
     }
   }))

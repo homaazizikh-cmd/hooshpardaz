@@ -70,7 +70,7 @@
             <div class="flex items-center gap-3">
               <NuxtImg 
                 src="https://i.pravatar.cc/150?img=11" 
-                alt="نویسنده مقالات هوش پرداز" 
+                alt="نویسنده مقالات داناورس" 
                 format="webp"
                 loading="lazy"
                 class="w-10 h-10 rounded-full border-2 border-gray-200 dark:border-gray-600"
@@ -98,7 +98,7 @@
           <div class="relative h-56 overflow-hidden bg-gray-200 dark:bg-gray-700">
             <NuxtImg 
               :src="post.image || '/images/default-blog.jpg'" 
-              :alt="`مقاله ${post.title} در آکادمی هوش پرداز`" 
+              :alt="`مقاله ${post.title} در آکادمی داناورس`" 
               format="webp"
               loading="lazy"
               class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
@@ -150,13 +150,13 @@ const supabase = useSupabaseClient();
 
 // 💡 سئو: ارتقای چشم‌گیر متاتگ‌ها برای صفحه لیست مقالات
 useSeoMeta({
-  title: 'وبلاگ و مقالات آموزش برنامه‌نویسی، هوش مصنوعی و رباتیک | هوش‌پرداز',
-  description: 'مجله تخصصی هوش‌پرداز؛ مطالعه جدیدترین مقالات آموزش برنامه‌نویسی، پایتون، هوش مصنوعی، رباتیک و بررسی مسیرهای شغلی دنیای تکنولوژی.',
+  title: 'وبلاگ و مقالات آموزش برنامه‌نویسی، هوش مصنوعی و رباتیک | داناورس',
+  description: 'مجله تخصصی داناورس؛ مطالعه جدیدترین مقالات آموزش برنامه‌نویسی، پایتون، هوش مصنوعی، رباتیک و بررسی مسیرهای شغلی دنیای تکنولوژی.',
   keywords: 'وبلاگ برنامه نویسی, مقالات هوش مصنوعی, آموزش پایتون, اخبار تکنولوژی, مقالات رباتیک, یادگیری برنامه نویسی',
-  ogTitle: 'وبلاگ آکادمی هوش‌پرداز | جدیدترین مقالات تکنولوژی',
+  ogTitle: 'وبلاگ آکادمی داناورس | جدیدترین مقالات تکنولوژی',
   ogDescription: 'مطالعه رایگان صدها مقاله آموزشی در زمینه برنامه‌نویسی، هوش مصنوعی و طراحی رابط کاربری.',
-  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg',
-  ogUrl: 'https://hoooshpardaz.ir/learning',
+  ogImage: 'https://danaverse.ir/images/Banner.jpg',
+  ogUrl: 'https://danaverse.ir/learning',
   ogType: 'website',
   twitterCard: 'summary_large_image'
 });
@@ -277,15 +277,15 @@ const filteredPosts = computed(() => {
 const schemaData = computed(() => ({
   "@context": "https://schema.org",
   "@type": "Blog",
-  "name": "وبلاگ و مسیر یادگیری هوش‌پرداز",
+  "name": "وبلاگ و مسیر یادگیری داناورس",
   "description": "جدیدترین مقالات، آموزش‌ها و اخبار دنیای تکنولوژی، برنامه‌نویسی و هوش مصنوعی",
-  "url": "https://hoooshpardaz.ir/learning",
+  "url": "https://danaverse.ir/learning",
   "blogPost": allPosts.value.map(post => ({
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.excerpt,
     "image": post.image,
-    "url": `https://hoooshpardaz.ir/learning/${post.id}`
+    "url": `https://danaverse.ir/learning/${post.id}`
   }))
 }));
 
@@ -294,7 +294,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: 'https://hoooshpardaz.ir/learning'
+      href: 'https://danaverse.ir/learning'
     }
   ],
   script: [
@@ -313,13 +313,13 @@ useHead({
             "@type": "ListItem",
             "position": 1,
             "name": "خانه",
-            "item": "https://hoooshpardaz.ir"
+            "item": "https://danaverse.ir"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "مسیر یادگیری و وبلاگ",
-            "item": "https://hoooshpardaz.ir/learning"
+            "item": "https://danaverse.ir/learning"
           }
         ]
       })

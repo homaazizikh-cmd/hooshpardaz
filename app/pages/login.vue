@@ -60,7 +60,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
-useHead({ title: 'ورود / ثبت‌نام | هوش‌پرداز' })
+useHead({ title: 'ورود / ثبت‌نام | داناورس' })
 
 const supabase = useSupabaseClient()
 const router = useRouter() // 🌟 این خط برای مدیریت حرفه‌ای انتقال صفحات اضافه شد

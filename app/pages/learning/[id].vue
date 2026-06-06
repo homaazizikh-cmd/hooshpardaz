@@ -15,7 +15,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent z-10"></div>
         <NuxtImg 
           :src="post.image" 
-          :alt="`مقاله ${post.title} در آکادمی هوش پرداز`" 
+          :alt="`مقاله ${post.title} در آکادمی داناورس`" 
           format="webp"
           preload
           class="w-full h-full object-cover relative z-0 transform group-hover:scale-105 transition-transform duration-1000"
@@ -143,7 +143,7 @@ const manualPosts = [
       </ul>
       
       <h2>از کجا باید شروع کنیم؟</h2>
-      <p>بهترین نقطه شروع، استفاده از زبان‌های بصری (Visual Programming) است. در آکادمی هوش‌پرداز، ما مسیر یادگیری کودکان را با زبان‌های بلوکی آغاز می‌کنیم و پس از تقویت پایه منطقی، آن‌ها را با دنیای جذاب پایتون (Python) آشنا می‌سازیم.</p>
+      <p>بهترین نقطه شروع، استفاده از زبان‌های بصری (Visual Programming) است. در آکادمی داناورس، ما مسیر یادگیری کودکان را با زبان‌های بلوکی آغاز می‌کنیم و پس از تقویت پایه منطقی، آن‌ها را با دنیای جذاب پایتون (Python) آشنا می‌سازیم.</p>
     `
   },
   { 
@@ -227,11 +227,11 @@ const { data: post } = await useAsyncData(`post-${route.params.id}`, async () =>
       date: new Date(data.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }),
       readTime: '۵ دقیقه', 
       image: data.image_url || '/images/default-blog.jpg',
-      author: data.author || 'تیم هوش‌پرداز',
+      author: data.author || 'تیم داناورس',
       authorRole: 'مدرس و کارشناس آکادمی',
       // 💡 دریافت عکس نویسنده از دیتابیس
       authorImg: data.author_image_url || 'https://i.pravatar.cc/150?img=60',
-      tags: ['هوش‌پرداز', 'آموزش'] 
+      tags: ['داناورس', 'آموزش'] 
     }
   }
   
@@ -244,24 +244,24 @@ const { data: post } = await useAsyncData(`post-${route.params.id}`, async () =>
 
 // 💡 سئوی داینامیک و فوق‌العاده قوی (کاملاً بهینه‌شده برای SSR و گوگل)
 useSeoMeta({
-  title: computed(() => post.value ? `${post.value.title} | وبلاگ هوش‌پرداز` : 'خواندن مقاله'),
-  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی هوش‌پرداز در زمینه برنامه‌نویسی و هوش مصنوعی'),
+  title: computed(() => post.value ? `${post.value.title} | وبلاگ داناورس` : 'خواندن مقاله'),
+  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی داناورس در زمینه برنامه‌نویسی و هوش مصنوعی'),
   
   // تنظیمات Open Graph برای نمایش جذاب در تلگرام، لینکدین و...
-  ogTitle: computed(() => post.value ? post.value.title : 'وبلاگ هوش‌پرداز'),
-  ogDescription: computed(() => post.value ? post.value.excerpt : 'جدیدترین مقالات آموزشی هوش‌پرداز'),
-  ogImage: computed(() => post.value ? post.value.image : 'https://hoooshpardaz.ir/images/Banner.jpg'),
+  ogTitle: computed(() => post.value ? post.value.title : 'وبلاگ داناورس'),
+  ogDescription: computed(() => post.value ? post.value.excerpt : 'جدیدترین مقالات آموزشی داناورس'),
+  ogImage: computed(() => post.value ? post.value.image : 'https://danaverse.ir/images/Banner.jpg'),
   ogType: 'article', // سئو: مشخص کردن اینکه این صفحه یک "مقاله" است
-  ogUrl: computed(() => `https://hoooshpardaz.ir/learning/${route.params.id}`), // سئو: آدرس دقیق صفحه
+  ogUrl: computed(() => `https://danaverse.ir/learning/${route.params.id}`), // سئو: آدرس دقیق صفحه
 
   // تنظیمات اختصاصی Article برای شبکه‌های اجتماعی
-  articleAuthor: computed(() => post.value ? post.value.author : 'هوش پرداز'),
+  articleAuthor: computed(() => post.value ? post.value.author : 'داناورس'),
   articlePublishedTime: computed(() => post.value ? post.value.date : ''),
   
   // تنظیمات Twitter Card
   twitterCard: 'summary_large_image',
-  twitterTitle: computed(() => post.value ? post.value.title : 'وبلاگ هوش‌پرداز'),
-  twitterImage: computed(() => post.value ? post.value.image : 'https://hoooshpardaz.ir/images/Banner.jpg')
+  twitterTitle: computed(() => post.value ? post.value.title : 'وبلاگ داناورس'),
+  twitterImage: computed(() => post.value ? post.value.image : 'https://danaverse.ir/images/Banner.jpg')
 });
 
 const schemaData = computed(() => {
@@ -275,20 +275,20 @@ const schemaData = computed(() => {
     "author": {
       "@type": "Person",
       "name": post.value.author,
-      "url": "https://hoooshpardaz.ir/about" // اضافه شدن لینک نویسنده برای اعتبار بیشتر در گوگل
+      "url": "https://danaverse.ir/about" // اضافه شدن لینک نویسنده برای اعتبار بیشتر در گوگل
     },
     "publisher": {
       "@type": "Organization",
-      "name": "آکادمی هوش‌پرداز",
+      "name": "آکادمی داناورس",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://hoooshpardaz.ir/favicon.ico"
+        "url": "https://danaverse.ir/favicon.ico"
       }
     },
     "description": post.value.excerpt,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://hoooshpardaz.ir/learning/${post.value.id}`
+      "@id": `https://danaverse.ir/learning/${post.value.id}`
     }
   }
 });
@@ -298,7 +298,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: computed(() => `https://hoooshpardaz.ir/learning/${route.params.id}`)
+      href: computed(() => `https://danaverse.ir/learning/${route.params.id}`)
     }
   ],
   script: [

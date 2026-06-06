@@ -4,7 +4,7 @@
     <aside class="w-64 bg-white dark:bg-gray-800 shadow-xl border-l border-gray-200 dark:border-gray-700 hidden md:flex flex-col transition-all">
       <div class="h-20 flex items-center justify-center border-b border-gray-100 dark:border-gray-700">
         <h2 class="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
-          هوش‌پرداز | پنل مدیریت
+          داناورس | پنل مدیریت
         </h2>
       </div>
 

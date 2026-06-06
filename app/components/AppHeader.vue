@@ -12,8 +12,8 @@
       
       <div class="flex justify-start z-50 w-auto md:w-1/4">
         <NuxtLink to="/" class="transition-transform hover:scale-105 shrink-0 flex items-center">
-          <img src="/images/logo-light.png" alt="هوش پرداز" class="h-10 md:h-12 w-auto block dark:hidden" />
-          <img src="/images/logo-dark.png" alt="هوش پرداز" class="h-10 md:h-12 w-auto hidden dark:block" />
+          <img src="/images/logo-light.png" alt="داناورس" class="h-10 md:h-12 w-auto block dark:hidden" />
+          <img src="/images/logo-dark.png" alt="داناورس" class="h-10 md:h-12 w-auto hidden dark:block" />
         </NuxtLink>
       </div>
       

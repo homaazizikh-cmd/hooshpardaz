@@ -4,7 +4,7 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
       <div>
         <h2 class="text-3xl font-black text-gray-800 dark:text-white mb-2 tracking-tight">داشبورد مدیریت دوره‌ها</h2>
-        <p class="text-gray-500 dark:text-gray-400 font-medium">مرکز فرماندهی آکادمی هوش‌پرداز؛ جستجو، فیلتر و مدیریت جامع.</p>
+        <p class="text-gray-500 dark:text-gray-400 font-medium">مرکز فرماندهی آکادمی داناورس؛ جستجو، فیلتر و مدیریت جامع.</p>
       </div>
       <NuxtLink to="/admin/courses/create" class="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-2xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 shadow-[0_10px_20px_-10px_rgba(37,99,235,0.6)] hover:shadow-[0_15px_25px_-10px_rgba(37,99,235,0.8)] hover:-translate-y-1 overflow-hidden">
         <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>

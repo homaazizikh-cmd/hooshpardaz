@@ -13,7 +13,7 @@
           <div class="w-full lg:w-1/2 text-right">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-sm font-semibold mb-6 backdrop-blur-md">
               <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-              درباره آکادمی هوش‌پرداز
+              درباره آکادمی داناورس
             </div>
             
             <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
@@ -22,7 +22,7 @@
             </h1>
             
             <p class="text-gray-400 text-lg md:text-xl font-medium leading-relaxed mb-8 max-w-xl">
-              اگر به دنبال یادگیری <strong>برنامه‌نویسی</strong> و <strong>هوش مصنوعی</strong> هستید، در جای درستی قرار دارید. ما در هوش‌پرداز با روش‌های نوین، شما را به یک متخصص حرفه‌ای تبدیل می‌کنیم.
+              اگر به دنبال یادگیری <strong>برنامه‌نویسی</strong> و <strong>هوش مصنوعی</strong> هستید، در جای درستی قرار دارید. ما در داناورس با روش‌های نوین، شما را به یک متخصص حرفه‌ای تبدیل می‌کنیم.
             </p>
 
             <div class="flex flex-wrap gap-6 mb-10">
@@ -41,10 +41,10 @@
             </div>
 
             <div class="flex flex-wrap gap-4">
-              <NuxtLink to="/courses" title="مشاهده دوره‌های آموزشی هوش پرداز" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-1">
+              <NuxtLink to="/courses" title="مشاهده دوره‌های آموزشی داناورس" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-1">
                 ثبت‌نام دوره رایگان
               </NuxtLink>
-              <NuxtLink to="/contact" title="تماس با آکادمی هوش پرداز" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1">
+              <NuxtLink to="/contact" title="تماس با آکادمی داناورس" class="inline-flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1">
                 تماس با ما →
               </NuxtLink>
             </div>
@@ -54,7 +54,7 @@
             <div class="absolute w-[80%] h-[80%] bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-[4rem] rotate-6 opacity-30 blur-3xl"></div>
             <img 
               src="/images/about-banner.png" 
-              alt="آکادمی برنامه‌نویسی و هوش مصنوعی هوش‌پرداز" 
+              alt="آکادمی برنامه‌نویسی و هوش مصنوعی داناورس" 
               class="relative z-10 w-full max-w-lg h-auto object-contain drop-shadow-2xl transition-transform hover:scale-105 duration-700" 
             />
           </div>
@@ -95,10 +95,10 @@
           <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-8">
             <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
           </div>
-          <h2 class="text-3xl font-extrabold text-gray-800 dark:text-white mb-6">داستان شکل‌گیری <span class="text-blue-600 dark:text-blue-400">هوش‌پرداز</span></h2>
+          <h2 class="text-3xl font-extrabold text-gray-800 dark:text-white mb-6">داستان شکل‌گیری <span class="text-blue-600 dark:text-blue-400">داناورس</span></h2>
           <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-loose text-lg font-medium text-justify">
-            <p>هوش‌پرداز، پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی، در سال ۱۳۹۸ با هدف آموزش تخصصی و ایجاد فرصتی برابر برای یادگیری برای همه افراد، تاسیس شد.</p>
-            <p>از بدو تاسیس، با ارائه دوره‌های آموزشی با کیفیت بالا و استفاده از به‌روزترین متدهای آموزشی، به سرعت در میان علاقه‌مندان جایگاه ویژه‌ای پیدا کردیم. امروزه، هوش‌پرداز با بیش از صدها دانشجو، به یکی از مدرن‌ترین پلتفرم‌های آموزشی آنلاین تبدیل شده است.</p>
+            <p>داناورس، پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی، در سال ۱۳۹۸ با هدف آموزش تخصصی و ایجاد فرصتی برابر برای یادگیری برای همه افراد، تاسیس شد.</p>
+            <p>از بدو تاسیس، با ارائه دوره‌های آموزشی با کیفیت بالا و استفاده از به‌روزترین متدهای آموزشی، به سرعت در میان علاقه‌مندان جایگاه ویژه‌ای پیدا کردیم. امروزه، داناورس با بیش از صدها دانشجو، به یکی از مدرن‌ترین پلتفرم‌های آموزشی آنلاین تبدیل شده است.</p>
           </div>
         </div>
 
@@ -120,7 +120,7 @@
     <section class="py-16 bg-blue-50/50 dark:bg-gray-800/20 border-y border-gray-100 dark:border-gray-800">
       <div class="container mx-auto max-w-7xl px-4">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">مسیر <span class="text-blue-600 dark:text-blue-400">آموزشی</span> هوش‌پرداز</h2>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">مسیر <span class="text-blue-600 dark:text-blue-400">آموزشی</span> داناورس</h2>
           <p class="text-gray-500 dark:text-gray-400 mt-4 font-medium">قدم به قدم تا تبدیل شدن به یک متخصص حرفه‌ای</p>
         </div>
 
@@ -166,13 +166,13 @@ const steps = ref([
 
 // 💡 سئو: ارتقای شدید متاتگ‌ها با کامپوزبل قدرتمند useSeoMeta
 useSeoMeta({
-  title: 'درباره آکادمی هوش‌پرداز | مرجع آموزش برنامه‌نویسی و هوش مصنوعی',
-  description: 'آکادمی هوش‌پرداز پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی با آموزش ۱۰۰٪ پروژه‌محور و منتورینگ اختصاصی. مسیر رشد خود را با ما آغاز کنید.',
-  keywords: 'درباره هوش پرداز, آموزش هوش مصنوعی, آموزش برنامه نویسی, آکادمی برنامه نویسی, منتورینگ برنامه نویسی',
-  ogTitle: 'درباره آکادمی هوش‌پرداز',
-  ogDescription: 'با هوش‌پرداز، دروازه‌ای به دنیای مدرن تکنولوژی، برنامه‌نویسی و هوش مصنوعی باز کنید.',
-  ogImage: 'https://hoooshpardaz.ir/images/about-banner.png',
-  ogUrl: 'https://hoooshpardaz.ir/about',
+  title: 'درباره آکادمی داناورس | مرجع آموزش برنامه‌نویسی و هوش مصنوعی',
+  description: 'آکادمی داناورس پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی با آموزش ۱۰۰٪ پروژه‌محور و منتورینگ اختصاصی. مسیر رشد خود را با ما آغاز کنید.',
+  keywords: 'درباره داناورس, آموزش هوش مصنوعی, آموزش برنامه نویسی, آکادمی برنامه نویسی, منتورینگ برنامه نویسی',
+  ogTitle: 'درباره آکادمی داناورس',
+  ogDescription: 'با داناورس، دروازه‌ای به دنیای مدرن تکنولوژی، برنامه‌نویسی و هوش مصنوعی باز کنید.',
+  ogImage: 'https://danaverse.ir/images/about-banner.png',
+  ogUrl: 'https://danaverse.ir/about',
   twitterCard: 'summary_large_image'
 })
 
@@ -181,7 +181,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: 'https://hoooshpardaz.ir/about'
+      href: 'https://danaverse.ir/about'
     }
   ],
   script: [
@@ -193,17 +193,17 @@ useHead({
           {
             // معرفی این صفحه به عنوان یک صفحه استاندارد "درباره ما"
             "@type": "AboutPage",
-            "name": "درباره آکادمی هوش‌پرداز",
-            "url": "https://hoooshpardaz.ir/about",
-            "description": "آکادمی هوش‌پرداز، پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی."
+            "name": "درباره آکادمی داناورس",
+            "url": "https://danaverse.ir/about",
+            "description": "آکادمی داناورس، پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی."
           },
           {
             // معرفی آکادمی شما به عنوان یک "سازمان آموزشی" در گوگل
             "@type": "EducationalOrganization",
-            "name": "آکادمی هوش‌پرداز",
+            "name": "آکادمی داناورس",
             "alternateName": "Hooshpardaz Academy",
-            "url": "https://hoooshpardaz.ir",
-            "logo": "https://hoooshpardaz.ir/logo.png",
+            "url": "https://danaverse.ir",
+            "logo": "https://danaverse.ir/logo.png",
             "description": "ارائه دوره‌های تخصصی آموزش برنامه‌نویسی، پایتون، هوش مصنوعی و رباتیک با متدهای نوین و پروژه‌محور برای کودکان، نوجوانان و بزرگسالان.",
             "sameAs": [
               "https://instagram.com/hooshpardaz", // لینک شبکه‌های اجتماعی خود را اینجا بگذارید

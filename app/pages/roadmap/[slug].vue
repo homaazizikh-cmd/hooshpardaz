@@ -225,7 +225,7 @@ const currentPath = computed(() => {
 // تنظیمات سئو پویا
 if (currentPath.value) {
   useSeoMeta({
-    title: `مسیر یادگیری ${currentPath.value.title} | هوش‌پرداز`,
+    title: `مسیر یادگیری ${currentPath.value.title} | داناورس`,
     description: currentPath.value.description,
   })
 }

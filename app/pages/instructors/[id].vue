@@ -205,11 +205,11 @@ const instructorCourses = computed(() => {
 
 // 🚀 سئوی فوق‌پیشرفته (Dynamic Meta Tags)
 useSeoMeta({
-  title: () => instructor.value ? `رزومه و دوره‌های ${instructor.value.name} | آکادمی هوش‌پرداز` : 'پروفایل استاد پیدا نشد',
+  title: () => instructor.value ? `رزومه و دوره‌های ${instructor.value.name} | آکادمی داناورس` : 'پروفایل استاد پیدا نشد',
   description: () => instructor.value ? instructor.value.bio.substring(0, 160) : '',
   ogTitle: () => instructor.value ? `${instructor.value.name} - ${instructor.value.title}` : '',
   ogDescription: () => instructor.value ? instructor.value.bio.substring(0, 160) : '',
-  ogImage: () => instructor.value ? `https://hoooshpardaz.ir${instructor.value.image_url}` : '',
+  ogImage: () => instructor.value ? `https://danaverse.ir${instructor.value.image_url}` : '',
   ogType: 'profile',
   twitterCard: 'summary_large_image',
 });
@@ -219,7 +219,7 @@ useHead({
   link: [
     { 
       rel: 'canonical', 
-      href: () => instructor.value ? `https://hoooshpardaz.ir/instructors/${instructor.value.id}` : 'https://hoooshpardaz.ir/instructors' 
+      href: () => instructor.value ? `https://danaverse.ir/instructors/${instructor.value.id}` : 'https://danaverse.ir/instructors' 
     }
   ],
   script: [
@@ -233,12 +233,12 @@ useHead({
           "name": instructor.value.name,
           "jobTitle": instructor.value.title,
           "description": instructor.value.bio,
-          "image": `https://hoooshpardaz.ir${instructor.value.image_url}`,
-          "url": `https://hoooshpardaz.ir/instructors/${instructor.value.id}`,
+          "image": `https://danaverse.ir${instructor.value.image_url}`,
+          "url": `https://danaverse.ir/instructors/${instructor.value.id}`,
           "affiliation": {
             "@type": "Organization",
-            "name": "آکادمی هوش‌پرداز",
-            "url": "https://hoooshpardaz.ir"
+            "name": "آکادمی داناورس",
+            "url": "https://danaverse.ir"
           },
           "knowsAbout": instructor.value.skills
         })

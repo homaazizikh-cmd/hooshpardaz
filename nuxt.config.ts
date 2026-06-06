@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  // ماژول‌های مورد نیاز
+  // ماژول‌های مورد نیاز پروژه داناورس
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
@@ -7,25 +7,26 @@ export default defineNuxtConfig({
     '@nuxt/image'
   ],
 
-  // 👈 تنظیمات مهم: این بخش به سرور اجازه می‌دهد متغیرهای .env را بخواند
+  // تنظیمات دسترسی سرور به متغیرهای محیطی .env
   runtimeConfig: {
     telegramToken: process.env.NUXT_TELEGRAM_TOKEN,
     telegramChatId: process.env.NUXT_TELEGRAM_CHAT_ID,
   },
 
-  // تنظیمات بهینه‌سازی تصاویر
+  // تنظیمات بهینه‌سازی تصاویر و دامنه‌های مجاز
   image: {
     format: ['webp'],
     domains: [
       'images.unsplash.com',
       'i.pravatar.cc',
-      'rrelkadkixesdzydcwgt.supabase.co' // 🔴 حتماً بدون https:// باشد
+      'rrelkadkixesdzydcwgt.supabase.co' // حتماً بدون https:// باشد
     ]
   },
 
+  // آدرس جدید سایت و نام برند در نقشه سایت (Sitemap)
   site: {
-    url: 'https://hoooshpardaz.ir',
-    name: 'آکادمی هوش‌پرداز'
+    url: 'https://danaverse.ir',
+    name: 'داناورس'
   },
 
   supabase: {
@@ -42,25 +43,30 @@ export default defineNuxtConfig({
     }
   },
 
+  // تنظیمات هسته سئو و بخش Head سایت داناورس
   app: {
     head: {
       htmlAttrs: {
         dir: 'rtl',
         lang: 'fa-IR'
       },
-      titleTemplate: '%s | هوش‌پرداز',
-      title: 'آکادمی برنامه‌نویسی و هوش مصنوعی',
+      titleTemplate: '%s | داناورس',
+      title: 'داناورس | آکادمی برنامه‌نویسی و هوش مصنوعی',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'آکادمی هوش‌پرداز؛ مرجع آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای کودکان، نوجوانان و بزرگسالان همراه با استعدادیابی هوشمند.' },
+        { name: 'description', content: 'داناورس؛ مرجع آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای کودکان، نوجوانان و بزرگسالان همراه با استعدادیابی هوشمند.' },
         { name: 'theme-color', content: '#0f172a' },
         
-        { property: 'og:site_name', content: 'هوش‌پرداز' },
+        // متاتگ‌های Open Graph برای نمایش کارت خفن هنگام اشتراک‌گذاری لینک
+        { property: 'og:site_name', content: 'داناورس' },
+        { property: 'og:title', content: 'داناورس | آکادمی برنامه‌نویسی و هوش مصنوعی' },
+        { property: 'og:description', content: 'مرجع آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی همراه با استعدادیابی هوشمند.' },
+        { property: 'og:url', content: 'https://danaverse.ir' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'fa_IR' },
 
-        // کد تایید گوگل سرچ کنسول
+        // کد تایید گوگل سرچ کنسول (تا زمان انتقال کامل دامنه بماند)
         { name: 'google-site-verification', content: 'JKvx7He1sUiY8wx3iK8va6ZD-8sE--rGTwSDpYAKEW8' }
       ],
       link: [
@@ -68,6 +74,7 @@ export default defineNuxtConfig({
           rel: 'stylesheet', 
           href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap' 
         },
+        // فاوآیکون جدید داناورس را بعداً در پوشه public جایگزین کنید
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'apple-touch-icon', href: '/favicon.png' }
       ]

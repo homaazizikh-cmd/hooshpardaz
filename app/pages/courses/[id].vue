@@ -18,7 +18,7 @@
           <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 dark:bg-gray-700 shadow-md relative group">
             <NuxtImg 
               :src="course.image" 
-              :alt="`دوره آنلاین ${course.title} در آکادمی هوش پرداز`" 
+              :alt="`دوره آنلاین ${course.title} در آکادمی داناورس`" 
               format="webp"
               preload
               class="w-full h-full object-cover"
@@ -168,7 +168,7 @@
 <script setup>
 const route = useRoute();
 
-// بانک اطلاعاتی جامع ۱۳ دوره آکادمی هوش‌پرداز (کاملاً هماهنگ، داینامیک و متصل به اساتید واقعی)
+// بانک اطلاعاتی جامع ۱۳ دوره آکادمی داناورس (کاملاً هماهنگ، داینامیک و متصل به اساتید واقعی)
 const courses = [
   { 
     id: 13, 
@@ -325,11 +325,11 @@ if (course.value) {
     .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
 
   useSeoMeta({
-    title: `ثبت‌نام دوره ${course.value.title} | آکادمی هوش‌پرداز`,
+    title: `ثبت‌نام دوره ${course.value.title} | آکادمی داناورس`,
     description: course.value.desc,
-    ogTitle: `دوره آنلاین ${course.value.title} در هوش‌پرداز`,
+    ogTitle: `دوره آنلاین ${course.value.title} در داناورس`,
     ogDescription: course.value.desc,
-    ogImage: `https://hoooshpardaz.ir${course.value.image}`, 
+    ogImage: `https://danaverse.ir${course.value.image}`, 
     twitterCard: 'summary_large_image',
   });
 
@@ -344,10 +344,10 @@ if (course.value) {
           "description": course.value.desc,
           "provider": {
             "@type": "Organization",
-            "name": "آکادمی هوش‌پرداز",
-            "sameAs": "https://hoooshpardaz.ir"
+            "name": "آکادمی داناورس",
+            "sameAs": "https://danaverse.ir"
           },
-          "image": `https://hoooshpardaz.ir${course.value.image}`,
+          "image": `https://danaverse.ir${course.value.image}`,
           "offers": {
             "@type": "Offer",
             "category": "Paid",

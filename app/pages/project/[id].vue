@@ -35,7 +35,7 @@
               <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-gray-300 text-lg leading-loose text-justify">
                 <p>{{ project.description }}</p>
                 <p class="mt-4">
-                  این پروژه یکی از دستاوردهای برجسته در آکادمی هوش پرداز است. هنرجوی ما با استفاده از دانش روز و منتورینگ اساتید توانسته ایده‌ی خود را از صفر تا صد پیاده‌سازی کند. چالش‌های فنی بسیاری در این مسیر وجود داشت که با کدنویسی اصولی برطرف گردید.
+                  این پروژه یکی از دستاوردهای برجسته در آکادمی داناورس است. هنرجوی ما با استفاده از دانش روز و منتورینگ اساتید توانسته ایده‌ی خود را از صفر تا صد پیاده‌سازی کند. چالش‌های فنی بسیاری در این مسیر وجود داشت که با کدنویسی اصولی برطرف گردید.
                 </p>
               </div>
 
@@ -283,7 +283,7 @@ onMounted(() => {
   
   if (project.value) {
     useSeoMeta({
-      title: `${project.value.title} | آکادمی هوش پرداز`,
+      title: `${project.value.title} | آکادمی داناورس`,
       description: project.value.description
     })
   }

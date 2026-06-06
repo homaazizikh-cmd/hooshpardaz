@@ -126,10 +126,10 @@ const supabase = useSupabaseClient();
 // 🚀 سئوی داینامیک و متاتگ‌های اشتراک‌گذاری
 useSeoMeta({
   title: 'اساتید و متخصصین ارشد هوش مصنوعی و برنامه‌نویسی',
-  description: 'آشنایی با تیم نخبگان، پژوهشگران و منتورهای ارشد آکادمی هوش‌پرداز در دپارتمان‌های هوش مصنوعی، برنامه‌نویسی پایتون، طراحی گرافیک و مهارت‌های کامپیوتری.',
-  ogTitle: 'هسته پردازش و اساتید آکادمی هوش‌پرداز',
-  ogDescription: 'با برترین اساتید برنامه‌نویسی و هوش مصنوعی ایران در آکادمی هوش‌پرداز آشنا شوید و مسیر شغلی خود را آغاز کنید.',
-  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg', 
+  description: 'آشنایی با تیم نخبگان، پژوهشگران و منتورهای ارشد آکادمی داناورس در دپارتمان‌های هوش مصنوعی، برنامه‌نویسی پایتون، طراحی گرافیک و مهارت‌های کامپیوتری.',
+  ogTitle: 'هسته پردازش و اساتید آکادمی داناورس',
+  ogDescription: 'با برترین اساتید برنامه‌نویسی و هوش مصنوعی ایران در آکادمی داناورس آشنا شوید و مسیر شغلی خود را آغاز کنید.',
+  ogImage: 'https://danaverse.ir/images/Banner.jpg', 
   twitterCard: 'summary_large_image',
 });
 
@@ -195,8 +195,8 @@ const filteredInstructors = computed(() => {
 const schemaData = computed(() => ({
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "لیست اساتید و منتورهای آکادمی هوش‌پرداز",
-  "description": "معرفی مدرسین و متخصصان ارشد دپارتمان‌های هوش مصنوعی, برنامه‌نویسی و گرافیک در آکادمی هوش‌پرداز.",
+  "name": "لیست اساتید و منتورهای آکادمی داناورس",
+  "description": "معرفی مدرسین و متخصصان ارشد دپارتمان‌های هوش مصنوعی, برنامه‌نویسی و گرافیک در آکادمی داناورس.",
   "itemListElement": allInstructors.value.map((instructor, index) => ({
     "@type": "ListItem",
     "position": index + 1,
@@ -205,8 +205,8 @@ const schemaData = computed(() => ({
       "name": instructor.name,
       "jobTitle": instructor.title,
       "description": instructor.bio,
-      "image": `https://hoooshpardaz.ir${instructor.image_url}`,
-      "url": `https://hoooshpardaz.ir/instructors/${instructor.id}`
+      "image": `https://danaverse.ir${instructor.image_url}`,
+      "url": `https://danaverse.ir/instructors/${instructor.id}`
     }
   }))
 }));

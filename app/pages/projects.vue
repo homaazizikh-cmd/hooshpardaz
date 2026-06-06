@@ -18,7 +18,7 @@
         خلق آینده با <span class="text-transparent bg-clip-text bg-gradient-to-l from-blue-600 to-cyan-400 drop-shadow-sm">کدهای امروز</span>
       </h1>
       <p class="text-slate-600 dark:text-gray-400 text-lg md:text-xl max-w-3xl mx-auto relative z-10 leading-relaxed font-light text-center">
-        شاهد جادوی خلاقیت و تخصص هنرجویان آکادمی هوش‌پرداز باشید. اینجا جایی است که ایده‌های خام، به پروژه‌های واقعی و شگفت‌انگیز تبدیل می‌شوند.
+        شاهد جادوی خلاقیت و تخصص هنرجویان آکادمی داناورس باشید. اینجا جایی است که ایده‌های خام، به پروژه‌های واقعی و شگفت‌انگیز تبدیل می‌شوند.
       </p>
     </section>
 
@@ -102,8 +102,8 @@
 import { ref, computed } from 'vue'
 
 useSeoMeta({
-  title: 'گالری پروژه‌ها | آکادمی هوش پرداز',
-  description: 'گالری نمونه کارهای برنامه‌نویسی، هوش مصنوعی، رباتیک و بازی‌سازی هنرجویان آکادمی هوش‌پرداز.'
+  title: 'گالری پروژه‌ها | آکادمی داناورس',
+  description: 'گالری نمونه کارهای برنامه‌نویسی، هوش مصنوعی، رباتیک و بازی‌سازی هنرجویان آکادمی داناورس.'
 })
 
 const activeCategory = ref('all')

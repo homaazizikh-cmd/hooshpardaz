@@ -13,7 +13,7 @@ useHead(() => ({
   link: [
     {
       rel: 'canonical',
-      href: `https://hoooshpardaz.ir${route.path === '/' ? '' : route.path}`
+      href: `https://danaverse.ir${route.path === '/' ? '' : route.path}`
     }
   ]
 }))

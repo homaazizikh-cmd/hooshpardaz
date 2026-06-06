@@ -32,7 +32,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-gray-50 dark:bg-gray-700/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
           <div>
             <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">نام نویسنده</label>
-            <input v-model="form.author" type="text" class="w-full p-3.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-purple-500 outline-none" placeholder="اگر خالی بماند: تیم هوش‌پرداز">
+            <input v-model="form.author" type="text" class="w-full p-3.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-purple-500 outline-none" placeholder="اگر خالی بماند: تیم داناورس">
           </div>
           <div>
             <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">عکس نویسنده (اختیاری)</label>
@@ -122,7 +122,7 @@ const saveBlog = async () => {
     const { error: insertError } = await supabase.from('blogs').insert([{ 
       title: form.value.title, 
       category: form.value.category,
-      author: form.value.author || 'تیم تولید محتوای هوش‌پرداز',
+      author: form.value.author || 'تیم تولید محتوای داناورس',
       content: form.value.content,
       is_published: form.value.is_published,
       image_url: imageUrl,

@@ -67,7 +67,7 @@
 <script setup>
 definePageMeta({ layout: 'admin' })
 
-// استیت مرکزی به همراه تمام ۱۶ پروژه اصلی سایت هوش‌پرداز
+// استیت مرکزی به همراه تمام ۱۶ پروژه اصلی سایت داناورس
 const projects = useState('admin_projects', () => [
   { id: 1, title: 'دستیار صوتی هوشمند (شبیه جارویس)', description: 'توسعه یک دستیار صوتی با پایتون که می‌تواند دستورات صوتی فارسی را پردازش کرده، در وب جستجو کند و وسایل هوشمند اتاق را کنترل کند.', category: 'ai', categoryName: 'پایتون پیشرفته', tools: ['Python', 'SpeechRecognition', 'OpenAI API'], image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', student: 'علی رضایی', age: 'هنرجوی ۱۶ ساله' },
   { id: 2, title: 'سیستم تشخیص سرطان پوست', description: 'یک مدل یادگیری عمیق (Deep Learning) که با دریافت تصویر ضایعه پوستی، احتمال سرطانی بودن آن را با دقت ۹۲٪ پیش‌بینی می‌کند.', category: 'ai', categoryName: 'ماشین لرنینگ', tools: ['TensorFlow', 'Keras', 'Python'], image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', student: 'مریم سادات حسینی', age: 'هنرجوی ۲۱ ساله' },

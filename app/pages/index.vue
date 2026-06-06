@@ -7,7 +7,7 @@
         <NuxtImg 
           src="/images/Banner.jpg" 
           class="w-full h-full object-cover opacity-40 mix-blend-overlay mask-image-b" 
-          alt="آکادمی هوش پرداز"
+          alt="آکادمی داناورس"
           format="webp"
           preload
         />
@@ -32,7 +32,7 @@
           آکادمی تخصصی <br>
           <span class="relative inline-block mt-4 px-8 pt-2 pb-6 bg-[#000000]/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] shadow-inner">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-[0_0_40px_rgba(56,189,248,0.3)]">
-              هوش‌پرداز
+              داناورس
             </span>
           </span>
         </h1>
@@ -67,7 +67,7 @@
         <div class="absolute -left-10 top-1/2 -translate-y-1/2 text-[250px] opacity-5 dark:opacity-10 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 pointer-events-none filter blur-[2px]">🧠</div>
         
         <div class="relative z-10 mb-10 md:mb-0 text-center md:text-right max-w-2xl">
-          <div class="inline-block bg-blue-500/10 dark:bg-white/10 backdrop-blur-md text-blue-600 dark:text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-200 dark:border-white/20 tracking-wider">سیستم اختصاصی هوش‌پرداز</div>
+          <div class="inline-block bg-blue-500/10 dark:bg-white/10 backdrop-blur-md text-blue-600 dark:text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-200 dark:border-white/20 tracking-wider">سیستم اختصاصی داناورس</div>
           <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">مسیر شغلی شما کجاست؟</h2>
           <p class="text-gray-600 dark:text-blue-200 text-lg font-light leading-relaxed">با پاسخ به ۱۵ سوال هدفمند و مبتنی بر روانشناسی شناختی، در کمتر از ۲ دقیقه مسیر شغلی و آموزشی ایده‌آل خود را با دقت ماشین پیدا کنید.</p>
         </div>
@@ -192,7 +192,7 @@
       <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
         <div>
           <div class="inline-block bg-brand-accent1/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-4 border border-brand-accent1/20">منتورهای شما</div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight">اساتید <span class="text-brand-accent1 dark:text-cyan-400">برجسته</span> هوش‌پرداز</h2>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight">اساتید <span class="text-brand-accent1 dark:text-cyan-400">برجسته</span> داناورس</h2>
         </div>
         <NuxtLink to="/instructors" class="group flex items-center gap-2 font-bold text-gray-600 dark:text-gray-400 hover:text-brand-accent1 dark:hover:text-white transition-colors text-sm md:text-base">
           معرفی تمام اساتید
@@ -230,7 +230,7 @@
       <div class="relative w-full max-w-5xl mx-auto aspect-[16/9] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-white dark:border-white/10 select-none" dir="ltr" style="-webkit-user-drag: none;">
         
         <NuxtImg src="/images/Design-Before.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" alt="طراحی خام پروژه" format="webp" loading="lazy" />
-        <NuxtImg src="/images/Design-After.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" alt="طراحی نهایی پروژه هوش پرداز" format="webp" loading="lazy" />
+        <NuxtImg src="/images/Design-After.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" alt="طراحی نهایی پروژه داناورس" format="webp" loading="lazy" />
         
         <input type="range" min="0" max="100" step="0.1" v-model.number="sliderValue" class="absolute inset-0 w-full h-full cursor-ew-resize z-50 custom-slider opacity-0" style="touch-action: none;">
         
@@ -348,11 +348,11 @@
           
           <div class="lg:col-span-5 bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl p-8 md:p-10 backdrop-blur-xl hover:border-brand-accent1/30 transition-colors">
             <div class="flex items-center gap-3 mb-6">
-  <NuxtImg src="/images/logo-light.png" alt="لوگو آکادمی هوش‌پرداز" class="w-12 h-12 object-contain drop-shadow-lg" loading="lazy" />
+  <NuxtImg src="/images/logo-light.png" alt="لوگو آکادمی داناورس" class="w-12 h-12 object-contain drop-shadow-lg" loading="lazy" />
   <span class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">هوش‌<span class="text-brand-accent1 dark:text-cyan-400">پرداز</span></span>
 </div>
             <p class="text-gray-600 dark:text-gray-400 font-light leading-loose text-justify mb-8 text-sm md:text-base">
-              ما در آکادمی هوش‌پرداز، مرزهای یادگیری را جابه‌جا کرده‌ایم. با رویکردی کاملاً عملی و مبتنی بر پروژه‌های واقعی، شما را برای چالش‌های لبه‌ی تکنولوژی (AI، برنامه‌نویسی و رباتیک) در بازار کار فردا آماده می‌کنیم.
+              ما در آکادمی داناورس، مرزهای یادگیری را جابه‌جا کرده‌ایم. با رویکردی کاملاً عملی و مبتنی بر پروژه‌های واقعی، شما را برای چالش‌های لبه‌ی تکنولوژی (AI، برنامه‌نویسی و رباتیک) در بازار کار فردا آماده می‌کنیم.
             </p>
             <div class="flex items-center gap-3">
               <a href="#" class="group relative w-12 h-12 rounded-2xl bg-gray-100 dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 flex items-center justify-center overflow-hidden hover:border-blue-500 transition-colors">
@@ -412,7 +412,7 @@
 
         <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200 dark:border-white/5">
           <p class="text-gray-500 dark:text-gray-500 text-sm font-medium">
-            © ۲۰۲۶ آکادمی <span class="text-gray-800 dark:text-gray-300">هوش‌پرداز</span>. تمامی حقوق محفوظ است.
+            © ۲۰۲۶ آکادمی <span class="text-gray-800 dark:text-gray-300">داناورس</span>. تمامی حقوق محفوظ است.
           </p>
           <div class="flex items-center gap-6 text-sm text-gray-500 font-medium">
             <NuxtLink to="/privacy" class="hover:text-brand-accent1 dark:hover:text-cyan-400 transition-colors">حریم خصوصی</NuxtLink>
@@ -496,9 +496,9 @@ const toggleFaq = (index) => {
 };
 
 const faqs = [
-  { q: 'آیا برای شرکت در دوره‌ها نیاز به پیش‌نیاز یا دانش قبلی دارم؟', a: 'خیر، رسالت هوش‌پرداز آموزش از نقطه صفر است. تمام دوره‌های پایه ما به گونه‌ای طراحی شده‌اند که بدون هیچ پیش‌زمینه‌ای بتوانید مفاهیم را یاد بگیرید.' },
+  { q: 'آیا برای شرکت در دوره‌ها نیاز به پیش‌نیاز یا دانش قبلی دارم؟', a: 'خیر، رسالت داناورس آموزش از نقطه صفر است. تمام دوره‌های پایه ما به گونه‌ای طراحی شده‌اند که بدون هیچ پیش‌زمینه‌ای بتوانید مفاهیم را یاد بگیرید.' },
   { q: 'کلاس‌ها به چه صورت برگزار می‌شوند؟ آیا ضبط می‌شوند؟', a: 'دوره‌ها به صورت ترکیبی (ویدئوهای ضبط شده با کیفیت سینمایی + جلسات آنلاین رفع اشکال با منتور) هستند. شما همیشه به آپدیت‌های دوره دسترسی مادام‌العمر خواهید داشت.' },
-  { q: 'آیا در پایان دوره‌ها مدرکی هم ارائه می‌شود؟', a: 'بله! پس از انجام موفقیت‌آمیز پروژه‌های پایانی، مدرک معتبر آکادمی هوش‌پرداز (دو زبانه) به شما تقدیم می‌شود که برای رزومه و مهاجرت کاری بسیار معتبر است.' },
+  { q: 'آیا در پایان دوره‌ها مدرکی هم ارائه می‌شود؟', a: 'بله! پس از انجام موفقیت‌آمیز پروژه‌های پایانی، مدرک معتبر آکادمی داناورس (دو زبانه) به شما تقدیم می‌شود که برای رزومه و مهاجرت کاری بسیار معتبر است.' },
   { q: 'تفاوت مسیر کودکان با بزرگسالان در چیست؟', a: 'در مسیر کودکان، زبان آموزش مبتنی بر بازی‌سازی و ابزارهای بصری است تا کودک خسته نشود؛ اما در بخش بزرگسالان، تمرکز روی کدهای خام، چالش‌های الگوریتمی و بازار کار است.' }
 ];
 
@@ -525,13 +525,13 @@ onMounted(() => {
 });
 
 useSeoMeta({
-  title: 'آکادمی هوش‌پرداز | دوره آنلاین برنامه‌نویسی، هوش مصنوعی و رباتیک', 
-  description: 'به آکادمی هوش‌پرداز خوش آمدید. برترین پلتفرم آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای تمام سنین، همراه با تست استعدادیابی هوشمند.',
+  title: 'آکادمی داناورس | دوره آنلاین برنامه‌نویسی، هوش مصنوعی و رباتیک', 
+  description: 'به آکادمی داناورس خوش آمدید. برترین پلتفرم آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای تمام سنین، همراه با تست استعدادیابی هوشمند.',
   keywords: 'دوره آنلاین, هوش مصنوعی, دوره آنلاین هوش مصنوعی, رباتیک, دوره رباتیک, آموزش برنامه نویسی, استعدادیابی برنامه نویسی',
-  ogTitle: 'آکادمی برنامه‌نویسی و هوش مصنوعی هوش‌پرداز',
-  ogDescription: 'آینده‌ات را با هوش‌پرداز کدنویسی کن! آموزش از صفر تا ورود به بازار کار به همراه منتورینگ اختصاصی.',
-  ogImage: 'https://hoooshpardaz.ir/images/Banner.jpg',
-  ogUrl: 'https://hoooshpardaz.ir',
+  ogTitle: 'آکادمی برنامه‌نویسی و هوش مصنوعی داناورس',
+  ogDescription: 'آینده‌ات را با داناورس کدنویسی کن! آموزش از صفر تا ورود به بازار کار به همراه منتورینگ اختصاصی.',
+  ogImage: 'https://danaverse.ir/images/Banner.jpg',
+  ogUrl: 'https://danaverse.ir',
 });
 </script>
 
