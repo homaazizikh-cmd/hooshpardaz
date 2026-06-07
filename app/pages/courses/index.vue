@@ -81,7 +81,7 @@
                 <span class="ml-auto text-[9px] font-mono text-white/50">DATA_SET: 0{{ index + 1 }}</span>
               </div>
               <NuxtImg 
-                :src="course.image || '/images/default-course.jpg'" 
+                :src="course.image || '/images/default-course.webp'" 
                 :alt="`دوره آنلاین ${course.title} در آکادمی داناورس`" 
                 format="webp"
                 loading="lazy"
@@ -150,10 +150,10 @@ const supabase = useSupabaseClient();
 const activeDepartment = ref('python');
 
 const departments = [
-  { id: 'python', name: 'برنامه‌نویسی پایتون', image: '/images/DP-python.jpg' },
-  { id: 'ai', name: 'هوش مصنوعی و داده', image: '/images/DP-Ai.jpg' },
-  { id: 'design', name: 'هنرهای دیجیتال و گرافیک', image: '/images/DP-Design.jpg' },
-  { id: 'maharat', name: 'مهارت‌های کاربردی و سخت', image: '/images/DP-Maharat.jpg' }
+  { id: 'python', name: 'برنامه‌نویسی پایتون', image: '/images/DP-python.webp' },
+  { id: 'ai', name: 'هوش مصنوعی و داده', image: '/images/DP-Ai.webp' },
+  { id: 'design', name: 'هنرهای دیجیتال و گرافیک', image: '/images/DP-Design.webp' },
+  { id: 'maharat', name: 'مهارت‌های کاربردی و سخت', image: '/images/DP-Maharat.webp' }
 ];
 
 // 💡 لیست دوره‌های دستی و باارزش شما (حفظ شد)
@@ -164,7 +164,7 @@ const manualCourses = [
     dept: 'maharat', 
     price: '۴,۵۰۰,۰۰۰', 
     desc: 'یادگیری کامل نرم‌افزارهای آفیس و مبانی کامپیوتر.', 
-    image: '/images/ICDL.jpg',
+    image: '/images/ICDL.webp',
     schedule: 'روزهای زوج - ساعت ۱۶ الی ۱۸', 
     startDate: '۱۵ تیر' 
   },
@@ -174,7 +174,7 @@ const manualCourses = [
     dept: 'maharat', 
     price: '۱۲,۰۰۰,۰۰۰', 
     desc: 'طراحی، ساخت و برنامه‌نویسی میکروکنترلرها و ربات‌های هوشمند.', 
-    image: '/images/Robatic.jpg',
+    image: '/images/Robatic.webp',
     schedule: 'پنج‌شنبه‌ها - ساعت ۱۰ الی ۱۴', 
     startDate: '۲۰ تیر' 
   },
@@ -184,7 +184,7 @@ const manualCourses = [
     dept: 'maharat', 
     price: '۵,۰۰۰,۰۰۰', 
     desc: 'آموزش منطق برنامه‌نویسی و تفکر الگوریتمی برای کودکان.', 
-    image: '/images/Scratch.jpg',
+    image: '/images/Scratch.webp',
     schedule: 'یکشنبه و سه‌شنبه - ساعت ۱۷ الی ۱۹', 
     startDate: '۱۰ مرداد' 
   },
@@ -194,7 +194,7 @@ const manualCourses = [
     dept: 'maharat', 
     price: '۷,۵۰۰,۰۰۰', 
     desc: 'آشنایی با سخت‌افزار، الکترونیک و ربات‌های حرکتی.', 
-    image: '/images/Robatoc-childern.jpg',
+    image: '/images/Robatoc-childern.webp',
     schedule: 'دوشنبه و چهارشنبه - ساعت ۱۵ الی ۱۷', 
     startDate: '۵ مرداد' 
   },
@@ -204,7 +204,7 @@ const manualCourses = [
     dept: 'python', 
     price: '۸,۰۰۰,۰۰۰', 
     desc: 'شروع قدرتمند برای ورود به دنیای برنامه‌نویسی تجاری.', 
-    image: '/images/Python-M.jpg',
+    image: '/images/Python-M.webp',
     schedule: 'روزهای فرد - ساعت ۱۸ الی ۲۰', 
     startDate: '۱ مرداد' 
   },
@@ -214,7 +214,7 @@ const manualCourses = [
     dept: 'python', 
     price: '۱۰,۰۰۰,۰۰۰', 
     desc: 'مسلط به مباحث پیشرفته پایتون و شیءگرایی برای بازار کار.', 
-    image: '/images/Python-P.jpg',
+    image: '/images/Python-P.webp',
     schedule: 'پنج‌شنبه‌ها - ساعت ۱۵ الی ۱۹', 
     startDate: '۱۲ مرداد' 
   },
@@ -224,7 +224,7 @@ const manualCourses = [
     dept: 'python', 
     price: '۶,۵۰۰,۰۰۰', 
     desc: 'زبان پایتون با بیانی ساده و جذاب برای نوجوانان.', 
-    image: '/images/Python-childern.jpg',
+    image: '/images/Python-childern.webp',
     schedule: 'شنبه و دوشنبه - ساعت ۱۶ الی ۱۸', 
     startDate: '۱ شهریور' 
   },
@@ -234,7 +234,7 @@ const manualCourses = [
     dept: 'ai', 
     price: '۷,۰۰۰,۰۰۰', 
     desc: 'تسلط بر ابزارهای کاربردی و مولد هوش مصنوعی برای افزایش بهره‌وری.', 
-    image: '/images/Ai-tools.jpg',
+    image: '/images/Ai-tools.webp',
     schedule: 'روزهای زوج - ساعت ۱۹ الی ۲۱', 
     startDate: '۲۵ تیر' 
   },
@@ -244,7 +244,7 @@ const manualCourses = [
     dept: 'ai', 
     price: '۱۲,۰۰۰,۰۰۰', 
     desc: 'تحلیل داده‌ها، الگوریتم‌ها و ساخت مدل‌های هوشمند یادگیری ماشین.', 
-    image: '/images/Machine learning.jpg',
+    image: '/images/Machine learning.webp',
     schedule: 'جمعه‌ها - ساعت ۹ صبح الی ۱۳', 
     startDate: '۳۰ تیر' 
   },
@@ -254,7 +254,7 @@ const manualCourses = [
     dept: 'design', 
     price: '۷,۰۰۰,۰۰۰', 
     desc: 'خلق جهان‌های بصری و ورود به بازار کار طراحی و ادیت عکس.', 
-    image: '/images/Photoshop.jpg',
+    image: '/images/Photoshop.webp',
     schedule: 'یکشنبه و سه‌شنبه - ساعت ۱۸ الی ۲۰', 
     startDate: '۱۵ مرداد' 
   },
@@ -264,7 +264,7 @@ const manualCourses = [
     dept: 'design', 
     price: '۷,۰۰۰,۰۰۰', 
     desc: 'طراحی برداری، خلق کاراکترها و نشان‌های تجاری حرفه‌ای.', 
-    image: '/images/Illustrator.jpg',
+    image: '/images/Illustrator.webp',
     schedule: 'دوشنبه و چهارشنبه - ساعت ۱۸ الی ۲۰', 
     startDate: '۲۰ مرداد' 
   },
@@ -274,7 +274,7 @@ const manualCourses = [
     dept: 'design', 
     price: '۶,۵۰۰,۰۰۰', 
     desc: 'صفحه‌آرایی حرفه‌ای مجلات، کتاب‌ها و کاتالوگ‌های فیزیکی و دیجیتال.', 
-    image: '/images/Indesign.jpg',
+    image: '/images/Indesign.webp',
     schedule: 'پنج‌شنبه‌ها - ساعت ۱۴ الی ۱۸', 
     startDate: '۵ شهریور' 
   },
@@ -284,7 +284,7 @@ const manualCourses = [
     dept: 'design', 
     price: '۶,۰۰۰,۰۰۰', 
     desc: 'پیاده‌سازی ایده‌های خلاقانه بصری در قالب اسکیچ‌های استاندارد.', 
-    image: '/images/Sketch.jpg',
+    image: '/images/Sketch.webp',
     schedule: 'روزهای فرد - ساعت ۱۶ الی ۱۸', 
     startDate: '۱۵ شهریور' 
   }

@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     telegramToken: process.env.NUXT_TELEGRAM_TOKEN,
     telegramChatId: process.env.NUXT_TELEGRAM_CHAT_ID,
+    googleApiKey: process.env.GOOGLE_API_KEY, // دسترسی فقط در سمت سرور
   },
 
   // تنظیمات بهینه‌سازی تصاویر و دامنه‌های مجاز
