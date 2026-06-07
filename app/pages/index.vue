@@ -349,7 +349,7 @@
           <div class="lg:col-span-5 bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl p-8 md:p-10 backdrop-blur-xl hover:border-brand-accent1/30 transition-colors">
             <div class="flex items-center gap-3 mb-6">
   <NuxtImg src="/images/logo-light.png" alt="لوگو آکادمی داناورس" class="w-12 h-12 object-contain drop-shadow-lg" loading="lazy" />
-  <span class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">هوش‌<span class="text-brand-accent1 dark:text-cyan-400">پرداز</span></span>
+  <span class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">دانا<span class="text-brand-accent1 dark:text-cyan-400">ورس</span></span>
 </div>
             <p class="text-gray-600 dark:text-gray-400 font-light leading-loose text-justify mb-8 text-sm md:text-base">
               ما در آکادمی داناورس، مرزهای یادگیری را جابه‌جا کرده‌ایم. با رویکردی کاملاً عملی و مبتنی بر پروژه‌های واقعی، شما را برای چالش‌های لبه‌ی تکنولوژی (AI، برنامه‌نویسی و رباتیک) در بازار کار فردا آماده می‌کنیم.
