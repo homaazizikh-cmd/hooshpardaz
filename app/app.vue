@@ -1,9 +1,12 @@
 <template>
   <div>
-    <NuxtLayout />
-    <DanaChat />  </div>
-</template>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
 
+    <DanaChat />
+  </div>
+</template>
 <script setup>
 const route = useRoute()
 
