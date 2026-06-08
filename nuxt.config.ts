@@ -68,7 +68,7 @@ export default defineNuxtConfig({
         { property: 'og:locale', content: 'fa_IR' },
 
         // کد تایید گوگل سرچ کنسول (تا زمان انتقال کامل دامنه بماند)
-        { name: 'google-site-verification', content: 'JKvx7He1sUiY8wx3iK8va6ZD-8sE--rGTwSDpYAKEW8' }
+        { name: 'google-site-verification', content: 'GIVi970Muy1SseqLB2rZNSU17lyfoar8B6ldZKS5nzE' } 
       ],
       link: [
         { 

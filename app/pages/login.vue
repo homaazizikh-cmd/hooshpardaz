@@ -8,7 +8,7 @@
       
       <div class="text-center mb-8">
         <NuxtLink to="/" class="text-3xl font-black text-slate-800 dark:text-white inline-block mb-2">
-          هوش<span class="text-blue-600">پرداز</span>
+          دانا<span class="text-blue-600">ورس</span>
         </NuxtLink>
         <p class="text-sm text-slate-500 dark:text-slate-400">
           {{ isLogin ? 'خوش برگشتید! برای ورود اطلاعات خود را وارد کنید.' : 'به جمع ما بپیوندید و مسیر یادگیری را شروع کنید.' }}
