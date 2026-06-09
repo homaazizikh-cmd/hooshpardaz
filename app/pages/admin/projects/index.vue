@@ -65,8 +65,9 @@
 </template>
 
 <script setup>
-definePageMeta({ layout: 'admin' })
-
+definePageMeta({
+  layout: 'admin'
+});
 // استیت مرکزی به همراه تمام ۱۶ پروژه اصلی سایت داناورس
 const projects = useState('admin_projects', () => [
   { id: 1, title: 'دستیار صوتی هوشمند (شبیه جارویس)', description: 'توسعه یک دستیار صوتی با پایتون که می‌تواند دستورات صوتی فارسی را پردازش کرده، در وب جستجو کند و وسایل هوشمند اتاق را کنترل کند.', category: 'ai', categoryName: 'پایتون پیشرفته', tools: ['Python', 'SpeechRecognition', 'OpenAI API'], image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', student: 'علی رضایی', age: 'هنرجوی ۱۶ ساله' },

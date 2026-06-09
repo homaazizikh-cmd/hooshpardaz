@@ -46,8 +46,10 @@
   </div>
 </template>
 
-<script setup>
-definePageMeta({ layout: 'admin', middleware: 'admin' });
+<script setup> 
+definePageMeta({
+  layout: 'admin'
+});
 
 const supabase = useSupabaseClient();
 

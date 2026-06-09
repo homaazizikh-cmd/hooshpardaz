@@ -145,8 +145,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-definePageMeta({ layout: 'admin', middleware: 'admin' });
-
+definePageMeta({
+  layout: 'admin'
+});
 const supabase = useSupabaseClient();
 const searchQuery = ref('');
 const filterCategory = ref('all');

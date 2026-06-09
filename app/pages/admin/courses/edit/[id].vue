@@ -77,8 +77,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
-definePageMeta({ layout: 'admin', middleware: 'admin' });
-
+definePageMeta({
+  layout: 'admin'
+});
 const route = useRoute();
 const supabase = useSupabaseClient();
 

@@ -16,7 +16,7 @@
         <NuxtImg 
           :src="post.image" 
           :alt="`مقاله ${post.title} در آکادمی داناورس`" 
-          format="jpg"
+          format="webp"
           preload
           class="w-full h-full object-cover relative z-0 transform group-hover:scale-105 transition-transform duration-1000"
         />
@@ -220,33 +220,47 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const supabase = useSupabaseClient()
 
-// لیست مقالات دستی (همان دیتای قبلی شما)
+// لیست مقالات دستی
 const manualPosts = [
   { id: 1, title: 'چرا یادگیری برنامه‌نویسی برای کودکان ضروری است؟', excerpt: 'برنامه‌نویسی فقط تایپ کد نیست؛ بلکه یادگیری نحوه حل مسئله، تفکر منطقی و خلاقیت است.', category: 'کودکان و نوجوانان', date: '۲۰ اردیبهشت ۱۴۰۳', readTime: '۵ دقیقه', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', author: 'مهندس احمدی', authorRole: 'مدرس دپارتمان کودکان', authorImg: 'https://i.pravatar.cc/150?img=11', tags: ['کودکان', 'اسکرچ', 'پایتون', 'آموزش'], relatedCourseSlug: 'python-kids', content: `<h2>برنامه‌نویسی، الفبای قرن بیست و یکم</h2><p>در دنیای امروز که تکنولوژی تمام جنبه‌های زندگی ما را فرا گرفته است، یادگیری برنامه‌نویسی برای کودکان دیگر یک مزیت لوکس نیست، بلکه یک ضرورت است.</p>` },
   { id: 2, title: 'تفاوت طراح UI و UX چیست؟ راهنمای کامل', excerpt: 'بسیاری از افراد این دو مفهوم را با هم اشتباه می‌گیرند. در این مقاله به بررسی تفاوت‌ها می‌پردازیم.', category: 'طراحی و UI/UX', date: '۱۵ اردیبهشت ۱۴۰۳', readTime: '۸ دقیقه', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', author: 'سارا رضایی', authorRole: 'متخصص تجربه کاربری', authorImg: 'https://i.pravatar.cc/150?img=5', tags: ['طراحی_رابط', 'تجربه_کاربری', 'Figma'], relatedCourseSlug: 'photoshop', content: `<h2>UX در برابر UI</h2><p>احتمالاً بارها اصطلاح UI/UX به گوشتان خورده است. با اینکه این دو مخفف همیشه در کنار هم می‌آیند، اما دو تخصص کاملاً متفاوت هستند.</p>` },
-]
+];
+
+// 🚀 سیستم پشتیبان (Fallback) دوره‌ها: اگر دیتابیس خالی بود، از اینجا می‌خواند!
+const manualCoursesFallback = [
+  { id: 11, slug: 'python-kids', title: 'پایتون کودکان', desc: 'زبان پایتون با بیانی ساده و جذاب برای نوجوانان.', image: '/images/Python-childern.webp' },
+  { id: 6, slug: 'photoshop', title: 'فتوشاپ (Photoshop)', desc: 'خلق جهان‌های بصری و ورود به بازار کار طراحی و ادیت عکس.', image: '/images/Photoshop.webp' },
+  { id: 1, slug: 'python-basics', title: 'پایتون مقدماتی', desc: 'شروع قدرتمند برای ورود به دنیای برنامه‌نویسی تجاری.', image: '/images/Python-M.webp' }
+];
 
 const categoryMap = { tech: 'اخبار تکنولوژی', tutorial: 'آموزش برنامه‌نویسی', ai: 'هوش مصنوعی' };
 
-// 🚀 ۱. دریافت مقاله و دوره مرتبط
+// 🚀 دریافت مقاله و دوره مرتبط به صورت هوشمند
 const { data: postData } = await useAsyncData(`post-data-${route.params.id}`, async () => {
   let currentPost = null;
   let courseData = null;
 
+  // ۱. جستجوی مقاله در دیتابیس یا لیست دستی
   const { data: dbPost } = await supabase.from('blogs').select('*').eq('id', route.params.id).single();
-  
   if (dbPost) {
-    currentPost = {
-      id: dbPost.id, title: dbPost.title, content: dbPost.content, excerpt: dbPost.content.substring(0, 180) + '...', category: categoryMap[dbPost.category] || 'مقاله آموزشی', date: new Date(dbPost.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }), readTime: '۵ دقیقه', image: dbPost.image_url || '/images/default-blog.jpg', author: dbPost.author || 'تیم داناورس', authorRole: 'مدرس و کارشناس آکادمی', authorImg: dbPost.author_image_url || 'https://i.pravatar.cc/150?img=60', tags: ['داناورس', 'آموزش'], relatedCourseSlug: dbPost.related_course_slug
-    };
+    currentPost = { id: dbPost.id, title: dbPost.title, content: dbPost.content, excerpt: dbPost.content.substring(0, 180) + '...', category: categoryMap[dbPost.category] || 'مقاله آموزشی', date: new Date(dbPost.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }), readTime: '۵ دقیقه', image: dbPost.image_url || '/images/default-blog.jpg', author: dbPost.author || 'تیم داناورس', authorRole: 'مدرس و کارشناس آکادمی', authorImg: dbPost.author_image_url || 'https://i.pravatar.cc/150?img=60', tags: ['داناورس', 'آموزش'], relatedCourseSlug: dbPost.related_course_slug };
   } else {
     currentPost = manualPosts.find(p => p.id == route.params.id);
   }
 
+  // ۲. جستجوی دوره مرتبط (اول دیتابیس، بعد لیست پشتیبان)
   if (currentPost && currentPost.relatedCourseSlug) {
-    const { data: course } = await supabase.from('courses').select('id, slug, title, description, image_url').eq('slug', currentPost.relatedCourseSlug).single();
+    const { data: course, error } = await supabase.from('courses').select('id, slug, title, description, image_url').eq('slug', currentPost.relatedCourseSlug).single();
+    
     if (course) {
+      // اگر در دیتابیس بود
       courseData = { id: course.id, slug: course.slug, title: course.title, desc: course.description?.substring(0, 100) + '...', image: course.image_url };
+    } else {
+      // اگر دیتابیس خالی بود، از لیست دستی بگیر تا بنر روشن بشه!
+      const backupCourse = manualCoursesFallback.find(c => c.slug === currentPost.relatedCourseSlug);
+      if (backupCourse) {
+        courseData = { id: backupCourse.id, slug: backupCourse.slug, title: backupCourse.title, desc: backupCourse.desc, image: backupCourse.image };
+      }
     }
   }
 
@@ -256,18 +270,12 @@ const { data: postData } = await useAsyncData(`post-data-${route.params.id}`, as
 const post = computed(() => postData.value?.post);
 const relatedCourseData = computed(() => postData.value?.course);
 
-// 🚀 ۲. سیستم کامنت‌ها (SSR برای سئو)
+// سیستم نظرات...
 const { data: comments, refresh: refreshComments } = await useAsyncData(`comments-${route.params.id}`, async () => {
-  const { data } = await supabase
-    .from('comments')
-    .select('id, user_name, content, created_at, is_admin_reply')
-    .eq('post_id', route.params.id)
-    .eq('is_approved', true) // فقط کامنت‌های تایید شده توسط شما را می‌گیرد
-    .order('created_at', { ascending: true }); // از قدیمی به جدید برای حفظ جریان گفتگو
+  const { data } = await supabase.from('comments').select('id, user_name, content, created_at, is_admin_reply').eq('post_id', route.params.id).eq('is_approved', true).order('created_at', { ascending: true });
   return data || [];
 });
 
-// مدیریت فرم کامنت
 const commentForm = ref({ name: '', text: '' });
 const isSubmitting = ref(false);
 const feedbackMsg = ref('');
@@ -275,87 +283,22 @@ const feedbackError = ref(false);
 
 const submitComment = async () => {
   if (!commentForm.value.name.trim() || !commentForm.value.text.trim()) return;
-  
   isSubmitting.value = true;
   feedbackMsg.value = '';
-  
-  // ذخیره در دیتابیس (is_approved به صورت پیش‌فرض در دیتابیس false است)
-  const { error } = await supabase.from('comments').insert({
-    post_id: route.params.id,
-    user_name: commentForm.value.name.trim(),
-    content: commentForm.value.text.trim()
-  });
-
+  const { error } = await supabase.from('comments').insert({ post_id: route.params.id, user_name: commentForm.value.name.trim(), content: commentForm.value.text.trim() });
   isSubmitting.value = false;
-
-  if (error) {
-    console.error(error);
-    feedbackError.value = true;
-    feedbackMsg.value = 'متاسفانه خطایی رخ داد. لطفاً دوباره تلاش کنید.';
-  } else {
-    feedbackError.value = false;
-    feedbackMsg.value = '✅ دیدگاه شما با موفقیت ثبت شد و پس از بررسی منتشر می‌شود.';
-    commentForm.value.name = '';
-    commentForm.value.text = '';
-  }
+  if (error) { feedbackError.value = true; feedbackMsg.value = 'خطایی رخ داد. لطفاً دوباره تلاش کنید.'; } 
+  else { feedbackError.value = false; feedbackMsg.value = '✅ دیدگاه شما با موفقیت ثبت شد.'; commentForm.value.name = ''; commentForm.value.text = ''; }
 };
 
-// تبدیل تاریخ میلادی دیتابیس به شمسی زیبا
 const formatDate = (dateString) => {
   if (!dateString) return '';
   return new Intl.DateTimeFormat('fa-IR', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(dateString));
 };
 
-// سئوی پیشرفته + اسکیمای مقاله
+// سئو
 useSeoMeta({
   title: computed(() => post.value ? `${post.value.title} | وبلاگ داناورس` : 'خواندن مقاله'),
-  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی داناورس'),
-  ogTitle: computed(() => post.value ? post.value.title : 'وبلاگ داناورس'),
-  ogDescription: computed(() => post.value ? post.value.excerpt : ''),
-  ogImage: computed(() => post.value ? post.value.image : ''),
-  ogType: 'article',
-  twitterCard: 'summary_large_image',
-});
-
-const schemaData = computed(() => {
-  if (!post.value) return {};
-  return {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.value.title,
-    "image": post.value.image,
-    "datePublished": post.value.date,
-    "author": { "@type": "Person", "name": post.value.author },
-    "publisher": { "@type": "Organization", "name": "آکادمی داناورس" },
-    "description": post.value.excerpt,
-  }
-});
-
-useHead({
-  link: [{ rel: 'canonical', href: computed(() => `https://danaverse.ir/learning/${route.params.id}`) }],
-  script: [{ type: 'application/ld+json', children: computed(() => JSON.stringify(schemaData.value)) }]
+  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی داناورس'),
 });
 </script>
-
-<style scoped>
-.whitespace-pre-wrap { white-space: pre-wrap; }
-.article-content h2 { font-size: 1.75rem; font-weight: 900; color: #1f2937; margin-top: 2.5rem; margin-bottom: 1rem; line-height: 1.3; }
-.dark .article-content h2 { color: #f9fafb; }
-.article-content h3 { font-size: 1.25rem; font-weight: 800; color: #374151; margin-top: 2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-.article-content h3::before { content: ''; display: inline-block; width: 10px; height: 10px; background-color: #38bdf8; border-radius: 50%; }
-.dark .article-content h3 { color: #d1d5db; }
-.article-content p { margin-bottom: 1.5rem; }
-.article-content ul { list-style-type: none; padding-right: 1rem; margin-bottom: 2rem; }
-.article-content li { position: relative; margin-bottom: 0.75rem; padding-right: 1.5rem; }
-.article-content li::before { content: '✓'; position: absolute; right: 0; color: #2563eb; font-weight: bold; }
-.dark .article-content li::before { color: #38bdf8; }
-.article-content strong { font-weight: 800; color: #111827; }
-.dark .article-content strong { color: #fff; }
-
-/* انیمیشن برای پاپ‌آپ شدن بنر و لیست کامنت‌ها */
-.fade-up-enter-active, .fade-up-leave-active { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-.fade-up-enter-from, .fade-up-leave-to { opacity: 0; transform: translateY(30px); }
-
-.list-enter-active, .list-leave-active { transition: all 0.5s ease; }
-.list-enter-from, .list-leave-to { opacity: 0; transform: translateX(30px); }
-</style>

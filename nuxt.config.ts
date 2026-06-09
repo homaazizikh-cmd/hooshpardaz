@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
-    '@nuxtjs/sitemap',
+    '@nuxtjs/sitemap', // 👈 ماژول نقشه سایت اضافه شد
     '@nuxt/image'
   ],
 
@@ -28,6 +28,21 @@ export default defineNuxtConfig({
   site: {
     url: 'https://danaverse.ir',
     name: 'داناورس'
+  },
+
+  // 🚀 تنظیمات اختصاصی و حرفه‌ای نقشه سایت (Sitemap)
+  sitemap: {
+    autoI18n: false,
+    strictNuxtContentPaths: true,
+    exclude: [
+      '/admin/**', // 🔒 صفحات پنل مدیریت نباید در گوگل ایندکس شوند!
+      '/talent-test/result/**' // صفحات نتایج خصوصی کاربران نباید ایندکس شوند
+    ],
+    // کش کردن سایت‌مپ برای سرعت بیشتر
+    cacheMaxAgeSeconds: 3600,
+    sources: [
+      '/api/_sitemap-urls' // 👈 این خط جادویی را اضافه کنید!
+    ]
   },
 
   supabase: {

@@ -73,8 +73,9 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 
-definePageMeta({ layout: 'admin' })
-
+definePageMeta({
+  layout: 'admin'
+});
 const route = useRoute()
 const router = useRouter()
 const projects = useState('admin_projects') // استیت تستی

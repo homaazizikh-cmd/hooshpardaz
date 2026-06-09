@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto pb-20">
+  <div class="max-w-4xl mx-auto pb-20" dir="rtl">
     <div class="flex items-center justify-between mb-8">
       <div>
         <h2 class="text-3xl font-black text-gray-800 dark:text-white mb-2">افزودن دوره جدید</h2>
@@ -17,6 +17,13 @@
           <div>
             <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">عنوان دوره *</label>
             <input v-model="form.title" type="text" required class="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="مثال: پایتون پیشرفته">
+          </div>
+
+          <div>
+            <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">
+              آدرس انگلیسی (Slug) برای سئو *
+            </label>
+            <input v-model="form.slug" type="text" required dir="ltr" class="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="مثال: advanced-python">
           </div>
 
           <div>
@@ -38,11 +45,11 @@
             <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">تاریخ شروع *</label>
             <input v-model="form.startDate" type="text" required class="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="مثال: ۱۵ مرداد">
           </div>
-        </div>
-
-        <div>
-          <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">زمان‌بندی کلاس *</label>
-          <input v-model="form.schedule" type="text" required class="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="مثال: روزهای زوج - ساعت ۱۶ الی ۱۸">
+          
+          <div>
+            <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">زمان‌بندی کلاس *</label>
+            <input v-model="form.schedule" type="text" required class="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="مثال: روزهای زوج - ساعت ۱۶ الی ۱۸">
+          </div>
         </div>
 
         <div class="p-4 border-2 border-dashed border-blue-200 dark:border-blue-900 rounded-xl bg-blue-50/50 dark:bg-blue-900/10">
@@ -53,6 +60,11 @@
         <div>
           <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-gray-300">توضیحات کوتاه (نمایش در کارت دوره) *</label>
           <textarea v-model="form.desc" rows="3" required class="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="این متن در کارت دوره به کاربر نمایش داده می‌شود..."></textarea>
+        </div>
+
+        <div class="flex items-center gap-3 bg-gray-50 dark:bg-gray-700 p-4 rounded-xl border border-gray-200 dark:border-gray-600">
+          <input type="checkbox" v-model="form.is_published" id="publish" class="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer">
+          <label for="publish" class="font-bold text-gray-700 dark:text-gray-300 cursor-pointer select-none">انتشار فوری دوره در سایت</label>
         </div>
 
         <button type="submit" :disabled="loading" class="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold rounded-xl transition shadow-lg flex justify-center items-center text-lg mt-6">
@@ -66,15 +78,18 @@
 </template>
 
 <script setup>
-definePageMeta({ layout: 'admin', middleware: 'admin' });
+import { ref } from 'vue';
 
+definePageMeta({
+  layout: 'admin'
+});
 const supabase = useSupabaseClient();
 const loading = ref(false);
 
-// مدل داده‌ها دقیقا مطابق با فیلدهایی که شما در سایت دارید
 const form = ref({ 
   title: '', 
-  dept: 'python', // پیش‌فرض
+  slug: '', // 👈 فیلد بسیار مهم
+  dept: 'python', 
   price: '',
   startDate: '',
   schedule: '',
@@ -90,6 +105,11 @@ const handleFileUpload = (event) => {
 
 const saveCourse = async () => {
   if (!imageFile.value) return alert("لطفا یک عکس انتخاب کنید.");
+  
+  // امنیت: استانداردسازی اسلاگ (جلوگیری از خطای ۴۰۴ در آینده)
+  const finalSlug = form.value.slug.trim().replace(/\s+/g, '-').toLowerCase();
+  if(!finalSlug) return alert("لطفاً آدرس انگلیسی (Slug) را وارد کنید.");
+
   loading.value = true;
   let imageUrl = '';
 
@@ -112,16 +132,17 @@ const saveCourse = async () => {
       
     imageUrl = publicUrlData.publicUrl;
 
-    // ۳. ذخیره در دیتابیس با ستون‌های جدید
+    // ۳. ذخیره در دیتابیس
     const { error: insertError } = await supabase
       .from('courses')
       .insert([{ 
         title: form.value.title, 
+        slug: finalSlug, // 👈 اضافه شدن به دیتابیس
         dept: form.value.dept,
         price: form.value.price,
         start_date: form.value.startDate,
         schedule: form.value.schedule,
-        description: form.value.desc, // در دیتابیس اسمش description است
+        description: form.value.desc, 
         is_published: form.value.is_published,
         image_url: imageUrl
       }]);

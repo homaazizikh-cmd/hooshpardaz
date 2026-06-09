@@ -71,8 +71,9 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
-definePageMeta({ layout: 'admin' })
-
+definePageMeta({
+  layout: 'admin'
+});
 const router = useRouter()
 const projects = useState('admin_projects') // فراخوانی استیت مرکزی برای تست
 

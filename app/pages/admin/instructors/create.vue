@@ -54,7 +54,9 @@
 </template>
 
 <script setup>
-definePageMeta({ layout: 'admin' })
+definePageMeta({
+  layout: 'admin'
+});
 const supabase = useSupabaseClient()
 const router = useRouter()
 

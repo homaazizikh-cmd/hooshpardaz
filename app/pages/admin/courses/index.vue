@@ -17,7 +17,7 @@
       <div class="bg-white dark:bg-gray-800 p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between group hover:border-blue-500 transition-colors">
         <div>
           <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-1">کل دوره‌ها</p>
-          <h3 class="text-3xl font-black text-gray-800 dark:text-white">{{ courses.length }}</h3>
+          <h3 class="text-3xl font-black text-gray-800 dark:text-white">{{ courses?.length || 0 }}</h3>
         </div>
         <div class="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
           <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
@@ -147,8 +147,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-definePageMeta({ layout: 'admin', middleware: 'admin' });
-
+definePageMeta({
+  layout: 'admin'
+});
 const supabase = useSupabaseClient();
 const searchQuery = ref('');
 const filterDept = ref('all');
