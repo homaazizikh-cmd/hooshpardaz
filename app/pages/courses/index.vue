@@ -110,7 +110,7 @@
               </p>
               
               <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800/80">
-                <NuxtLink :to="`/courses/${course.id}`" 
+                <NuxtLink :to="`/courses/${course.slug || course.id}`" 
                           class="relative overflow-hidden flex items-center justify-center w-full py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-cyan-500/50 text-sm font-black text-slate-600 dark:text-slate-400 group-hover:text-blue-700 dark:group-hover:text-white transition-all duration-300 group/btn">
                   <div class="absolute inset-0 w-0 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-500 dark:to-purple-600 transition-all duration-500 ease-out group-hover/btn:w-full opacity-10 dark:opacity-20"></div>
                   <span class="relative z-10 flex items-center gap-2">
@@ -156,10 +156,11 @@ const departments = [
   { id: 'maharat', name: 'مهارت‌های کاربردی و سخت', image: '/images/DP-Maharat.webp' }
 ];
 
-// 💡 لیست دوره‌های دستی و باارزش شما (حفظ شد)
+// 💡 لیست دوره‌های دستی با اضافه شدن اسلاگ‌های سئوشده
 const manualCourses = [
   { 
     id: 13, 
+    slug: 'icdl',
     title: 'مهارت‌های هفت‌گانه (ICDL)', 
     dept: 'maharat', 
     price: '۴,۵۰۰,۰۰۰', 
@@ -170,6 +171,7 @@ const manualCourses = [
   },
   { 
     id: 5, 
+    slug: 'robotics-adults',
     title: 'رباتیک بزرگسال', 
     dept: 'maharat', 
     price: '۱۲,۰۰۰,۰۰۰', 
@@ -180,6 +182,7 @@ const manualCourses = [
   },
   { 
     id: 10, 
+    slug: 'scratch',
     title: 'اسکرچ (Scratch)', 
     dept: 'maharat', 
     price: '۵,۰۰۰,۰۰۰', 
@@ -190,6 +193,7 @@ const manualCourses = [
   },
   { 
     id: 12, 
+    slug: 'robotics-kids',
     title: 'رباتیک دانش‌آموزی', 
     dept: 'maharat', 
     price: '۷,۵۰۰,۰۰۰', 
@@ -200,6 +204,7 @@ const manualCourses = [
   },
   { 
     id: 1, 
+    slug: 'python-basics',
     title: 'پایتون مقدماتی', 
     dept: 'python', 
     price: '۸,۰۰۰,۰۰۰', 
@@ -210,6 +215,7 @@ const manualCourses = [
   },
   { 
     id: 2, 
+    slug: 'python-advanced',
     title: 'پایتون پیشرفته', 
     dept: 'python', 
     price: '۱۰,۰۰۰,۰۰۰', 
@@ -220,6 +226,7 @@ const manualCourses = [
   },
   { 
     id: 11, 
+    slug: 'python-kids',
     title: 'پایتون کودکان', 
     dept: 'python', 
     price: '۶,۵۰۰,۰۰۰', 
@@ -230,6 +237,7 @@ const manualCourses = [
   },
   { 
     id: 3, 
+    slug: 'ai-tools',
     title: 'ابزارهای هوش مصنوعی', 
     dept: 'ai', 
     price: '۷,۰۰۰,۰۰۰', 
@@ -240,6 +248,7 @@ const manualCourses = [
   },
   { 
     id: 4, 
+    slug: 'machine-learning',
     title: 'ماشین لرنینگ', 
     dept: 'ai', 
     price: '۱۲,۰۰۰,۰۰۰', 
@@ -250,6 +259,7 @@ const manualCourses = [
   },
   { 
     id: 6, 
+    slug: 'photoshop',
     title: 'فتوشاپ (Photoshop)', 
     dept: 'design', 
     price: '۷,۰۰۰,۰۰۰', 
@@ -260,6 +270,7 @@ const manualCourses = [
   },
   { 
     id: 7, 
+    slug: 'illustrator',
     title: 'ایلاستریتور (Illustrator)', 
     dept: 'design', 
     price: '۷,۰۰۰,۰۰۰', 
@@ -270,6 +281,7 @@ const manualCourses = [
   },
   { 
     id: 8, 
+    slug: 'indesign',
     title: 'ایندیزاین (InDesign)', 
     dept: 'design', 
     price: '۶,۵۰۰,۰۰۰', 
@@ -280,6 +292,7 @@ const manualCourses = [
   },
   { 
     id: 9, 
+    slug: 'sketch',
     title: 'تصویرسازی اسکیچ', 
     dept: 'design', 
     price: '۶,۰۰۰,۰۰۰', 
@@ -310,6 +323,7 @@ const allCourses = computed(() => {
     .filter(c => c.is_published === true || c.is_published === 'true')
     .map(c => ({
       id: c.id,
+      slug: c.slug, // فیلد جدید اسلاگ برای دیتابیس
       title: c.title,
       dept: c.dept,
       price: c.price,

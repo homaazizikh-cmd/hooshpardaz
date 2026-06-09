@@ -167,203 +167,109 @@
 
 <script setup>
 const route = useRoute();
+const supabase = useSupabaseClient();
 
-// بانک اطلاعاتی جامع ۱۳ دوره آکادمی داناورس (کاملاً هماهنگ، داینامیک و متصل به اساتید واقعی)
-const courses = [
-  { 
-    id: 13, 
-    title: 'مهارت‌های هفت‌گانه (ICDL)', 
-    dept: 'maharat', 
-    price: '۶,۵۰۰,۰۰۰', 
-    desc: 'یادگیری کامل نرم‌افزارهای آفیس و مبانی کامپیوتر.', 
-    image: '/images/ICDL.jpg', 
-    schedule: { days: 'روزهای زوج (شنبه، دوشنبه، چهارشنبه)', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, 
-    startDate: '۱۵ تیر ۱۴۰۵', 
-    instructor: { id: 1, name: 'مهدی خزاعی', title: 'مدرس مهارت‌های نرم', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
-  },
-  { 
-    id: 5, 
-    title: 'رباتیک بزرگسال', 
-    dept: 'maharat', 
-    price: '۱۲,۰۰۰,۰۰۰', 
-    desc: 'طراحی، ساخت و برنامه‌نویسی میکروکنترلرها و ربات‌های هوشمند.', 
-    image: '/images/Robatic.jpg', 
-    schedule: { days: 'پنج‌شنبه‌ها (جلسات کارگاهی فشرده)', time: 'ساعت ۱۰:۰۰ صبح الی ۱۴:۰۰' }, 
-    startDate: '۲۰ تیر ۱۴۰۵', 
-    instructor: { id: 4, name: 'حسین عزیزی', title: 'متخصص مکاترونیک', skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' } 
-  },
-  { 
-    id: 10, 
-    title: 'اسکرچ (Scratch)', 
-    dept: 'maharat', 
-    price: '۵,۰۰۰,۰۰۰', 
-    desc: 'آموزش منطق برنامه‌نویسی و تفکر الگوریتمی برای کودکان.', 
-    image: '/images/Scratch.jpg', 
-    schedule: { days: 'یکشنبه‌ها و سه‌شنبه‌ها', time: 'ساعت ۱۷:۰۰ الی ۱۹:۰۰' }, 
-    startDate: '۱۰ مرداد ۱۴۰۵', 
-    instructor: { id: 3, name: 'داود قبادی', title: 'منتور برنامه‌نویسی', skills: ['Scratch', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' } 
-  },
-  { 
-    id: 12, 
-    title: 'رباتیک دانش‌آموزی', 
-    dept: 'maharat', 
-    price: '۷,۵۰۰,۰۰۰', 
-    desc: 'آشنایی با سخت‌افزار، الکترونیک و ربات‌های حرکتی.', 
-    image: '/images/Robatoc-childern.jpg', 
-    schedule: { days: 'دوشنبه‌ها و چهارشنبه‌ها', time: 'ساعت ۱۵:۰۰ الی ۱۷:۰۰' }, 
-    startDate: '۰۵ مرداد ۱۴۰۵', 
-    instructor: { id: 4, name: 'حسین عزیزی', title: 'متخصص مکاترونیک', skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' } 
-  },
-  { 
-    id: 1, 
-    title: 'پایتون مقدماتی', 
-    dept: 'python', 
-    price: '۸,۰۰۰,۰۰۰', 
-    desc: 'شروع قدرتمند برای ورود به دنیای برنامه‌نویسی تجاری.', 
-    image: '/images/Python-M.jpg', 
-    schedule: { days: 'روزهای فرد (یکشنبه، سه‌شنبه، پنج‌شنبه)', time: 'ساعت ۱۸:۰۰ الی ۲۰:۰۰' }, 
-    startDate: '۰۱ مرداد ۱۴۰۵', 
-    instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
-  },
-  { 
-    id: 2, 
-    title: 'پایتون پیشرفته', 
-    dept: 'python', 
-    price: '۱۰,۰۰۰,۰۰۰', 
-    desc: 'مسلط به مباحث پیشرفته پایتون و شیءگرایی برای بازار کار.', 
-    image: '/images/Python-P.jpg', 
-    schedule: { days: 'پنج‌شنبه‌ها (کلاس آنلاین تعاملی)', time: 'ساعت ۱۵:۰۰ الی ۱۹:۰۰' }, 
-    startDate: '۱۲ مرداد ۱۴۰۵', 
-    instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
-  },
-  { 
-    id: 11, 
-    title: 'پایتون کودکان', 
-    dept: 'python', 
-    price: '۶,۵۰۰,۰۰۰', 
-    desc: 'زبان پایتون با بیانی ساده و جذاب برای نوجوانان.', 
-    image: '/images/Python-childern.jpg', 
-    schedule: { days: 'شنبه‌ها و دوشنبه‌ها', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, 
-    startDate: '۰۱ شهریور ۱۴۰۵', 
-    instructor: { id: 3, name: 'داود قبادی', title: 'منتور برنامه‌نویسی', skills: ['Python', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' } 
-  },
-  { 
-    id: 3, 
-    title: 'ابزارهای هوش مصنوعی', 
-    dept: 'ai', 
-    price: '۷,۰۰۰,۰۰۰', 
-    desc: 'تسلط بر ابزارهای کاربردی و مولد هوش مصنوعی برای افزایش بهره‌وری.', 
-    image: '/images/Ai-tools.jpg', 
-    schedule: { days: 'روزهای زوج (شنبه، دوشنبه، چهارشنبه)', time: 'ساعت ۱۹:۰۰ الی ۲۱:۰۰' }, 
-    startDate: '۲۵ تیر ۱۴۰۵', 
-    instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
-  },
-  { 
-    id: 4, 
-    title: 'ماشین لرنینگ', 
-    dept: 'ai', 
-    price: '۱۲,۰۰۰,۰۰۰', 
-    desc: 'تحلیل داده‌ها، الگوریتم‌ها و ساخت مدل‌های هوشمند یادگیری ماشین.', 
-    image: '/images/Machine learning.jpg', 
-    schedule: { days: 'جمعه‌ها (وبینار زنده پرسش و پاسخ)', time: 'ساعت ۰۹:۰۰ صبح الی ۱۳:۰۰' }, 
-    startDate: '۳۰ تیر ۱۴۰۵', 
-    instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } 
-  },
-  { 
-    id: 6, 
-    title: 'فتوشاپ (Photoshop)', 
-    dept: 'design', 
-    price: '۷,۰۰۰,۰۰۰', 
-    desc: 'خلق جهان‌های بصری و ورود به بازار کار طراحی و ادیت عکس.', 
-    image: '/images/Photoshop.jpg', 
-    schedule: { days: 'یکشنبه‌ها و سه‌شنبه‌ها', time: 'ساعت ۱۸:۰۰ الی ۲۰:۰۰' }, 
-    startDate: '۱۵ مرداد ۱۴۰۵', 
-    instructor: { id: 2, name: 'پانیذ برنا', title: 'مدیر هنری و گرافیک', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' } 
-  },
-  { 
-    id: 7, 
-    title: 'ایلاستریتور (Illustrator)', 
-    dept: 'design', 
-    price: '۷,۰۰۰,۰۰۰', 
-    desc: 'طراحی برداری، خلق کاراکترها و نشان‌های تجاری حرفه‌ای.', 
-    image: '/images/Illustrator.jpg', 
-    schedule: { days: 'دوشنبه‌ها و چهارشنبه‌ها', time: 'ساعت ۱۸:۰۰ الی ۲۰:۰۰' }, 
-    startDate: '۲۰ مرداد ۱۴۰۵', 
-    instructor: { id: 2, name: 'پانیذ برنا', title: 'مدیر هنری و گرافیک', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' } 
-  },
-  { 
-    id: 8, 
-    title: 'ایندیزاین (InDesign)', 
-    dept: 'design', 
-    price: '۶,۵۰۰,۰۰۰', 
-    desc: 'صفحه‌آرایی حرفه‌ای مجلات، کتاب‌ها و کاتالوگ‌های فیزیکی و دیجیتال.', 
-    image: '/images/Indesign.jpg', 
-    schedule: { days: 'پنج‌شنبه‌ها (کلاس زنده و رفع اشکال)', time: 'ساعت ۱۴:۰۰ الی ۱۸:۰۰' }, 
-    startDate: '۰۵ شهریور ۱۴۰۵', 
-    instructor: { id: 2, name: 'پانیذ برنا', title: 'مدیر هنری و گرافیک', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' } 
-  },
-  { 
-    id: 9, 
-    title: 'تصویرسازی اسکیچ', 
-    dept: 'design', 
-    price: '۶,۰۰۰,۰۰۰', 
-    desc: 'پیاده‌سازی ایده‌های خلاقانه بصری در قالب اسکیچ‌های استاندارد.', 
-    image: '/images/Sketch.jpg', 
-    schedule: { days: 'روزهای فرد (یکشنبه و سه‌شنبه)', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, 
-    startDate: '۱۵ شهریور ۱۴۰۵', 
-    instructor: { id: 7, name: 'علی رضایی', title: 'طراح محصول', skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/ali-rezaei.jpg' } 
-  }
-];
+// ۱. پارامتر آدرس را می‌گیریم (پشتیبانی همزمان از id عددی و slug متنی)
+const routeParam = route.params.slug || route.params.id; 
 
-const course = computed(() => {
-  return courses.find(c => c.id === parseInt(route.params.id));
+// ۲. واکشی اطلاعات سئو از سوپابیس به صورت SSR (جادوی اصلی برای گوگل)
+const { data: seoData } = await useAsyncData(`seo-${routeParam}`, async () => {
+  // اگر آدرس عدد بود با id و اگر متن بود با slug در دیتابیس می‌گردد
+  const { data } = await supabase
+    .from('courses')
+    .select('seo_title, seo_description, schema_data, slug')
+    .or(`slug.eq.${routeParam},id.eq.${parseInt(routeParam) || 0}`)
+    .single();
+  
+  return data;
 });
 
+// بانک اطلاعاتی جامع ۱۳ دوره آکادمی داناورس (فیلد slug به همه اضافه شد)
+const courses = [
+  { id: 13, slug: 'icdl', title: 'مهارت‌های هفت‌گانه (ICDL)', dept: 'maharat', price: '۶,۵۰۰,۰۰۰', desc: 'یادگیری کامل نرم‌افزارهای آفیس و مبانی کامپیوتر.', image: '/images/ICDL.jpg', schedule: { days: 'روزهای زوج (شنبه، دوشنبه، چهارشنبه)', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, startDate: '۱۵ تیر ۱۴۰۵', instructor: { id: 1, name: 'مهدی خزاعی', title: 'مدرس مهارت‌های نرم', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mehdi-khazaei.jpg' } },
+  { id: 5, slug: 'robotics-adults', title: 'رباتیک بزرگسال', dept: 'maharat', price: '۱۲,۰۰۰,۰۰۰', desc: 'طراحی، ساخت و برنامه‌نویسی میکروکنترلرها و ربات‌های هوشمند.', image: '/images/Robatic.jpg', schedule: { days: 'پنج‌شنبه‌ها (جلسات کارگاهی فشرده)', time: 'ساعت ۱۰:۰۰ صبح الی ۱۴:۰۰' }, startDate: '۲۰ تیر ۱۴۰۵', instructor: { id: 4, name: 'حسین عزیزی', title: 'متخصص مکاترونیک', skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' } },
+  { id: 10, slug: 'scratch', title: 'اسکرچ (Scratch)', dept: 'maharat', price: '۵,۰۰۰,۰۰۰', desc: 'آموزش منطق برنامه‌نویسی و تفکر الگوریتمی برای کودکان.', image: '/images/Scratch.jpg', schedule: { days: 'یکشنبه‌ها و سه‌شنبه‌ها', time: 'ساعت ۱۷:۰۰ الی ۱۹:۰۰' }, startDate: '۱۰ مرداد ۱۴۰۵', instructor: { id: 3, name: 'داود قبادی', title: 'منتور برنامه‌نویسی', skills: ['Scratch', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' } },
+  { id: 12, slug: 'robotics-kids', title: 'رباتیک دانش‌آموزی', dept: 'maharat', price: '۷,۵۰۰,۰۰۰', desc: 'آشنایی با سخت‌افزار، الکترونیک و ربات‌های حرکتی.', image: '/images/Robatoc-childern.jpg', schedule: { days: 'دوشنبه‌ها و چهارشنبه‌ها', time: 'ساعت ۱۵:۰۰ الی ۱۷:۰۰' }, startDate: '۰۵ مرداد ۱۴۰۵', instructor: { id: 4, name: 'حسین عزیزی', title: 'متخصص مکاترونیک', skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' } },
+  { id: 1, slug: 'python-basics', title: 'پایتون مقدماتی', dept: 'python', price: '۸,۰۰۰,۰۰۰', desc: 'شروع قدرتمند برای ورود به دنیای برنامه‌نویسی تجاری.', image: '/images/Python-M.jpg', schedule: { days: 'روزهای فرد (یکشنبه، سه‌شنبه، پنج‌شنبه)', time: 'ساعت ۱۸:۰۰ الی ۲۰:۰۰' }, startDate: '۰۱ مرداد ۱۴۰۵', instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } },
+  { id: 2, slug: 'python-advanced', title: 'پایتون پیشرفته', dept: 'python', price: '۱۰,۰۰۰,۰۰۰', desc: 'مسلط به مباحث پیشرفته پایتون و شیءگرایی برای بازار کار.', image: '/images/Python-P.jpg', schedule: { days: 'پنج‌شنبه‌ها (کلاس آنلاین تعاملی)', time: 'ساعت ۱۵:۰۰ الی ۱۹:۰۰' }, startDate: '۱۲ مرداد ۱۴۰۵', instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } },
+  { id: 11, slug: 'python-kids', title: 'پایتون کودکان', dept: 'python', price: '۶,۵۰۰,۰۰۰', desc: 'زبان پایتون با بیانی ساده و جذاب برای نوجوانان.', image: '/images/Python-childern.jpg', schedule: { days: 'شنبه‌ها و دوشنبه‌ها', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, startDate: '۰۱ شهریور ۱۴۰۵', instructor: { id: 3, name: 'داود قبادی', title: 'منتور برنامه‌نویسی', skills: ['Python', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' } },
+  { id: 3, slug: 'ai-tools', title: 'ابزارهای هوش مصنوعی', dept: 'ai', price: '۷,۰۰۰,۰۰۰', desc: 'تسلط بر ابزارهای کاربردی و مولد هوش مصنوعی برای افزایش بهره‌وری.', image: '/images/Ai-tools.jpg', schedule: { days: 'روزهای زوج (شنبه، دوشنبه، چهارشنبه)', time: 'ساعت ۱۹:۰۰ الی ۲۱:۰۰' }, startDate: '۲۵ تیر ۱۴۰۵', instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } },
+  { id: 4, slug: 'machine-learning', title: 'ماشین لرنینگ', dept: 'ai', price: '۱۲,۰۰۰,۰۰۰', desc: 'تحلیل داده‌ها، الگوریتم‌ها و ساخت مدل‌های هوشمند یادگیری ماشین.', image: '/images/Machine learning.jpg', schedule: { days: 'جمعه‌ها (وبینار زنده پرسش و پاسخ)', time: 'ساعت ۰۹:۰۰ صبح الی ۱۳:۰۰' }, startDate: '۳۰ تیر ۱۴۰۵', instructor: { id: 1, name: 'مهدی خزاعی', title: 'متخصص پایتون و AI', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' } },
+  { id: 6, slug: 'photoshop', title: 'فتوشاپ (Photoshop)', dept: 'design', price: '۷,۰۰۰,۰۰۰', desc: 'خلق جهان‌های بصری و ورود به بازار کار طراحی و ادیت عکس.', image: '/images/Photoshop.jpg', schedule: { days: 'یکشنبه‌ها و سه‌شنبه‌ها', time: 'ساعت ۱۸:۰۰ الی ۲۰:۰۰' }, startDate: '۱۵ مرداد ۱۴۰۵', instructor: { id: 2, name: 'پانیذ برنا', title: 'مدیر هنری و گرافیک', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' } },
+  { id: 7, slug: 'illustrator', title: 'ایلاستریتور (Illustrator)', dept: 'design', price: '۷,۰۰۰,۰۰۰', desc: 'طراحی برداری، خلق کاراکترها و نشان‌های تجاری حرفه‌ای.', image: '/images/Illustrator.jpg', schedule: { days: 'دوشنبه‌ها و چهارشنبه‌ها', time: 'ساعت ۱۸:۰۰ الی ۲۰:۰۰' }, startDate: '۲۰ مرداد ۱۴۰۵', instructor: { id: 2, name: 'پانیذ برنا', title: 'مدیر هنری و گرافیک', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' } },
+  { id: 8, slug: 'indesign', title: 'ایندیزاین (InDesign)', dept: 'design', price: '۶,۵۰۰,۰۰۰', desc: 'صفحه‌آرایی حرفه‌ای مجلات، کتاب‌ها و کاتالوگ‌های فیزیکی و دیجیتال.', image: '/images/Indesign.jpg', schedule: { days: 'پنج‌شنبه‌ها (کلاس زنده و رفع اشکال)', time: 'ساعت ۱۴:۰۰ الی ۱۸:۰۰' }, startDate: '۰۵ شهریور ۱۴۰۵', instructor: { id: 2, name: 'پانیذ برنا', title: 'مدیر هنری و گرافیک', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' } },
+  { id: 9, slug: 'sketch', title: 'تصویرسازی اسکیچ', dept: 'design', price: '۶,۰۰۰,۰۰۰', desc: 'پیاده‌سازی ایده‌های خلاقانه بصری در قالب اسکیچ‌های استاندارد.', image: '/images/Sketch.jpg', schedule: { days: 'روزهای فرد (یکشنبه و سه‌شنبه)', time: 'ساعت ۱۶:۰۰ الی ۱۸:۰۰' }, startDate: '۱۵ شهریور ۱۴۰۵', instructor: { id: 7, name: 'علی رضایی', title: 'طراح محصول', skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/ali-rezaei.jpg' } }
+];
+
+// ۳. پیدا کردن دوره (با اولویت اسلاگ، سپس آیدی)
+const course = computed(() => {
+  return courses.find(c => c.slug === routeParam || c.id === parseInt(routeParam));
+});
+
+// ۴. پیاده‌سازی سئوی هوشمند (ترکیب دیتابیس + دیتای پیش‌فرض)
 if (course.value) {
   const numericPrice = course.value.price
     .replace(/,/g, '')
     .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
 
+  // اگر در سوپابیس تایتل سئو تنظیم شده بود آن را می‌خواند، وگرنه یک عنوان جذاب می‌سازد
+  const finalSeoTitle = seoData.value?.seo_title || `ثبت‌نام دوره ${course.value.title} | آکادمی داناورس`;
+  const finalSeoDesc = seoData.value?.seo_description || course.value.desc;
+
   useSeoMeta({
-    title: `ثبت‌نام دوره ${course.value.title} | آکادمی داناورس`,
-    description: course.value.desc,
-    ogTitle: `دوره آنلاین ${course.value.title} در داناورس`,
-    ogDescription: course.value.desc,
+    title: finalSeoTitle,
+    description: finalSeoDesc,
+    ogTitle: finalSeoTitle,
+    ogDescription: finalSeoDesc,
     ogImage: `https://danaverse.ir${course.value.image}`, 
     twitterCard: 'summary_large_image',
   });
+
+  // ۵. اسکیمای اتوماتیک یا خواندن از دیتابیس
+  let finalSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": course.value.title,
+    "description": finalSeoDesc,
+    "provider": {
+      "@type": "Organization",
+      "name": "آکادمی داناورس",
+      "sameAs": "https://danaverse.ir"
+    },
+    "image": `https://danaverse.ir${course.value.image}`,
+    "offers": {
+      "@type": "Offer",
+      "category": "Paid",
+      "priceCurrency": "IRT",
+      "price": numericPrice
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online",
+      "startDate": course.value.startDate,
+      "schedule": {
+        "@type": "Schedule",
+        "description": `${course.value.schedule.days} - ${course.value.schedule.time}`
+      }
+    }
+  };
+
+  // جایگزینی با اسکیمای فوق‌حرفه‌ای SGE در صورت وجود در دیتابیس
+  if (seoData.value?.schema_data) {
+    try {
+      finalSchema = typeof seoData.value.schema_data === 'string' 
+        ? JSON.parse(seoData.value.schema_data) 
+        : seoData.value.schema_data;
+    } catch(e) {
+      console.error('خطا در پارس کردن اسکیما', e);
+    }
+  }
 
   useHead({
     script: [
       {
         type: 'application/ld+json',
-        innerHTML: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Course",
-          "name": course.value.title,
-          "description": course.value.desc,
-          "provider": {
-            "@type": "Organization",
-            "name": "آکادمی داناورس",
-            "sameAs": "https://danaverse.ir"
-          },
-          "image": `https://danaverse.ir${course.value.image}`,
-          "offers": {
-            "@type": "Offer",
-            "category": "Paid",
-            "priceCurrency": "IRT",
-            "price": numericPrice
-          },
-          "hasCourseInstance": {
-            "@type": "CourseInstance",
-            "courseMode": "Online",
-            "startDate": course.value.startDate,
-            "schedule": {
-              "@type": "Schedule",
-              "description": `${course.value.schedule.days} - ${course.value.schedule.time}`
-            }
-          }
-        })
+        innerHTML: JSON.stringify(finalSchema)
       }
     ]
   });

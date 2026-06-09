@@ -16,7 +16,7 @@
         <NuxtImg 
           :src="post.image" 
           :alt="`مقاله ${post.title} در آکادمی داناورس`" 
-          format="webp"
+          format="jpg"
           preload
           class="w-full h-full object-cover relative z-0 transform group-hover:scale-105 transition-transform duration-1000"
         />
@@ -41,51 +41,155 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
-        <main class="lg:col-span-8 bg-white dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700">
+        <main class="lg:col-span-8 bg-white dark:bg-gray-800 rounded-[2rem] p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700 relative overflow-hidden">
           
-          <blockquote class="border-r-4 border-blue-600 dark:border-brand-accent1 pr-6 py-3 mb-12 bg-blue-50/50 dark:bg-gray-700/30 rounded-l-2xl italic font-medium text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed">
+          <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/50 dark:bg-blue-900/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+
+          <blockquote class="relative border-r-4 border-blue-600 dark:border-brand-accent1 pr-6 py-4 mb-12 bg-gradient-to-l from-blue-50/50 to-transparent dark:from-gray-700/30 dark:to-transparent rounded-l-2xl italic font-medium text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed">
+            <span class="absolute -right-3 -top-3 text-4xl text-blue-200 dark:text-gray-600 select-none">"</span>
             {{ post.excerpt }}
           </blockquote>
           
-          <div class="prose prose-lg max-w-none dark:prose-invert text-gray-600 dark:text-gray-300 leading-loose text-justify space-y-6 article-content whitespace-pre-wrap" v-html="post.content">
+          <div class="prose prose-lg max-w-none dark:prose-invert text-gray-600 dark:text-gray-300 leading-loose text-justify space-y-6 article-content whitespace-pre-wrap relative z-10" v-html="post.content">
           </div>
 
-          <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-700 flex flex-wrap items-center gap-3">
-            <span class="text-gray-500 dark:text-gray-400 font-bold text-sm">برچسب‌ها:</span>
-            <a :href="`/learning?tag=${tag}`" v-for="tag in post.tags" :key="tag" class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-lg text-sm font-medium hover:bg-brand-accent1 hover:text-white transition-colors cursor-pointer">
+          <Transition name="fade-up">
+            <div v-if="relatedCourseData" class="mt-16 mb-8 relative group rounded-3xl overflow-hidden p-[2px]">
+              <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-brand-accent1 opacity-70 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
+              
+              <div class="relative bg-white dark:bg-[#090e1a] rounded-[calc(1.5rem-2px)] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 z-10">
+                <div class="w-full md:w-1/3 aspect-[4/3] rounded-xl overflow-hidden shadow-md">
+                  <NuxtImg :src="relatedCourseData.image" :alt="relatedCourseData.title" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                </div>
+                
+                <div class="flex-1 text-center md:text-right">
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-brand-accent1 text-[10px] font-black tracking-widest mb-3 border border-blue-100 dark:border-blue-800/30 uppercase">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-accent1 animate-pulse"></span>
+                    دوره مرتبط با این مقاله
+                  </div>
+                  <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2">{{ relatedCourseData.title }}</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 line-clamp-2">{{ relatedCourseData.desc }}</p>
+                  
+                  <NuxtLink :to="`/courses/${relatedCourseData.slug || relatedCourseData.id}`" class="inline-flex items-center justify-center gap-2 w-full md:w-auto px-8 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-[0_5px_15px_rgba(59,130,246,0.4)] hover:-translate-y-1 transition-all duration-300">
+                    مشاهده دوره و ثبت‌نام
+                    <svg class="w-4 h-4 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
+          </Transition>
+
+          <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-700/80 flex flex-wrap items-center gap-3 relative z-10">
+            <span class="text-gray-500 dark:text-gray-400 font-bold text-sm flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+              برچسب‌ها:
+            </span>
+            <a :href="`/learning?tag=${tag}`" v-for="tag in post.tags" :key="tag" class="bg-gray-50 dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 px-3.5 py-1.5 rounded-lg text-sm font-medium hover:border-blue-400 hover:text-blue-600 dark:hover:border-cyan-500 dark:hover:text-cyan-400 transition-all cursor-pointer shadow-sm">
               #{{ tag }}
             </a>
+          </div>
+
+          <div class="mt-16 pt-10 border-t border-gray-200 dark:border-gray-700 relative z-10" id="comments">
+            <h3 class="text-2xl font-black text-gray-800 dark:text-white mb-8 flex items-center gap-3">
+              <span class="w-3 h-8 bg-brand-accent1 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"></span>
+              بحث و تبادل نظر
+              <span class="text-sm font-bold bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 ml-auto">
+                {{ comments.length }} دیدگاه
+              </span>
+            </h3>
+
+            <form @submit.prevent="submitComment" class="bg-gray-50 dark:bg-[#0f172a]/50 border border-gray-200 dark:border-gray-700/50 rounded-2xl p-6 md:p-8 mb-10 shadow-inner">
+              <div class="mb-4">
+                <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">نام شما</label>
+                <input v-model="commentForm.name" type="text" required placeholder="مثال: علی احمدی" class="w-full bg-white dark:bg-[#020617] border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-brand-accent1 focus:ring-1 focus:ring-brand-accent1 transition-colors" />
+              </div>
+              <div class="mb-6">
+                <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">دیدگاه یا سوال شما</label>
+                <textarea v-model="commentForm.text" required rows="4" placeholder="دیدگاه ارزشمند خود را درباره این مقاله بنویسید..." class="w-full bg-white dark:bg-[#020617] border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white rounded-xl px-4 py-3 focus:outline-none focus:border-brand-accent1 focus:ring-1 focus:ring-brand-accent1 transition-colors resize-none"></textarea>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <button type="submit" :disabled="isSubmitting" class="w-full sm:w-auto px-8 py-3 bg-brand-dark hover:bg-brand-accent1 dark:bg-brand-accent1 dark:hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                  <svg v-if="isSubmitting" class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                  <span v-else>ارسال دیدگاه</span>
+                </button>
+                <p v-if="feedbackMsg" :class="feedbackError ? 'text-red-500' : 'text-green-500'" class="text-sm font-bold text-center sm:text-right">{{ feedbackMsg }}</p>
+              </div>
+            </form>
+
+            <div class="space-y-5">
+              <div v-if="comments.length === 0" class="text-center py-10 border border-dashed border-gray-300 dark:border-gray-700 rounded-2xl">
+                <p class="text-gray-500 dark:text-gray-400">هنوز دیدگاهی ثبت نشده است. شما اولین نفر باشید!</p>
+              </div>
+              
+              <TransitionGroup name="list">
+                <div v-for="comment in comments" :key="comment.id" 
+                     class="p-6 rounded-2xl border transition-all duration-300"
+                     :class="comment.is_admin_reply ? 'bg-blue-50/80 dark:bg-blue-900/20 border-blue-200 dark:border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.1)]' : 'bg-white dark:bg-[#090e1a] border-gray-100 dark:border-gray-800 shadow-sm'">
+                  
+                  <div class="flex justify-between items-start mb-3">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-lg"
+                           :class="comment.is_admin_reply ? 'bg-blue-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'">
+                        {{ comment.user_name.charAt(0) }}
+                      </div>
+                      <div>
+                        <h4 class="font-bold flex items-center gap-2" :class="comment.is_admin_reply ? 'text-blue-700 dark:text-cyan-400' : 'text-gray-800 dark:text-white'">
+                          {{ comment.user_name }}
+                          <span v-if="comment.is_admin_reply" class="bg-blue-100 dark:bg-cyan-500/20 text-blue-700 dark:text-cyan-400 text-[10px] px-2 py-0.5 rounded-full border border-blue-200 dark:border-cyan-500/30 font-black uppercase tracking-wider">
+                            پاسخ مدرس
+                          </span>
+                        </h4>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 font-mono">{{ formatDate(comment.created_at) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed pl-12 whitespace-pre-wrap">{{ comment.content }}</p>
+                </div>
+              </TransitionGroup>
+            </div>
+
           </div>
         </main>
 
         <aside class="lg:col-span-4">
           <div class="sticky top-32 space-y-8">
             
-            <div class="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden">
-              <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-r from-blue-600 to-brand-accent1 opacity-20"></div>
-              <NuxtImg 
-                :src="post.authorImg" 
-                :alt="`نویسنده مقاله: ${post.author}`" 
-                format="webp"
-                loading="lazy"
-                class="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 shadow-lg mx-auto relative z-10 object-cover bg-white"
-              />
-              <h3 class="text-xl font-black text-gray-800 dark:text-white mt-4 mb-1">{{ post.author }}</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-4">{{ post.authorRole }}</p>
-              <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6">
-                علاقه‌مند به دنیای کدنویسی و آموزش مفاهیم پیچیده به زبان ساده. همراه شما در مسیر یادگیری تکنولوژی.
+            <div class="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden group">
+              <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-blue-100 to-transparent dark:from-blue-900/20 dark:to-transparent"></div>
+              
+              <div class="relative w-28 h-28 mx-auto mb-5 mt-2">
+                <div class="absolute inset-0 border-2 border-blue-400/30 dark:border-cyan-500/30 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+                <div class="absolute -inset-2 border border-dashed border-purple-400/30 dark:border-purple-500/30 rounded-full group-hover:rotate-180 transition-transform duration-1000"></div>
+                <NuxtImg 
+                  :src="post.authorImg" 
+                  :alt="`نویسنده مقاله: ${post.author}`" 
+                  format="webp"
+                  loading="lazy"
+                  class="w-full h-full rounded-full border-4 border-white dark:border-gray-800 shadow-lg relative z-10 object-cover bg-white"
+                />
+              </div>
+              
+              <h3 class="text-2xl font-black text-gray-800 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">{{ post.author }}</h3>
+              <p class="text-xs font-bold text-brand-accent1 uppercase tracking-wider mb-4">{{ post.authorRole }}</p>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6 font-medium">
+                علاقه‌مند به دنیای کدنویسی و آموزش مفاهیم پیچیده به زبان ساده. همراه شما در مسیر یادگیری تکنولوژی در داناورس.
               </p>
-              <button class="w-full py-3 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-brand-accent1 font-bold rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-brand-accent1 dark:hover:text-white transition-colors">
-                مشاهده دوره‌های مدرس
+              <button class="w-full py-3.5 bg-gray-50 dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:border-blue-400 hover:text-blue-600 dark:hover:border-cyan-500 dark:hover:text-cyan-400 transition-all flex items-center justify-center gap-2 group/btn">
+                درباره نویسنده
+                <svg class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
               </button>
             </div>
 
             <div class="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-xl border border-gray-100 dark:border-gray-700">
-              <h4 class="text-lg font-black text-gray-800 dark:text-white mb-4">اشتراک‌گذاری مقاله</h4>
+              <h4 class="text-sm font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-5 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                اشتراک‌گذاری سیگنال
+              </h4>
               <div class="flex items-center gap-3">
-                <button class="flex-1 py-2.5 bg-blue-500 text-white rounded-xl font-bold text-sm hover:-translate-y-1 transition-transform shadow-md">تلگرام</button>
-                <button class="flex-1 py-2.5 bg-blue-700 text-white rounded-xl font-bold text-sm hover:-translate-y-1 transition-transform shadow-md">لینکدین</button>
-                <button class="w-12 h-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-xl hover:-translate-y-1 transition-transform shadow-sm">
+                <button class="flex-1 py-3 bg-[#0088cc] text-white rounded-xl font-bold text-sm hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(0,136,204,0.4)] transition-all">تلگرام</button>
+                <button class="flex-1 py-3 bg-[#0a66c2] text-white rounded-xl font-bold text-sm hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(10,102,194,0.4)] transition-all">لینکدین</button>
+                <button class="w-12 h-[44px] flex items-center justify-center bg-gray-50 dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-xl hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                 </button>
               </div>
@@ -110,158 +214,107 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const supabase = useSupabaseClient()
 
-// لیست مقالات دستی شما
+// لیست مقالات دستی (همان دیتای قبلی شما)
 const manualPosts = [
-  { 
-    id: 1, 
-    title: 'چرا یادگیری برنامه‌نویسی برای کودکان ضروری است؟', 
-    excerpt: 'برنامه‌نویسی فقط تایپ کد نیست؛ بلکه یادگیری نحوه حل مسئله، تفکر منطقی و خلاقیت است که در سنین پایین به شدت موثر است.', 
-    category: 'کودکان و نوجوانان', 
-    date: '۲۰ اردیبهشت ۱۴۰۳', 
-    readTime: '۵ دقیقه',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    author: 'مهندس احمدی',
-    authorRole: 'مدرس دپارتمان کودکان',
-    authorImg: 'https://i.pravatar.cc/150?img=11',
-    tags: ['کودکان', 'اسکرچ', 'پایتون', 'آموزش'],
-    content: `
-      <h2>برنامه‌نویسی، الفبای قرن بیست و یکم</h2>
-      <p>در دنیای امروز که تکنولوژی تمام جنبه‌های زندگی ما را فرا گرفته است، یادگیری برنامه‌نویسی برای کودکان دیگر یک مزیت لوکس نیست، بلکه یک ضرورت است. همانطور که خواندن و نوشتن پایه‌های ارتباطی ما را تشکیل می‌دهند، درک منطق کامپیوتر نیز زبان ارتباطی آینده است.</p>
-      <p>کودکانی که از سنین پایین با مفاهیم الگوریتمی آشنا می‌شوند، در واقع در حال تمرین ورزش ذهنی هستند. آن‌ها یاد می‌گیرند که چگونه یک مشکل بزرگ و پیچیده را به قطعات کوچک‌تر و قابل حل تقسیم کنند (Decomposition).</p>
-      
-      <h3>فواید پنهان کدنویسی برای ذهن کودک</h3>
-      <ul>
-        <li><strong>تقویت تفکر منطقی:</strong> کدنویسی به کودکان می‌آموزد که اتفاقات تصادفی نیستند و هر خروجی، نتیجه یک ورودی دقیق است.</li>
-        <li><strong>تاب‌آوری در برابر شکست:</strong> در برنامه‌نویسی، مواجه شدن با باگ‌ها (خطاها) یک امر طبیعی است. کودکان یاد می‌گیرند که از اشتباه کردن نترسند و برای رفع آن تلاش کنند.</li>
-        <li><strong>شکوفایی خلاقیت:</strong> با استفاده از ابزارهایی مانند Scratch، کودکان می‌توانند داستان‌ها و بازی‌های ذهنی خود را به واقعیت تبدیل کنند.</li>
-      </ul>
-      
-      <h2>از کجا باید شروع کنیم؟</h2>
-      <p>بهترین نقطه شروع، استفاده از زبان‌های بصری (Visual Programming) است. در آکادمی داناورس، ما مسیر یادگیری کودکان را با زبان‌های بلوکی آغاز می‌کنیم و پس از تقویت پایه منطقی، آن‌ها را با دنیای جذاب پایتون (Python) آشنا می‌سازیم.</p>
-    `
-  },
-  { 
-    id: 2, 
-    title: 'تفاوت طراح UI و UX چیست؟ راهنمای کامل', 
-    excerpt: 'بسیاری از افراد این دو مفهوم را با هم اشتباه می‌گیرند. در این مقاله به بررسی تفاوت‌ها، مهارت‌ها و بازار کار هر کدام می‌پردازیم.', 
-    category: 'طراحی و UI/UX', 
-    date: '۱۵ اردیبهشت ۱۴۰۳', 
-    readTime: '۸ دقیقه',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    author: 'سارا رضایی',
-    authorRole: 'متخصص تجربه کاربری',
-    authorImg: 'https://i.pravatar.cc/150?img=5',
-    tags: ['طراحی_رابط', 'تجربه_کاربری', 'Figma'],
-    content: `
-      <h2>UX (تجربه کاربری) در برابر UI (رابط کاربری)</h2>
-      <p>احتمالاً بارها اصطلاح UI/UX به گوشتان خورده است. با اینکه این دو مخفف همیشه در کنار هم می‌آیند، اما دو تخصص کاملاً متفاوت (و البته مکمل) در طراحی محصولات دیجیتال هستند.</p>
-      <p>اگر یک محصول را به بدن انسان تشبیه کنیم، کدهای برنامه‌نویسی استخوان‌بندی آن، UX اندام‌های حیاتی و نحوه عملکرد آن‌ها، و UI ظاهر زیبای آن فرد (پوست، لباس و ظاهر) است.</p>
-      
-      <h3>طراح UX چه می‌کند؟</h3>
-      <p>طراح تجربه کاربری (User Experience) بیشتر با روانشناسی، تحقیق و منطق سر و کار دارد. هدف او این است که سفر کاربر در سایت یا اپلیکیشن به روان‌ترین و بی‌دردسرترین شکل ممکن انجام شود. آن‌ها معمولاً خروجی‌هایی به شکل وایرفریم (Wireframe) خاکستری و نقشه‌های سفر کاربر تولید می‌کنند.</p>
-      
-      <h3>طراح UI چه می‌کند؟</h3>
-      <p>طراح رابط کاربری (User Interface) پس از دریافت وایرفریم‌ها از طراح UX، به آن‌ها رنگ، روح و زیبایی می‌بخشد. انتخاب تایپوگرافی، پالت رنگی، طراحی آیکون‌ها و ایجاد حس بصری لذت‌بخش در تخصص طراح UI است.</p>
-    `
-  },
-  { 
-    id: 3, 
-    title: 'معرفی بهترین فریم‌ورک‌های پایتون در سال جاری', 
-    excerpt: 'از جنگو تا فلسک و فست‌ای‌پی‌آی. بررسی جامع فریم‌ورک‌هایی که هر توسعه‌دهنده پایتون باید برای تسلط بر بازار کار بشناسد.', 
-    category: 'برنامه‌نویسی', 
-    date: '۱۰ اردیبهشت ۱۴۰۳', 
-    readTime: '۱۰ دقیقه',
-    image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bfce8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    author: 'علی کاظمی',
-    authorRole: 'توسعه‌دهنده ارشد بک‌اند',
-    authorImg: 'https://i.pravatar.cc/150?img=12',
-    tags: ['پایتون', 'Django', 'بک‌اند'],
-    content: `
-      <h2>چرا پایتون به فریم‌ورک نیاز دارد؟</h2>
-      <p>پایتون به تنهایی یک زبان قدرتمند است، اما اگر بخواهید یک سایت پیچیده مانند اینستاگرام یا پینترست بسازید، نوشتن کدهای تکراری برای امنیت، دیتابیس و مسیریابی (Routing) دیوانه‌کننده خواهد بود. اینجاست که فریم‌ورک‌ها وارد میدان می‌شوند.</p>
-      
-      <h3>۱. فریم‌ورک Django (جنگو): پادشاه بلامنازع</h3>
-      <p>جنگو با شعار "فریم‌ورکی برای کمال‌گرایان عجول" شناخته می‌شود. این فریم‌ورک به صورت پیش‌فرض پنل ادمین، سیستم احراز هویت و اتصال امن به دیتابیس (ORM) را در اختیار شما می‌گذارد. اگر پروژه شما بزرگ است، جنگو بهترین انتخاب است.</p>
-    `
-  },
-  { 
-    id: 4, 
-    title: 'هوش مصنوعی چگونه آینده مشاغل را تغییر می‌دهد؟', 
-    excerpt: 'آیا ربات‌ها جای ما را می‌گیرند؟ بررسی تاثیرات عمیق AI بر مشاغل مختلف و مهارت‌هایی که برای بقا نیاز داریم.', 
-    category: 'هوش مصنوعی', 
-    date: '۵ اردیبهشت ۱۴۰۳', 
-    readTime: '۶ دقیقه',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    author: 'دکتر کریمی',
-    authorRole: 'پژوهشگر هوش مصنوعی',
-    authorImg: 'https://i.pravatar.cc/150?img=33',
-    tags: ['هوش_مصنوعی', 'ChatGPT', 'آینده_شغلی'],
-    content: `
-      <h2>انقلاب هوش مصنوعی مولد</h2>
-      <p>با معرفی مدل‌های زبانی بزرگ مانند ChatGPT و ابزارهای تولید تصویر مثل Midjourney، موجی از شگفتی و البته ترس بازار کار جهانی را فرا گرفت. سوال اصلی این است: آیا تکنولوژی جدید آمده تا جایگزین انسان شود؟</p>
-      <p>تاریخ نشان داده است که هر انقلاب صنعتی، مشاغل تکراری را از بین برده اما مشاغل جدیدی خلق کرده است. هوش مصنوعی قرار نیست برنامه‌نویس‌ها، نویسندگان یا طراحان را بیکار کند؛ بلکه <strong>"فردی که از هوش مصنوعی استفاده می‌کند، جایگزین فردی خواهد شد که از آن استفاده نمی‌کند!"</strong></p>
-    `
-  }
+  { id: 1, title: 'چرا یادگیری برنامه‌نویسی برای کودکان ضروری است؟', excerpt: 'برنامه‌نویسی فقط تایپ کد نیست؛ بلکه یادگیری نحوه حل مسئله، تفکر منطقی و خلاقیت است.', category: 'کودکان و نوجوانان', date: '۲۰ اردیبهشت ۱۴۰۳', readTime: '۵ دقیقه', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', author: 'مهندس احمدی', authorRole: 'مدرس دپارتمان کودکان', authorImg: 'https://i.pravatar.cc/150?img=11', tags: ['کودکان', 'اسکرچ', 'پایتون', 'آموزش'], relatedCourseSlug: 'python-kids', content: `<h2>برنامه‌نویسی، الفبای قرن بیست و یکم</h2><p>در دنیای امروز که تکنولوژی تمام جنبه‌های زندگی ما را فرا گرفته است، یادگیری برنامه‌نویسی برای کودکان دیگر یک مزیت لوکس نیست، بلکه یک ضرورت است.</p>` },
+  { id: 2, title: 'تفاوت طراح UI و UX چیست؟ راهنمای کامل', excerpt: 'بسیاری از افراد این دو مفهوم را با هم اشتباه می‌گیرند. در این مقاله به بررسی تفاوت‌ها می‌پردازیم.', category: 'طراحی و UI/UX', date: '۱۵ اردیبهشت ۱۴۰۳', readTime: '۸ دقیقه', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', author: 'سارا رضایی', authorRole: 'متخصص تجربه کاربری', authorImg: 'https://i.pravatar.cc/150?img=5', tags: ['طراحی_رابط', 'تجربه_کاربری', 'Figma'], relatedCourseSlug: 'photoshop', content: `<h2>UX در برابر UI</h2><p>احتمالاً بارها اصطلاح UI/UX به گوشتان خورده است. با اینکه این دو مخفف همیشه در کنار هم می‌آیند، اما دو تخصص کاملاً متفاوت هستند.</p>` },
 ]
 
 const categoryMap = { tech: 'اخبار تکنولوژی', tutorial: 'آموزش برنامه‌نویسی', ai: 'هوش مصنوعی' };
 
-// 🚀 دریافت هوشمند مقاله با استفاده از useAsyncData
-const { data: post } = await useAsyncData(`post-${route.params.id}`, async () => {
-  // ۱. بررسی می‌کنیم آیا در دیتابیس وجود دارد؟
-  const { data, error } = await supabase.from('blogs').select('*').eq('id', route.params.id).single();
+// 🚀 ۱. دریافت مقاله و دوره مرتبط
+const { data: postData } = await useAsyncData(`post-data-${route.params.id}`, async () => {
+  let currentPost = null;
+  let courseData = null;
+
+  const { data: dbPost } = await supabase.from('blogs').select('*').eq('id', route.params.id).single();
   
-  if (data) {
-    return {
-      id: data.id,
-      title: data.title,
-      content: data.content,
-      excerpt: data.content.substring(0, 180) + '...', // خلاصه برای نمایش در کادر آبی
-      category: categoryMap[data.category] || 'مقاله آموزشی',
-      date: new Date(data.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }),
-      readTime: '۵ دقیقه', 
-      image: data.image_url || '/images/default-blog.jpg',
-      author: data.author || 'تیم داناورس',
-      authorRole: 'مدرس و کارشناس آکادمی',
-      // 💡 دریافت عکس نویسنده از دیتابیس
-      authorImg: data.author_image_url || 'https://i.pravatar.cc/150?img=60',
-      tags: ['داناورس', 'آموزش'] 
+  if (dbPost) {
+    currentPost = {
+      id: dbPost.id, title: dbPost.title, content: dbPost.content, excerpt: dbPost.content.substring(0, 180) + '...', category: categoryMap[dbPost.category] || 'مقاله آموزشی', date: new Date(dbPost.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }), readTime: '۵ دقیقه', image: dbPost.image_url || '/images/default-blog.jpg', author: dbPost.author || 'تیم داناورس', authorRole: 'مدرس و کارشناس آکادمی', authorImg: dbPost.author_image_url || 'https://i.pravatar.cc/150?img=60', tags: ['داناورس', 'آموزش'], relatedCourseSlug: dbPost.related_course_slug
+    };
+  } else {
+    currentPost = manualPosts.find(p => p.id == route.params.id);
+  }
+
+  if (currentPost && currentPost.relatedCourseSlug) {
+    const { data: course } = await supabase.from('courses').select('id, slug, title, description, image_url').eq('slug', currentPost.relatedCourseSlug).single();
+    if (course) {
+      courseData = { id: course.id, slug: course.slug, title: course.title, desc: course.description?.substring(0, 100) + '...', image: course.image_url };
     }
   }
-  
-  // ۲. اگر در دیتابیس نبود، در مقالات دستی می‌گردیم
-  const manualFound = manualPosts.find(p => p.id == route.params.id);
-  if (manualFound) return manualFound;
 
-  return null;
+  return { post: currentPost, course: courseData };
 });
 
-// 💡 سئوی داینامیک و فوق‌العاده قوی (کاملاً بهینه‌شده برای SSR و گوگل)
+const post = computed(() => postData.value?.post);
+const relatedCourseData = computed(() => postData.value?.course);
+
+// 🚀 ۲. سیستم کامنت‌ها (SSR برای سئو)
+const { data: comments, refresh: refreshComments } = await useAsyncData(`comments-${route.params.id}`, async () => {
+  const { data } = await supabase
+    .from('comments')
+    .select('id, user_name, content, created_at, is_admin_reply')
+    .eq('post_id', route.params.id)
+    .eq('is_approved', true) // فقط کامنت‌های تایید شده توسط شما را می‌گیرد
+    .order('created_at', { ascending: true }); // از قدیمی به جدید برای حفظ جریان گفتگو
+  return data || [];
+});
+
+// مدیریت فرم کامنت
+const commentForm = ref({ name: '', text: '' });
+const isSubmitting = ref(false);
+const feedbackMsg = ref('');
+const feedbackError = ref(false);
+
+const submitComment = async () => {
+  if (!commentForm.value.name.trim() || !commentForm.value.text.trim()) return;
+  
+  isSubmitting.value = true;
+  feedbackMsg.value = '';
+  
+  // ذخیره در دیتابیس (is_approved به صورت پیش‌فرض در دیتابیس false است)
+  const { error } = await supabase.from('comments').insert({
+    post_id: route.params.id,
+    user_name: commentForm.value.name.trim(),
+    content: commentForm.value.text.trim()
+  });
+
+  isSubmitting.value = false;
+
+  if (error) {
+    console.error(error);
+    feedbackError.value = true;
+    feedbackMsg.value = 'متاسفانه خطایی رخ داد. لطفاً دوباره تلاش کنید.';
+  } else {
+    feedbackError.value = false;
+    feedbackMsg.value = '✅ دیدگاه شما با موفقیت ثبت شد و پس از بررسی منتشر می‌شود.';
+    commentForm.value.name = '';
+    commentForm.value.text = '';
+  }
+};
+
+// تبدیل تاریخ میلادی دیتابیس به شمسی زیبا
+const formatDate = (dateString) => {
+  if (!dateString) return '';
+  return new Intl.DateTimeFormat('fa-IR', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(dateString));
+};
+
+// سئوی پیشرفته + اسکیمای مقاله
 useSeoMeta({
   title: computed(() => post.value ? `${post.value.title} | وبلاگ داناورس` : 'خواندن مقاله'),
-  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی داناورس در زمینه برنامه‌نویسی و هوش مصنوعی'),
-  
-  // تنظیمات Open Graph برای نمایش جذاب در تلگرام، لینکدین و...
+  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی آکادمی داناورس'),
   ogTitle: computed(() => post.value ? post.value.title : 'وبلاگ داناورس'),
-  ogDescription: computed(() => post.value ? post.value.excerpt : 'جدیدترین مقالات آموزشی داناورس'),
-  ogImage: computed(() => post.value ? post.value.image : 'https://danaverse.ir/images/Banner.jpg'),
-  ogType: 'article', // سئو: مشخص کردن اینکه این صفحه یک "مقاله" است
-  ogUrl: computed(() => `https://danaverse.ir/learning/${route.params.id}`), // سئو: آدرس دقیق صفحه
-
-  // تنظیمات اختصاصی Article برای شبکه‌های اجتماعی
-  articleAuthor: computed(() => post.value ? post.value.author : 'داناورس'),
-  articlePublishedTime: computed(() => post.value ? post.value.date : ''),
-  
-  // تنظیمات Twitter Card
+  ogDescription: computed(() => post.value ? post.value.excerpt : ''),
+  ogImage: computed(() => post.value ? post.value.image : ''),
+  ogType: 'article',
   twitterCard: 'summary_large_image',
-  twitterTitle: computed(() => post.value ? post.value.title : 'وبلاگ داناورس'),
-  twitterImage: computed(() => post.value ? post.value.image : 'https://danaverse.ir/images/Banner.jpg')
 });
 
 const schemaData = computed(() => {
@@ -272,113 +325,37 @@ const schemaData = computed(() => {
     "headline": post.value.title,
     "image": post.value.image,
     "datePublished": post.value.date,
-    "author": {
-      "@type": "Person",
-      "name": post.value.author,
-      "url": "https://danaverse.ir/about" // اضافه شدن لینک نویسنده برای اعتبار بیشتر در گوگل
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "آکادمی داناورس",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://danaverse.ir/favicon.ico"
-      }
-    },
+    "author": { "@type": "Person", "name": post.value.author },
+    "publisher": { "@type": "Organization", "name": "آکادمی داناورس" },
     "description": post.value.excerpt,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://danaverse.ir/learning/${post.value.id}`
-    }
   }
 });
 
 useHead({
-  // سئو: جلوگیری از مشکل داپلیکیت کانتنت با تگ Canonical
-  link: [
-    {
-      rel: 'canonical',
-      href: computed(() => `https://danaverse.ir/learning/${route.params.id}`)
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: computed(() => JSON.stringify(schemaData.value))
-    }
-  ]
+  link: [{ rel: 'canonical', href: computed(() => `https://danaverse.ir/learning/${route.params.id}`) }],
+  script: [{ type: 'application/ld+json', children: computed(() => JSON.stringify(schemaData.value)) }]
 });
 </script>
 
 <style scoped>
-.whitespace-pre-wrap {
-  white-space: pre-wrap; 
-}
-.article-content h2 {
-  font-size: 1.75rem;
-  font-weight: 900;
-  color: #1f2937;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-}
-.dark .article-content h2 {
-  color: #f9fafb;
-}
+.whitespace-pre-wrap { white-space: pre-wrap; }
+.article-content h2 { font-size: 1.75rem; font-weight: 900; color: #1f2937; margin-top: 2.5rem; margin-bottom: 1rem; line-height: 1.3; }
+.dark .article-content h2 { color: #f9fafb; }
+.article-content h3 { font-size: 1.25rem; font-weight: 800; color: #374151; margin-top: 2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.article-content h3::before { content: ''; display: inline-block; width: 10px; height: 10px; background-color: #38bdf8; border-radius: 50%; }
+.dark .article-content h3 { color: #d1d5db; }
+.article-content p { margin-bottom: 1.5rem; }
+.article-content ul { list-style-type: none; padding-right: 1rem; margin-bottom: 2rem; }
+.article-content li { position: relative; margin-bottom: 0.75rem; padding-right: 1.5rem; }
+.article-content li::before { content: '✓'; position: absolute; right: 0; color: #2563eb; font-weight: bold; }
+.dark .article-content li::before { color: #38bdf8; }
+.article-content strong { font-weight: 800; color: #111827; }
+.dark .article-content strong { color: #fff; }
 
-.article-content h3 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #374151;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.article-content h3::before {
-  content: '';
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #38bdf8;
-  border-radius: 50%;
-}
-.dark .article-content h3 {
-  color: #d1d5db;
-}
+/* انیمیشن برای پاپ‌آپ شدن بنر و لیست کامنت‌ها */
+.fade-up-enter-active, .fade-up-leave-active { transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.fade-up-enter-from, .fade-up-leave-to { opacity: 0; transform: translateY(30px); }
 
-.article-content p {
-  margin-bottom: 1.5rem;
-}
-
-.article-content ul {
-  list-style-type: none;
-  padding-right: 1rem;
-  margin-bottom: 2rem;
-}
-
-.article-content li {
-  position: relative;
-  margin-bottom: 0.75rem;
-  padding-right: 1.5rem;
-}
-.article-content li::before {
-  content: '✓';
-  position: absolute;
-  right: 0;
-  color: #2563eb;
-  font-weight: bold;
-}
-.dark .article-content li::before {
-  color: #38bdf8;
-}
-
-.article-content strong {
-  font-weight: 800;
-  color: #111827;
-}
-.dark .article-content strong {
-  color: #fff;
-}
+.list-enter-active, .list-leave-active { transition: all 0.5s ease; }
+.list-enter-from, .list-leave-to { opacity: 0; transform: translateX(30px); }
 </style>
