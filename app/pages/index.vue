@@ -397,10 +397,13 @@
               </div>
             </div>
             
-            <div class="flex gap-4 h-full">
-  <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 bg-white/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl flex items-center justify-center p-3 filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:border-brand-accent1/50 transition-all duration-300 cursor-pointer backdrop-blur-md group">
-    <NuxtImg src="/images/enamad.png" alt="نماد اعتماد الکترونیک" class="w-full h-auto max-h-16 object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+<div class="flex gap-4 h-full">
+  <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=742622&Code=bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" rel="noopener noreferrer" class="flex-1 bg-white/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl flex items-center justify-center p-3 filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:border-brand-accent1/50 transition-all duration-300 cursor-pointer backdrop-blur-md group">
+    
+    <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=742622&Code=bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" alt="نماد اعتماد الکترونیکی داناورس" class="w-full h-auto max-h-16 object-contain group-hover:scale-105 transition-transform" code="bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" />
+    
   </a>
+</div>
   
   <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 bg-white/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl flex items-center justify-center p-3 filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:border-brand-accent1/50 transition-all duration-300 cursor-pointer backdrop-blur-md group">
     <NuxtImg src="/images/samandehi.png" alt="نشان ملی ثبت رسانه‌های دیجیتال" class="w-full h-auto max-h-16 object-contain group-hover:scale-105 transition-transform" loading="lazy" />
