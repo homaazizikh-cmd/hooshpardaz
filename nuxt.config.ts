@@ -67,7 +67,7 @@ export default defineNuxtConfig({
         lang: 'fa-IR'
       },
       titleTemplate: '%s | داناورس',
-      title: 'داناورس | آکادمی برنامه‌نویسی و هوش مصنوعی',
+      title: '23064147',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
