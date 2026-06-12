@@ -32,9 +32,11 @@
               <div class="absolute -inset-4 border border-slate-200 dark:border-slate-800 rounded-full group-hover:border-blue-400/50 dark:group-hover:border-cyan-500/50 animate-[spin_8s_linear_infinite] transition-colors duration-500"></div>
               <div class="absolute -inset-2 border border-slate-200 dark:border-slate-800 border-dashed rounded-full group-hover:border-purple-400/50 dark:group-hover:border-purple-500/50 animate-[spin_12s_linear_infinite_reverse] transition-colors duration-500"></div>
               
-              <img 
-                :src="instructor.image_url" 
-                :alt="instructor.name" 
+              <NuxtImg 
+                :src="instructor.image_url || '/images/default-avatar.png'" 
+                :alt="`استاد ${instructor.name} - مدرس ${instructor.title} در آکادمی داناورس`" 
+                :title="`پروفایل تخصصی ${instructor.name}`"
+                format="webp"
                 class="w-full h-full object-cover rounded-full border-4 border-white dark:border-[#090e1a] relative z-10 shadow-lg dark:shadow-2xl bg-slate-100 dark:bg-slate-800 grayscale-0 dark:grayscale group-hover:grayscale-0 transition-all duration-700" 
               />
             </div>
@@ -49,11 +51,11 @@
             <div class="w-full mt-2">
               <div class="text-right mb-4 flex items-center justify-center lg:justify-start gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                ACTIVE_MODULES
+                مهارت‌های تخصصی (ACTIVE_MODULES)
               </div>
               
               <div class="flex flex-col gap-2.5 w-full">
-                <div v-for="skill in instructor.skills" :key="skill" class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 group-hover:border-blue-200 dark:group-hover:border-cyan-500/30 transition-all duration-300">
+                <div v-for="skill in (instructor.skills || [])" :key="skill" class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 group-hover:border-blue-200 dark:group-hover:border-cyan-500/30 transition-all duration-300">
                   <div class="flex items-center gap-3">
                      <div class="w-7 h-7 rounded-lg flex items-center justify-center bg-blue-100/50 dark:bg-[#0f172a] border border-blue-200/50 dark:border-slate-800 text-blue-600 dark:text-cyan-400 shadow-inner">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -82,7 +84,7 @@
                 🧠
               </div>
               <div>
-                <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">پروفایل و بیوگرافی</h2>
+                <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">بیوگرافی و رزومه علمی</h2>
                 <p class="text-xs font-mono text-slate-500 dark:text-slate-500 mt-1 uppercase">DATA_LOG // ABOUT_MENTOR</p>
               </div>
             </div>
@@ -100,7 +102,7 @@
                   🚀
                 </div>
                 <div>
-                  <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">دوره‌های آموزشی فعال</h2>
+                  <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">دوره‌های آموزشی فعال استاد</h2>
                   <p class="text-xs font-mono text-slate-500 dark:text-slate-500 mt-1 uppercase">DETECTED_COURSES: {{ instructorCourses.length }}</p>
                 </div>
               </div>
@@ -120,7 +122,7 @@
                     <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
                     <span class="w-2 h-2 rounded-full bg-green-500"></span>
                   </div>
-                  <img :src="course.image" :alt="course.title" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-all duration-700" />
+                  <NuxtImg :src="course.image" :alt="course.title" format="webp" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-all duration-700" />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
                 </div>
                 
@@ -166,8 +168,21 @@
 import { computed } from 'vue';
 
 const route = useRoute();
+const supabase = useSupabaseClient();
+const routeId = parseInt(route.params.id);
 
-const instructors = [
+// 🚀 اتصال به دیتابیس (برای جلوگیری از ارور 404 اساتید جدید)
+const { data: dbInstructor } = await useAsyncData(`instructor-${routeId}`, async () => {
+  if (!routeId) return null;
+  const { data } = await supabase
+    .from('instructors')
+    .select('*')
+    .eq('id', routeId)
+    .single();
+  return data;
+});
+
+const manualInstructors = [
   { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: 'متخصص پایتون و AI', bio: 'توسعه‌دهنده ارشد و پژوهشگر هوش مصنوعی. ایشان با سال‌ها تجربه در پیاده‌سازی مدل‌های یادگیری ماشین (Machine Learning) و شبکه‌های عصبی عمیق، رویکردی کاملاً پروژه‌محور در کلاس‌های خود دارند. هدف اصلی کلاس‌های ایشان، رساندن هنرجو از سطح صفر به توانایی ساخت اپلیکیشن‌های هوشمند واقعی است.', skills: ['Python', 'Machine_Learning', 'Deep_Learning', 'TensorFlow'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
   { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با بیش از ۸ سال تجربه در پروژه‌های استارتاپی. کلاس‌های ایشان فقط آموزش نرم‌افزار نیست، بلکه آموزش "دیدن" و "خلق کردن" است. هنرجویان ایشان به راحتی جذب بازار کار طراحی محصول و گرافیک تبلیغاتی می‌شوند.', skills: ['UI/UX', 'Photoshop', 'Illustrator', 'Figma'], image_url: '/images/instructors/paniz-borna.jpg' },
   { id: 3, name: 'داود قبادی', dept: 'python', title: 'منتور برنامه‌نویسی', bio: 'کارشناس نرم‌افزار و متخصص در آموزش مفاهیم پایه برنامه‌نویسی و پایتون با رویکرد گیمیفیکیشن و استعدادیابی کودکان و نوجوانان. صبر و حوصله بی‌نظیر ایشان در کنار دانش فنی بالا، باعث می‌شود سخت‌ترین مفاهیم الگوریتمی برای رده‌های سنی پایین به یک بازی جذاب تبدیل شود.', skills: ['Python_Kids', 'Algorithm', 'Mentoring', 'Scratch'], image_url: '/images/instructors/davood-ghobadi.jpg' },
@@ -179,23 +194,36 @@ const instructors = [
 ];
 
 const allCourses = [
-  { id: 1, title: 'مهارت‌های هفت‌گانه (ICDL)', price: '۴,۵۰۰,۰۰۰', instructor_id: 8, image: '/images/ICDL.jpg' },
-  { id: 5, title: 'رباتیک بزرگسال', price: '۱۲,۰۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatic.jpg' },
-  { id: 1, title: 'رباتیک دانش‌آموزی', price: '۷,۵۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatoc-childern.jpg' },
-  { id: 3, title: 'اسکرچ (Scratch)', price: '۵,۰۰۰,۰۰۰', instructor_id: 3, image: '/images/Scratch.jpg' },
-  { id: 1, title: 'پایتون کودکان', price: '۶,۵۰۰,۰۰۰', instructor_id: 3, image: '/images/Python-childern.jpg' },
-  { id: 1, title: 'پایتون مقدماتی', price: '۸,۰۰۰,۰۰۰', instructor_id: 1, image: '/images/Python-M.jpg' },
-  { id: 2, title: 'پایتون پیشرفته', price: '۱۰,۰۰۰,۰۰۰', instructor_id: 6, image: '/images/Python-P.jpg' },
-  { id: 3, title: 'ابزارهای هوش مصنوعی', price: '۷,۰۰۰,۰۰۰', instructor_id: 5, image: '/images/Ai-tools.jpg' },
-  { id: 4, title: 'ماشین لرنینگ', price: '۱۲,۰۰۰,۰۰۰', instructor_id: 1, image: '/images/Machine learning.jpg' },
-  { id: 6, title: 'فتوشاپ (Photoshop)', price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Photoshop.jpg' },
-  { id: 7, title: 'ایلاستریتور (Illustrator)', price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Illustrator.jpg' },
-  { id: 8, title: 'ایندیزاین (InDesign)', price: '۶,۵۰۰,۰۰۰', instructor_id: 2, image: '/images/Indesign.jpg' },
-  { id: 2, title: 'تصویرسازی اسکیچ', price: '۶,۰۰۰,۰۰۰', instructor_id: 7, image: '/images/Sketch.jpg' }
+  { id: 1, title: 'مهارت‌های هفت‌گانه (ICDL)', price: '۴,۵۰۰,۰۰۰', instructor_id: 8, image: '/images/ICDL.webp' },
+  { id: 5, title: 'رباتیک بزرگسال', price: '۱۲,۰۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatic.webp' },
+  { id: 12, title: 'رباتیک دانش‌آموزی', price: '۷,۵۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatoc-childern.webp' },
+  { id: 10, title: 'اسکرچ (Scratch)', price: '۵,۰۰۰,۰۰۰', instructor_id: 3, image: '/images/Scratch.webp' },
+  { id: 11, title: 'پایتون کودکان', price: '۶,۵۰۰,۰۰۰', instructor_id: 3, image: '/images/Python-childern.webp' },
+  { id: 1, title: 'پایتون مقدماتی', price: '۸,۰۰۰,۰۰۰', instructor_id: 1, image: '/images/Python-M.webp' },
+  { id: 2, title: 'پایتون پیشرفته', price: '۱۰,۰۰۰,۰۰۰', instructor_id: 6, image: '/images/Python-P.webp' },
+  { id: 3, title: 'ابزارهای هوش مصنوعی', price: '۷,۰۰۰,۰۰۰', instructor_id: 5, image: '/images/Ai-tools.webp' },
+  { id: 4, title: 'ماشین لرنینگ', price: '۱۲,۰۰۰,۰۰۰', instructor_id: 1, image: '/images/Machine learning.webp' },
+  { id: 6, title: 'فتوشاپ (Photoshop)', price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Photoshop.webp' },
+  { id: 7, title: 'ایلاستریتور (Illustrator)', price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Illustrator.webp' },
+  { id: 8, title: 'ایندیزاین (InDesign)', price: '۶,۵۰۰,۰۰۰', instructor_id: 2, image: '/images/Indesign.webp' },
+  { id: 9, title: 'تصویرسازی اسکیچ', price: '۶,۰۰۰,۰۰۰', instructor_id: 7, image: '/images/Sketch.webp' }
 ];
 
+// تلفیق هوشمندانه دیتای ثابت با دیتابیس
 const instructor = computed(() => {
-  return instructors.find(i => i.id === parseInt(route.params.id));
+  let found = manualInstructors.find(i => i.id === routeId);
+  if (!found && dbInstructor.value) {
+    found = {
+      id: dbInstructor.value.id,
+      name: dbInstructor.value.name,
+      dept: dbInstructor.value.dept,
+      title: dbInstructor.value.title,
+      bio: dbInstructor.value.bio || 'بیوگرافی این استاد به زودی تکمیل خواهد شد.',
+      skills: Array.isArray(dbInstructor.value.skills) ? dbInstructor.value.skills : [],
+      image_url: dbInstructor.value.image_url || '/images/default-avatar.png'
+    };
+  }
+  return found;
 });
 
 const instructorCourses = computed(() => {
@@ -203,47 +231,51 @@ const instructorCourses = computed(() => {
   return allCourses.filter(c => c.instructor_id === instructor.value.id);
 });
 
-// 🚀 سئوی فوق‌پیشرفته (Dynamic Meta Tags)
+// 🚀 سئوی فوق‌پیشرفته (واکنش‌گرا و کلیک‌خور)
 useSeoMeta({
-  title: () => instructor.value ? `رزومه و دوره‌های ${instructor.value.name} | آکادمی داناورس` : 'پروفایل استاد پیدا نشد',
-  description: () => instructor.value ? instructor.value.bio.substring(0, 160) : '',
-  ogTitle: () => instructor.value ? `${instructor.value.name} - ${instructor.value.title}` : '',
-  ogDescription: () => instructor.value ? instructor.value.bio.substring(0, 160) : '',
+  title: () => instructor.value ? `استاد ${instructor.value.name} | مدرس ${instructor.value.title} داناورس` : 'پروفایل پیدا نشد',
+  description: () => instructor.value ? `رزومه، سوابق تدریس و دوره‌های فعال استاد ${instructor.value.name} (${instructor.value.title}) در آکادمی برنامه‌نویسی و هوش مصنوعی داناورس.` : '',
+  keywords: () => instructor.value ? `استاد ${instructor.value.name}, ${instructor.value.title}, مدرس برنامه نویسی, دوره‌های ${instructor.value.name}, داناورس` : '',
+  ogTitle: () => instructor.value ? `رزومه و دوره‌های استاد ${instructor.value.name}` : '',
+  ogDescription: () => instructor.value ? instructor.value.bio.substring(0, 160) + '...' : '',
   ogImage: () => instructor.value ? `https://danaverse.ir${instructor.value.image_url}` : '',
   ogType: 'profile',
   twitterCard: 'summary_large_image',
 });
 
-// 🧠 تزریق کدهای ساختاریافته گوگل (Person Schema)
-useHead({
-  link: [
-    { 
-      rel: 'canonical', 
-      href: () => instructor.value ? `https://danaverse.ir/instructors/${instructor.value.id}` : 'https://danaverse.ir/instructors' 
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: computed(() => {
-        if (!instructor.value) return null;
-        return JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "name": instructor.value.name,
-          "jobTitle": instructor.value.title,
-          "description": instructor.value.bio,
-          "image": `https://danaverse.ir${instructor.value.image_url}`,
-          "url": `https://danaverse.ir/instructors/${instructor.value.id}`,
-          "affiliation": {
-            "@type": "Organization",
-            "name": "آکادمی داناورس",
-            "url": "https://danaverse.ir"
-          },
-          "knowsAbout": instructor.value.skills
-        })
-      })
-    }
-  ]
+// 🧠 تزریق کدهای ساختاریافته گوگل با رفع باگ Hydration
+useHead(() => {
+  if (!instructor.value) return {};
+
+  const schemaJson = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": instructor.value.name,
+    "jobTitle": instructor.value.title,
+    "description": instructor.value.bio,
+    "image": `https://danaverse.ir${instructor.value.image_url}`,
+    "url": `https://danaverse.ir/instructors/${instructor.value.id}`,
+    "affiliation": {
+      "@type": "Organization",
+      "name": "آکادمی داناورس",
+      "url": "https://danaverse.ir"
+    },
+    "knowsAbout": instructor.value.skills
+  };
+
+  return {
+    link: [
+      { 
+        rel: 'canonical', 
+        href: `https://danaverse.ir/instructors/${instructor.value.id}` 
+      }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(schemaJson)
+      }
+    ]
+  };
 });
 </script>

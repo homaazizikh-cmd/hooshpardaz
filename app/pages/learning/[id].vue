@@ -6,17 +6,19 @@
       <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8 font-medium">
         <NuxtLink to="/" class="hover:text-blue-600 dark:hover:text-brand-accent1 transition-colors">خانه</NuxtLink>
         <span>/</span>
-        <NuxtLink to="/learning" class="hover:text-blue-600 dark:hover:text-brand-accent1 transition-colors">مسیر یادگیری</NuxtLink>
+        <NuxtLink to="/learning" class="hover:text-blue-600 dark:hover:text-brand-accent1 transition-colors">مجله آموزشی</NuxtLink>
         <span>/</span>
         <span class="text-gray-800 dark:text-gray-200 truncate max-w-[200px]">{{ post.title }}</span>
       </nav>
 
       <header class="relative w-full aspect-[21/9] md:aspect-[21/8] rounded-[2.5rem] overflow-hidden shadow-2xl mb-12 group">
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent z-10"></div>
+        <!-- 🎯 سئو: اضافه شدن fetchpriority برای لود سریع‌تر کاور مقاله -->
         <NuxtImg 
           :src="post.image" 
-          :alt="`مقاله ${post.title} در آکادمی داناورس`" 
+          :alt="`${post.title} - مجله آموزش برنامه‌نویسی داناورس`" 
           format="webp"
+          fetchpriority="high"
           preload
           class="w-full h-full object-cover relative z-0 transform group-hover:scale-105 transition-transform duration-1000"
         />
@@ -50,9 +52,11 @@
             {{ post.excerpt }}
           </blockquote>
           
+          <!-- محتوای مقاله -->
           <div class="prose prose-lg max-w-none dark:prose-invert text-gray-600 dark:text-gray-300 leading-loose text-justify space-y-6 article-content whitespace-pre-wrap relative z-10" v-html="post.content">
           </div>
 
+          <!-- بخش دوره مرتبط (بدون تغییر) -->
           <Transition name="fade-up">
             <div v-if="relatedCourseData" class="mt-16 mb-8 relative group rounded-3xl overflow-hidden p-[2px]">
               <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-brand-accent1 opacity-70 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
@@ -79,6 +83,7 @@
             </div>
           </Transition>
 
+          <!-- برچسب‌ها -->
           <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-700/80 flex flex-wrap items-center gap-3 relative z-10">
             <span class="text-gray-500 dark:text-gray-400 font-bold text-sm flex items-center gap-1">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
@@ -89,6 +94,7 @@
             </a>
           </div>
 
+          <!-- بخش نظرات (بدون تغییر) -->
           <div class="mt-16 pt-10 border-t border-gray-200 dark:border-gray-700 relative z-10" id="comments">
             <h3 class="text-2xl font-black text-gray-800 dark:text-white mb-8 flex items-center gap-3">
               <span class="w-3 h-8 bg-brand-accent1 rounded-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"></span>
@@ -161,6 +167,7 @@
               <div class="relative w-28 h-28 mx-auto mb-5 mt-2">
                 <div class="absolute inset-0 border-2 border-blue-400/30 dark:border-cyan-500/30 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
                 <div class="absolute -inset-2 border border-dashed border-purple-400/30 dark:border-purple-500/30 rounded-full group-hover:rotate-180 transition-transform duration-1000"></div>
+                <!-- 🎯 سئو: نویسنده -->
                 <NuxtImg 
                   :src="post.authorImg" 
                   :alt="`نویسنده مقاله: ${post.author}`" 
@@ -175,10 +182,10 @@
               <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6 font-medium">
                 علاقه‌مند به دنیای کدنویسی و آموزش مفاهیم پیچیده به زبان ساده. همراه شما در مسیر یادگیری تکنولوژی در داناورس.
               </p>
-              <button class="w-full py-3.5 bg-gray-50 dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:border-blue-400 hover:text-blue-600 dark:hover:border-cyan-500 dark:hover:text-cyan-400 transition-all flex items-center justify-center gap-2 group/btn">
-                درباره نویسنده
-                <svg class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-              </button>
+              <NuxtLink to="/instructors" class="w-full py-3.5 bg-gray-50 dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:border-blue-400 hover:text-blue-600 dark:hover:border-cyan-500 dark:hover:text-cyan-400 transition-all flex items-center justify-center gap-2 group/btn">
+                درباره نویسندگان ما
+                <svg class="w-4 h-4 transform group-hover/btn:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </NuxtLink>
             </div>
 
             <div class="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-xl border border-gray-100 dark:border-gray-700">
@@ -189,9 +196,6 @@
               <div class="flex items-center gap-3">
                 <button class="flex-1 py-3 bg-[#0088cc] text-white rounded-xl font-bold text-sm hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(0,136,204,0.4)] transition-all">تلگرام</button>
                 <button class="flex-1 py-3 bg-[#0a66c2] text-white rounded-xl font-bold text-sm hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(10,102,194,0.4)] transition-all">لینکدین</button>
-                <button class="w-12 h-[44px] flex items-center justify-center bg-gray-50 dark:bg-[#0f172a] border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-xl hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                </button>
               </div>
             </div>
 
@@ -220,13 +224,11 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const supabase = useSupabaseClient()
 
-// لیست مقالات دستی
 const manualPosts = [
   { id: 1, title: 'چرا یادگیری برنامه‌نویسی برای کودکان ضروری است؟', excerpt: 'برنامه‌نویسی فقط تایپ کد نیست؛ بلکه یادگیری نحوه حل مسئله، تفکر منطقی و خلاقیت است.', category: 'کودکان و نوجوانان', date: '۲۰ اردیبهشت ۱۴۰۳', readTime: '۵ دقیقه', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', author: 'مهندس احمدی', authorRole: 'مدرس دپارتمان کودکان', authorImg: 'https://i.pravatar.cc/150?img=11', tags: ['کودکان', 'اسکرچ', 'پایتون', 'آموزش'], relatedCourseSlug: 'python-kids', content: `<h2>برنامه‌نویسی، الفبای قرن بیست و یکم</h2><p>در دنیای امروز که تکنولوژی تمام جنبه‌های زندگی ما را فرا گرفته است، یادگیری برنامه‌نویسی برای کودکان دیگر یک مزیت لوکس نیست، بلکه یک ضرورت است.</p>` },
   { id: 2, title: 'تفاوت طراح UI و UX چیست؟ راهنمای کامل', excerpt: 'بسیاری از افراد این دو مفهوم را با هم اشتباه می‌گیرند. در این مقاله به بررسی تفاوت‌ها می‌پردازیم.', category: 'طراحی و UI/UX', date: '۱۵ اردیبهشت ۱۴۰۳', readTime: '۸ دقیقه', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', author: 'سارا رضایی', authorRole: 'متخصص تجربه کاربری', authorImg: 'https://i.pravatar.cc/150?img=5', tags: ['طراحی_رابط', 'تجربه_کاربری', 'Figma'], relatedCourseSlug: 'photoshop', content: `<h2>UX در برابر UI</h2><p>احتمالاً بارها اصطلاح UI/UX به گوشتان خورده است. با اینکه این دو مخفف همیشه در کنار هم می‌آیند، اما دو تخصص کاملاً متفاوت هستند.</p>` },
 ];
 
-// 🚀 سیستم پشتیبان (Fallback) دوره‌ها: اگر دیتابیس خالی بود، از اینجا می‌خواند!
 const manualCoursesFallback = [
   { id: 11, slug: 'python-kids', title: 'پایتون کودکان', desc: 'زبان پایتون با بیانی ساده و جذاب برای نوجوانان.', image: '/images/Python-childern.webp' },
   { id: 6, slug: 'photoshop', title: 'فتوشاپ (Photoshop)', desc: 'خلق جهان‌های بصری و ورود به بازار کار طراحی و ادیت عکس.', image: '/images/Photoshop.webp' },
@@ -235,28 +237,42 @@ const manualCoursesFallback = [
 
 const categoryMap = { tech: 'اخبار تکنولوژی', tutorial: 'آموزش برنامه‌نویسی', ai: 'هوش مصنوعی' };
 
-// 🚀 دریافت مقاله و دوره مرتبط به صورت هوشمند
 const { data: postData } = await useAsyncData(`post-data-${route.params.id}`, async () => {
   let currentPost = null;
   let courseData = null;
 
-  // ۱. جستجوی مقاله در دیتابیس یا لیست دستی
+  // دریافت دیتا از دیتابیس با پشتیبانی از فیلدهای سئو
   const { data: dbPost } = await supabase.from('blogs').select('*').eq('id', route.params.id).single();
   if (dbPost) {
-    currentPost = { id: dbPost.id, title: dbPost.title, content: dbPost.content, excerpt: dbPost.content.substring(0, 180) + '...', category: categoryMap[dbPost.category] || 'مقاله آموزشی', date: new Date(dbPost.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }), readTime: '۵ دقیقه', image: dbPost.image_url || '/images/default-blog.jpg', author: dbPost.author || 'تیم داناورس', authorRole: 'مدرس و کارشناس آکادمی', authorImg: dbPost.author_image_url || 'https://i.pravatar.cc/150?img=60', tags: ['داناورس', 'آموزش'], relatedCourseSlug: dbPost.related_course_slug };
+    currentPost = { 
+      id: dbPost.id, 
+      title: dbPost.title, 
+      content: dbPost.content, 
+      excerpt: dbPost.content.substring(0, 180) + '...', 
+      category: categoryMap[dbPost.category] || 'مقاله آموزشی', 
+      date: new Date(dbPost.created_at).toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }), 
+      readTime: '۵ دقیقه', 
+      image: dbPost.image_url || '/images/default-blog.jpg', 
+      author: dbPost.author || 'تیم داناورس', 
+      authorRole: 'مدرس و کارشناس آکادمی', 
+      authorImg: dbPost.author_image_url || 'https://i.pravatar.cc/150?img=60', 
+      tags: ['داناورس', 'آموزش'], 
+      relatedCourseSlug: dbPost.related_course_slug,
+      // 🎯 فیلدهای مخصوص سئو
+      seoTitle: dbPost.seo_title || null,
+      seoDesc: dbPost.seo_description || null,
+      createdAtIso: dbPost.created_at
+    };
   } else {
     currentPost = manualPosts.find(p => p.id == route.params.id);
   }
 
-  // ۲. جستجوی دوره مرتبط (اول دیتابیس، بعد لیست پشتیبان)
   if (currentPost && currentPost.relatedCourseSlug) {
-    const { data: course, error } = await supabase.from('courses').select('id, slug, title, description, image_url').eq('slug', currentPost.relatedCourseSlug).single();
+    const { data: course } = await supabase.from('courses').select('id, slug, title, description, image_url').eq('slug', currentPost.relatedCourseSlug).single();
     
     if (course) {
-      // اگر در دیتابیس بود
       courseData = { id: course.id, slug: course.slug, title: course.title, desc: course.description?.substring(0, 100) + '...', image: course.image_url };
     } else {
-      // اگر دیتابیس خالی بود، از لیست دستی بگیر تا بنر روشن بشه!
       const backupCourse = manualCoursesFallback.find(c => c.slug === currentPost.relatedCourseSlug);
       if (backupCourse) {
         courseData = { id: backupCourse.id, slug: backupCourse.slug, title: backupCourse.title, desc: backupCourse.desc, image: backupCourse.image };
@@ -270,7 +286,61 @@ const { data: postData } = await useAsyncData(`post-data-${route.params.id}`, as
 const post = computed(() => postData.value?.post);
 const relatedCourseData = computed(() => postData.value?.course);
 
-// سیستم نظرات...
+// 🎯 سئو: سیستم هیبریدی هوشمند (پنل ادمین + اتوماتیک)
+useSeoMeta({
+  title: () => post.value?.seoTitle || (post.value ? `${post.value.title} | مجله داناورس` : 'مقاله‌ای یافت نشد'),
+  description: () => post.value?.seoDesc || post.value?.excerpt || 'مجله آموزش برنامه‌نویسی و هوش مصنوعی داناورس',
+  ogTitle: () => post.value?.seoTitle || post.value?.title,
+  ogDescription: () => post.value?.seoDesc || post.value?.excerpt,
+  ogImage: () => post.value?.image ? `https://danaverse.ir${post.value.image}` : 'https://danaverse.ir/images/Banner.jpg',
+  ogType: 'article',
+  twitterCard: 'summary_large_image'
+});
+
+// 🎯 سئو: کدهای ماشین (JSON-LD) برای گوگل دیسکاور
+useHead(() => {
+  if (!post.value) return {};
+
+  const schemaJson = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://danaverse.ir/learning/${route.params.id}`
+    },
+    "headline": post.value.seoTitle || post.value.title,
+    "description": post.value.seoDesc || post.value.excerpt,
+    "image": post.value.image.startsWith('http') ? post.value.image : `https://danaverse.ir${post.value.image}`,
+    "author": {
+      "@type": "Person",
+      "name": post.value.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "آکادمی داناورس",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://danaverse.ir/logo-light.png"
+      }
+    },
+    "datePublished": post.value.createdAtIso || new Date().toISOString(),
+    "dateModified": post.value.createdAtIso || new Date().toISOString()
+  };
+
+  return {
+    link: [
+      { rel: 'canonical', href: `https://danaverse.ir/learning/${route.params.id}` }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(schemaJson)
+      }
+    ]
+  };
+});
+
+// بخش کامنت‌ها (بدون تغییر)
 const { data: comments, refresh: refreshComments } = await useAsyncData(`comments-${route.params.id}`, async () => {
   const { data } = await supabase.from('comments').select('id, user_name, content, created_at, is_admin_reply').eq('post_id', route.params.id).eq('is_approved', true).order('created_at', { ascending: true });
   return data || [];
@@ -295,10 +365,22 @@ const formatDate = (dateString) => {
   if (!dateString) return '';
   return new Intl.DateTimeFormat('fa-IR', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(dateString));
 };
-
-// سئو
-useSeoMeta({
-  title: computed(() => post.value ? `${post.value.title} | وبلاگ داناورس` : 'خواندن مقاله'),
-  description: computed(() => post.value ? post.value.excerpt : 'مقالات آموزشی داناورس'),
-});
 </script>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.prose h2 {
+  color: inherit;
+  font-weight: 900;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+</style>

@@ -16,8 +16,8 @@
               درباره آکادمی داناورس
             </div>
             
-            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-              دروازه‌ای به دنیای <br>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+              آکادمی داناورس؛ دروازه‌ای به دنیای <br>
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">هوش مصنوعی</span> و برنامه‌نویسی
             </h1>
             
@@ -52,9 +52,12 @@
 
           <div class="w-full lg:w-1/2 relative min-h-[400px] flex items-center justify-center mt-10 lg:mt-0">
             <div class="absolute w-[80%] h-[80%] bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-[4rem] rotate-6 opacity-30 blur-3xl"></div>
-            <img 
+            <NuxtImg 
               src="/images/about-banner.png" 
               alt="آکادمی برنامه‌نویسی و هوش مصنوعی داناورس" 
+              format="webp"
+              fetchpriority="high"
+              preload
               class="relative z-10 w-full max-w-lg h-auto object-contain drop-shadow-2xl transition-transform hover:scale-105 duration-700" 
             />
           </div>
@@ -95,7 +98,7 @@
           <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-8">
             <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
           </div>
-          <h2 class="text-3xl font-extrabold text-gray-800 dark:text-white mb-6">داستان شکل‌گیری <span class="text-blue-600 dark:text-blue-400">داناورس</span></h2>
+          <h2 class="text-3xl font-extrabold text-gray-800 dark:text-white mb-6">داستان شکل‌گیری <span class="text-blue-600 dark:text-blue-400">آکادمی داناورس</span></h2>
           <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-loose text-lg font-medium text-justify">
             <p>داناورس، پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی، در سال ۱۳۹۸ با هدف آموزش تخصصی و ایجاد فرصتی برابر برای یادگیری برای همه افراد، تاسیس شد.</p>
             <p>از بدو تاسیس، با ارائه دوره‌های آموزشی با کیفیت بالا و استفاده از به‌روزترین متدهای آموزشی، به سرعت در میان علاقه‌مندان جایگاه ویژه‌ای پیدا کردیم. امروزه، داناورس با بیش از صدها دانشجو، به یکی از مدرن‌ترین پلتفرم‌های آموزشی آنلاین تبدیل شده است.</p>
@@ -120,7 +123,7 @@
     <section class="py-16 bg-blue-50/50 dark:bg-gray-800/20 border-y border-gray-100 dark:border-gray-800">
       <div class="container mx-auto max-w-7xl px-4">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">مسیر <span class="text-blue-600 dark:text-blue-400">آموزشی</span> داناورس</h2>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white">مسیر آموزش <span class="text-blue-600 dark:text-blue-400">پروژه‌محور</span> در داناورس</h2>
           <p class="text-gray-500 dark:text-gray-400 mt-4 font-medium">قدم به قدم تا تبدیل شدن به یک متخصص حرفه‌ای</p>
         </div>
 
@@ -164,7 +167,6 @@ const steps = ref([
   { number: '۰۴', title: 'رشد و بهبود', desc: 'ما بر اساس بازخورد کاربران، تجربه آموزشی را به‌طور مداوم بهتر می‌کنیم.' }
 ])
 
-// 💡 سئو: ارتقای شدید متاتگ‌ها با کامپوزبل قدرتمند useSeoMeta
 useSeoMeta({
   title: 'درباره آکادمی داناورس | مرجع آموزش برنامه‌نویسی و هوش مصنوعی',
   description: 'آکادمی داناورس پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی با آموزش ۱۰۰٪ پروژه‌محور و منتورینگ اختصاصی. مسیر رشد خود را با ما آغاز کنید.',
@@ -176,7 +178,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
-// 💡 سئو: جادوی Schema.org برای معرفی رسمی آکادمی به گوگل (Knowledge Panel)
+// 🎯 سئو: اضافه شدن تاریخ تاسیس و نام بنیان‌گذار به کدهای اسکیما برای اثبات اعتبار به گوگل
 useHead({
   link: [
     {
@@ -191,22 +193,25 @@ useHead({
         "@context": "https://schema.org",
         "@graph": [
           {
-            // معرفی این صفحه به عنوان یک صفحه استاندارد "درباره ما"
             "@type": "AboutPage",
             "name": "درباره آکادمی داناورس",
             "url": "https://danaverse.ir/about",
             "description": "آکادمی داناورس، پلتفرمی نوین برای یادگیری عمیق هوش مصنوعی و برنامه‌نویسی."
           },
           {
-            // معرفی آکادمی شما به عنوان یک "سازمان آموزشی" در گوگل
             "@type": "EducationalOrganization",
             "name": "آکادمی داناورس",
             "alternateName": "Hooshpardaz Academy",
             "url": "https://danaverse.ir",
             "logo": "https://danaverse.ir/logo.png",
-            "description": "ارائه دوره‌های تخصصی آموزش برنامه‌نویسی، پایتون، هوش مصنوعی و رباتیک با متدهای نوین و پروژه‌محور برای کودکان، نوجوانان و بزرگسالان.",
+            "description": "ارائه دوره‌های تخصصی آموزش برنامه‌نویسی، پایتون، هوش مصنوعی و رباتیک با متدهای نوین و پروژه‌محور.",
+            "foundingDate": "2019",
+            "founder": {
+              "@type": "Person",
+              "name": "مهدی خزاعی"
+            },
             "sameAs": [
-              "https://instagram.com/hooshpardaz", // لینک شبکه‌های اجتماعی خود را اینجا بگذارید
+              "https://instagram.com/hooshpardaz",
               "https://t.me/hoooshpardaz"
             ]
           }

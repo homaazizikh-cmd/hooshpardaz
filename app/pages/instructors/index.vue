@@ -13,11 +13,13 @@
           <span class="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 animate-ping"></span>
           ACCESS LEVEL: MENTORS
         </div>
-        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight text-slate-900 dark:text-white">
-          هستـه <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">پـردازش</span>
+        
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight text-slate-900 dark:text-white leading-tight">
+          لیست اساتید و منتورهای <br class="hidden md:block">
+          هستـه <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">پـردازش داناورس</span>
         </h1>
         <p class="text-slate-500 dark:text-slate-400 font-medium text-lg max-w-2xl mx-auto leading-relaxed">
-          با نخبگانی آشنا شوید که قوانین بازی را در دنیای هوش مصنوعی و برنامه‌نویسی تغییر می‌دهند.
+          با نخبگانی آشنا شوید که قوانین بازی را در دنیای <strong class="text-blue-600 dark:text-cyan-500 font-bold">هوش مصنوعی</strong> و <strong class="text-blue-600 dark:text-cyan-500 font-bold">برنامه‌نویسی</strong> تغییر می‌دهند.
         </p>
       </div>
 
@@ -62,9 +64,12 @@
               <div class="absolute -inset-3 border border-slate-200 dark:border-slate-800 rounded-full group-hover:border-blue-400/50 dark:group-hover:border-cyan-500/50 group-hover:animate-[spin_4s_linear_infinite] transition-all duration-500"></div>
               <div class="absolute -inset-1 border border-slate-200 dark:border-slate-800 border-dashed rounded-full group-hover:border-purple-400/50 dark:group-hover:border-purple-500/50 group-hover:animate-[spin_6s_linear_infinite_reverse] transition-all duration-500"></div>
               
-              <img 
+              <NuxtImg 
                 :src="instructor.image_url || '/images/default-avatar.png'" 
-                :alt="`عکس ${instructor.name}`" 
+                :alt="`استاد ${instructor.name} - ${instructor.title} در آکادمی برنامه‌نویسی و هوش مصنوعی داناورس`" 
+                :title="`مشاهده رزومه و دوره‌های آموزشی استاد ${instructor.name}`"
+                format="webp"
+                loading="lazy"
                 class="w-full h-full object-cover rounded-full border-4 border-white dark:border-[#090e1a] shadow-lg dark:shadow-2xl bg-slate-100 dark:bg-slate-800 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 relative z-10" 
               />
             </div>
@@ -123,12 +128,12 @@
 import { ref, computed } from 'vue';
 const supabase = useSupabaseClient();
 
-// 🚀 سئوی داینامیک و متاتگ‌های اشتراک‌گذاری
 useSeoMeta({
-  title: 'اساتید و متخصصین ارشد هوش مصنوعی و برنامه‌نویسی',
-  description: 'آشنایی با تیم نخبگان، پژوهشگران و منتورهای ارشد آکادمی داناورس در دپارتمان‌های هوش مصنوعی، برنامه‌نویسی پایتون، طراحی گرافیک و مهارت‌های کامپیوتری.',
-  ogTitle: 'هسته پردازش و اساتید آکادمی داناورس',
-  ogDescription: 'با برترین اساتید برنامه‌نویسی و هوش مصنوعی ایران در آکادمی داناورس آشنا شوید و مسیر شغلی خود را آغاز کنید.',
+  title: 'بهترین اساتید برنامه‌نویسی و هوش مصنوعی | داناورس',
+  description: 'آشنایی با تیم نخبگان، پژوهشگران و منتورهای ارشد آکادمی داناورس در دپارتمان‌های هوش مصنوعی، برنامه‌نویسی پایتون، طراحی گرافیک (UI/UX) و مهارت‌های کامپیوتری.',
+  keywords: 'اساتید برنامه نویسی, استاد هوش مصنوعی, بهترین استاد پایتون, مدرس طراحی سایت, منتور برنامه نویسی, داود قبادی, پانیذ برنا, مهدی خزاعی',
+  ogTitle: 'لیست اساتید و هسته پردازش آکادمی داناورس',
+  ogDescription: 'با برترین اساتید برنامه‌نویسی و هوش مصنوعی ایران در آکادمی داناورس آشنا شوید و مسیر شغلی خود را با بهترین‌ها آغاز کنید.',
   ogImage: 'https://danaverse.ir/images/Banner.jpg', 
   twitterCard: 'summary_large_image',
 });
@@ -143,7 +148,6 @@ const departments = [
 
 const activeDept = ref('all');
 
-// 🔒 اسامی قدیمی شما کاملاً و مو به مو حفظ شدند
 const manualInstructors = [
   { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: 'متخصص پایتون و AI', bio: 'توسعه‌دهنده ارشد و پژوهشگر هوش مصنوعی. متخصص در پیاده‌سازی مدل‌های یادگیری ماشین و معماری‌های پیشرفته پایتون.', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
   { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با سال‌ها تجربه در پروژه‌های استارتاپی.', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
@@ -155,12 +159,11 @@ const manualInstructors = [
   { id: 8, name: 'مهدیه روشن', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع به بازار کار.', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mahdieh-rishan.jpg' }
 ];
 
-// 📊 دریافت زنده اساتید جدید ثبت‌شده در پنل مدیریت از دیتابیس Supabase
 const { data: dbInstructors } = await useAsyncData('instructors-dynamic-data', async () => {
   const { data, error } = await supabase
     .from('instructors')
     .select('*')
-    .order('id', { ascending: true }); // 👈 اینجا از false به true تغییر کرد
+    .order('id', { ascending: true }); 
     
   if (error) {
     console.error("خطا در دریافت اساتید از دیتابیس:", error);
@@ -169,7 +172,6 @@ const { data: dbInstructors } = await useAsyncData('instructors-dynamic-data', a
   return data || [];
 });
 
-// 🤝 تلفیق هوشمند: چسباندن اساتید دیتابیس به اساتید دستی شما
 const allInstructors = computed(() => {
   const dbActive = (dbInstructors.value || []).map(i => ({
     id: i.id,
@@ -181,42 +183,56 @@ const allInstructors = computed(() => {
     image_url: i.image_url
   }));
   
-  // اساتید جدید دیتابیس اول و اساتید ثابت قدیمی شما بعد از آن‌ها قرار می‌گیرند
   return [...dbActive, ...manualInstructors];
 });
 
-// فیلتر نهایی بر اساس دپارتمان فعال
 const filteredInstructors = computed(() => {
   if (activeDept.value === 'all') return allInstructors.value;
   return allInstructors.value.filter(ins => ins.dept === activeDept.value);
 });
 
-// 🚀 اسکیما گوگل (Schema Markup) کاملاً داینامیک و متصل به تلفیق جدید
-const schemaData = computed(() => ({
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "لیست اساتید و منتورهای آکادمی داناورس",
-  "description": "معرفی مدرسین و متخصصان ارشد دپارتمان‌های هوش مصنوعی, برنامه‌نویسی و گرافیک در آکادمی داناورس.",
-  "itemListElement": allInstructors.value.map((instructor, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
-      "@type": "Person",
-      "name": instructor.name,
-      "jobTitle": instructor.title,
-      "description": instructor.bio,
-      "image": `https://danaverse.ir${instructor.image_url}`,
-      "url": `https://danaverse.ir/instructors/${instructor.id}`
-    }
-  }))
-}));
+// 🎯 سئو: اسکیمای غنی‌شده E-E-A-T (با اتصال به برند داناورس و ذکر مهارت‌ها)
+useHead(() => {
+  const schemaJson = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "لیست اساتید و منتورهای برنامه‌نویسی و هوش مصنوعی آکادمی داناورس",
+    "description": "معرفی مدرسین و متخصصان ارشد دپارتمان‌های هوش مصنوعی, برنامه‌نویسی و گرافیک در آکادمی داناورس.",
+    "itemListElement": allInstructors.value.map((instructor, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Person",
+        "name": instructor.name,
+        "jobTitle": instructor.title,
+        "description": instructor.bio,
+        "image": `https://danaverse.ir${instructor.image_url}`,
+        "url": `https://danaverse.ir/instructors/${instructor.id}`,
+        "worksFor": {
+          "@type": "Organization",
+          "name": "آکادمی داناورس"
+        },
+        "knowsAbout": instructor.skills
+      }
+    }))
+  };
 
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      children: computed(() => JSON.stringify(schemaData.value))
-    }
-  ]
+  return {
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(schemaJson)
+      }
+    ]
+  };
 });
 </script>
+
+<style scoped>
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>

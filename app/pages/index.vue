@@ -7,8 +7,9 @@
         <NuxtImg 
           src="/images/Banner.jpg" 
           class="w-full h-full object-cover opacity-40 mix-blend-overlay mask-image-b" 
-          alt="آکادمی داناورس"
+          alt="آموزش هوش مصنوعی و برنامه‌نویسی در آکادمی داناورس"
           format="webp"
+          fetchpriority="high"
           preload
         />
       </div>
@@ -25,11 +26,11 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-accent1"></span>
           </span>
-          پلتفرم جامع آموزش تکنولوژی
+          پلتفرم جامع آموزش تکنولوژی و هوش مصنوعی
         </div>
         
-        <h1 class="text-6xl md:text-8xl lg:text-[6rem] font-black text-white mb-8 tracking-tighter leading-tight md:leading-[1.1]">
-          آکادمی تخصصی <br>
+        <h1 class="text-6xl md:text-8xl lg:text-[5.5rem] font-black text-white mb-8 tracking-tighter leading-tight md:leading-[1.2]">
+          آکادمی برنامه‌نویسی و هوش مصنوعی <br />
           <span class="relative inline-block mt-4 px-8 pt-2 pb-6 bg-[#000000]/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] shadow-inner">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-[0_0_40px_rgba(56,189,248,0.3)]">
               داناورس
@@ -38,13 +39,13 @@
         </h1>
         
         <p class="text-xl md:text-2xl text-gray-300 mb-14 max-w-3xl mx-auto font-light leading-relaxed backdrop-blur-sm bg-white/[0.02] p-4 rounded-3xl border border-white/5">
-          آموزش مهارت‌های آینده؛ از <strong class="text-white font-bold">دوره آنلاین پایتون</strong> تا <strong class="text-white font-bold">هوش مصنوعی</strong> و <strong class="text-white font-bold">رباتیک</strong>، با رویکرد ورود مستقیم به بازار کار.
+          آموزش مهارت‌های آینده؛ از <strong class="text-white font-bold">دوره آنلاین پایتون</strong> تا <strong class="text-white font-bold">یادگیری ماشین</strong> و <strong class="text-white font-bold">رباتیک</strong>، با رویکرد ورود مستقیم به بازار کار.
         </p>
         
         <NuxtLink to="/courses" class="relative inline-flex group">
           <div class="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-2xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
           <button class="relative inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold text-white transition-all duration-200 bg-[#0a0a0a] rounded-2xl focus:outline-none border border-white/10">
-            مشاهده مسیرهای آموزشی
+            مشاهده دوره‌های آموزشی
             <svg class="w-6 h-6 rotate-180 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </button>
         </NuxtLink>
@@ -67,9 +68,9 @@
         <div class="absolute -left-10 top-1/2 -translate-y-1/2 text-[250px] opacity-5 dark:opacity-10 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 pointer-events-none filter blur-[2px]">🧠</div>
         
         <div class="relative z-10 mb-10 md:mb-0 text-center md:text-right max-w-2xl">
-          <div class="inline-block bg-blue-500/10 dark:bg-white/10 backdrop-blur-md text-blue-600 dark:text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-200 dark:border-white/20 tracking-wider">سیستم اختصاصی داناورس</div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">مسیر شغلی شما کجاست؟</h2>
-          <p class="text-gray-600 dark:text-blue-200 text-lg font-light leading-relaxed">با پاسخ به ۱۵ سوال هدفمند و مبتنی بر روانشناسی شناختی، در کمتر از ۲ دقیقه مسیر شغلی و آموزشی ایده‌آل خود را با دقت ماشین پیدا کنید.</p>
+          <div class="inline-block bg-blue-500/10 dark:bg-white/10 backdrop-blur-md text-blue-600 dark:text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-200 dark:border-white/20 tracking-wider">سیستم استعدادیابی برنامه‌نویسی</div>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">مسیر شغلی تکنولوژی شما کجاست؟</h2>
+          <p class="text-gray-600 dark:text-blue-200 text-lg font-light leading-relaxed">با پاسخ به ۱۵ سوال هدفمند و مبتنی بر روانشناسی شناختی، در کمتر از ۲ دقیقه مسیر آموزشی ایده‌آل خود را برای یادگیری برنامه‌نویسی یا هوش مصنوعی پیدا کنید.</p>
         </div>
         
         <NuxtLink to="/talent" class="relative z-10 bg-brand-accent1 dark:bg-white text-white dark:text-blue-900 px-10 py-5 rounded-2xl font-black shadow-xl hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] dark:hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] hover:scale-105 transition-all duration-500 flex items-center gap-3 whitespace-nowrap text-xl">
@@ -79,10 +80,10 @@
       </div>
     </section>
 
-<section class="py-16 container mx-auto px-4 md:px-8">
+    <section class="py-16 container mx-auto px-4 md:px-8">
       <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">مسیرهای <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">یادگیری</span></h2>
-        <p class="text-gray-500 dark:text-gray-400 font-light text-xl">نقشه راه شفاف و گام‌به‌گام برای تبدیل شدن به یک متخصص تراز اول.</p>
+        <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">مسیرهای جامع <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">آموزش برنامه‌نویسی</span></h2>
+        <p class="text-gray-500 dark:text-gray-400 font-light text-xl">نقشه راه شفاف و گام‌به‌گام برای تبدیل شدن به یک متخصص تراز اول در هوش مصنوعی و طراحی.</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
@@ -106,18 +107,18 @@
       </div>
     </section>
 
-<section class="py-32 relative overflow-hidden border-y border-gray-200 dark:border-white/5 bg-gray-100/50 dark:bg-white/[0.01]">
+    <section class="py-32 relative overflow-hidden border-y border-gray-200 dark:border-white/5 bg-gray-100/50 dark:bg-white/[0.01]">
       <div class="absolute -right-40 top-20 w-96 h-96 bg-brand-accent1/10 dark:bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div class="container mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 md:gap-20 items-center relative z-10">
         <div class="order-2 lg:order-1">
-          <div class="inline-block bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-8 shadow-sm dark:shadow-none">دپارتمان برنامه‌نویسی</div>
-          <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">کدنویسی را به <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800 dark:from-gray-400 dark:to-gray-100">زبان ماشین</span> لمس کنید</h2>
+          <div class="inline-block bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-8 shadow-sm dark:shadow-none">دوره آموزش پایتون پیشرفته</div>
+          <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">کدنویسی هوش مصنوعی را <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800 dark:from-gray-400 dark:to-gray-100">عملی</span> لمس کنید</h2>
           <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg font-light leading-loose mb-8 md:mb-10 text-justify">
-            ما محیط‌های توسعه را شبیه‌سازی نمی‌کنیم؛ ما شما را مستقیماً وارد محیط حرفه‌ای (IDE) می‌کنیم. خبری از تئوری‌های خسته‌کننده نیست؛ شما الگوریتم می‌نویسید و سیستم آن را اجرا می‌کند.
+            ما در دوره‌های برنامه‌نویسی داناورس، محیط‌های توسعه را شبیه‌سازی نمی‌کنیم؛ ما شما را مستقیماً وارد پروژه‌های واقعی هوش مصنوعی می‌کنیم. خبری از تئوری‌های خسته‌کننده نیست؛ شما الگوریتم می‌نویسید و سیستم آن را اجرا می‌کند.
           </p>
           <NuxtLink to="/roadmap/coding" class="inline-flex items-center gap-2 text-brand-accent1 dark:text-cyan-400 font-bold text-base md:text-lg hover:text-blue-600 dark:hover:text-white transition-colors group">
-            مشاهده سرفصل‌های پایتون 
+            مشاهده سرفصل‌های دوره پایتون 
             <span class="group-hover:-translate-x-2 transition-transform">←</span>
           </NuxtLink>
         </div>
@@ -131,17 +132,17 @@
                 <div class="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#ffbd2e]"></div>
                 <div class="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-[#27c93f]"></div>
               </div>
-              <span class="text-gray-400 text-[10px] md:text-xs font-mono tracking-widest uppercase truncate ml-2">main.py — Hooshpardaz</span>
+              <span class="text-gray-400 text-[10px] md:text-xs font-mono tracking-widest uppercase truncate ml-2">ai_core.py — Danaverse AI</span>
               <div class="w-10 hidden md:block"></div> 
             </div>
             
             <div class="p-4 md:p-8 font-mono text-xs md:text-base text-gray-300 min-h-[200px] md:min-h-[300px] leading-relaxed overflow-x-auto w-full">
               <pre class="min-w-max"><code class="text-pink-500">def</code> <span class="text-blue-400">build_future</span>():
-    skills = [<span class="text-green-400">'Python'</span>, <span class="text-green-400">'AI'</span>, <span class="text-green-400">'Robotics'</span>]
+    skills = [<span class="text-green-400">'Python'</span>, <span class="text-green-400">'AI'</span>, <span class="text-green-400">'Machine Learning'</span>]
     student = Student(skills)
     
     <code class="text-pink-500">if</code> student.is_ready():
-        <code class="text-pink-500">return</code> <span class="text-green-400">"Hired in Tech Market!"</span>
+        <code class="text-pink-500">return</code> <span class="text-green-400">"Hired as AI Engineer!"</span>
         
 <span class="text-gray-500 italic"># Console Output:</span>
 <span class="text-yellow-300">{{ typedCode }}</span><span class="animate-pulse bg-cyan-400 text-cyan-400 w-2 h-4 md:h-5 inline-block align-middle ml-1">_</span></pre>
@@ -154,9 +155,9 @@
     <section class="py-32 container mx-auto px-4 md:px-8 border-b border-gray-200 dark:border-white/5">
       <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
         <div>
-          <div class="inline-block bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold px-4 py-2 rounded-full mb-4 border border-purple-200 dark:border-purple-500/20">خروجیِ واقعی</div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">گالری پروژه‌های <span class="text-purple-600 dark:text-purple-400">برتر</span></h2>
-          <p class="text-gray-600 dark:text-gray-400 font-light text-lg mt-4">ما به نتیجه و خروجی کار هنرجویانمان افتخار می‌کنیم.</p>
+          <div class="inline-block bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold px-4 py-2 rounded-full mb-4 border border-purple-200 dark:border-purple-500/20">خروجیِ دوره‌های داناورس</div>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">پروژه‌های عملی <span class="text-purple-600 dark:text-purple-400">دانشجویان</span></h2>
+          <p class="text-gray-600 dark:text-gray-400 font-light text-lg mt-4">ما به نتیجه و خروجی کار هنرجویان دوره‌های برنامه‌نویسی افتخار می‌کنیم.</p>
         </div>
         <NuxtLink to="/projects" class="px-8 py-4 border border-gray-300 dark:border-white/10 rounded-2xl font-bold text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">مشاهده همه پروژه‌ها</NuxtLink>
       </div>
@@ -165,7 +166,7 @@
         <div class="group relative rounded-[2rem] overflow-hidden shadow-2xl dark:shadow-none border border-gray-200 dark:border-white/5 bg-white dark:bg-[#0a0c10] cursor-pointer">
           <div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-900 relative">
             <div class="absolute inset-0 bg-brand-accent1/20 dark:bg-transparent mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity"></div>
-            <NuxtImg src="/images/Project-1.jpg" alt="پروژه برنامه‌نویسی تشخیص چهره" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+            <NuxtImg src="/images/Project-1.jpg" alt="پروژه پایانی آموزش هوش مصنوعی با پایتون" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10 z-20">
             <span class="inline-block bg-brand-accent1 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-4 w-max border border-white/20">هوش مصنوعی</span>
@@ -177,7 +178,7 @@
         <div class="group relative rounded-[2rem] overflow-hidden shadow-2xl dark:shadow-none border border-gray-200 dark:border-white/5 bg-white dark:bg-[#0a0c10] cursor-pointer">
           <div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-900 relative">
             <div class="absolute inset-0 bg-purple-500/20 dark:bg-transparent mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity"></div>
-            <NuxtImg src="/images/Project-2.jpg" alt="پروژه ساخت بازوی رباتیک" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+            <NuxtImg src="/images/Project-2.jpg" alt="پروژه آموزش رباتیک و الکترونیک" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10 z-20">
             <span class="inline-block bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-4 w-max border border-white/20">الکترونیک دیجیتال</span>
@@ -206,7 +207,7 @@
           <div class="absolute inset-0 bg-gradient-to-t from-brand-accent1/10 dark:from-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
           
           <div class="relative z-10 w-full aspect-square rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100 dark:bg-gray-900">
-            <img :src="instructor.image_url" :alt="instructor.name" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0">
+            <img :src="instructor.image_url" :alt="instructor.name" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0" />
           </div>
           
           <div class="relative z-10">
@@ -232,7 +233,7 @@
         <NuxtImg src="/images/Design-Before.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" alt="طراحی خام پروژه" format="webp" loading="lazy" />
         <NuxtImg src="/images/Design-After.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" alt="طراحی نهایی پروژه داناورس" format="webp" loading="lazy" />
         
-        <input type="range" min="0" max="100" step="0.1" v-model.number="sliderValue" class="absolute inset-0 w-full h-full cursor-ew-resize z-50 custom-slider opacity-0" style="touch-action: none;">
+        <input type="range" min="0" max="100" step="0.1" v-model.number="sliderValue" class="absolute inset-0 w-full h-full cursor-ew-resize z-50 custom-slider opacity-0" style="touch-action: none;" />
         
         <div class="absolute top-0 bottom-0 w-1 bg-brand-accent1 dark:bg-cyan-400 pointer-events-none shadow-[0_0_15px_rgba(56,189,248,0.8)] dark:shadow-[0_0_15px_rgba(34,211,238,1)] z-40" :style="{ left: sliderValue + '%' }">
           <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 md:w-14 md:h-14 bg-white dark:bg-[#0a0c10] rounded-full flex items-center justify-center shadow-2xl text-gray-900 dark:text-white font-black border-4 border-brand-accent1 dark:border-cyan-400">
@@ -258,7 +259,7 @@
                class="bg-white dark:bg-[#050505] p-10 rounded-[2rem] border border-gray-200 dark:border-white/5 hover:border-brand-accent1/50 dark:hover:border-brand-accent1/30 transition-colors shadow-lg dark:shadow-none relative group">
             <div class="text-6xl text-gray-100 dark:text-white/[0.03] absolute top-4 right-6 font-serif group-hover:text-brand-accent1/10 transition-colors">"</div>
             <div class="flex items-center gap-1 mb-6 text-yellow-400 dark:text-yellow-500">
-              <svg v-for="i in 5" :key="i" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg v-for="i in 5" :key="i" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
             </div>
             <p class="text-gray-700 dark:text-gray-300 font-light leading-relaxed mb-10 relative z-10 text-justify">«{{ review.text }}»</p>
             <div class="flex items-center gap-4 border-t border-gray-100 dark:border-white/5 pt-6 mt-auto">
@@ -277,7 +278,7 @@
 
     <section class="py-32 container mx-auto px-4 max-w-4xl">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 dark:text-white">سوالات متداول</h2>
+        <h2 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 dark:text-white">سوالات متداول درباره <span class="text-brand-accent1">دوره‌ها</span></h2>
         <p class="text-gray-600 dark:text-gray-400 font-light">پاسخ به دغدغه‌های همیشگی قبل از شروع مسیر.</p>
       </div>
       
@@ -302,7 +303,8 @@
         </div>
       </div>
     </section>
-  <section class="py-24 relative z-20 container mx-auto px-4 md:px-8">
+    
+    <section class="py-24 relative z-20 container mx-auto px-4 md:px-8">
       <div class="relative rounded-[2.5rem] md:rounded-[3rem] p-1 overflow-hidden group">
         <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-600 to-purple-600 opacity-30 group-hover:opacity-100 transition-opacity duration-700 animate-spin-slow" style="animation-duration: 8s;"></div>
         
@@ -318,7 +320,7 @@
               ثبت‌نام ترم جدید آغاز شد
             </div>
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
-              آماده‌ی تغییر <br class="hidden md:block">
+              آماده‌ی تغییر <br class="hidden md:block" />
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500 dark:from-cyan-400 dark:to-blue-500">سطح زندگی‌ت</span> هستی؟
             </h2>
             <p class="text-gray-600 dark:text-gray-400 text-lg font-light">روی تخصصت سرمایه‌گذاری کن و با پشتیبانی مستقیم منتورها، وارد بازار کار جهانی شو.</p>
@@ -348,24 +350,24 @@
           
           <div class="lg:col-span-5 bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl p-8 md:p-10 backdrop-blur-xl hover:border-brand-accent1/30 transition-colors">
             <div class="flex items-center gap-3 mb-6">
-  <NuxtImg src="/images/logo-light.png" alt="لوگو آکادمی داناورس" class="w-12 h-12 object-contain drop-shadow-lg" loading="lazy" />
-  <span class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">دانا<span class="text-brand-accent1 dark:text-cyan-400">ورس</span></span>
-</div>
+              <NuxtImg src="/images/logo-light.png" alt="لوگو آکادمی داناورس" class="w-12 h-12 object-contain drop-shadow-lg" loading="lazy" />
+              <span class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">دانا<span class="text-brand-accent1 dark:text-cyan-400">ورس</span></span>
+            </div>
             <p class="text-gray-600 dark:text-gray-400 font-light leading-loose text-justify mb-8 text-sm md:text-base">
               ما در آکادمی داناورس، مرزهای یادگیری را جابه‌جا کرده‌ایم. با رویکردی کاملاً عملی و مبتنی بر پروژه‌های واقعی، شما را برای چالش‌های لبه‌ی تکنولوژی (AI، برنامه‌نویسی و رباتیک) در بازار کار فردا آماده می‌کنیم.
             </p>
             <div class="flex items-center gap-3">
               <a href="#" class="group relative w-12 h-12 rounded-2xl bg-gray-100 dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 flex items-center justify-center overflow-hidden hover:border-blue-500 transition-colors">
                 <div class="absolute inset-0 bg-blue-500/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <svg class="w-5 h-5 text-gray-500 group-hover:text-blue-500 relative z-10 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                <svg class="w-5 h-5 text-gray-500 group-hover:text-blue-500 relative z-10 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
               </a>
               <a href="#" class="group relative w-12 h-12 rounded-2xl bg-gray-100 dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 flex items-center justify-center overflow-hidden hover:border-brand-accent1 transition-colors">
                 <div class="absolute inset-0 bg-brand-accent1/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-accent1 relative z-10 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-accent1 relative z-10 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
               </a>
               <a href="#" class="group relative w-12 h-12 rounded-2xl bg-gray-100 dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 flex items-center justify-center overflow-hidden hover:border-blue-400 transition-colors">
                 <div class="absolute inset-0 bg-blue-400/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <svg class="w-5 h-5 text-gray-500 group-hover:text-blue-400 relative z-10 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.882-.666 3.463-1.509 5.772-2.506 6.928-2.985 3.295-1.374 3.979-1.611 4.425-1.618z"/></svg>
+                <svg class="w-5 h-5 text-gray-500 group-hover:text-blue-400 relative z-10 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.882-.666 3.463-1.509 5.772-2.506 6.928-2.985 3.295-1.374 3.979-1.611 4.425-1.618z"></path></svg>
               </a>
             </div>
           </div>
@@ -397,18 +399,15 @@
               </div>
             </div>
             
-<div class="flex gap-4 h-full">
-  <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=742622&Code=bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" rel="noopener noreferrer" class="flex-1 bg-white/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl flex items-center justify-center p-3 filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:border-brand-accent1/50 transition-all duration-300 cursor-pointer backdrop-blur-md group">
-    
-    <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=742622&Code=bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" alt="نماد اعتماد الکترونیکی داناورس" class="w-full h-auto max-h-16 object-contain group-hover:scale-105 transition-transform" code="bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" />
-    
-  </a>
-</div>
-  
-  <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 bg-white/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl flex items-center justify-center p-3 filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:border-brand-accent1/50 transition-all duration-300 cursor-pointer backdrop-blur-md group">
-    <NuxtImg src="/images/samandehi.png" alt="نشان ملی ثبت رسانه‌های دیجیتال" class="w-full h-auto max-h-16 object-contain group-hover:scale-105 transition-transform" loading="lazy" />
-  </a>
-</div>
+            <div class="flex gap-4 h-full">
+              <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=742622&Code=bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" rel="noopener noreferrer" class="flex-1 bg-white/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl flex items-center justify-center p-3 filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:border-brand-accent1/50 transition-all duration-300 cursor-pointer backdrop-blur-md group">
+                <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=742622&Code=bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" alt="نماد اعتماد الکترونیکی داناورس" class="w-full h-auto max-h-16 object-contain group-hover:scale-105 transition-transform" code="bl0pQa5kqVBm6jQbDW6ltEs1IQ62pRpj" />
+              </a>
+
+              <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 bg-white/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl flex items-center justify-center p-3 filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 hover:border-brand-accent1/50 transition-all duration-300 cursor-pointer backdrop-blur-md group">
+                <NuxtImg src="/images/samandehi.png" alt="نشان ملی ثبت رسانه‌های دیجیتال" class="w-full h-auto max-h-16 object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+              </a>
+            </div>
           </div>
           
         </div>
@@ -430,8 +429,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-// در بخش script فایل pages/index.vue
-// در بخش script فایل index.vue
+
 const benefits = [
   { icon: '🚀', title: 'آموزش ۱۰۰٪ پروژه‌محور', link: '/why-us#projects' },
   { icon: '👨‍🏫', title: 'منتورینگ اختصاصی', link: '/why-us#mentoring' },
@@ -527,14 +525,51 @@ onMounted(() => {
   }, 1500);
 });
 
+// 🎯 سئو: متاتگ‌های قدرتمند برای کلیک‌خوری بالا در گوگل
 useSeoMeta({
-  title: 'آکادمی داناورس | دوره آنلاین برنامه‌نویسی، هوش مصنوعی و رباتیک', 
-  description: 'به آکادمی داناورس خوش آمدید. برترین پلتفرم آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای تمام سنین، همراه با تست استعدادیابی هوشمند.',
-  keywords: 'دوره آنلاین, هوش مصنوعی, دوره آنلاین هوش مصنوعی, رباتیک, دوره رباتیک, آموزش برنامه نویسی, استعدادیابی برنامه نویسی',
+  title: 'آکادمی برنامه‌نویسی و هوش مصنوعی داناورس', 
+  description: 'بهترین سایت آموزش پروژه‌محور برنامه‌نویسی و یادگیری هوش مصنوعی (AI) در ایران. آموزش پایتون، رباتیک و دیزاین از صفر تا ورود به بازار کار با استعدادیابی.',
+  keywords: 'آموزش هوش مصنوعی, دوره آنلاین پایتون, آکادمی برنامه نویسی, استعدادیابی برنامه نویسی, آموزش ماشین لرنینگ',
   ogTitle: 'آکادمی برنامه‌نویسی و هوش مصنوعی داناورس',
-  ogDescription: 'آینده‌ات را با داناورس کدنویسی کن! آموزش از صفر تا ورود به بازار کار به همراه منتورینگ اختصاصی.',
+  ogDescription: 'آینده‌ات را با داناورس کدنویسی کن! آموزش پروژه‌محور از صفر تا ورود به بازار کار به همراه منتورینگ اختصاصی.',
   ogImage: 'https://danaverse.ir/images/Banner.jpg',
   ogUrl: 'https://danaverse.ir',
+  twitterCard: 'summary_large_image',
+});
+
+// 🎯 سئو: اسکیما مارک‌آپ اختصاصی برای صفحه اصلی (بمب سئو)
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
+          }
+        }))
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "آکادمی داناورس",
+        "url": "https://danaverse.ir/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://danaverse.ir/courses?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      })
+    }
+  ]
 });
 </script>
 
@@ -557,7 +592,6 @@ useSeoMeta({
   -webkit-mask-image: linear-gradient(to top, transparent, black 50%, black 100%, transparent);
 }
 
-/* تنظیمات فوق‌حرفه‌ای برای اسلایدر لمسی و موس */
 .custom-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -565,7 +599,6 @@ useSeoMeta({
   outline: none;
 }
 
-/* مسیر اسلایدر را به کل ارتفاع عکس گسترش می‌دهیم */
 .custom-slider::-webkit-slider-runnable-track {
   width: 100%;
   height: 100%;
@@ -573,13 +606,12 @@ useSeoMeta({
   border: none;
 }
 
-/* دستگیره نامرئی را به اندازه کل ارتفاع بزرگ می‌کنیم تا هرکجای عکس کلیک شد کار کند */
 .custom-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 50px;
-  height: 1000px; /* یک ترفند عالی برای پوشش کامل عمودی */
-  background: rgba(0,0,0,0.001); /* شفافیت تقریباً ۱۰۰٪ برای جلوگیری از باگ مرورگرها */
+  height: 1000px; 
+  background: rgba(0,0,0,0.001); 
   cursor: ew-resize;
 }
 
@@ -589,7 +621,6 @@ useSeoMeta({
   background: rgba(0,0,0,0.001);
   cursor: ew-resize;
   border: none;
-
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
