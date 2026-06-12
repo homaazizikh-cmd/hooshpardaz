@@ -29,7 +29,7 @@
         </div>
         
         <h1 class="text-6xl md:text-8xl lg:text-[6rem] font-black text-white mb-8 tracking-tighter leading-tight md:leading-[1.1]">
-          آکادمی تخصصی <br>
+         23064147 <br>
           <span class="relative inline-block mt-4 px-8 pt-2 pb-6 bg-[#000000]/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] shadow-inner">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-[0_0_40px_rgba(56,189,248,0.3)]">
               داناورس
