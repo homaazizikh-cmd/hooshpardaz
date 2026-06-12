@@ -217,13 +217,13 @@ if (course.value) {
   const finalSeoDesc = seoData.value?.seo_description || course.value.desc;
 
   useSeoMeta({
-    title: finalSeoTitle,
-    description: finalSeoDesc,
-    ogTitle: finalSeoTitle,
-    ogDescription: finalSeoDesc,
-    ogImage: `https://danaverse.ir${course.value.image}`, 
-    twitterCard: 'summary_large_image',
-  });
+    title: () => finalSeoTitle.value || finalSeoTitle,
+   description: () => finalSeoDesc.value || finalSeoDesc,
+   ogTitle: () => finalSeoTitle.value || finalSeoTitle,
+   ogDescription: () => finalSeoDesc.value || finalSeoDesc,
+   ogImage: () => `https://danaverse.ir${course.value?.image || ''}`, 
+   twitterCard: 'summary_large_image',
+});
 
   // ۵. اسکیمای اتوماتیک یا خواندن از دیتابیس
   let finalSchema = {
