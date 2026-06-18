@@ -8,14 +8,14 @@
     <section class="container mx-auto px-4 text-center mb-16 relative z-10">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md shadow-sm dark:shadow-[0_0_15px_rgba(59,130,246,0.2)]">
         <span class="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 animate-ping"></span>
-        SYSTEM_DEPARTMENTS
+        {{ $t('courses.badge') }}
       </div>
       
       <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 relative z-10 leading-tight tracking-tight">
-        دپارتمان‌های <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">آکادمی داناورس</span>
+        {{ $t('courses.title1') }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">{{ $t('courses.titleHighlight') }}</span>
       </h1>
       <p class="text-slate-600 dark:text-slate-400 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-        برای استخراج دوره‌های تخصصی هر حوزه، روی ماژول دپارتمان مورد نظر کلیک کنید و مسیر ارتقای خود را انتخاب کنید.
+        {{ $t('courses.subtitle') }}
       </p>
     </section>
 
@@ -33,7 +33,7 @@
             
             <NuxtImg 
               :src="dept.image" 
-              :alt="`دپارتمان آموزشی ${dept.name} در داناورس`" 
+              :alt="dept.name" 
               format="webp"
               preload
               class="w-full h-full object-cover transition-transform duration-700"
@@ -58,7 +58,7 @@
       <div class="flex items-center gap-4 mb-12 border-b border-slate-200 dark:border-slate-800 pb-4">
         <div class="w-2 h-10 bg-blue-600 dark:bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.5)]"></div>
         <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-          دوره‌های استخراج‌شده: 
+          {{ $t('courses.extractedTitle') }} 
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">
             {{ getDepartmentName(activeDepartment) }}
           </span>
@@ -78,11 +78,11 @@
                 <span class="w-2 h-2 rounded-full bg-red-500"></span>
                 <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                <span class="ml-auto text-[9px] font-mono text-white/50">DATA_SET: 0{{ index + 1 }}</span>
+                <span class="ml-auto text-[9px] font-mono text-white/50">{{ $t('courses.dataset') }} 0{{ index + 1 }}</span>
               </div>
               <NuxtImg 
                 :src="course.image || '/images/default-course.webp'" 
-                :alt="`دوره آنلاین ${course.title} در آکادمی داناورس`" 
+                :alt="course.title" 
                 format="webp"
                 loading="lazy"
                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
@@ -97,8 +97,8 @@
               </div>
               
               <div class="flex justify-between items-center w-full mt-4 mb-2 text-[10px] font-mono text-slate-400 dark:text-slate-500">
-                <span class="tracking-widest">COURSE_ID: {{ course.id }}</span>
-                <span class="text-green-500 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>ACTIVE</span>
+                <span class="tracking-widest">{{ $t('courses.courseId') }} {{ course.id }}</span>
+                <span class="text-green-500 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>{{ $t('courses.active') }}</span>
               </div>
 
               <h3 class="text-xl font-black text-slate-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
@@ -110,12 +110,12 @@
               </p>
               
               <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800/80">
-                <NuxtLink :to="`/courses/${course.slug || course.id}`" 
+                <NuxtLink :to="localePath(`/courses/${course.slug || course.id}`)" 
                           class="relative overflow-hidden flex items-center justify-center w-full py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-cyan-500/50 text-sm font-black text-slate-600 dark:text-slate-400 group-hover:text-blue-700 dark:group-hover:text-white transition-all duration-300 group/btn">
                   <div class="absolute inset-0 w-0 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-500 dark:to-purple-600 transition-all duration-500 ease-out group-hover/btn:w-full opacity-10 dark:opacity-20"></div>
                   <span class="relative z-10 flex items-center gap-2">
-                    اسکن زمان‌بندی و جزئیات
-                    <svg class="w-4 h-4 transform rotate-180 group-hover/btn:-translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    {{ $t('courses.scanBtn') }}
+                    <svg class="w-4 h-4 transform rtl:rotate-180 ltr:rotate-0 rtl:group-hover/btn:-translate-x-1.5 ltr:group-hover/btn:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                   </span>
                 </NuxtLink>
               </div>
@@ -128,8 +128,8 @@
       <div v-if="filteredCourses.length === 0" class="text-center py-20 bg-white/50 dark:bg-slate-900/30 rounded-[3rem] backdrop-blur-md border border-slate-200 dark:border-slate-800 border-dashed mt-8 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent"></div>
         <div class="text-6xl mb-4 opacity-50 grayscale relative z-10">📡</div>
-        <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-2 relative z-10">هیچ دیتایی یافت نشد</h3>
-        <p class="text-slate-500 font-mono text-sm relative z-10">UPDATING_SERVER... PLEASE_WAIT.</p>
+        <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-2 relative z-10">{{ $t('courses.empty.title') }}</h3>
+        <p class="text-slate-500 font-mono text-sm relative z-10">{{ $t('courses.empty.desc') }}</p>
       </div>
     </section>
   </div>
@@ -137,174 +137,57 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-// سئو صفحه ارتقا یافته
-useSeoMeta({
-  title: 'لیست دوره‌های برنامه‌نویسی و هوش مصنوعی',
-  description: 'لیست کامل دوره‌های آموزش برنامه‌نویسی، هوش مصنوعی، رباتیک و هنرهای دیجیتال در آکادمی داناورس برای تمامی سنین با ارائه مدرک.',
-  ogTitle: 'دوره‌های تخصصی آکادمی داناورس',
-  ogImage: '/images/Banner.jpg'
-});
-
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
 const supabase = useSupabaseClient();
 const activeDepartment = ref('python');
 
-const departments = [
-  { id: 'python', name: 'برنامه‌نویسی پایتون', image: '/images/DP-python.webp' },
-  { id: 'ai', name: 'هوش مصنوعی و داده', image: '/images/DP-Ai.webp' },
-  { id: 'design', name: 'هنرهای دیجیتال و گرافیک', image: '/images/DP-Design.webp' },
-  { id: 'maharat', name: 'مهارت‌های کاربردی و سخت', image: '/images/DP-Maharat.webp' }
-];
+useSeoMeta({
+  title: () => t('courses.seo.title'),
+  description: () => t('courses.seo.desc'),
+  ogTitle: () => t('courses.seo.ogTitle'),
+  ogImage: '/images/Banner.jpg'
+});
 
-// 💡 لیست دوره‌های دستی با اضافه شدن اسلاگ‌های سئوشده
-const manualCourses = [
-  { 
-    id: 13, 
-    slug: 'icdl',
-    title: 'مهارت‌های هفت‌گانه (ICDL)', 
-    dept: 'maharat', 
-    price: '۴,۵۰۰,۰۰۰', 
-    desc: 'یادگیری کامل نرم‌افزارهای آفیس و مبانی کامپیوتر.', 
-    image: '/images/ICDL.webp',
-    schedule: 'روزهای زوج - ساعت ۱۶ الی ۱۸', 
-    startDate: '۱۵ تیر' 
-  },
-  { 
-    id: 5, 
-    slug: 'robotics-adults',
-    title: 'رباتیک بزرگسال', 
-    dept: 'maharat', 
-    price: '۱۲,۰۰۰,۰۰۰', 
-    desc: 'طراحی، ساخت و برنامه‌نویسی میکروکنترلرها و ربات‌های هوشمند.', 
-    image: '/images/Robatic.webp',
-    schedule: 'پنج‌شنبه‌ها - ساعت ۱۰ الی ۱۴', 
-    startDate: '۲۰ تیر' 
-  },
-  { 
-    id: 10, 
-    slug: 'scratch',
-    title: 'اسکرچ (Scratch)', 
-    dept: 'maharat', 
-    price: '۵,۰۰۰,۰۰۰', 
-    desc: 'آموزش منطق برنامه‌نویسی و تفکر الگوریتمی برای کودکان.', 
-    image: '/images/Scratch.webp',
-    schedule: 'یکشنبه و سه‌شنبه - ساعت ۱۷ الی ۱۹', 
-    startDate: '۱۰ مرداد' 
-  },
-  { 
-    id: 12, 
-    slug: 'robotics-kids',
-    title: 'رباتیک دانش‌آموزی', 
-    dept: 'maharat', 
-    price: '۷,۵۰۰,۰۰۰', 
-    desc: 'آشنایی با سخت‌افزار، الکترونیک و ربات‌های حرکتی.', 
-    image: '/images/Robatoc-childern.webp',
-    schedule: 'دوشنبه و چهارشنبه - ساعت ۱۵ الی ۱۷', 
-    startDate: '۵ مرداد' 
-  },
-  { 
-    id: 1, 
-    slug: 'python-basics',
-    title: 'پایتون مقدماتی', 
-    dept: 'python', 
-    price: '۸,۰۰۰,۰۰۰', 
-    desc: 'شروع قدرتمند برای ورود به دنیای برنامه‌نویسی تجاری.', 
-    image: '/images/Python-M.webp',
-    schedule: 'روزهای فرد - ساعت ۱۸ الی ۲۰', 
-    startDate: '۱ مرداد' 
-  },
-  { 
-    id: 2, 
-    slug: 'python-advanced',
-    title: 'پایتون پیشرفته', 
-    dept: 'python', 
-    price: '۱۰,۰۰۰,۰۰۰', 
-    desc: 'مسلط به مباحث پیشرفته پایتون و شیءگرایی برای بازار کار.', 
-    image: '/images/Python-P.webp',
-    schedule: 'پنج‌شنبه‌ها - ساعت ۱۵ الی ۱۹', 
-    startDate: '۱۲ مرداد' 
-  },
-  { 
-    id: 11, 
-    slug: 'python-kids',
-    title: 'پایتون کودکان', 
-    dept: 'python', 
-    price: '۶,۵۰۰,۰۰۰', 
-    desc: 'زبان پایتون با بیانی ساده و جذاب برای نوجوانان.', 
-    image: '/images/Python-childern.webp',
-    schedule: 'شنبه و دوشنبه - ساعت ۱۶ الی ۱۸', 
-    startDate: '۱ شهریور' 
-  },
-  { 
-    id: 3, 
-    slug: 'ai-tools',
-    title: 'ابزارهای هوش مصنوعی', 
-    dept: 'ai', 
-    price: '۷,۰۰۰,۰۰۰', 
-    desc: 'تسلط بر ابزارهای کاربردی و مولد هوش مصنوعی برای افزایش بهره‌وری.', 
-    image: '/images/Ai-tools.webp',
-    schedule: 'روزهای زوج - ساعت ۱۹ الی ۲۱', 
-    startDate: '۲۵ تیر' 
-  },
-  { 
-    id: 4, 
-    slug: 'machine-learning',
-    title: 'ماشین لرنینگ', 
-    dept: 'ai', 
-    price: '۱۲,۰۰۰,۰۰۰', 
-    desc: 'تحلیل داده‌ها، الگوریتم‌ها و ساخت مدل‌های هوشمند یادگیری ماشین.', 
-    image: '/images/Machine learning.webp',
-    schedule: 'جمعه‌ها - ساعت ۹ صبح الی ۱۳', 
-    startDate: '۳۰ تیر' 
-  },
-  { 
-    id: 6, 
-    slug: 'photoshop',
-    title: 'فتوشاپ (Photoshop)', 
-    dept: 'design', 
-    price: '۷,۰۰۰,۰۰۰', 
-    desc: 'خلق جهان‌های بصری و ورود به بازار کار طراحی و ادیت عکس.', 
-    image: '/images/Photoshop.webp',
-    schedule: 'یکشنبه و سه‌شنبه - ساعت ۱۸ الی ۲۰', 
-    startDate: '۱۵ مرداد' 
-  },
-  { 
-    id: 7, 
-    slug: 'illustrator',
-    title: 'ایلاستریتور (Illustrator)', 
-    dept: 'design', 
-    price: '۷,۰۰۰,۰۰۰', 
-    desc: 'طراحی برداری، خلق کاراکترها و نشان‌های تجاری حرفه‌ای.', 
-    image: '/images/Illustrator.webp',
-    schedule: 'دوشنبه و چهارشنبه - ساعت ۱۸ الی ۲۰', 
-    startDate: '۲۰ مرداد' 
-  },
-  { 
-    id: 8, 
-    slug: 'indesign',
-    title: 'ایندیزاین (InDesign)', 
-    dept: 'design', 
-    price: '۶,۵۰۰,۰۰۰', 
-    desc: 'صفحه‌آرایی حرفه‌ای مجلات، کتاب‌ها و کاتالوگ‌های فیزیکی و دیجیتال.', 
-    image: '/images/Indesign.webp',
-    schedule: 'پنج‌شنبه‌ها - ساعت ۱۴ الی ۱۸', 
-    startDate: '۵ شهریور' 
-  },
-  { 
-    id: 9, 
-    slug: 'sketch',
-    title: 'تصویرسازی اسکیچ', 
-    dept: 'design', 
-    price: '۶,۰۰۰,۰۰۰', 
-    desc: 'پیاده‌سازی ایده‌های خلاقانه بصری در قالب اسکیچ‌های استاندارد.', 
-    image: '/images/Sketch.webp',
-    schedule: 'روزهای فرد - ساعت ۱۶ الی ۱۸', 
-    startDate: '۱۵ شهریور' 
-  }
-];
+const departments = computed(() => [
+  { id: 'python', name: t('courses.depts.python'), image: '/images/DP-python.webp' },
+  { id: 'ai', name: t('courses.depts.ai'), image: '/images/DP-Ai.webp' },
+  { id: 'design', name: t('courses.depts.design'), image: '/images/DP-Design.webp' },
+  { id: 'maharat', name: t('courses.depts.maharat'), image: '/images/DP-Maharat.webp' }
+]);
 
-// 🚀 دریافت دوره‌های جدید از دیتابیس به صورت داینامیک
-const { data: dbCourses } = await useAsyncData('public-courses-list', async () => {
+const manualCourses = computed(() => [
+  { id: 13, slug: 'icdl', dept: 'maharat', image: '/images/ICDL.webp', price: '۴,۵۰۰,۰۰۰', startDate: '۱۵ تیر', 
+    title: t('courseData.c1.title'), desc: t('courseData.c1.desc'), schedule: t('courseData.c1.schedule') },
+  { id: 5, slug: 'robotics-adults', dept: 'maharat', image: '/images/Robatic.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۲۰ تیر', 
+    title: t('courseData.c2.title'), desc: t('courseData.c2.desc'), schedule: t('courseData.c2.schedule') },
+  { id: 12, slug: 'robotics-kids', dept: 'maharat', image: '/images/Robatoc-childern.webp', price: '۷,۵۰۰,۰۰۰', startDate: '۵ مرداد', 
+    title: t('courseData.c3.title'), desc: t('courseData.c3.desc'), schedule: t('courseData.c3.schedule') },
+  { id: 10, slug: 'scratch', dept: 'maharat', image: '/images/Scratch.webp', price: '۵,۰۰۰,۰۰۰', startDate: '۱۰ مرداد', 
+    title: t('courseData.c4.title'), desc: t('courseData.c4.desc'), schedule: t('courseData.c4.schedule') },
+  { id: 11, slug: 'python-kids', dept: 'python', image: '/images/Python-childern.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۱ شهریور', 
+    title: t('courseData.c5.title'), desc: t('courseData.c5.desc'), schedule: t('courseData.c5.schedule') },
+  { id: 1, slug: 'python-basics', dept: 'python', image: '/images/Python-M.webp', price: '۸,۰۰۰,۰۰۰', startDate: '۱ مرداد', 
+    title: t('courseData.c6.title'), desc: t('courseData.c6.desc'), schedule: t('courseData.c6.schedule') },
+  { id: 2, slug: 'python-advanced', dept: 'python', image: '/images/Python-P.webp', price: '۱۰,۰۰۰,۰۰۰', startDate: '۱۲ مرداد', 
+    title: t('courseData.c7.title'), desc: t('courseData.c7.desc'), schedule: t('courseData.c7.schedule') },
+  { id: 3, slug: 'ai-tools', dept: 'ai', image: '/images/Ai-tools.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۵ تیر', 
+    title: t('courseData.c8.title'), desc: t('courseData.c8.desc'), schedule: t('courseData.c8.schedule') },
+  { id: 4, slug: 'machine-learning', dept: 'ai', image: '/images/Machine learning.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۳۰ تیر', 
+    title: t('courseData.c9.title'), desc: t('courseData.c9.desc'), schedule: t('courseData.c9.schedule') },
+  { id: 6, slug: 'photoshop', dept: 'design', image: '/images/Photoshop.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۱۵ مرداد', 
+    title: t('courseData.c10.title'), desc: t('courseData.c10.desc'), schedule: t('courseData.c10.schedule') },
+  { id: 7, slug: 'illustrator', dept: 'design', image: '/images/Illustrator.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۰ مرداد', 
+    title: t('courseData.c11.title'), desc: t('courseData.c11.desc'), schedule: t('courseData.c11.schedule') },
+  { id: 8, slug: 'indesign', dept: 'design', image: '/images/Indesign.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۵ شهریور', 
+    title: t('courseData.c12.title'), desc: t('courseData.c12.desc'), schedule: t('courseData.c12.schedule') },
+  { id: 9, slug: 'sketch', dept: 'design', image: '/images/Sketch.webp', price: '۶,۰۰۰,۰۰۰', startDate: '۱۵ شهریور', 
+    title: t('courseData.c13.title'), desc: t('courseData.c13.desc'), schedule: t('courseData.c13.schedule') }
+]);
+
+const { data: dbCourses } = await useAsyncData(`public-courses-list-${locale.value}`, async () => {
   const { data, error } = await supabase
     .from('courses')
     .select('*')
@@ -317,37 +200,33 @@ const { data: dbCourses } = await useAsyncData('public-courses-list', async () =
   return data || [];
 });
 
-// 🤝 تلفیق: چسباندن دوره‌های دیتابیس به دوره‌های دستی شما
 const allCourses = computed(() => {
   const dbActive = (dbCourses.value || [])
     .filter(c => c.is_published === true || c.is_published === 'true')
     .map(c => ({
       id: c.id,
-      slug: c.slug, // فیلد جدید اسلاگ برای دیتابیس
-      title: c.title,
+      slug: c.slug,
+      title: locale.value === 'en' && c.title_en ? c.title_en : c.title,
       dept: c.dept,
       price: c.price,
-      desc: c.description, 
+      desc: locale.value === 'en' && c.description_en ? c.description_en : c.description,
       image: c.image_url, 
       schedule: c.schedule,
       startDate: c.start_date
     }));
     
-  // اول دوره‌های جدید دیتابیس، بعد دوره‌های قدیمیِ دستی شما قرار می‌گیرد
-  return [...dbActive, ...manualCourses];
+  return [...dbActive, ...manualCourses.value];
 });
 
-// فیلتر نهایی بر اساس تبِ انتخاب شده
 const filteredCourses = computed(() => {
   return allCourses.value.filter(c => c.dept === activeDepartment.value);
 });
 
 const getDepartmentName = (id) => {
-  const dept = departments.find(d => d.id === id);
+  const dept = departments.value.find(d => d.id === id);
   return dept ? dept.name : '';
 };
 
-// --- تولید کدهای هوشمند اسکیما ---
 const schemaData = computed(() => ({
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -360,7 +239,7 @@ const schemaData = computed(() => ({
       "description": course.desc,
       "provider": {
         "@type": "Organization",
-        "name": "آکادمی داناورس",
+        "name": t('courses.titleHighlight'),
         "sameAs": "https://danaverse.ir"
       }
     }
@@ -391,7 +270,6 @@ useHead({
 .fade-leave-active {
   position: absolute;
 }
-/* اعمال محدودیت ۳ خطی برای توضیحات که ظاهر کارت‌ها به هم نریزد */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;

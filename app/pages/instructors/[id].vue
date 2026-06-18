@@ -132,7 +132,7 @@
                   
                   <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
                     <span class="text-[10px] font-mono text-slate-500 dark:text-slate-500">INVESTMENT_REQ:</span>
-                    <span class="text-sm font-black text-blue-600 dark:text-cyan-400 dir-ltr">{{ course.price }} <span class="text-[10px] font-normal opacity-70">{{ $t('instructorDetail.currency') }}</span></span>
+                    <span class="text-sm font-black text-blue-600 dark:text-cyan-400 [direction:ltr]">{{ course.price }} <span class="text-[10px] font-normal opacity-70">{{ $t('instructorDetail.currency') }}</span></span>
                   </div>
                 </div>
               </NuxtLink>
@@ -172,7 +172,6 @@ const { t } = useI18n();
 const localePath = useLocalePath();
 const routeId = parseInt(route.params.id);
 
-// 🚀 اتصال به دیتابیس (برای جلوگیری از ارور 404 اساتید جدید)
 const { data: dbInstructor } = await useAsyncData(`instructor-${routeId}`, async () => {
   if (!routeId) return null;
   const { data } = await supabase
@@ -183,7 +182,6 @@ const { data: dbInstructor } = await useAsyncData(`instructor-${routeId}`, async
   return data;
 });
 
-// داینامیک کردن اطلاعات ۸ استاد بر اساس زبان انتخابی (وصل شده به فایل i18n)
 const manualInstructors = computed(() => [
   { id: 1, name: t('instructorData.i1.name'), dept: 'ai', title: t('instructorData.i1.title'), bio: t('instructorData.i1.bio'), skills: ['Python', 'Machine_Learning', 'Deep_Learning', 'TensorFlow'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
   { id: 2, name: t('instructorData.i2.name'), dept: 'design', title: t('instructorData.i2.title'), bio: t('instructorData.i2.bio'), skills: ['UI/UX', 'Photoshop', 'Illustrator', 'Figma'], image_url: '/images/instructors/paniz-borna.jpg' },
@@ -195,29 +193,26 @@ const manualInstructors = computed(() => [
   { id: 8, name: t('instructorData.i8.name'), dept: 'maharat', title: t('instructorData.i8.title'), bio: t('instructorData.i8.bio'), skills: ['ICDL', 'Excel_Expert', 'Windows', 'Word'], image_url: '/images/instructors/mahdieh-roshan.jpg' }
 ]);
 
-// داینامیک کردن اسامی دوره‌ها
+// 💡 اصلاح کلیدهای ترجمه از courseNames به courseData و سینک کردن شناسه‌ها با صفحه اصلی
 const allCourses = computed(() => [
-  { id: 1, title: t('courseNames.c1'), price: '4,500,000', instructor_id: 8, image: '/images/ICDL.webp' },
-  { id: 5, title: t('courseNames.c2'), price: '12,000,000', instructor_id: 4, image: '/images/Robatic.webp' },
-  { id: 12, title: t('courseNames.c3'), price: '7,500,000', instructor_id: 4, image: '/images/Robatoc-childern.webp' },
-  { id: 10, title: t('courseNames.c4'), price: '5,000,000', instructor_id: 3, image: '/images/Scratch.webp' },
-  { id: 11, title: t('courseNames.c5'), price: '6,500,000', instructor_id: 3, image: '/images/Python-childern.webp' },
-  { id: 1, title: t('courseNames.c6'), price: '8,000,000', instructor_id: 1, image: '/images/Python-M.webp' },
-  { id: 2, title: t('courseNames.c7'), price: '10,000,000', instructor_id: 6, image: '/images/Python-P.webp' },
-  { id: 3, title: t('courseNames.c8'), price: '7,000,000', instructor_id: 5, image: '/images/Ai-tools.webp' },
-  { id: 4, title: t('courseNames.c9'), price: '12,000,000', instructor_id: 1, image: '/images/Machine learning.webp' },
-  { id: 6, title: t('courseNames.c10'), price: '7,000,000', instructor_id: 2, image: '/images/Photoshop.webp' },
-  { id: 7, title: t('courseNames.c11'), price: '7,000,000', instructor_id: 2, image: '/images/Illustrator.webp' },
-  { id: 8, title: t('courseNames.c12'), price: '6,500,000', instructor_id: 2, image: '/images/Indesign.webp' },
-  { id: 9, title: t('courseNames.c13'), price: '6,000,000', instructor_id: 7, image: '/images/Sketch.webp' }
+  { id: 13, title: t('courseData.c1.title'), price: '۴,۵۰۰,۰۰۰', instructor_id: 8, image: '/images/ICDL.webp' },
+  { id: 5, title: t('courseData.c2.title'), price: '۱۲,۰۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatic.webp' },
+  { id: 12, title: t('courseData.c3.title'), price: '۷,۵۰۰,۰۰۰', instructor_id: 4, image: '/images/Robatoc-childern.webp' },
+  { id: 10, title: t('courseData.c4.title'), price: '۵,۰۰۰,۰۰۰', instructor_id: 3, image: '/images/Scratch.webp' },
+  { id: 11, title: t('courseData.c5.title'), price: '۶,۵۰۰,۰۰۰', instructor_id: 3, image: '/images/Python-childern.webp' },
+  { id: 1, title: t('courseData.c6.title'), price: '۸,۰۰۰,۰۰۰', instructor_id: 1, image: '/images/Python-M.webp' },
+  { id: 2, title: t('courseData.c7.title'), price: '۱۰,۰۰۰,۰۰۰', instructor_id: 6, image: '/images/Python-P.webp' },
+  { id: 3, title: t('courseData.c8.title'), price: '۷,۰۰۰,۰۰۰', instructor_id: 5, image: '/images/Ai-tools.webp' },
+  { id: 4, title: t('courseData.c9.title'), price: '۱۲,۰۰۰,۰۰۰', instructor_id: 1, image: '/images/Machine learning.webp' },
+  { id: 6, title: t('courseData.c10.title'), price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Photoshop.webp' },
+  { id: 7, title: t('courseData.c11.title'), price: '۷,۰۰۰,۰۰۰', instructor_id: 2, image: '/images/Illustrator.webp' },
+  { id: 8, title: t('courseData.c12.title'), price: '۶,۵۰۰,۰۰۰', instructor_id: 2, image: '/images/Indesign.webp' },
+  { id: 9, title: t('courseData.c13.title'), price: '۶,۰۰۰,۰۰۰', instructor_id: 7, image: '/images/Sketch.webp' }
 ]);
 
-// تلفیق هوشمندانه دیتای ثابت با دیتابیس
 const instructor = computed(() => {
   let found = manualInstructors.value.find(i => i.id === routeId);
   if (!found && dbInstructor.value) {
-    // 👈 برای اطلاعات دیتابیس، در آینده باید ترجمه آن از دیتابیس خوانده شود
-    // اما فعلاً ساختار اصلی حفظ شده است.
     found = {
       id: dbInstructor.value.id,
       name: dbInstructor.value.name,
@@ -236,7 +231,6 @@ const instructorCourses = computed(() => {
   return allCourses.value.filter(c => c.instructor_id === instructor.value.id);
 });
 
-// 🚀 سئوی فوق‌پیشرفته (اتصال به i18n برای ترجمه زنده متاتگ‌های گوگل)
 useSeoMeta({
   title: () => instructor.value ? t('instructorDetail.seo.title', { name: instructor.value.name, title: instructor.value.title }) : t('instructorDetail.seo.notFound'),
   description: () => instructor.value ? t('instructorDetail.seo.desc', { name: instructor.value.name, title: instructor.value.title }) : '',
@@ -248,7 +242,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 });
 
-// 🧠 تزریق کدهای ساختاریافته گوگل با رفع باگ Hydration
 useHead(() => {
   if (!instructor.value) return {};
 

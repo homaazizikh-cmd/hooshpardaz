@@ -116,7 +116,8 @@
 
               <div class="w-full md:w-auto shrink-0 relative z-10">
                 <NuxtLink 
-                  :to="localePath(`/instructors/${course.instructor?.id}`)" 
+                  v-if="course.instructor?.id"
+                  :to="localePath(`/instructors/${course.instructor.id}`)" 
                   class="relative flex items-center justify-center w-full md:w-auto py-3.5 px-6 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-400 dark:group-hover:border-cyan-500/50 text-sm font-black text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-white transition-all duration-300 overflow-hidden group/btn"
                 >
                   <div class="absolute inset-0 w-0 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-500 dark:to-purple-600 transition-all duration-500 ease-out group-hover/btn:w-full opacity-10 dark:opacity-20"></div>
@@ -175,7 +176,8 @@ const localePath = useLocalePath();
 
 const routeParam = route.params.slug || route.params.id; 
 
-const { data: dbData } = await useAsyncData(`course-db-${routeParam}`, async () => {
+// اضافه شدن متغیر زبان به کلید برای جلوگیری از کش شدن محتوای اشتباه هنگام تغییر زبان
+const { data: dbData } = await useAsyncData(`course-db-${routeParam}-${locale.value}`, async () => {
   const { data } = await supabase
     .from('courses')
     .select('*')
@@ -185,7 +187,6 @@ const { data: dbData } = await useAsyncData(`course-db-${routeParam}`, async () 
   return data;
 });
 
-// استفاده از computed برای داینامیک شدن ترجمه‌ها با تغییر زبان
 const manualCourses = computed(() => [
   { id: 13, slug: 'icdl', title: t('courseData.c1.title'), dept: 'maharat', price: '6,500,000', desc: t('courseData.c1.desc'), image: '/images/ICDL.webp', schedule: { days: t('courseData.c1.schedule'), time: '16:00 - 18:00' }, startDate: locale.value === 'en' ? 'July 6, 2026' : '۱۵ تیر ۱۴۰۵', instructor: { id: 8, name: t('instructorData.i8.name'), title: t('instructorData.i8.title'), skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mahdieh-roshan.jpg' } },
   { id: 5, slug: 'robotics-adults', title: t('courseData.c2.title'), dept: 'maharat', price: '12,000,000', desc: t('courseData.c2.desc'), image: '/images/Robatic.webp', schedule: { days: t('courseData.c2.schedule'), time: '10:00 - 14:00' }, startDate: locale.value === 'en' ? 'July 11, 2026' : '۲۰ تیر ۱۴۰۵', instructor: { id: 4, name: t('instructorData.i4.name'), title: t('instructorData.i4.title'), skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' } },
@@ -236,7 +237,6 @@ const course = computed(() => {
   return found;
 });
 
-// 🚀 سئوی پیشرفته و متصل به i18n
 useSeoMeta({
   title: () => course.value?.seo_title || t('courseDetail.seo.title', { title: course.value?.title }),
   description: () => course.value?.seo_description || course.value?.desc,
@@ -246,7 +246,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 });
 
-// Schema Markup متصل به کامپیوتد برای آپدیت زنده
 useHead(() => {
   if (!course.value) return {};
   let finalSchema = {};
