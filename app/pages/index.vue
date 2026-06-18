@@ -494,23 +494,32 @@ const translatedPaths = computed(() => [
   }
 ]);
 
+// 🎯 نام اساتید داینامیک شد تا با تغییر زبان عوض شوند!
 const translatedInstructors = computed(() => [
-  { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: t('home.instructors.i1.title'), bio: t('home.instructors.i1.bio'), skills: ['Python', 'Machine Learning', 'Deep Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
-  { id: 2, name: 'پانیذ برنا', dept: 'design', title: t('home.instructors.i2.title'), bio: t('home.instructors.i2.bio'), skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
-  { id: 5, name: 'فرانک خزایی', dept: 'ai', title: t('home.instructors.i3.title'), bio: t('home.instructors.i3.bio'), skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
+  { id: 1, name: t('instructorData.i1.name'), dept: 'ai', title: t('instructorData.i1.title'), bio: t('instructorData.i1.bio'), skills: ['Python', 'Machine Learning', 'Deep Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
+  { id: 2, name: t('instructorData.i2.name'), dept: 'design', title: t('instructorData.i2.title'), bio: t('instructorData.i2.bio'), skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
+  { id: 5, name: t('instructorData.i5.name'), dept: 'ai', title: t('instructorData.i5.title'), bio: t('instructorData.i5.bio'), skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
 ]);
 
+// اضافه کردن 3 نظر جدید هنرجویان
 const translatedTestimonials = computed(() => [
   { text: t('home.testimonials.t1.text'), name: 'امیرحسین م.', course: t('home.testimonials.t1.course') },
   { text: t('home.testimonials.t2.text'), name: 'نگار س.', course: t('home.testimonials.t2.course') },
-  { text: t('home.testimonials.t3.text'), name: 'رضا ک.', course: t('home.testimonials.t3.course') }
+  { text: t('home.testimonials.t3.text'), name: 'رضا ک.', course: t('home.testimonials.t3.course') },
+  { text: t('home.testimonials.t4.text'), name: 'سارا ب.', course: t('home.testimonials.t4.course') },
+  { text: t('home.testimonials.t5.text'), name: 'محمد ر.', course: t('home.testimonials.t5.course') },
+  { text: t('home.testimonials.t6.text'), name: 'مریم ا.', course: t('home.testimonials.t6.course') }
 ]);
 
+// اضافه کردن 3 سوال متداول جدید
 const translatedFaqs = computed(() => [
   { q: t('home.faq.q1'), a: t('home.faq.a1') },
   { q: t('home.faq.q2'), a: t('home.faq.a2') },
   { q: t('home.faq.q3'), a: t('home.faq.a3') },
-  { q: t('home.faq.q4'), a: t('home.faq.a4') }
+  { q: t('home.faq.q4'), a: t('home.faq.a4') },
+  { q: t('home.faq.q5'), a: t('home.faq.a5') },
+  { q: t('home.faq.q6'), a: t('home.faq.a6') },
+  { q: t('home.faq.q7'), a: t('home.faq.a7') }
 ]);
 
 const activeFaq = ref(null);
@@ -587,60 +596,3 @@ useHead({
   ])
 });
 </script>
-
-<style scoped>
-.animate-pulse-slow {
-  animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes tilt {
-  0%, 50%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(1deg); }
-  75% { transform: rotate(-1deg); }
-}
-.animate-tilt {
-  animation: tilt 10s infinite linear;
-}
-
-.mask-image-b {
-  mask-image: linear-gradient(to top, transparent, black 50%, black 100%, transparent);
-  -webkit-mask-image: linear-gradient(to top, transparent, black 50%, black 100%, transparent);
-}
-
-.custom-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  outline: none;
-}
-
-.custom-slider::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-}
-
-.custom-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50px;
-  height: 1000px; 
-  background: rgba(0,0,0,0.001); 
-  cursor: ew-resize;
-}
-
-.custom-slider::-moz-range-thumb {
-  width: 50px;
-  height: 1000px;
-  background: rgba(0,0,0,0.001);
-  cursor: ew-resize;
-  border: none;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-}
-input[type=range]:focus {
-  outline: none;
-}
-</style>
