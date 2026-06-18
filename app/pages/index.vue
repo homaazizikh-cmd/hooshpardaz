@@ -2,12 +2,11 @@
   <div class="min-h-screen bg-gray-50 dark:bg-[#03050a] text-gray-900 dark:text-white transition-colors duration-1000 overflow-hidden font-sans selection:bg-brand-accent1/30 selection:text-brand-accent1">
     
     <section class="relative min-h-[95vh] flex items-center justify-center py-32 overflow-hidden bg-[#03050a]">
-      
       <div class="absolute inset-0 z-0 pointer-events-none">
         <NuxtImg 
           src="/images/Banner.jpg" 
           class="w-full h-full object-cover opacity-40 mix-blend-overlay mask-image-b" 
-          alt="آموزش هوش مصنوعی و برنامه‌نویسی در آکادمی داناورس"
+          :alt="$t('home.hero.title1')"
           format="webp"
           fetchpriority="high"
           preload
@@ -26,27 +25,25 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-accent1"></span>
           </span>
-          پلتفرم جامع آموزش تکنولوژی و هوش مصنوعی
+          {{ $t('home.hero.badge') }}
         </div>
         
         <h1 class="text-6xl md:text-8xl lg:text-[5.5rem] font-black text-white mb-8 tracking-tighter leading-tight md:leading-[1.2]">
-          آکادمی برنامه‌نویسی و هوش مصنوعی <br />
+          {{ $t('home.hero.title1') }} <br />
           <span class="relative inline-block mt-4 px-8 pt-2 pb-6 bg-[#000000]/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] shadow-inner">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-[0_0_40px_rgba(56,189,248,0.3)]">
-              داناورس
+              {{ $t('home.hero.titleHighlight') }}
             </span>
           </span>
         </h1>
         
-        <p class="text-xl md:text-2xl text-gray-300 mb-14 max-w-3xl mx-auto font-light leading-relaxed backdrop-blur-sm bg-white/[0.02] p-4 rounded-3xl border border-white/5">
-          آموزش مهارت‌های آینده؛ از <strong class="text-white font-bold">دوره آنلاین پایتون</strong> تا <strong class="text-white font-bold">یادگیری ماشین</strong> و <strong class="text-white font-bold">رباتیک</strong>، با رویکرد ورود مستقیم به بازار کار.
-        </p>
+        <p class="text-xl md:text-2xl text-gray-300 mb-14 max-w-3xl mx-auto font-light leading-relaxed backdrop-blur-sm bg-white/[0.02] p-4 rounded-3xl border border-white/5" v-html="$t('home.hero.desc')"></p>
         
-        <NuxtLink to="/courses" class="relative inline-flex group">
+        <NuxtLink :to="localePath('/courses')" class="relative inline-flex group">
           <div class="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-2xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
           <button class="relative inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold text-white transition-all duration-200 bg-[#0a0a0a] rounded-2xl focus:outline-none border border-white/10">
-            مشاهده دوره‌های آموزشی
-            <svg class="w-6 h-6 rotate-180 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            {{ $t('home.hero.btn') }}
+            <svg class="w-6 h-6 rtl:rotate-180 transform rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </button>
         </NuxtLink>
       </div>
@@ -54,7 +51,7 @@
 
     <section class="relative z-20 -mt-20 container mx-auto px-4 md:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        <NuxtLink v-for="item in benefits" :key="item.title" :to="item.link" 
+        <NuxtLink v-for="(item, index) in translatedBenefits" :key="index" :to="localePath(item.link)" 
                   class="group relative p-8 bg-white/80 dark:bg-white/[0.02] backdrop-blur-3xl rounded-[2rem] border border-gray-200 dark:border-white/5 text-center hover:-translate-y-3 hover:border-brand-accent1/50 transition-all duration-500 overflow-hidden shadow-xl dark:shadow-none">
           <div class="absolute inset-0 bg-gradient-to-b from-brand-accent1/10 dark:from-brand-accent1/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div class="relative z-10 text-4xl mb-5 transform group-hover:scale-125 group-hover:rotate-6 transition-transform duration-500 drop-shadow-lg dark:drop-shadow-2xl">{{ item.icon }}</div>
@@ -67,14 +64,16 @@
       <div class="bg-gradient-to-r from-blue-100 via-white to-brand-accent1/10 dark:from-blue-900/40 dark:via-blue-800/40 dark:to-brand-accent1/20 backdrop-blur-xl rounded-[3rem] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between border border-blue-200 dark:border-white/10 shadow-[0_20px_50px_-15px_rgba(37,99,235,0.2)] dark:shadow-[0_20px_80px_-15px_rgba(37,99,235,0.3)] relative overflow-hidden group">
         <div class="absolute -left-10 top-1/2 -translate-y-1/2 text-[250px] opacity-5 dark:opacity-10 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 pointer-events-none filter blur-[2px]">🧠</div>
         
-        <div class="relative z-10 mb-10 md:mb-0 text-center md:text-right max-w-2xl">
-          <div class="inline-block bg-blue-500/10 dark:bg-white/10 backdrop-blur-md text-blue-600 dark:text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-200 dark:border-white/20 tracking-wider">سیستم استعدادیابی برنامه‌نویسی</div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">مسیر شغلی تکنولوژی شما کجاست؟</h2>
-          <p class="text-gray-600 dark:text-blue-200 text-lg font-light leading-relaxed">با پاسخ به ۱۵ سوال هدفمند و مبتنی بر روانشناسی شناختی، در کمتر از ۲ دقیقه مسیر آموزشی ایده‌آل خود را برای یادگیری برنامه‌نویسی یا هوش مصنوعی پیدا کنید.</p>
+        <div class="relative z-10 mb-10 md:mb-0 text-center rtl:md:text-right ltr:md:text-left max-w-2xl">
+          <div class="inline-block bg-blue-500/10 dark:bg-white/10 backdrop-blur-md text-blue-600 dark:text-cyan-300 text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-blue-200 dark:border-white/20 tracking-wider">
+            {{ $t('home.talent.badge') }}
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 leading-tight">{{ $t('home.talent.title') }}</h2>
+          <p class="text-gray-600 dark:text-blue-200 text-lg font-light leading-relaxed">{{ $t('home.talent.desc') }}</p>
         </div>
         
-        <NuxtLink to="/talent" class="relative z-10 bg-brand-accent1 dark:bg-white text-white dark:text-blue-900 px-10 py-5 rounded-2xl font-black shadow-xl hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] dark:hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] hover:scale-105 transition-all duration-500 flex items-center gap-3 whitespace-nowrap text-xl">
-          شروع آنالیز ذهن
+        <NuxtLink :to="localePath('/talent')" class="relative z-10 bg-brand-accent1 dark:bg-white text-white dark:text-blue-900 px-10 py-5 rounded-2xl font-black shadow-xl hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] dark:hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] hover:scale-105 transition-all duration-500 flex items-center gap-3 whitespace-nowrap text-xl">
+          {{ $t('home.talent.btn') }}
           <span class="animate-pulse text-2xl">✨</span>
         </NuxtLink>
       </div>
@@ -82,15 +81,17 @@
 
     <section class="py-16 container mx-auto px-4 md:px-8">
       <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">مسیرهای جامع <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">آموزش برنامه‌نویسی</span></h2>
-        <p class="text-gray-500 dark:text-gray-400 font-light text-xl">نقشه راه شفاف و گام‌به‌گام برای تبدیل شدن به یک متخصص تراز اول در هوش مصنوعی و طراحی.</p>
+        <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">
+          {{ $t('home.paths.title1') }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">{{ $t('home.paths.titleHighlight') }}</span>
+        </h2>
+        <p class="text-gray-500 dark:text-gray-400 font-light text-xl">{{ $t('home.paths.desc') }}</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <NuxtLink v-for="(path, index) in paths" :key="path.name" :to="'/roadmap/' + path.slug" 
+        <NuxtLink v-for="(path, index) in translatedPaths" :key="index" :to="localePath('/roadmap/' + path.slug)" 
                   :class="['bg-white dark:bg-[#080b12] p-8 rounded-[2.5rem] border border-gray-200 dark:border-white/5 transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden shadow-xl dark:shadow-none', path.color.borderHover]">
           
-          <div :class="['absolute top-0 right-0 w-40 h-40 rounded-bl-full blur-2xl transition-colors pointer-events-none', path.color.glow]"></div>
+          <div :class="['absolute top-0 rtl:right-0 ltr:left-0 w-40 h-40 rtl:rounded-bl-full ltr:rounded-br-full blur-2xl transition-colors pointer-events-none', path.color.glow]"></div>
           
           <div :class="['relative w-16 h-16 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 transition-all duration-500', path.color.iconBg]">
             {{ path.icon }}
@@ -100,26 +101,28 @@
           <p class="relative text-gray-600 dark:text-gray-400 mb-10 font-light leading-relaxed">{{ path.desc }}</p>
           
           <div :class="['relative inline-flex items-center gap-2 font-bold text-sm', path.color.linkText]">
-            شروع مسیر 
-            <svg class="w-5 h-5 rotate-180 transition-transform group-hover:-translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            {{ $t('home.paths.btn') }} 
+            <svg class="w-5 h-5 rtl:rotate-180 transition-transform rtl:group-hover:-translate-x-2 ltr:group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </div>
         </NuxtLink>
       </div>
     </section>
 
     <section class="py-32 relative overflow-hidden border-y border-gray-200 dark:border-white/5 bg-gray-100/50 dark:bg-white/[0.01]">
-      <div class="absolute -right-40 top-20 w-96 h-96 bg-brand-accent1/10 dark:bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute rtl:-right-40 ltr:-left-40 top-20 w-96 h-96 bg-brand-accent1/10 dark:bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div class="container mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 md:gap-20 items-center relative z-10">
         <div class="order-2 lg:order-1">
-          <div class="inline-block bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-8 shadow-sm dark:shadow-none">دوره آموزش پایتون پیشرفته</div>
-          <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">کدنویسی هوش مصنوعی را <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800 dark:from-gray-400 dark:to-gray-100">عملی</span> لمس کنید</h2>
+          <div class="inline-block bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-8 shadow-sm dark:shadow-none">{{ $t('home.demo.badge') }}</div>
+          <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">
+            {{ $t('home.demo.title1') }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800 dark:from-gray-400 dark:to-gray-100">{{ $t('home.demo.titleHighlight') }}</span> {{ $t('home.demo.title2') }}
+          </h2>
           <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg font-light leading-loose mb-8 md:mb-10 text-justify">
-            ما در دوره‌های برنامه‌نویسی داناورس، محیط‌های توسعه را شبیه‌سازی نمی‌کنیم؛ ما شما را مستقیماً وارد پروژه‌های واقعی هوش مصنوعی می‌کنیم. خبری از تئوری‌های خسته‌کننده نیست؛ شما الگوریتم می‌نویسید و سیستم آن را اجرا می‌کند.
+            {{ $t('home.demo.desc') }}
           </p>
-          <NuxtLink to="/roadmap/coding" class="inline-flex items-center gap-2 text-brand-accent1 dark:text-cyan-400 font-bold text-base md:text-lg hover:text-blue-600 dark:hover:text-white transition-colors group">
-            مشاهده سرفصل‌های دوره پایتون 
-            <span class="group-hover:-translate-x-2 transition-transform">←</span>
+          <NuxtLink :to="localePath('/roadmap/coding')" class="inline-flex items-center gap-2 text-brand-accent1 dark:text-cyan-400 font-bold text-base md:text-lg hover:text-blue-600 dark:hover:text-white transition-colors group">
+            {{ $t('home.demo.link') }} 
+            <span class="rtl:group-hover:-translate-x-2 ltr:group-hover:translate-x-2 transition-transform rtl:rotate-0 ltr:rotate-180">←</span>
           </NuxtLink>
         </div>
         
@@ -136,7 +139,7 @@
               <div class="w-10 hidden md:block"></div> 
             </div>
             
-            <div class="p-4 md:p-8 font-mono text-xs md:text-base text-gray-300 min-h-[200px] md:min-h-[300px] leading-relaxed overflow-x-auto w-full">
+            <div class="p-4 md:p-8 font-mono text-xs md:text-base text-gray-300 min-h-[200px] md:min-h-[300px] leading-relaxed overflow-x-auto w-full text-left">
               <pre class="min-w-max"><code class="text-pink-500">def</code> <span class="text-blue-400">build_future</span>():
     skills = [<span class="text-green-400">'Python'</span>, <span class="text-green-400">'AI'</span>, <span class="text-green-400">'Machine Learning'</span>]
     student = Student(skills)
@@ -145,7 +148,7 @@
         <code class="text-pink-500">return</code> <span class="text-green-400">"Hired as AI Engineer!"</span>
         
 <span class="text-gray-500 italic"># Console Output:</span>
-<span class="text-yellow-300">{{ typedCode }}</span><span class="animate-pulse bg-cyan-400 text-cyan-400 w-2 h-4 md:h-5 inline-block align-middle ml-1">_</span></pre>
+<span class="text-yellow-300" v-html="typedCode"></span><span class="animate-pulse bg-cyan-400 text-cyan-400 w-2 h-4 md:h-5 inline-block align-middle ml-1">_</span></pre>
             </div>
           </div>
         </div>
@@ -155,35 +158,37 @@
     <section class="py-32 container mx-auto px-4 md:px-8 border-b border-gray-200 dark:border-white/5">
       <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
         <div>
-          <div class="inline-block bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold px-4 py-2 rounded-full mb-4 border border-purple-200 dark:border-purple-500/20">خروجیِ دوره‌های داناورس</div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">پروژه‌های عملی <span class="text-purple-600 dark:text-purple-400">دانشجویان</span></h2>
-          <p class="text-gray-600 dark:text-gray-400 font-light text-lg mt-4">ما به نتیجه و خروجی کار هنرجویان دوره‌های برنامه‌نویسی افتخار می‌کنیم.</p>
+          <div class="inline-block bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold px-4 py-2 rounded-full mb-4 border border-purple-200 dark:border-purple-500/20">{{ $t('home.projects.badge') }}</div>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">
+            {{ $t('home.projects.title1') }} <span class="text-purple-600 dark:text-purple-400">{{ $t('home.projects.titleHighlight') }}</span>
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400 font-light text-lg mt-4">{{ $t('home.projects.desc') }}</p>
         </div>
-        <NuxtLink to="/projects" class="px-8 py-4 border border-gray-300 dark:border-white/10 rounded-2xl font-bold text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">مشاهده همه پروژه‌ها</NuxtLink>
+        <NuxtLink :to="localePath('/projects')" class="px-8 py-4 border border-gray-300 dark:border-white/10 rounded-2xl font-bold text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">{{ $t('home.projects.btn') }}</NuxtLink>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
         <div class="group relative rounded-[2rem] overflow-hidden shadow-2xl dark:shadow-none border border-gray-200 dark:border-white/5 bg-white dark:bg-[#0a0c10] cursor-pointer">
           <div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-900 relative">
             <div class="absolute inset-0 bg-brand-accent1/20 dark:bg-transparent mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity"></div>
-            <NuxtImg src="/images/Project-1.jpg" alt="پروژه پایانی آموزش هوش مصنوعی با پایتون" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+            <NuxtImg src="/images/Project-1.jpg" :alt="$t('home.projects.p1.title')" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10 z-20">
-            <span class="inline-block bg-brand-accent1 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-4 w-max border border-white/20">هوش مصنوعی</span>
-            <h3 class="text-white text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">طراحی سیستم تشخیص چهره</h3>
-            <p class="text-gray-300 text-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">پروژه پایانی مسیر برنامه‌نویسی با استفاده از پایتون و OpenCV.</p>
+            <span class="inline-block bg-brand-accent1 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-4 w-max border border-white/20">{{ $t('home.projects.p1.badge') }}</span>
+            <h3 class="text-white text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{{ $t('home.projects.p1.title') }}</h3>
+            <p class="text-gray-300 text-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">{{ $t('home.projects.p1.desc') }}</p>
           </div>
         </div>
 
         <div class="group relative rounded-[2rem] overflow-hidden shadow-2xl dark:shadow-none border border-gray-200 dark:border-white/5 bg-white dark:bg-[#0a0c10] cursor-pointer">
           <div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-900 relative">
             <div class="absolute inset-0 bg-purple-500/20 dark:bg-transparent mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity"></div>
-            <NuxtImg src="/images/Project-2.jpg" alt="پروژه آموزش رباتیک و الکترونیک" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+            <NuxtImg src="/images/Project-2.jpg" :alt="$t('home.projects.p2.title')" format="webp" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10 z-20">
-            <span class="inline-block bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-4 w-max border border-white/20">الکترونیک دیجیتال</span>
-            <h3 class="text-white text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">ساخت بازوی رباتیک هوشمند</h3>
-            <p class="text-gray-300 text-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">پیاده‌سازی صفر تا صد سخت‌افزار، بردهای آردوینو و منطق حرکتی.</p>
+            <span class="inline-block bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-4 w-max border border-white/20">{{ $t('home.projects.p2.badge') }}</span>
+            <h3 class="text-white text-3xl font-black mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{{ $t('home.projects.p2.title') }}</h3>
+            <p class="text-gray-300 text-base translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">{{ $t('home.projects.p2.desc') }}</p>
           </div>
         </div>
       </div>
@@ -192,17 +197,19 @@
     <section class="py-32 container mx-auto px-4 md:px-8 border-b border-gray-200 dark:border-white/5">
       <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
         <div>
-          <div class="inline-block bg-brand-accent1/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-4 border border-brand-accent1/20">منتورهای شما</div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight">اساتید <span class="text-brand-accent1 dark:text-cyan-400">برجسته</span> داناورس</h2>
+          <div class="inline-block bg-brand-accent1/10 text-brand-accent1 dark:text-cyan-400 font-bold px-4 py-2 rounded-full mb-4 border border-brand-accent1/20">{{ $t('home.instructors.badge') }}</div>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight">
+            {{ $t('home.instructors.title1') }} <span class="text-brand-accent1 dark:text-cyan-400">{{ $t('home.instructors.titleHighlight') }}</span> {{ $t('home.instructors.title2') }}
+          </h2>
         </div>
-        <NuxtLink to="/instructors" class="group flex items-center gap-2 font-bold text-gray-600 dark:text-gray-400 hover:text-brand-accent1 dark:hover:text-white transition-colors text-sm md:text-base">
-          معرفی تمام اساتید
-          <svg class="w-5 h-5 rotate-180 transform group-hover:-translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <NuxtLink :to="localePath('/instructors')" class="group flex items-center gap-2 font-bold text-gray-600 dark:text-gray-400 hover:text-brand-accent1 dark:hover:text-white transition-colors text-sm md:text-base">
+          {{ $t('home.instructors.btn') }}
+          <svg class="w-5 h-5 rtl:rotate-180 transform rtl:group-hover:-translate-x-2 ltr:group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </NuxtLink>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div v-for="instructor in instructors" :key="instructor.id" 
+        <div v-for="(instructor, index) in translatedInstructors" :key="index" 
              class="group relative bg-white dark:bg-[#0a0c10] rounded-[2rem] p-6 border border-gray-200 dark:border-white/5 hover:border-brand-accent1/50 dark:hover:border-white/20 transition-all duration-500 hover:-translate-y-2 overflow-hidden shadow-xl dark:shadow-none">
           <div class="absolute inset-0 bg-gradient-to-t from-brand-accent1/10 dark:from-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
           
@@ -224,12 +231,11 @@
     </section>
 
     <section class="py-32 container mx-auto px-4 md:px-8 text-center">
-      <div class="inline-block bg-purple-100 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 text-purple-600 dark:text-purple-400 font-bold px-4 py-2 rounded-full mb-6">دپارتمان طراحی دیجیتال</div>
-      <h2 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">تفاوت را با چشمان خود ببینید</h2>
-      <p class="text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto text-lg font-light">خروجی خام را با جادوی هنرهای دیجیتال در دپارتمان طراحی ما مقایسه کنید. اسلایدر را به چپ و راست بکشید.</p>
+      <div class="inline-block bg-purple-100 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 text-purple-600 dark:text-purple-400 font-bold px-4 py-2 rounded-full mb-6">{{ $t('home.compare.badge') }}</div>
+      <h2 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">{{ $t('home.compare.title') }}</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto text-lg font-light">{{ $t('home.compare.desc') }}</p>
       
       <div class="relative w-full max-w-5xl mx-auto aspect-[16/9] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-white dark:border-white/10 select-none" dir="ltr" style="-webkit-user-drag: none;">
-        
         <NuxtImg src="/images/Design-Before.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" alt="طراحی خام پروژه" format="webp" loading="lazy" />
         <NuxtImg src="/images/Design-After.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none" draggable="false" style="-webkit-user-drag: none;" :style="{ clipPath: `inset(0 ${100 - sliderValue}% 0 0)` }" alt="طراحی نهایی پروژه داناورس" format="webp" loading="lazy" />
         
@@ -241,8 +247,8 @@
           </div>
         </div>
         
-        <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 bg-black/60 backdrop-blur-md text-white px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-bold z-30 border border-white/10 pointer-events-none">بعد (After)</div>
-        <div class="absolute bottom-4 md:bottom-6 right-4 md:right-6 bg-black/60 backdrop-blur-md text-white px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-bold z-30 border border-white/10 pointer-events-none">قبل (Before)</div>
+        <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 bg-black/60 backdrop-blur-md text-white px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-bold z-30 border border-white/10 pointer-events-none">{{ $t('home.compare.after') }}</div>
+        <div class="absolute bottom-4 md:bottom-6 right-4 md:right-6 bg-black/60 backdrop-blur-md text-white px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-xs md:text-sm font-bold z-30 border border-white/10 pointer-events-none">{{ $t('home.compare.before') }}</div>
       </div>
     </section>
 
@@ -250,14 +256,16 @@
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMSkiLz48L3N2Zz4=')] opacity-50 mask-image-b pointer-events-none dark:invert-0 invert"></div>
       <div class="container mx-auto px-4 md:px-8 relative z-10">
         <div class="text-center mb-20">
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">صدای <span class="text-brand-accent1">هنرجویان</span> ما</h2>
-          <p class="text-gray-600 dark:text-gray-400 font-light text-xl">بیش از ۵۰۰۰ نفر مسیر آینده‌شان را با ما آغاز کرده‌اند.</p>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">
+            {{ $t('home.testimonials.title1') }} <span class="text-brand-accent1">{{ $t('home.testimonials.titleHighlight') }}</span> {{ $t('home.testimonials.title2') }}
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400 font-light text-xl">{{ $t('home.testimonials.desc') }}</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
-          <div v-for="(review, index) in testimonials" :key="index" 
+          <div v-for="(review, index) in translatedTestimonials" :key="index" 
                class="bg-white dark:bg-[#050505] p-10 rounded-[2rem] border border-gray-200 dark:border-white/5 hover:border-brand-accent1/50 dark:hover:border-brand-accent1/30 transition-colors shadow-lg dark:shadow-none relative group">
-            <div class="text-6xl text-gray-100 dark:text-white/[0.03] absolute top-4 right-6 font-serif group-hover:text-brand-accent1/10 transition-colors">"</div>
+            <div class="text-6xl text-gray-100 dark:text-white/[0.03] absolute top-4 rtl:right-6 ltr:left-6 font-serif group-hover:text-brand-accent1/10 transition-colors">"</div>
             <div class="flex items-center gap-1 mb-6 text-yellow-400 dark:text-yellow-500">
               <svg v-for="i in 5" :key="i" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
             </div>
@@ -278,16 +286,18 @@
 
     <section class="py-32 container mx-auto px-4 max-w-4xl">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 dark:text-white">سوالات متداول درباره <span class="text-brand-accent1">دوره‌ها</span></h2>
-        <p class="text-gray-600 dark:text-gray-400 font-light">پاسخ به دغدغه‌های همیشگی قبل از شروع مسیر.</p>
+        <h2 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 dark:text-white">
+          {{ $t('home.faq.title1') }} <span class="text-brand-accent1">{{ $t('home.faq.titleHighlight') }}</span>
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 font-light">{{ $t('home.faq.desc') }}</p>
       </div>
       
       <div class="space-y-4">
-        <div v-for="(faq, index) in faqs" :key="index" 
+        <div v-for="(faq, index) in translatedFaqs" :key="index" 
              class="bg-white dark:bg-[#0a0c10] rounded-[1.5rem] border border-gray-200 dark:border-white/5 overflow-hidden transition-all duration-300 shadow-sm dark:shadow-none"
              :class="{'border-brand-accent1/50 dark:border-cyan-500/50 bg-blue-50/50 dark:bg-white/[0.02]': activeFaq === index}">
           
-          <button @click="toggleFaq(index)" class="w-full text-right p-6 md:p-8 flex justify-between items-center focus:outline-none group">
+          <button @click="toggleFaq(index)" class="w-full rtl:text-right ltr:text-left p-6 md:p-8 flex justify-between items-center focus:outline-none group">
             <h3 class="font-bold text-lg text-gray-800 dark:text-gray-200 group-hover:text-brand-accent1 dark:group-hover:text-white transition-colors" :class="{'text-brand-accent1 dark:text-cyan-400': activeFaq === index}">
               {{ faq.q }}
             </h3>
@@ -297,7 +307,7 @@
             </div>
           </button>
           
-          <div v-show="activeFaq === index" class="px-6 md:px-8 pb-8 text-gray-600 dark:text-gray-400 font-light leading-loose border-t border-gray-100 dark:border-white/5 pt-6">
+          <div v-show="activeFaq === index" class="px-6 md:px-8 pb-8 text-gray-600 dark:text-gray-400 font-light leading-loose border-t border-gray-100 dark:border-white/5 pt-6 rtl:text-right ltr:text-left">
             <p>{{ faq.a }}</p>
           </div>
         </div>
@@ -311,26 +321,26 @@
         <div class="relative bg-white/90 dark:bg-[#030303]/90 backdrop-blur-3xl rounded-[2.4rem] md:rounded-[2.9rem] p-10 md:p-20 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10 border border-white/20 dark:border-white/5">
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-tr from-brand-accent1/10 to-purple-500/10 blur-[100px] pointer-events-none transition-transform duration-1000 group-hover:scale-110"></div>
           
-          <div class="relative z-10 text-center md:text-right md:max-w-2xl">
+          <div class="relative z-10 text-center rtl:md:text-right ltr:md:text-left md:max-w-2xl">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-white/5 border border-blue-100 dark:border-white/10 text-blue-600 dark:text-cyan-400 text-xs font-bold mb-6">
               <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent1"></span>
               </span>
-              ثبت‌نام ترم جدید آغاز شد
+              {{ $t('home.cta.badge') }}
             </div>
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
-              آماده‌ی تغییر <br class="hidden md:block" />
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500 dark:from-cyan-400 dark:to-blue-500">سطح زندگی‌ت</span> هستی؟
+              {{ $t('home.cta.title1') }} <br class="hidden md:block" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500 dark:from-cyan-400 dark:to-blue-500">{{ $t('home.cta.titleHighlight') }}</span> {{ $t('home.cta.title2') }}
             </h2>
-            <p class="text-gray-600 dark:text-gray-400 text-lg font-light">روی تخصصت سرمایه‌گذاری کن و با پشتیبانی مستقیم منتورها، وارد بازار کار جهانی شو.</p>
+            <p class="text-gray-600 dark:text-gray-400 text-lg font-light">{{ $t('home.cta.desc') }}</p>
           </div>
           
           <div class="relative z-10 flex flex-col w-full md:w-auto gap-4">
-            <NuxtLink to="/courses" class="relative overflow-hidden group/btn bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-10 py-5 rounded-2xl font-black text-lg text-center transition-all duration-300 hover:scale-105 shadow-2xl dark:shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-brand-accent1/30">
+            <NuxtLink :to="localePath('/courses')" class="relative overflow-hidden group/btn bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-10 py-5 rounded-2xl font-black text-lg text-center transition-all duration-300 hover:scale-105 shadow-2xl dark:shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-brand-accent1/30">
               <span class="relative z-10 flex items-center justify-center gap-2">
-                شروع یادگیری
-                <svg class="w-5 h-5 group-hover/btn:-translate-x-2 transition-transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                {{ $t('home.cta.btn') }}
+                <svg class="w-5 h-5 rtl:group-hover/btn:-translate-x-2 ltr:group-hover/btn:translate-x-2 transition-transform rtl:rotate-180 ltr:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </span>
               <div class="absolute inset-0 bg-gradient-to-r from-brand-accent1 to-blue-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
             </NuxtLink>
@@ -342,7 +352,7 @@
     <footer class="relative bg-gray-50 dark:bg-[#020202] pt-32 pb-10 overflow-hidden border-t border-gray-200 dark:border-white/5 z-10 mt-10">
       
       <div class="absolute top-10 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none overflow-hidden flex justify-center z-0">
-        <span class="text-[15vw] font-black tracking-tighter text-gray-200/50 dark:text-white/[0.02] mix-blend-overlay">HOOSHPARDAZ</span>
+        <span class="text-[15vw] font-black tracking-tighter text-gray-200/50 dark:text-white/[0.02] mix-blend-overlay">DANAVERSE</span>
       </div>
 
       <div class="container mx-auto px-4 md:px-8 relative z-10">
@@ -351,10 +361,10 @@
           <div class="lg:col-span-5 bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl p-8 md:p-10 backdrop-blur-xl hover:border-brand-accent1/30 transition-colors">
             <div class="flex items-center gap-3 mb-6">
               <NuxtImg src="/images/logo-light.png" alt="لوگو آکادمی داناورس" class="w-12 h-12 object-contain drop-shadow-lg" loading="lazy" />
-              <span class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">دانا<span class="text-brand-accent1 dark:text-cyan-400">ورس</span></span>
+              <span class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">DANA<span class="text-brand-accent1 dark:text-cyan-400">VERSE</span></span>
             </div>
             <p class="text-gray-600 dark:text-gray-400 font-light leading-loose text-justify mb-8 text-sm md:text-base">
-              ما در آکادمی داناورس، مرزهای یادگیری را جابه‌جا کرده‌ایم. با رویکردی کاملاً عملی و مبتنی بر پروژه‌های واقعی، شما را برای چالش‌های لبه‌ی تکنولوژی (AI، برنامه‌نویسی و رباتیک) در بازار کار فردا آماده می‌کنیم.
+              {{ $t('home.footer.desc') }}
             </p>
             <div class="flex items-center gap-3">
               <a href="#" class="group relative w-12 h-12 rounded-2xl bg-gray-100 dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 flex items-center justify-center overflow-hidden hover:border-blue-500 transition-colors">
@@ -374,27 +384,27 @@
 
           <div class="lg:col-span-4 flex flex-col justify-between">
             <div class="bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl p-8 backdrop-blur-xl h-full">
-              <h4 class="text-sm uppercase tracking-widest text-gray-400 font-bold mb-6">مسیرهای اصلی / Paths</h4>
+              <h4 class="text-sm uppercase tracking-widest text-gray-400 font-bold mb-6">{{ $t('home.footer.pathsTitle') }}</h4>
               <ul class="space-y-4">
-                <li><NuxtLink to="/courses" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono ml-3 group-hover:text-brand-accent1 transition-colors">>></span> دوره‌های آموزشی</NuxtLink></li>
-                <li><NuxtLink to="/talent" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono ml-3 group-hover:text-brand-accent1 transition-colors">>></span> سیستم استعدادیابی</NuxtLink></li>
-                <li><NuxtLink to="/projects" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono ml-3 group-hover:text-brand-accent1 transition-colors">>></span> گالری پروژه‌ها</NuxtLink></li>
-                <li><NuxtLink to="/blog" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono ml-3 group-hover:text-brand-accent1 transition-colors">>></span> مجله هوش مصنوعی</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/courses')" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono rtl:ml-3 ltr:mr-3 group-hover:text-brand-accent1 transition-colors">>></span> {{ $t('nav.courses') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/talent')" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono rtl:ml-3 ltr:mr-3 group-hover:text-brand-accent1 transition-colors">>></span> {{ $t('nav.talentTest') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/projects')" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono rtl:ml-3 ltr:mr-3 group-hover:text-brand-accent1 transition-colors">>></span> {{ $t('home.projects.btn') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/blog')" class="group flex items-center text-gray-700 dark:text-gray-300 hover:text-brand-accent1 dark:hover:text-cyan-400 font-medium transition-colors"><span class="text-gray-300 dark:text-gray-600 font-mono rtl:ml-3 ltr:mr-3 group-hover:text-brand-accent1 transition-colors">>></span> {{ $t('nav.learning') }}</NuxtLink></li>
               </ul>
             </div>
           </div>
 
           <div class="lg:col-span-3 flex flex-col gap-6">
             <div class="bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-3xl p-6 backdrop-blur-xl hover:border-brand-accent1/30 transition-colors">
-              <h4 class="text-sm uppercase tracking-widest text-gray-400 font-bold mb-4">ارتباط / Contact</h4>
+              <h4 class="text-sm uppercase tracking-widest text-gray-400 font-bold mb-4">{{ $t('home.footer.contactTitle') }}</h4>
               <div class="space-y-4">
                 <a href="mailto:info@danaverse.com" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-brand-accent1 transition-colors font-mono text-sm">
-                  <div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
+                  <div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div>
                   info@danaverse.com
                 </a>
                 <a href="tel:02188888888" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-brand-accent1 transition-colors font-mono text-sm dir-ltr">
-                  <div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg></div>
-                  7479759 930 98+
+                  <div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg></div>
+                  +98 930 7479759
                 </a>
               </div>
             </div>
@@ -414,12 +424,12 @@
 
         <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200 dark:border-white/5">
           <p class="text-gray-500 dark:text-gray-500 text-sm font-medium">
-            © ۲۰۲۶ آکادمی <span class="text-gray-800 dark:text-gray-300">داناورس</span>. تمامی حقوق محفوظ است.
+            {{ $t('home.footer.copyright') }}
           </p>
           <div class="flex items-center gap-6 text-sm text-gray-500 font-medium">
-            <NuxtLink to="/privacy" class="hover:text-brand-accent1 dark:hover:text-cyan-400 transition-colors">حریم خصوصی</NuxtLink>
+            <NuxtLink :to="localePath('/privacy')" class="hover:text-brand-accent1 dark:hover:text-cyan-400 transition-colors">{{ $t('home.footer.privacy') }}</NuxtLink>
             <div class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"></div>
-            <NuxtLink to="/terms" class="hover:text-brand-accent1 dark:hover:text-cyan-400 transition-colors">شرایط استفاده</NuxtLink>
+            <NuxtLink :to="localePath('/terms')" class="hover:text-brand-accent1 dark:hover:text-cyan-400 transition-colors">{{ $t('home.footer.terms') }}</NuxtLink>
           </div>
         </div>
       </div>
@@ -428,20 +438,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
-const benefits = [
-  { icon: '🚀', title: 'آموزش ۱۰۰٪ پروژه‌محور', link: '/why-us#projects' },
-  { icon: '👨‍🏫', title: 'منتورینگ اختصاصی', link: '/why-us#mentoring' },
-  { icon: '💼', title: 'پشتیبانی بازار کار', link: '/why-us#career' },
-  { icon: '📜', title: 'ارائه مدرک معتبر', link: '/why-us#certificate' }
-];
+// 👈 معرفی ابزارهای زبان
+const { t } = useI18n()
+const localePath = useLocalePath()
 
-const paths = [
+// استفاده از computed برای آرایه‌ها تا وقتی زبان عوض شد، محتوا درجا آپدیت شود!
+const translatedBenefits = computed(() => [
+  { icon: '🚀', title: t('home.benefits.b1'), link: '/why-us#projects' },
+  { icon: '👨‍🏫', title: t('home.benefits.b2'), link: '/why-us#mentoring' },
+  { icon: '💼', title: t('home.benefits.b3'), link: '/why-us#career' },
+  { icon: '📜', title: t('home.benefits.b4'), link: '/why-us#certificate' }
+]);
+
+const translatedPaths = computed(() => [
   { 
-    name: 'کودکان و نوجوانان', 
+    name: t('home.paths.p1.name'), 
     slug: 'teenagers', 
-    desc: 'از یادگیری اسکرچ و بلوک‌های منطقی تا طراحی بازی‌های جذاب رباتیک.', 
+    desc: t('home.paths.p1.desc'), 
     icon: '🎮',
     color: {
       borderHover: 'hover:border-orange-500/50 dark:hover:border-orange-400/50',
@@ -452,9 +467,9 @@ const paths = [
     }
   },
   { 
-    name: 'برنامه‌نویسی و AI', 
+    name: t('home.paths.p2.name'), 
     slug: 'coding', 
-    desc: 'از مبانی الگوریتم و پایتون تا پیاده‌سازی مدل‌های پیشرفته هوش مصنوعی.', 
+    desc: t('home.paths.p2.desc'), 
     icon: '💻',
     color: {
       borderHover: 'hover:border-cyan-500/50 dark:hover:border-cyan-400/50',
@@ -465,9 +480,9 @@ const paths = [
     }
   },
   { 
-    name: 'طراحی رابط کاربری', 
+    name: t('home.paths.p3.name'), 
     slug: 'design', 
-    desc: 'از مبانی روانشناسی رنگ‌ها و فتوشاپ تا دیزاین حرفه‌ای UI/UX.', 
+    desc: t('home.paths.p3.desc'), 
     icon: '🎨',
     color: {
       borderHover: 'hover:border-pink-500/50 dark:hover:border-pink-400/50',
@@ -477,31 +492,31 @@ const paths = [
       linkText: 'text-pink-600 dark:text-pink-400'
     }
   }
-];
+]);
 
-const instructors = [
-  { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: 'متخصص پایتون و AI', bio: 'توسعه‌دهنده ارشد و پژوهشگر هوش مصنوعی. متخصص در پیاده‌سازی مدل‌های یادگیری ماشین و معماری‌های پیشرفته پایتون.', skills: ['Python', 'Machine Learning', 'Deep Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
-  { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با سال‌ها تجربه در پروژه‌های استارتاپی.', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
-  { id: 5, name: 'فرانک خزایی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد AI. مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری.', skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
-];
+const translatedInstructors = computed(() => [
+  { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: t('home.instructors.i1.title'), bio: t('home.instructors.i1.bio'), skills: ['Python', 'Machine Learning', 'Deep Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
+  { id: 2, name: 'پانیذ برنا', dept: 'design', title: t('home.instructors.i2.title'), bio: t('home.instructors.i2.bio'), skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
+  { id: 5, name: 'فرانک خزایی', dept: 'ai', title: t('home.instructors.i3.title'), bio: t('home.instructors.i3.bio'), skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
+]);
 
-const testimonials = [
-  { text: 'من هیچ پیش‌زمینه‌ای نداشتم، اما سیستم استعدادیابی مسیر پایتون را پیشنهاد داد و در کمتر از ۶ ماه استخدام شدم!', name: 'امیرحسین م.', course: 'دانش‌آموخته پایتون' },
-  { text: 'طراحی سایت و پروژه‌های عملی بی‌نظیر است. احساس می‌کنی در یک پلتفرم بین‌المللی در حال یادگیری هستی. منتورینگ اساتید واقعاً عالی بود.', name: 'نگار س.', course: 'طراحی UI/UX' },
-  { text: 'اینکه از روز اول وارد محیط کدنویسی می‌شویم و تئوری‌های خسته‌کننده حذف شده‌اند، بهترین ویژگی این آکادمی است.', name: 'رضا ک.', course: 'دانشجوی AI' }
-];
+const translatedTestimonials = computed(() => [
+  { text: t('home.testimonials.t1.text'), name: 'امیرحسین م.', course: t('home.testimonials.t1.course') },
+  { text: t('home.testimonials.t2.text'), name: 'نگار س.', course: t('home.testimonials.t2.course') },
+  { text: t('home.testimonials.t3.text'), name: 'رضا ک.', course: t('home.testimonials.t3.course') }
+]);
+
+const translatedFaqs = computed(() => [
+  { q: t('home.faq.q1'), a: t('home.faq.a1') },
+  { q: t('home.faq.q2'), a: t('home.faq.a2') },
+  { q: t('home.faq.q3'), a: t('home.faq.a3') },
+  { q: t('home.faq.q4'), a: t('home.faq.a4') }
+]);
 
 const activeFaq = ref(null);
 const toggleFaq = (index) => {
   activeFaq.value = activeFaq.value === index ? null : index;
 };
-
-const faqs = [
-  { q: 'آیا برای شرکت در دوره‌ها نیاز به پیش‌نیاز یا دانش قبلی دارم؟', a: 'خیر، رسالت داناورس آموزش از نقطه صفر است. تمام دوره‌های پایه ما به گونه‌ای طراحی شده‌اند که بدون هیچ پیش‌زمینه‌ای بتوانید مفاهیم را یاد بگیرید.' },
-  { q: 'کلاس‌ها به چه صورت برگزار می‌شوند؟ آیا ضبط می‌شوند؟', a: 'دوره‌ها به صورت ترکیبی (ویدئوهای ضبط شده با کیفیت سینمایی + جلسات آنلاین رفع اشکال با منتور) هستند. شما همیشه به آپدیت‌های دوره دسترسی مادام‌العمر خواهید داشت.' },
-  { q: 'آیا در پایان دوره‌ها مدرکی هم ارائه می‌شود؟', a: 'بله! پس از انجام موفقیت‌آمیز پروژه‌های پایانی، مدرک معتبر آکادمی داناورس (دو زبانه) به شما تقدیم می‌شود که برای رزومه و مهاجرت کاری بسیار معتبر است.' },
-  { q: 'تفاوت مسیر کودکان با بزرگسالان در چیست؟', a: 'در مسیر کودکان، زبان آموزش مبتنی بر بازی‌سازی و ابزارهای بصری است تا کودک خسته نشود؛ اما در بخش بزرگسالان، تمرکز روی کدهای خام، چالش‌های الگوریتمی و بازار کار است.' }
-];
 
 const sliderValue = ref(50);
 const typedCode = ref('');
@@ -525,27 +540,27 @@ onMounted(() => {
   }, 1500);
 });
 
-// 🎯 سئو: متاتگ‌های قدرتمند برای کلیک‌خوری بالا در گوگل
+// 🎯 سئو داینامیک: با استفاده از یک تابع (Arrow Function) سئو نیز همراه با زبان عوض می‌شود!
 useSeoMeta({
-  title: 'آکادمی برنامه‌نویسی و هوش مصنوعی داناورس', 
-  description: 'بهترین سایت آموزش پروژه‌محور برنامه‌نویسی و یادگیری هوش مصنوعی (AI) در ایران. آموزش پایتون، رباتیک و دیزاین از صفر تا ورود به بازار کار با استعدادیابی.',
+  title: () => t('seo.homeTitle'), 
+  description: () => t('seo.homeDesc'),
   keywords: 'آموزش هوش مصنوعی, دوره آنلاین پایتون, آکادمی برنامه نویسی, استعدادیابی برنامه نویسی, آموزش ماشین لرنینگ',
-  ogTitle: 'آکادمی برنامه‌نویسی و هوش مصنوعی داناورس',
-  ogDescription: 'آینده‌ات را با داناورس کدنویسی کن! آموزش پروژه‌محور از صفر تا ورود به بازار کار به همراه منتورینگ اختصاصی.',
+  ogTitle: () => t('seo.homeTitle'),
+  ogDescription: () => t('seo.homeOgDesc'),
   ogImage: 'https://danaverse.ir/images/Banner.jpg',
   ogUrl: 'https://danaverse.ir',
   twitterCard: 'summary_large_image',
 });
 
-// 🎯 سئو: اسکیما مارک‌آپ اختصاصی برای صفحه اصلی (بمب سئو)
+// 🎯 اسکیمای گوگل با داده‌های ترجمه‌شده
 useHead({
-  script: [
+  script: computed(() => [
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": faqs.map(faq => ({
+        "mainEntity": translatedFaqs.value.map(faq => ({
           "@type": "Question",
           "name": faq.q,
           "acceptedAnswer": {
@@ -560,7 +575,7 @@ useHead({
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "آکادمی داناورس",
+        "name": "Danaverse Academy",
         "url": "https://danaverse.ir/",
         "potentialAction": {
           "@type": "SearchAction",
@@ -569,7 +584,7 @@ useHead({
         }
       })
     }
-  ]
+  ])
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white dark:bg-brand-dark transition-colors duration-500" dir="rtl">
+  <div class="min-h-screen bg-white dark:bg-brand-dark transition-colors duration-500">
     
     <AppHeader />
 

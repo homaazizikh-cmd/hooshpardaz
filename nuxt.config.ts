@@ -3,15 +3,29 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/supabase',
-    '@nuxtjs/sitemap', // 👈 ماژول نقشه سایت اضافه شد
-    '@nuxt/image'
+    '@nuxtjs/sitemap',
+    '@nuxt/image',
+    '@nuxtjs/i18n'
   ],
+
+  // 🚀 تنظیمات استاندارد و ضد باگ Nuxt 4 برای i18n
+  i18n: {
+    strategy: 'prefix_except_default',
+    defaultLocale: 'fa',
+    detectBrowserLanguage: false,
+    locales: [
+      { code: 'fa', language: 'fa-IR', name: 'فارسی', dir: 'rtl' },
+      { code: 'en', language: 'en-US', name: 'English', dir: 'ltr' }
+    ],
+    // 👈 این نقطه و اسلش در ساختار جدید یعنی: برو داخل پوشه i18n بگرد!
+    vueI18n: './i18n.config.ts' 
+  },
 
   // تنظیمات دسترسی سرور به متغیرهای محیطی .env
   runtimeConfig: {
     telegramToken: process.env.NUXT_TELEGRAM_TOKEN,
     telegramChatId: process.env.NUXT_TELEGRAM_CHAT_ID,
-    googleApiKey: process.env.GOOGLE_API_KEY, // دسترسی فقط در سمت سرور
+    googleApiKey: process.env.GOOGLE_API_KEY, 
   },
 
   // تنظیمات بهینه‌سازی تصاویر و دامنه‌های مجاز
@@ -20,7 +34,7 @@ export default defineNuxtConfig({
     domains: [
       'images.unsplash.com',
       'i.pravatar.cc',
-      'rrelkadkixesdzydcwgt.supabase.co' // حتماً بدون https:// باشد
+      'rrelkadkixesdzydcwgt.supabase.co' 
     ]
   },
 
@@ -30,18 +44,17 @@ export default defineNuxtConfig({
     name: 'داناورس'
   },
 
-  // 🚀 تنظیمات اختصاصی و حرفه‌ای نقشه سایت (Sitemap)
+  // تنظیمات اختصاصی و حرفه‌ای نقشه سایت (Sitemap)
   sitemap: {
-    autoI18n: false,
+    autoI18n: true, 
     strictNuxtContentPaths: true,
     exclude: [
-      '/admin/**', // 🔒 صفحات پنل مدیریت نباید در گوگل ایندکس شوند!
-      '/talent-test/result/**' // صفحات نتایج خصوصی کاربران نباید ایندکس شوند
+      '/admin/**', 
+      '/talent-test/result/**' 
     ],
-    // کش کردن سایت‌مپ برای سرعت بیشتر
     cacheMaxAgeSeconds: 3600,
     sources: [
-      '/api/_sitemap-urls' // 👈 این خط جادویی را اضافه کنید!
+      '/api/_sitemap-urls' 
     ]
   },
 
@@ -62,10 +75,6 @@ export default defineNuxtConfig({
   // تنظیمات هسته سئو و بخش Head سایت داناورس
   app: {
     head: {
-      htmlAttrs: {
-        dir: 'rtl',
-        lang: 'fa-IR'
-      },
       titleTemplate: '%s | داناورس',
       title: 'داناورس | آکادمی برنامه‌نویسی و هوش مصنوعی',
       meta: [
@@ -73,24 +82,16 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'داناورس؛ مرجع آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی برای کودکان، نوجوانان و بزرگسالان همراه با استعدادیابی هوشمند.' },
         { name: 'theme-color', content: '#0f172a' },
-        
-        // متاتگ‌های Open Graph برای نمایش کارت خفن هنگام اشتراک‌گذاری لینک
         { property: 'og:site_name', content: 'داناورس' },
         { property: 'og:title', content: 'داناورس | آکادمی برنامه‌نویسی و هوش مصنوعی' },
         { property: 'og:description', content: 'مرجع آموزش پروژه‌محور برنامه‌نویسی و هوش مصنوعی همراه با استعدادیابی هوشمند.' },
         { property: 'og:url', content: 'https://danaverse.ir' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'fa_IR' },
-
-        // کد تایید گوگل سرچ کنسول (تا زمان انتقال کامل دامنه بماند)
         { name: 'google-site-verification', content: 'GIVi970Muy1SseqLB2rZNSU17lyfoar8B6ldZKS5nzE' },
       ],
       link: [
-        { 
-          rel: 'stylesheet', 
-          href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap' 
-        },
-        // فاوآیکون جدید داناورس را بعداً در پوشه public جایگزین کنید
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap' },
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'apple-touch-icon', href: '/favicon.png' }
       ]

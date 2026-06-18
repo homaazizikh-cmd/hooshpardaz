@@ -11,21 +11,21 @@
       <div class="text-center max-w-3xl mx-auto mb-20">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md shadow-sm dark:shadow-[0_0_15px_rgba(59,130,246,0.2)]">
           <span class="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 animate-ping"></span>
-          ACCESS LEVEL: MENTORS
+          {{ $t('instructors.badge') }}
         </div>
         
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight text-slate-900 dark:text-white leading-tight">
-          لیست اساتید و منتورهای <br class="hidden md:block">
-          هستـه <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">پـردازش داناورس</span>
+          {{ $t('instructors.title1') }} <br class="hidden md:block">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+            {{ $t('instructors.titleHighlight') }}
+          </span>
         </h1>
-        <p class="text-slate-500 dark:text-slate-400 font-medium text-lg max-w-2xl mx-auto leading-relaxed">
-          با نخبگانی آشنا شوید که قوانین بازی را در دنیای <strong class="text-blue-600 dark:text-cyan-500 font-bold">هوش مصنوعی</strong> و <strong class="text-blue-600 dark:text-cyan-500 font-bold">برنامه‌نویسی</strong> تغییر می‌دهند.
-        </p>
+        <p class="text-slate-500 dark:text-slate-400 font-medium text-lg max-w-2xl mx-auto leading-relaxed" v-html="$t('instructors.subtitle')"></p>
       </div>
 
       <div class="flex flex-wrap justify-center items-center gap-4 mb-20 relative z-20">
         <button 
-          v-for="tab in departments" 
+          v-for="tab in translatedDepartments" 
           :key="tab.id"
           @click="activeDept = tab.id"
           class="relative px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 overflow-hidden group border"
@@ -41,9 +41,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         
         <NuxtLink 
-          v-for="(instructor, index) in filteredInstructors" 
+          v-for="instructor in filteredInstructors" 
           :key="instructor.id"
-          :to="`/instructors/${instructor.id}`"
+          :to="localePath(`/instructors/${instructor.id}`)"
           class="group relative"
         >
           <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 dark:from-cyan-500 dark:via-blue-500 dark:to-purple-600 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-75 transition duration-500 group-hover:duration-200"></div>
@@ -56,7 +56,7 @@
               <span class="tracking-widest">[ SYS_ID: 0{{ instructor.id }} ]</span>
               <span class="flex items-center gap-1 group-hover:text-blue-600 dark:group-hover:text-cyan-500 transition-colors">
                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 12H9v-2h2v2zm0-4H9V6h2v4z"/></svg>
-                ACTIVE
+                {{ $t('instructors.card.active') }}
               </span>
             </div>
 
@@ -66,8 +66,7 @@
               
               <NuxtImg 
                 :src="instructor.image_url || '/images/default-avatar.png'" 
-                :alt="`استاد ${instructor.name} - ${instructor.title} در آکادمی برنامه‌نویسی و هوش مصنوعی داناورس`" 
-                :title="`مشاهده رزومه و دوره‌های آموزشی استاد ${instructor.name}`"
+                :alt="instructor.name" 
                 format="webp"
                 loading="lazy"
                 class="w-full h-full object-cover rounded-full border-4 border-white dark:border-[#090e1a] shadow-lg dark:shadow-2xl bg-slate-100 dark:bg-slate-800 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 relative z-10" 
@@ -103,8 +102,8 @@
             <div class="w-full relative overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-cyan-500/50 transition-colors z-10">
               <div class="absolute inset-0 w-0 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-500 dark:to-purple-600 transition-all duration-500 ease-out group-hover:w-full opacity-10 dark:opacity-20"></div>
               <div class="relative py-3.5 flex items-center justify-center gap-2 text-sm font-black text-slate-600 dark:text-slate-400 group-hover:text-blue-700 dark:group-hover:text-white transition-colors">
-                اسکن رزومه و دوره‌ها
-                <svg class="w-4 h-4 transform rotate-180 group-hover:-translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                {{ $t('instructors.card.scanBtn') }}
+                <svg class="w-4 h-4 transform rtl:rotate-180 rtl:group-hover:-translate-x-2 ltr:group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </div>
             </div>
 
@@ -116,8 +115,8 @@
       <div v-if="filteredInstructors.length === 0" class="text-center py-24 bg-white/50 dark:bg-slate-900/30 backdrop-blur-md border border-slate-300 dark:border-slate-800 border-dashed rounded-[3rem] mt-10 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent"></div>
         <div class="text-6xl mb-6 relative z-10 opacity-50 grayscale">📡</div>
-        <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-3 relative z-10">سیستم استادی یافت نکرد</h3>
-        <p class="text-slate-500 font-mono text-sm relative z-10">SEARCHING_DATABASE... 0 RESULTS FOUND.</p>
+        <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-3 relative z-10">{{ $t('instructors.empty.title') }}</h3>
+        <p class="text-slate-500 font-mono text-sm relative z-10">{{ $t('instructors.empty.desc') }}</p>
       </div>
 
     </div>
@@ -126,38 +125,44 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-const supabase = useSupabaseClient();
 
+const supabase = useSupabaseClient();
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
+
+// 🎯 داینامیک کردن متاتگ‌های سئو برای حالت دو زبانه
 useSeoMeta({
-  title: 'بهترین اساتید برنامه‌نویسی و هوش مصنوعی | داناورس',
-  description: 'آشنایی با تیم نخبگان، پژوهشگران و منتورهای ارشد آکادمی داناورس در دپارتمان‌های هوش مصنوعی، برنامه‌نویسی پایتون، طراحی گرافیک (UI/UX) و مهارت‌های کامپیوتری.',
+  title: () => t('instructors.seo.title'),
+  description: () => t('instructors.seo.desc'),
   keywords: 'اساتید برنامه نویسی, استاد هوش مصنوعی, بهترین استاد پایتون, مدرس طراحی سایت, منتور برنامه نویسی, داود قبادی, پانیذ برنا, مهدی خزاعی',
-  ogTitle: 'لیست اساتید و هسته پردازش آکادمی داناورس',
-  ogDescription: 'با برترین اساتید برنامه‌نویسی و هوش مصنوعی ایران در آکادمی داناورس آشنا شوید و مسیر شغلی خود را با بهترین‌ها آغاز کنید.',
+  ogTitle: () => t('instructors.seo.ogTitle'),
+  ogDescription: () => t('instructors.seo.ogDesc'),
   ogImage: 'https://danaverse.ir/images/Banner.jpg', 
   twitterCard: 'summary_large_image',
 });
 
-const departments = [
-  { id: 'all', name: 'ALL_DATA' },
-  { id: 'ai', name: 'هوش مصنوعی' },
-  { id: 'python', name: 'مهندسی پایتون' },
-  { id: 'design', name: 'دیزاین و گرافیک' },
-  { id: 'maharat', name: 'مهارت و رباتیک' }
-];
-
 const activeDept = ref('all');
 
-const manualInstructors = [
-  { id: 1, name: 'مهدی خزاعی', dept: 'ai', title: 'متخصص پایتون و AI', bio: 'توسعه‌دهنده ارشد و پژوهشگر هوش مصنوعی. متخصص در پیاده‌سازی مدل‌های یادگیری ماشین و معماری‌های پیشرفته پایتون.', skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
-  { id: 2, name: 'پانیذ برنا', dept: 'design', title: 'مدیر هنری و گرافیک', bio: 'متخصص در خلق هویت بصری، رابط کاربری (UI/UX) و تصویرسازی دیجیتال با سال‌ها تجربه در پروژه‌های استارتاپی.', skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
-  { id: 3, name: 'داود قبادی', dept: 'python', title: 'منتور برنامه‌نویسی', bio: 'کارشناس نرم‌افزار و متخصص در آموزش مفاهیم پایه برنامه‌نویسی و پایتون با رویکرد گیمیفیکیشن و استعدادیابی.', skills: ['Python', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' },
-  { id: 4, name: 'حسین عزیزی', dept: 'maharat', title: 'متخصص مکاترونیک', bio: 'طراح سیستم‌های تعبیه‌شده و رباتیک. منتور تیم‌های المپیاد و مدرس دوره‌های تخصصی الکترونیک و آردوینو.', skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' },
-  { id: 5, name: 'فرانک خزایی', dept: 'ai', title: 'پژوهشگر داده‌کاوی', bio: 'متخصص تحلیل داده‌های کلان و ابزارهای مولد AI. مشاور پروژه‌های داده‌محور در سازمان‌های بزرگ و تجاری.', skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
-  { id: 6, name: 'مجید مهربخش', dept: 'python', title: 'توسعه‌دهنده بک‌اند', bio: 'برنامه‌نویس ارشد سرور با تسلط کامل بر فریم‌ورک‌های جنگو و فست‌ای‌پی‌آی. عاشق حل چالش‌های پیچیده سیستمی.', skills: ['Django', 'FastAPI', 'PostgreSQL'], image_url: '/images/instructors/majid-mehrbakhsh.jpg' },
-  { id: 7, name: 'علی رضایی', dept: 'design', title: 'طراح محصول', bio: 'طراح تجربه کاربری با تمرکز بر کاربرپذیری محصولات نرم‌افزاری. مسلط به طراحی دیزاین‌سیستم‌های مقیاس‌پذیر.', skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/niusha-khavari.jpg' },
-  { id: 8, name: 'مهدیه روشن', dept: 'maharat', title: 'مدرس مهارت‌های نرم', bio: 'متخصص آموزش مهارت‌های پایه کامپیوتر و ابزارهای اداری. راهنمای هنرجویان برای ورود سریع به بازار کار.', skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mahdieh-rishan.jpg' }
-];
+// 🎯 داینامیک کردن تب‌های دپارتمان بر اساس زبان
+const translatedDepartments = computed(() => [
+  { id: 'all', name: t('instructors.tabs.all') },
+  { id: 'ai', name: t('instructors.tabs.ai') },
+  { id: 'python', name: t('instructors.tabs.python') },
+  { id: 'design', name: t('instructors.tabs.design') },
+  { id: 'maharat', name: t('instructors.tabs.maharat') }
+]);
+
+// 🚀 تبدیل به حالت Computed برای ترجمه لحظه‌ای دیتای استاتیک اساتید
+const manualInstructors = computed(() => [
+  { id: 1, name: t('instructorData.i1.name'), dept: 'ai', title: t('instructorData.i1.title'), bio: t('instructorData.i1.bio'), skills: ['Python', 'Machine_Learning', 'Deep_Learning'], image_url: '/images/instructors/mehdi-khazaei.jpg' },
+  { id: 2, name: t('instructorData.i2.name'), dept: 'design', title: t('instructorData.i2.title'), bio: t('instructorData.i2.bio'), skills: ['UI/UX', 'Photoshop', 'Illustrator'], image_url: '/images/instructors/paniz-borna.jpg' },
+  { id: 3, name: t('instructorData.i3.name'), dept: 'python', title: t('instructorData.i3.title'), bio: t('instructorData.i3.bio'), skills: ['Python', 'Algorithm', 'Mentoring'], image_url: '/images/instructors/davood-ghobadi.jpg' },
+  { id: 4, name: t('instructorData.i4.name'), dept: 'maharat', title: t('instructorData.i4.title'), bio: t('instructorData.i4.bio'), skills: ['Robotics', 'Arduino', 'C++'], image_url: '/images/instructors/hossein-azizi.jpg' },
+  { id: 5, name: t('instructorData.i5.name'), dept: 'ai', title: t('instructorData.i5.title'), bio: t('instructorData.i5.bio'), skills: ['Data_Science', 'Big_Data', 'NLP'], image_url: '/images/instructors/sara-mehrabi.jpg' },
+  { id: 6, name: t('instructorData.i6.name'), dept: 'python', title: t('instructorData.i6.title'), bio: t('instructorData.i6.bio'), skills: ['Django', 'FastAPI', 'PostgreSQL'], image_url: '/images/instructors/majid-mehrbakhsh.jpg' },
+  { id: 7, name: t('instructorData.i7.name'), dept: 'design', title: t('instructorData.i7.title'), bio: t('instructorData.i7.bio'), skills: ['Figma', 'Product_Design', 'Prototyping'], image_url: '/images/instructors/niusha-khavari.jpg' },
+  { id: 8, name: t('instructorData.i8.name'), dept: 'maharat', title: t('instructorData.i8.title'), bio: t('instructorData.i8.bio'), skills: ['ICDL', 'Excel', 'Soft_Skills'], image_url: '/images/instructors/mahdieh-rishan.jpg' }
+]);
 
 const { data: dbInstructors } = await useAsyncData('instructors-dynamic-data', async () => {
   const { data, error } = await supabase
@@ -173,17 +178,18 @@ const { data: dbInstructors } = await useAsyncData('instructors-dynamic-data', a
 });
 
 const allInstructors = computed(() => {
+  // مدیریت اساتید دیتابیس (در صورت تمایل می‌توانید در دیتابیس ستون‌های name_en و ... بسازید)
   const dbActive = (dbInstructors.value || []).map(i => ({
     id: i.id,
-    name: i.name,
+    name: locale.value === 'en' && i.name_en ? i.name_en : i.name,
     dept: i.dept,
-    title: i.title,
-    bio: i.bio,
+    title: locale.value === 'en' && i.title_en ? i.title_en : i.title,
+    bio: locale.value === 'en' && i.bio_en ? i.bio_en : i.bio,
     skills: Array.isArray(i.skills) ? i.skills : [],
     image_url: i.image_url
   }));
   
-  return [...dbActive, ...manualInstructors];
+  return [...dbActive, ...manualInstructors.value];
 });
 
 const filteredInstructors = computed(() => {
@@ -191,40 +197,36 @@ const filteredInstructors = computed(() => {
   return allInstructors.value.filter(ins => ins.dept === activeDept.value);
 });
 
-// 🎯 سئو: اسکیمای غنی‌شده E-E-A-T (با اتصال به برند داناورس و ذکر مهارت‌ها)
-useHead(() => {
-  const schemaJson = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "لیست اساتید و منتورهای برنامه‌نویسی و هوش مصنوعی آکادمی داناورس",
-    "description": "معرفی مدرسین و متخصصان ارشد دپارتمان‌های هوش مصنوعی, برنامه‌نویسی و گرافیک در آکادمی داناورس.",
-    "itemListElement": allInstructors.value.map((instructor, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "Person",
-        "name": instructor.name,
-        "jobTitle": instructor.title,
-        "description": instructor.bio,
-        "image": `https://danaverse.ir${instructor.image_url}`,
-        "url": `https://danaverse.ir/instructors/${instructor.id}`,
-        "worksFor": {
-          "@type": "Organization",
-          "name": "آکادمی داناورس"
-        },
-        "knowsAbout": instructor.skills
-      }
-    }))
-  };
-
-  return {
-    script: [
-      {
-        type: 'application/ld+json',
-        innerHTML: JSON.stringify(schemaJson)
-      }
-    ]
-  };
+// 🎯 سئو: اسکیمای غنی‌شده E-E-A-T
+useHead({
+  script: computed(() => [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": t('instructors.seo.title'),
+        "description": t('instructors.seo.desc'),
+        "itemListElement": allInstructors.value.map((instructor, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Person",
+            "name": instructor.name,
+            "jobTitle": instructor.title,
+            "description": instructor.bio,
+            "image": `https://danaverse.ir${instructor.image_url}`,
+            "url": `https://danaverse.ir/instructors/${instructor.id}`,
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Danaverse Academy"
+            },
+            "knowsAbout": instructor.skills
+          }
+        }))
+      })
+    }
+  ])
 });
 </script>
 

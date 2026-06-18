@@ -8,7 +8,7 @@
       <div class="max-w-7xl mx-auto relative z-10">
         <div class="text-center max-w-2xl mx-auto mb-10">
           <span class="text-cyan-600 dark:text-cyan-400 font-bold tracking-widest text-sm uppercase bg-cyan-50 dark:bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-100 dark:border-cyan-800/50">
-            پایگاه دانش هوش‌پرداز
+            پایگاه دانش داناورس
           </span>
           <h1 class="text-4xl md:text-5xl font-black mt-6 mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-cyan-700 dark:from-white dark:via-blue-200 dark:to-cyan-200 bg-clip-text text-transparent">
             مجله تخصصی هوش مصنوعی
@@ -164,7 +164,7 @@
       <section class="mt-24 relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-700 to-cyan-600 p-8 md:p-12 text-center text-white shadow-xl">
         <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:20px_20px]"></div>
         <div class="relative z-10 max-w-2xl mx-auto">
-          <h3 class="text-2xl md:text-3xl font-black mb-4">به شبکه خبرنامه هوش‌پرداز متصل شوید</h3>
+          <h3 class="text-2xl md:text-3xl font-black mb-4">به شبکه خبرنامه داناورس متصل شوید</h3>
           <p class="text-blue-100 text-sm md:text-base mb-8 leading-relaxed">
             مهم‌ترین اخبار مدل‌های زبانی، مقالات یادگیری ماشین و کدهای تخفیف بوت‌کمپ‌ها را زودتر از بقیه در ایمیل خود دریافت کنید.
           </p>

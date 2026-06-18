@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen bg-gray-50 dark:bg-gray-900 font-sans" dir="rtl">
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900 font-sans">
     
     <aside class="w-64 bg-white dark:bg-gray-800 shadow-xl border-l border-gray-200 dark:border-gray-700 hidden md:flex flex-col transition-all">
       <div class="h-20 flex items-center justify-center border-b border-gray-100 dark:border-gray-700">
@@ -51,4 +51,3 @@
     </div>
   </div>
 </template>
-
