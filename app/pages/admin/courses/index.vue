@@ -1,221 +1,289 @@
 <template>
-  <div class="max-w-7xl mx-auto pb-20">
+  <div class="min-h-screen bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-slate-200 pt-28 pb-24 overflow-hidden relative transition-colors duration-500 font-sans" :dir="$i18n.locale === 'fa' ? 'rtl' : 'ltr'">
     
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-      <div>
-        <h2 class="text-3xl font-black text-gray-800 dark:text-white mb-2 tracking-tight">داشبورد مدیریت دوره‌ها</h2>
-        <p class="text-gray-500 dark:text-gray-400 font-medium">مرکز فرماندهی آکادمی داناورس؛ جستجو، فیلتر و مدیریت جامع.</p>
-      </div>
-      <NuxtLink to="/admin/courses/create" class="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-2xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 shadow-[0_10px_20px_-10px_rgba(37,99,235,0.6)] hover:shadow-[0_15px_25px_-10px_rgba(37,99,235,0.8)] hover:-translate-y-1 overflow-hidden">
-        <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
-        <svg class="w-5 h-5 ml-2 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-        <span class="relative">افزودن دوره جدید</span>
-      </NuxtLink>
-    </div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+    <div class="absolute top-0 rtl:left-1/4 ltr:right-1/4 w-[800px] h-[600px] bg-blue-400/10 dark:bg-blue-600/10 blur-[150px] rounded-full pointer-events-none animate-pulse duration-1000"></div>
+    <div class="absolute bottom-20 rtl:right-1/4 ltr:left-1/4 w-[600px] h-[600px] bg-purple-400/10 dark:bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between group hover:border-blue-500 transition-colors">
-        <div>
-          <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-1">کل دوره‌ها</p>
-          <h3 class="text-3xl font-black text-gray-800 dark:text-white">{{ courses?.length || 0 }}</h3>
-        </div>
-        <div class="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-        </div>
-      </div>
-
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between group hover:border-green-500 transition-colors">
-        <div>
-          <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-1">منتشر شده (فعال)</p>
-          <h3 class="text-3xl font-black text-gray-800 dark:text-white">{{ publishedCount }}</h3>
-        </div>
-        <div class="w-14 h-14 rounded-2xl bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>
-      </div>
-
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-[2rem] shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between group hover:border-orange-500 transition-colors">
-        <div>
-          <p class="text-sm font-bold text-gray-500 dark:text-gray-400 mb-1">پیش‌نویس (غیرفعال)</p>
-          <h3 class="text-3xl font-black text-gray-800 dark:text-white">{{ draftCount }}</h3>
-        </div>
-        <div class="w-14 h-14 rounded-2xl bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white dark:bg-gray-800 p-4 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
-      <div class="relative w-full md:w-96">
-        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-400">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </div>
-        <input v-model="searchQuery" type="text" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white text-sm font-medium rounded-2xl focus:ring-blue-500 focus:border-blue-500 block pr-11 p-3.5 outline-none transition-colors" placeholder="جستجوی نام دوره...">
-      </div>
-
-      <div class="w-full md:w-64 relative">
-        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-400">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-        </div>
-        <select v-model="filterDept" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white text-sm font-medium rounded-2xl focus:ring-blue-500 focus:border-blue-500 block pr-11 p-3.5 outline-none appearance-none cursor-pointer transition-colors">
-          <option value="all">همه دپارتمان‌ها</option>
-          <option value="python">برنامه‌نویسی پایتون</option>
-          <option value="ai">هوش مصنوعی و داده</option>
-          <option value="design">هنرهای دیجیتال و گرافیک</option>
-          <option value="maharat">مهارت‌های کاربردی</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="bg-white dark:bg-gray-800 rounded-[2.5rem] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 dark:border-gray-700 overflow-hidden relative">
-      
-      <div v-if="pending" class="absolute inset-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm z-10 flex items-center justify-center">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600"></div>
+    <section class="container mx-auto px-4 text-center mb-16 relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md shadow-sm dark:shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+        <span class="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 animate-ping"></span>
+        {{ $t('courses.badge') }}
       </div>
       
-      <div class="overflow-x-auto">
-        <table class="w-full text-right border-collapse">
-          <thead class="bg-gray-50/80 dark:bg-gray-900/50 text-gray-500 dark:text-gray-400 text-sm">
-            <tr>
-              <th class="py-5 px-6 font-bold w-24">تصویر</th>
-              <th class="py-5 px-6 font-bold">اطلاعات دوره</th>
-              <th class="py-5 px-6 font-bold">دپارتمان</th>
-              <th class="py-5 px-6 font-bold">وضعیت انتشار</th>
-              <th class="py-5 px-6 font-bold text-center">عملیات</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100 dark:divide-gray-700/80">
-            <TransitionGroup name="list">
-              <tr v-for="course in filteredCourses" :key="course.id" class="hover:bg-blue-50/50 dark:hover:bg-gray-700/30 transition-colors group">
-                
-                <td class="py-4 px-6">
-                  <div class="w-20 h-16 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 relative">
-                    <img :src="course.image_url || '/images/default-course.jpg'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                  </div>
-                </td>
-                
-                <td class="py-4 px-6">
-                  <h4 class="font-black text-gray-800 dark:text-white text-base md:text-lg mb-1 group-hover:text-blue-600 transition-colors">{{ course.title }}</h4>
-                  <div class="flex items-center text-xs text-gray-500 font-medium gap-3">
-                    <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> {{ course.start_date || 'تعیین نشده' }}</span>
-                    <span class="flex items-center gap-1 text-green-600 dark:text-green-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> {{ course.price }} تومان</span>
-                  </div>
-                </td>
+      <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 relative z-10 leading-tight tracking-tight">
+        {{ $t('courses.title1') }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">{{ $t('courses.titleHighlight') }}</span>
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        {{ $t('courses.subtitle') }}
+      </p>
+    </section>
 
-                <td class="py-4 px-6">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-                    {{ getDeptName(course.dept) }}
-                  </span>
-                </td>
-
-                <td class="py-4 px-6">
-                  <span v-if="course.is_published === true || course.is_published === 'true'" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-100/80 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> فعال در سایت
-                  </span>
-                  <span v-else class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-100/80 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> پیش‌نویس
-                  </span>
-                </td>
-
-                <td class="py-4 px-6 text-center">
-                  <div class="flex items-center justify-center gap-2">
-                    <NuxtLink :to="`/admin/courses/edit/${course.id}`" class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center shadow-sm" title="ویرایش">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                    </NuxtLink>
-                    <button @click="deleteCourse(course.id)" class="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-900/30 text-red-600 hover:bg-red-600 hover:text-white transition-all flex items-center justify-center shadow-sm" title="حذف">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                    </button>
-                  </div>
-                </td>
-
-              </tr>
-            </TransitionGroup>
-          </tbody>
-        </table>
+    <section class="container mx-auto px-4 mb-24 relative z-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div v-for="dept in departments" :key="dept.id" 
+             @click="activeDepartment = dept.id"
+             :class="activeDepartment === dept.id 
+                ? 'border-blue-500 dark:border-cyan-500 shadow-lg dark:shadow-[0_0_25px_rgba(6,182,212,0.4)] scale-105 z-10' 
+                : 'border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-slate-600 opacity-80 hover:opacity-100'"
+             class="cursor-pointer transition-all duration-500 rounded-[2rem] overflow-hidden relative group bg-white dark:bg-[#090e1a] border-2">
+          
+          <div class="w-full aspect-[4/5] overflow-hidden relative bg-slate-100 dark:bg-slate-900">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] z-10 mix-blend-overlay opacity-50"></div>
+            
+            <NuxtImg 
+              :src="dept.image" 
+              :alt="dept.name" 
+              format="webp"
+              preload
+              class="w-full h-full object-cover transition-transform duration-700"
+              :class="activeDepartment === dept.id ? 'scale-110' : 'group-hover:scale-110'"
+            />
+            
+            <div class="absolute inset-0 transition-opacity duration-300 z-10"
+                 :class="activeDepartment === dept.id ? 'bg-gradient-to-t from-blue-900/90 via-slate-900/40 to-transparent' : 'bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent'"></div>
+          </div>
+          
+          <div class="absolute bottom-0 left-0 right-0 p-5 text-center transform transition-transform duration-300 z-20"
+               :class="activeDepartment === dept.id ? 'translate-y-0' : 'translate-y-2 group-hover:translate-y-0'">
+            <div v-if="activeDepartment === dept.id" class="w-8 h-1 bg-blue-500 dark:bg-cyan-400 mx-auto rounded-full mb-3 shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
+            <h3 class="text-white font-black text-sm md:text-lg leading-tight">{{ dept.name }}</h3>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <section class="container mx-auto px-4 relative z-10">
       
-      <div v-if="!pending && filteredCourses.length === 0" class="flex flex-col items-center justify-center py-20 text-center px-4">
-        <div class="w-24 h-24 mb-6 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center text-4xl">🔍</div>
-        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">هیچ دوره‌ای یافت نشد!</h3>
-        <p class="text-gray-500 max-w-sm">با این فیلتر یا کلمه جستجو شده، دوره‌ای در دیتابیس وجود ندارد. لطفاً فیلتر را تغییر دهید یا دوره جدیدی بسازید.</p>
+      <div class="flex items-center gap-4 mb-12 border-b border-slate-200 dark:border-slate-800 pb-4 rtl:text-right ltr:text-left">
+        <div class="w-2 h-10 bg-blue-600 dark:bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.5)]"></div>
+        <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+          {{ $t('courses.extractedTitle') }} 
+          <span class="text-transparent bg-clip-text bg-gradient-to-r rtl:from-blue-600 rtl:to-purple-600 ltr:from-purple-600 ltr:to-blue-600 dark:rtl:from-cyan-400 dark:rtl:to-blue-500 dark:ltr:from-blue-500 dark:ltr:to-cyan-400">
+            {{ getDepartmentName(activeDepartment) }}
+          </span>
+        </h2>
       </div>
-    </div>
 
+      <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative">
+        <div v-for="(course, index) in filteredCourses" :key="course.id" 
+             class="group relative flex flex-col">
+
+          <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 dark:from-cyan-500 dark:via-blue-500 dark:to-purple-600 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-75 transition duration-500 group-hover:duration-200"></div>
+
+          <div class="relative h-full bg-white dark:bg-[#090e1a] rounded-[2rem] overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-slate-700/50 flex flex-col transition-all duration-300 z-10 rtl:text-right ltr:text-left">
+            
+            <div class="w-full aspect-[3/4] overflow-hidden relative bg-slate-100 dark:bg-slate-900">
+              <div class="absolute top-0 inset-x-0 h-6 bg-black/50 backdrop-blur-md z-20 flex items-center px-3 gap-1.5 border-b border-white/10 rtl:flex-row ltr:flex-row-reverse">
+                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="rtl:mr-auto ltr:ml-auto text-[9px] font-mono text-white/50 tracking-widest dir-ltr">{{ $t('courses.dataset') }} 0{{ index + 1 }}</span>
+              </div>
+              <NuxtImg 
+                :src="course.image || '/images/default-course.webp'" 
+                :alt="course.title" 
+                format="webp"
+                loading="lazy"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+            
+            <div class="p-6 md:p-7 flex flex-col flex-grow relative bg-white dark:bg-transparent">
+              
+              <div class="absolute -top-8 rtl:right-6 ltr:left-6 w-14 h-14 bg-white dark:bg-[#0f172a] rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-2xl z-30 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                🎓
+              </div>
+              
+              <div class="flex justify-between items-center w-full mt-4 mb-2 text-[10px] font-mono text-slate-400 dark:text-slate-500">
+                <span class="tracking-widest dir-ltr">{{ $t('courses.courseId') }} {{ course.id }}</span>
+                <span class="text-green-500 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>{{ $t('courses.active') }}</span>
+              </div>
+
+              <h3 class="text-xl font-black text-slate-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight line-clamp-2">
+                {{ course.title }}
+              </h3>
+              
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow leading-relaxed rtl:text-justify ltr:text-left line-clamp-3">
+                {{ course.desc }}
+              </p>
+              
+              <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800/80">
+                <NuxtLink :to="localePath(`/courses/${course.slug || course.id}`)" 
+                          class="relative overflow-hidden flex items-center justify-center w-full py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-cyan-500/50 text-sm font-black text-slate-600 dark:text-slate-400 group-hover:text-blue-700 dark:group-hover:text-white transition-all duration-300 group/btn">
+                  <div class="absolute inset-0 w-0 bg-gradient-to-r rtl:from-blue-500 rtl:to-purple-500 ltr:from-purple-500 ltr:to-blue-500 dark:rtl:from-cyan-500 dark:rtl:to-purple-600 dark:ltr:from-purple-600 dark:ltr:to-cyan-500 transition-all duration-500 ease-out group-hover/btn:w-full opacity-10 dark:opacity-20"></div>
+                  <span class="relative z-10 flex items-center gap-2">
+                    {{ $t('courses.scanBtn') }}
+                    <svg class="w-4 h-4 transform rtl:rotate-180 ltr:rotate-0 rtl:group-hover/btn:-translate-x-1.5 ltr:group-hover/btn:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </span>
+                </NuxtLink>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </TransitionGroup>
+      
+      <div v-if="filteredCourses.length === 0" class="text-center py-20 bg-white/50 dark:bg-slate-900/30 rounded-[3rem] backdrop-blur-md border border-slate-200 dark:border-slate-800 border-dashed mt-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent"></div>
+        <div class="text-6xl mb-4 opacity-50 grayscale relative z-10">📡</div>
+        <h3 class="text-2xl font-black text-slate-800 dark:text-white mb-2 relative z-10">{{ $t('courses.empty.title') }}</h3>
+        <p class="text-slate-500 font-mono text-sm relative z-10">{{ $t('courses.empty.desc') }}</p>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-definePageMeta({
-  layout: 'admin'
-});
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
 const supabase = useSupabaseClient();
-const searchQuery = ref('');
-const filterDept = ref('all');
+const activeDepartment = ref('python');
 
-// دریافت اطلاعات دوره‌ها از دیتابیس
-const { data: courses, pending, refresh } = await useAsyncData('admin-courses-list', async () => {
-  const { data } = await supabase.from('courses').select('*').order('created_at', { ascending: false });
+useSeoMeta({
+  title: () => t('courses.seo.title'),
+  description: () => t('courses.seo.desc'),
+  ogTitle: () => t('courses.seo.ogTitle'),
+  ogImage: '/images/Banner.jpg'
+});
+
+// 💡 پوسترهای چهار دپارتمان اصلی بالا با توجه به زبان فعال سایت داینامیک شدند
+const departments = computed(() => [
+  { id: 'python', name: t('courses.depts.python'), image: locale.value === 'en' ? '/images/DP-python-en.webp' : '/images/DP-python.webp' },
+  { id: 'ai', name: t('courses.depts.ai'), image: locale.value === 'en' ? '/images/DP-Ai-en.webp' : '/images/DP-Ai.webp' },
+  { id: 'design', name: t('courses.depts.design'), image: locale.value === 'en' ? '/images/DP-Design-en.webp' : '/images/DP-Design.webp' },
+  { id: 'maharat', name: t('courses.depts.maharat'), image: locale.value === 'en' ? '/images/DP-Maharat-en.webp' : '/images/DP-Maharat.webp' }
+]);
+
+const manualCourses = computed(() => [
+  { id: 13, slug: 'icdl', dept: 'maharat', image: locale.value === 'en' ? '/images/ICDL-en.webp' : '/images/ICDL.webp', price: '۴,۵۰۰,۰۰۰', startDate: '۱۵ تیر', 
+    title: t('courseData.c1.title'), desc: t('courseData.c1.desc'), schedule: t('courseData.c1.schedule') },
+  { id: 5, slug: 'robotics-adults', dept: 'maharat', image: locale.value === 'en' ? '/images/Robatic-en.webp' : '/images/Robatic.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۲۰ تیر', 
+    title: t('courseData.c2.title'), desc: t('courseData.c2.desc'), schedule: t('courseData.c2.schedule') },
+  { id: 12, slug: 'robotics-kids', dept: 'maharat', image: locale.value === 'en' ? '/images/Robatoc-childern-en.webp' : '/images/Robatoc-childern.webp', price: '۷,۵۰۰,۰۰۰', startDate: '۵ مرداد', 
+    title: t('courseData.c3.title'), desc: t('courseData.c3.desc'), schedule: t('courseData.c3.schedule') },
+  { id: 10, slug: 'scratch', dept: 'maharat', image: locale.value === 'en' ? '/images/Scratch-en.webp' : '/images/Scratch.webp', price: '۵,۰۰۰,۰۰۰', startDate: '۱۰ مرداد', 
+    title: t('courseData.c4.title'), desc: t('courseData.c4.desc'), schedule: t('courseData.c4.schedule') },
+  { id: 11, slug: 'python-kids', dept: 'python', image: locale.value === 'en' ? '/images/Python-childern-en.webp' : '/images/Python-childern.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۱ شهریور', 
+    title: t('courseData.c5.title'), desc: t('courseData.c5.desc'), schedule: t('courseData.c5.schedule') },
+  { id: 1, slug: 'python-basics', dept: 'python', image: locale.value === 'en' ? '/images/Python-M-en.webp' : '/images/Python-M.webp', price: '۸,۰۰۰,۰۰۰', startDate: '۱ مرداد', 
+    title: t('courseData.c6.title'), desc: t('courseData.c6.desc'), schedule: t('courseData.c6.schedule') },
+  { id: 2, slug: 'python-advanced', dept: 'python', image: locale.value === 'en' ? '/images/Python-P-en.webp' : '/images/Python-P.webp', price: '۱۰,۰۰۰,۰۰۰', startDate: '۱۲ مرداد', 
+    title: t('courseData.c7.title'), desc: t('courseData.c7.desc'), schedule: t('courseData.c7.schedule') },
+  { id: 3, slug: 'ai-tools', dept: 'ai', image: locale.value === 'en' ? '/images/Ai-tools-en.webp' : '/images/Ai-tools.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۵ تیر', 
+    title: t('courseData.c8.title'), desc: t('courseData.c8.desc'), schedule: t('courseData.c8.schedule') },
+  { id: 4, slug: 'machine-learning', dept: 'ai', image: locale.value === 'en' ? '/images/Machine learning-en.webp' : '/images/Machine learning.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۳0 تیر', 
+    title: t('courseData.c9.title'), desc: t('courseData.c9.desc'), schedule: t('courseData.c9.schedule') },
+  { id: 6, slug: 'photoshop', dept: 'design', image: locale.value === 'en' ? '/images/Photoshop-en.webp' : '/images/Photoshop.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۱۵ مرداد', 
+    title: t('courseData.c10.title'), desc: t('courseData.c10.desc'), schedule: t('courseData.c10.schedule') },
+  { id: 7, slug: 'illustrator', dept: 'design', image: locale.value === 'en' ? '/images/Illustrator-en.webp' : '/images/Illustrator.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۰ مرداد', 
+    title: t('courseData.c11.title'), desc: t('courseData.c11.desc'), schedule: t('courseData.c11.schedule') },
+  { id: 8, slug: 'indesign', dept: 'design', image: locale.value === 'en' ? '/images/Indesign-en.webp' : '/images/Indesign.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۵ شهریور', 
+    title: t('courseData.c12.title'), desc: t('courseData.c12.desc'), schedule: t('courseData.c12.schedule') },
+  { id: 9, slug: 'sketch', dept: 'design', image: locale.value === 'en' ? '/images/Sketch-en.webp' : '/images/Sketch.webp', price: '۶,۰۰۰,۰۰۰', startDate: '۱۵ شهریور', 
+    title: t('courseData.c13.title'), desc: t('courseData.c13.desc'), schedule: t('courseData.c13.schedule') }
+]);
+
+const { data: dbCourses } = await useAsyncData(`public-courses-list-${locale.value}`, async () => {
+  const { data, error } = await supabase
+    .from('courses')
+    .select('*')
+    .order('created_at', { ascending: false });
+    
+  if (error) {
+    console.error("خطا در دریافت دوره‌ها:", error);
+    return [];
+  }
   return data || [];
 });
 
-// محاسبات آمار بالای صفحه
-const publishedCount = computed(() => {
-  return courses.value ? courses.value.filter(c => c.is_published === true || c.is_published === 'true').length : 0;
-});
-const draftCount = computed(() => {
-  return courses.value ? courses.value.length - publishedCount.value : 0;
-});
-
-// اعمال جستجو و فیلتر روی جدول
-const filteredCourses = computed(() => {
-  if (!courses.value) return [];
-  
-  return courses.value.filter(course => {
-    // بررسی جستجوی متنی
-    const matchSearch = course.title.toLowerCase().includes(searchQuery.value.toLowerCase());
-    // بررسی فیلتر دپارتمان
-    const matchDept = filterDept.value === 'all' || course.dept === filterDept.value;
+const allCourses = computed(() => {
+  const dbActive = (dbCourses.value || [])
+    .filter(c => c.is_published === true || c.is_published === 'true')
+    .map(c => ({
+      id: c.id,
+      slug: c.slug,
+      title: locale.value === 'en' && c.title_en ? c.title_en : c.title,
+      dept: c.dept,
+      price: c.price,
+      desc: locale.value === 'en' && c.description_en ? c.description_en : c.description,
+      image: locale.value === 'en' && c.image_url_en ? c.image_url_en : c.image_url, 
+      schedule: c.schedule,
+      startDate: c.start_date
+    }));
     
-    return matchSearch && matchDept;
-  });
+  return [...dbActive, ...manualCourses.value];
 });
 
-const getDeptName = (deptId) => {
-  const dict = {
-    'python': 'پایتون',
-    'ai': 'هوش مصنوعی',
-    'design': 'طراحی دیجیتال',
-    'maharat': 'مهارت‌های کاربردی'
-  };
-  return dict[deptId] || 'نامشخص';
+const filteredCourses = computed(() => {
+  return allCourses.value.filter(c => c.dept === activeDepartment.value);
+});
+
+const getDepartmentName = (id) => {
+  const dept = departments.value.find(d => d.id === id);
+  return dept ? dept.name : '';
 };
 
-const deleteCourse = async (id) => {
-  if(confirm('⚠️ آیا از حذف کامل این دوره مطمئن هستید؟ این عمل غیرقابل بازگشت است.')) {
-    try {
-      const { error } = await supabase.from('courses').delete().eq('id', id);
-      if (error) throw error;
-      
-      refresh(); // رفرش جدول
-      alert('✅ دوره با موفقیت حذف شد.');
-    } catch (err) {
-      alert('خطا در حذف دوره: ' + err.message);
+const schemaData = computed(() => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": allCourses.value.map((course, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Course",
+      "name": course.title,
+      "description": course.desc,
+      "provider": {
+        "@type": "Organization",
+        "name": t('courses.titleHighlight'),
+        "sameAs": "https://danaverse.ir"
+      }
     }
-  }
-}
+  }))
+}));
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: computed(() => JSON.stringify(schemaData.value))
+    }
+  ]
+});
 </script>
 
 <style scoped>
-/* انیمیشن نرم برای لیست جدول در زمان جستجو */
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.4s ease;
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.list-enter-from,
-.list-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateY(30px) scale(0.95);
+}
+.fade-leave-active {
+  position: absolute;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dir-ltr {
+  direction: ltr;
 }
 </style>

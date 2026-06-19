@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-slate-200 pt-28 pb-24 overflow-hidden relative transition-colors duration-500 font-sans">
+  <div class="min-h-screen bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-slate-200 pt-28 pb-24 overflow-hidden relative transition-colors duration-500 font-sans" :dir="$i18n.locale === 'fa' ? 'rtl' : 'ltr'">
     
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
-    <div class="absolute top-0 left-1/4 w-[800px] h-[600px] bg-blue-400/10 dark:bg-blue-600/10 blur-[150px] rounded-full pointer-events-none animate-pulse duration-1000"></div>
-    <div class="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-purple-400/10 dark:bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-0 rtl:left-1/4 ltr:right-1/4 w-[800px] h-[600px] bg-blue-400/10 dark:bg-blue-600/10 blur-[150px] rounded-full pointer-events-none animate-pulse duration-1000"></div>
+    <div class="absolute bottom-20 rtl:right-1/4 ltr:left-1/4 w-[600px] h-[600px] bg-purple-400/10 dark:bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
 
     <section class="container mx-auto px-4 text-center mb-16 relative z-10">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md shadow-sm dark:shadow-[0_0_15px_rgba(59,130,246,0.2)]">
@@ -55,11 +55,11 @@
 
     <section class="container mx-auto px-4 relative z-10">
       
-      <div class="flex items-center gap-4 mb-12 border-b border-slate-200 dark:border-slate-800 pb-4">
+      <div class="flex items-center gap-4 mb-12 border-b border-slate-200 dark:border-slate-800 pb-4 rtl:text-right ltr:text-left">
         <div class="w-2 h-10 bg-blue-600 dark:bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.5)]"></div>
         <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-3">
           {{ $t('courses.extractedTitle') }} 
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r rtl:from-blue-600 rtl:to-purple-600 ltr:from-purple-600 ltr:to-blue-600 dark:rtl:from-cyan-400 dark:rtl:to-blue-500 dark:ltr:from-blue-500 dark:ltr:to-cyan-400">
             {{ getDepartmentName(activeDepartment) }}
           </span>
         </h2>
@@ -71,14 +71,14 @@
 
           <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 dark:from-cyan-500 dark:via-blue-500 dark:to-purple-600 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-75 transition duration-500 group-hover:duration-200"></div>
 
-          <div class="relative h-full bg-white dark:bg-[#090e1a] rounded-[2rem] overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-slate-700/50 flex flex-col transition-all duration-300 z-10">
+          <div class="relative h-full bg-white dark:bg-[#090e1a] rounded-[2rem] overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-slate-700/50 flex flex-col transition-all duration-300 z-10 rtl:text-right ltr:text-left">
             
             <div class="w-full aspect-[3/4] overflow-hidden relative bg-slate-100 dark:bg-slate-900">
-              <div class="absolute top-0 inset-x-0 h-6 bg-black/50 backdrop-blur-md z-20 flex items-center px-3 gap-1.5 border-b border-white/10">
+              <div class="absolute top-0 inset-x-0 h-6 bg-black/50 backdrop-blur-md z-20 flex items-center px-3 gap-1.5 border-b border-white/10 rtl:flex-row ltr:flex-row-reverse">
                 <span class="w-2 h-2 rounded-full bg-red-500"></span>
                 <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                <span class="ml-auto text-[9px] font-mono text-white/50">{{ $t('courses.dataset') }} 0{{ index + 1 }}</span>
+                <span class="rtl:mr-auto ltr:ml-auto text-[9px] font-mono text-white/50 tracking-widest dir-ltr">{{ $t('courses.dataset') }} 0{{ index + 1 }}</span>
               </div>
               <NuxtImg 
                 :src="course.image || '/images/default-course.webp'" 
@@ -92,27 +92,27 @@
             
             <div class="p-6 md:p-7 flex flex-col flex-grow relative bg-white dark:bg-transparent">
               
-              <div class="absolute -top-8 right-6 w-14 h-14 bg-white dark:bg-[#0f172a] rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-2xl z-30 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+              <div class="absolute -top-8 rtl:right-6 ltr:left-6 w-14 h-14 bg-white dark:bg-[#0f172a] rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center text-2xl z-30 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
                 🎓
               </div>
               
               <div class="flex justify-between items-center w-full mt-4 mb-2 text-[10px] font-mono text-slate-400 dark:text-slate-500">
-                <span class="tracking-widest">{{ $t('courses.courseId') }} {{ course.id }}</span>
+                <span class="tracking-widest dir-ltr">{{ $t('courses.courseId') }} {{ course.id }}</span>
                 <span class="text-green-500 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>{{ $t('courses.active') }}</span>
               </div>
 
-              <h3 class="text-xl font-black text-slate-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight">
+              <h3 class="text-xl font-black text-slate-800 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-tight line-clamp-2">
                 {{ course.title }}
               </h3>
               
-              <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow leading-relaxed text-justify line-clamp-3">
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow leading-relaxed rtl:text-justify ltr:text-left line-clamp-3">
                 {{ course.desc }}
               </p>
               
               <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800/80">
                 <NuxtLink :to="localePath(`/courses/${course.slug || course.id}`)" 
                           class="relative overflow-hidden flex items-center justify-center w-full py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-300 dark:group-hover:border-cyan-500/50 text-sm font-black text-slate-600 dark:text-slate-400 group-hover:text-blue-700 dark:group-hover:text-white transition-all duration-300 group/btn">
-                  <div class="absolute inset-0 w-0 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-500 dark:to-purple-600 transition-all duration-500 ease-out group-hover/btn:w-full opacity-10 dark:opacity-20"></div>
+                  <div class="absolute inset-0 w-0 bg-gradient-to-r rtl:from-blue-500 rtl:to-purple-500 ltr:from-purple-500 ltr:to-blue-500 dark:rtl:from-cyan-500 dark:rtl:to-purple-600 dark:ltr:from-purple-600 dark:ltr:to-cyan-500 transition-all duration-500 ease-out group-hover/btn:w-full opacity-10 dark:opacity-20"></div>
                   <span class="relative z-10 flex items-center gap-2">
                     {{ $t('courses.scanBtn') }}
                     <svg class="w-4 h-4 transform rtl:rotate-180 ltr:rotate-0 rtl:group-hover/btn:-translate-x-1.5 ltr:group-hover/btn:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -151,39 +151,40 @@ useSeoMeta({
   ogImage: '/images/Banner.jpg'
 });
 
+// 💡 پوسترهای چهار دپارتمان اصلی بالا با توجه به زبان فعال سایت داینامیک شدند
 const departments = computed(() => [
-  { id: 'python', name: t('courses.depts.python'), image: '/images/DP-python.webp' },
-  { id: 'ai', name: t('courses.depts.ai'), image: '/images/DP-Ai.webp' },
-  { id: 'design', name: t('courses.depts.design'), image: '/images/DP-Design.webp' },
-  { id: 'maharat', name: t('courses.depts.maharat'), image: '/images/DP-Maharat.webp' }
+  { id: 'python', name: t('courses.depts.python'), image: locale.value === 'en' ? '/images/DP-python-en.webp' : '/images/DP-python.webp' },
+  { id: 'ai', name: t('courses.depts.ai'), image: locale.value === 'en' ? '/images/DP-Ai-en.webp' : '/images/DP-Ai.webp' },
+  { id: 'design', name: t('courses.depts.design'), image: locale.value === 'en' ? '/images/DP-Design-en.webp' : '/images/DP-Design.webp' },
+  { id: 'maharat', name: t('courses.depts.maharat'), image: locale.value === 'en' ? '/images/DP-Maharat-en.webp' : '/images/DP-Maharat.webp' }
 ]);
 
 const manualCourses = computed(() => [
-  { id: 13, slug: 'icdl', dept: 'maharat', image: '/images/ICDL.webp', price: '۴,۵۰۰,۰۰۰', startDate: '۱۵ تیر', 
+  { id: 13, slug: 'icdl', dept: 'maharat', image: locale.value === 'en' ? '/images/ICDL-en.webp' : '/images/ICDL.webp', price: '۴,۵۰۰,۰۰۰', startDate: '۱۵ تیر', 
     title: t('courseData.c1.title'), desc: t('courseData.c1.desc'), schedule: t('courseData.c1.schedule') },
-  { id: 5, slug: 'robotics-adults', dept: 'maharat', image: '/images/Robatic.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۲۰ تیر', 
+  { id: 5, slug: 'robotics-adults', dept: 'maharat', image: locale.value === 'en' ? '/images/Robatic-en.webp' : '/images/Robatic.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۲۰ تیر', 
     title: t('courseData.c2.title'), desc: t('courseData.c2.desc'), schedule: t('courseData.c2.schedule') },
-  { id: 12, slug: 'robotics-kids', dept: 'maharat', image: '/images/Robatoc-childern.webp', price: '۷,۵۰۰,۰۰۰', startDate: '۵ مرداد', 
+  { id: 12, slug: 'robotics-kids', dept: 'maharat', image: locale.value === 'en' ? '/images/Robatoc-childern-en.webp' : '/images/Robatoc-childern.webp', price: '۷,۵۰۰,۰۰۰', startDate: '۵ مرداد', 
     title: t('courseData.c3.title'), desc: t('courseData.c3.desc'), schedule: t('courseData.c3.schedule') },
-  { id: 10, slug: 'scratch', dept: 'maharat', image: '/images/Scratch.webp', price: '۵,۰۰۰,۰۰۰', startDate: '۱۰ مرداد', 
+  { id: 10, slug: 'scratch', dept: 'maharat', image: locale.value === 'en' ? '/images/Scratch-en.webp' : '/images/Scratch.webp', price: '۵,۰۰۰,۰۰۰', startDate: '۱۰ مرداد', 
     title: t('courseData.c4.title'), desc: t('courseData.c4.desc'), schedule: t('courseData.c4.schedule') },
-  { id: 11, slug: 'python-kids', dept: 'python', image: '/images/Python-childern.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۱ شهریور', 
+  { id: 11, slug: 'python-kids', dept: 'python', image: locale.value === 'en' ? '/images/Python-childern-en.webp' : '/images/Python-childern.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۱ شهریور', 
     title: t('courseData.c5.title'), desc: t('courseData.c5.desc'), schedule: t('courseData.c5.schedule') },
-  { id: 1, slug: 'python-basics', dept: 'python', image: '/images/Python-M.webp', price: '۸,۰۰۰,۰۰۰', startDate: '۱ مرداد', 
+  { id: 1, slug: 'python-basics', dept: 'python', image: locale.value === 'en' ? '/images/Python-M-en.webp' : '/images/Python-M.webp', price: '۸,۰۰۰,۰۰۰', startDate: '۱ مرداد', 
     title: t('courseData.c6.title'), desc: t('courseData.c6.desc'), schedule: t('courseData.c6.schedule') },
-  { id: 2, slug: 'python-advanced', dept: 'python', image: '/images/Python-P.webp', price: '۱۰,۰۰۰,۰۰۰', startDate: '۱۲ مرداد', 
+  { id: 2, slug: 'python-advanced', dept: 'python', image: locale.value === 'en' ? '/images/Python-P-en.webp' : '/images/Python-P.webp', price: '۱۰,۰۰۰,۰۰۰', startDate: '۱۲ مرداد', 
     title: t('courseData.c7.title'), desc: t('courseData.c7.desc'), schedule: t('courseData.c7.schedule') },
-  { id: 3, slug: 'ai-tools', dept: 'ai', image: '/images/Ai-tools.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۵ تیر', 
+  { id: 3, slug: 'ai-tools', dept: 'ai', image: locale.value === 'en' ? '/images/Ai-tools-en.webp' : '/images/Ai-tools.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۵ تیر', 
     title: t('courseData.c8.title'), desc: t('courseData.c8.desc'), schedule: t('courseData.c8.schedule') },
-  { id: 4, slug: 'machine-learning', dept: 'ai', image: '/images/Machine learning.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۳۰ تیر', 
+  { id: 4, slug: 'machine-learning', dept: 'ai', image: locale.value === 'en' ? '/images/Machine learning-en.webp' : '/images/Machine learning.webp', price: '۱۲,۰۰۰,۰۰۰', startDate: '۳0 تیر', 
     title: t('courseData.c9.title'), desc: t('courseData.c9.desc'), schedule: t('courseData.c9.schedule') },
-  { id: 6, slug: 'photoshop', dept: 'design', image: '/images/Photoshop.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۱۵ مرداد', 
+  { id: 6, slug: 'photoshop', dept: 'design', image: locale.value === 'en' ? '/images/Photoshop-en.webp' : '/images/Photoshop.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۱۵ مرداد', 
     title: t('courseData.c10.title'), desc: t('courseData.c10.desc'), schedule: t('courseData.c10.schedule') },
-  { id: 7, slug: 'illustrator', dept: 'design', image: '/images/Illustrator.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۰ مرداد', 
+  { id: 7, slug: 'illustrator', dept: 'design', image: locale.value === 'en' ? '/images/Illustrator-en.webp' : '/images/Illustrator.webp', price: '۷,۰۰۰,۰۰۰', startDate: '۲۰ مرداد', 
     title: t('courseData.c11.title'), desc: t('courseData.c11.desc'), schedule: t('courseData.c11.schedule') },
-  { id: 8, slug: 'indesign', dept: 'design', image: '/images/Indesign.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۵ شهریور', 
+  { id: 8, slug: 'indesign', dept: 'design', image: locale.value === 'en' ? '/images/Indesign-en.webp' : '/images/Indesign.webp', price: '۶,۵۰۰,۰۰۰', startDate: '۵ شهریور', 
     title: t('courseData.c12.title'), desc: t('courseData.c12.desc'), schedule: t('courseData.c12.schedule') },
-  { id: 9, slug: 'sketch', dept: 'design', image: '/images/Sketch.webp', price: '۶,۰۰۰,۰۰۰', startDate: '۱۵ شهریور', 
+  { id: 9, slug: 'sketch', dept: 'design', image: locale.value === 'en' ? '/images/Sketch-en.webp' : '/images/Sketch.webp', price: '۶,۰۰۰,۰۰۰', startDate: '۱۵ شهریور', 
     title: t('courseData.c13.title'), desc: t('courseData.c13.desc'), schedule: t('courseData.c13.schedule') }
 ]);
 
@@ -210,7 +211,7 @@ const allCourses = computed(() => {
       dept: c.dept,
       price: c.price,
       desc: locale.value === 'en' && c.description_en ? c.description_en : c.description,
-      image: c.image_url, 
+      image: locale.value === 'en' && c.image_url_en ? c.image_url_en : c.image_url, 
       schedule: c.schedule,
       startDate: c.start_date
     }));
@@ -270,10 +271,19 @@ useHead({
 .fade-leave-active {
   position: absolute;
 }
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.dir-ltr {
+  direction: ltr;
 }
 </style>

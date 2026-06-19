@@ -8,6 +8,53 @@ export default defineI18nConfig(() => ({
       auth: { adminPanel: "پنل مدیریت", dashboard: "پنل کاربری", login: "ورود / ثبت‌نام", logout: "خروج از حساب" },
       seo: { homeTitle: "آکادمی برنامه‌نویسی و هوش مصنوعی داناورس", homeDesc: "بهترین سایت آموزش پروژه‌محور برنامه‌نویسی و یادگیری هوش مصنوعی (AI) در ایران.", homeOgDesc: "آینده‌ات را با داناورس کدنویسی کن! آموزش پروژه‌محور از صفر تا ورود به بازار کار." },
       
+      // 👈 بخش جدید: صفحه یادگیری (Learning) - فارسی
+      learningPage: {
+        seo: {
+          title: "مجله آموزشی و مقالات | داناورس",
+          desc: "جدیدترین مقالات و آموزش‌های تخصصی هوش مصنوعی، برنامه‌نویسی، طراحی رابط کاربری و تکنولوژی روز دنیا."
+        },
+        hero: {
+          title1: "مجله آموزشی و",
+          titleHighlight: "مقالات تخصصی",
+          desc: "جدیدترین مقالات و آموزش‌های دنیای <strong>هوش مصنوعی</strong> و <strong>برنامه‌نویسی</strong> را اینجا بخوانید.",
+          searchPlaceholder: "جستجو در مقالات (عنوان یا متن)..."
+        },
+        tabs: {
+          all: "همه مقالات",
+          ai: "هوش مصنوعی",
+          programming: "برنامه‌نویسی",
+          tech: "تکنولوژی",
+          kids: "کودک و نوجوان",
+          design: "طراحی UI/UX",
+          career: "مسیر شغلی"
+        },
+        featured: {
+          badge: "مقاله ویژه",
+          category: "هوش مصنوعی",
+          date: "۲۴ اردیبهشت ۱۴۰۳",
+          title: "آینده برنامه‌نویسی با ظهور هوش مصنوعی",
+          desc: "آیا هوش مصنوعی جایگزین برنامه‌نویسان می‌شود؟ در این مقاله به بررسی عمیق تاثیر ابزارهایی مانند ChatGPT و GitHub Copilot بر آینده شغل برنامه‌نویسی و مهندسی نرم‌افزار می‌پردازیم.",
+          author: "دپارتمان آموزش",
+          readTime: "۸ دقیقه مطالعه"
+        },
+        ui: {
+          loading: "در حال پردازش و دریافت مقالات از دیتابیس...",
+          readLabel: "مطالعه مقاله",
+          emptyTitle: "مقاله‌ای یافت نشد!",
+          emptyDesc: "با کلمات کلیدی دیگری جستجو کنید یا دسته‌بندی را تغییر دهید.",
+          loadMoreBtn: "بارگذاری مقالات بیشتر"
+        },
+        manualPosts: {
+          p1: { title: "آموزش منطق برنامه‌نویسی به کودکان با اسکرچ", excerpt: "اسکرچ بهترین و جذاب‌ترین زبان برای شروع برنامه‌نویسی کودکان است تا تفکر منطقی را بیاموزند..." },
+          p2: { title: "اصول روانشناسی رنگ در طراحی رابط کاربری (UI)", excerpt: "چگونه با استفاده از رنگ‌ها، احساسات کاربر را درگیر کرده و تجربه کاربری بهتری خلق کنیم..." },
+          p3: { title: "پایتون یا جاوا اسکریپت؟ کدام برای شروع بهتر است؟", excerpt: "یک مقایسه جامع و کاربردی از دو زبان برنامه‌نویسی محبوب جهان برای کسانی که در ابتدای مسیر هستند..." },
+          p4: { title: "آشنایی با الگوریتم‌های پایه در یادگیری ماشین", excerpt: "مفاهیم اولیه یادگیری ماشین و نحوه استفاده از آن‌ها برای حل مسائل روزمره در سیستم‌های هوشمند..." },
+          p5: { title: "چگونه اولین پروژه فریلنسری خود را با موفقیت بگیریم؟", excerpt: "راهنمای قدم به قدم برای ورود به بازار کار فریلنسری، ساخت رزومه قدرتمند و مذاکره با کارفرما..." },
+          p6: { title: "تاثیر بازی‌سازی بر رشد خلاقیت ذهنی نوجوانان", excerpt: "چرا ساخت بازی‌های ساده کامپیوتری به توسعه مهارت‌های حل مسئله و تفکر ریاضی نوجوانان کمک می‌کند..." }
+        }
+      },
+
       instructors: { 
         seo: { title: "بهترین اساتید برنامه‌نویسی و هوش مصنوعی | داناورس", desc: "آشنایی با تیم نخبگان، پژوهشگران و منتورهای ارشد آکادمی داناورس در دپارتمان‌های هوش مصنوعی.", ogTitle: "لیست اساتید و هسته پردازش آکادمی داناورس", ogDesc: "با برترین اساتید برنامه‌نویسی و هوش مصنوعی ایران آشنا شوید." }, 
         badge: "ACCESS LEVEL: MENTORS", title1: "لیست اساتید و منتورهای", titleHighlight: "هستـه پـردازش داناورس", subtitle: "با نخبگانی آشنا شوید که قوانین بازی را تغییر می‌دهند.", 
@@ -109,6 +156,62 @@ export default defineI18nConfig(() => ({
         design: { title: "طراحی رابط کاربری (UI/UX)", badge: "دپارتمان هنرهای دیجیتال", description: "ترکیب هنر و تکنولوژی. در این مسیر یاد می‌گیرید چگونه محصولات دیجیتالی خلق کنید که علاوه بر زیبایی چشم‌نواز، تجربه کاربری بی‌نظیری داشته باشند.", steps: { s1: { title: "مبانی هنر و گرافیک دیجیتال", desc: "درک روانشناسی رنگ‌ها، تایپوگرافی، فضای منفی و اصول پایه‌ای که یک طراحی معمولی را به یک شاهکار تبدیل می‌کند.", skills: ["تئوری رنگ", "تایپوگرافی", "لی‌اوت"] }, s2: { title: "تسلط بر ابزارهای گرافیکی", desc: "یادگیری حرفه‌ای فتوشاپ و ایلاستریتور برای ساخت آیکون‌ها، ادیت تصاویر و خلق وکتورهای اختصاصی.", skills: ["فتوشاپ", "ایلاستریتور", "وکتور"] }, s3: { title: "طراحی رابط کاربری با Figma", desc: "ورود به دنیای UI. طراحی صفحات وب و اپلیکیشن‌های موبایل در نرم‌افزار قدرتمند فیگما بر اساس استانداردهای جهانی.", skills: ["فیگما", "طراحی رابط", "وایرفریم"] }, s4: { title: "تجربه کاربری و پروتوتایپ (UX)", desc: "بررسی رفتار کاربر، تست کاربرپذیری، و متحرک‌سازی صفحات (Prototyping) برای ارائه پروژه نهایی به برنامه‌نویسان.", skills: ["تحقیقات کاربر", "پروتوتایپ", "سفر کاربر"] } } }
       },
 
+      projectsPage: {
+        seo: { title: "گالری پروژه‌ها | آکادمی داناورس", desc: "گالری نمونه کارهای برنامه‌نویسی، هوش مصنوعی، رباتیک و بازی‌سازی هنرجویان آکادمی داناورس." },
+        hero: { badge: "نمایشگاه دستاوردهای هنرجویان", title1: "خلق آینده با", titleHighlight: "کدهای امروز", desc: "شاهد جادوی خلاقیت و تخصص هنرجویان آکادمی داناورس باشید. اینجا جایی است که ایده‌های خام، به پروژه‌های واقعی و شگفت‌انگیز تبدیل می‌شوند." },
+        categories: { all: "همه دستاوردها", ai: "هوش مصنوعی و پایتون", web: "طراحی وب و اپلیکیشن", robotics: "رباتیک و اینترنت اشیا", game: "بازی‌سازی و اسکرچ" },
+        empty: { title: "داده‌ای یافت نشد", desc: "پروژه‌های این بخش در حال بروزرسانی هستند. لطفاً دسته‌بندی دیگری را انتخاب کنید." },
+        list: {
+          p1: { title: "دستیار صوتی هوشمند (شبیه جارویس)", desc: "توسعه یک دستیار صوتی با پایتون که می‌تواند دستورات صوتی فارسی را پردازش کرده، در وب جستجو کند و وسایل هوشمند اتاق را کنترل کند.", catName: "پایتون پیشرفته", age: "هنرجوی ۱۶ ساله" },
+          p2: { title: "سیستم تشخیص سرطان پوست", desc: "یک مدل یادگیری عمیق (Deep Learning) که با دریافت تصویر ضایعه پوستی، احتمال سرطانی بودن آن را با دقت ۹۲٪ پیش‌بینی می‌کند.", catName: "ماشین لرنینگ", age: "هنرجوی ۲۱ ساله" },
+          p3: { title: "ربات معامله‌گر ارز دیجیتال", desc: "رباتی که با استفاده از الگوریتم‌های هوش مصنوعی، نمودارهای قیمتی را تحلیل کرده و سیگنال‌های خرید و فروش صادر می‌کند.", catName: "هوش مصنوعی", age: "هنرجوی ۱۹ ساله" },
+          p4: { title: "تشخیص خستگی راننده", desc: "پروژه‌ای بر پایه بینایی ماشین که با اسکن چشم‌های راننده، در صورت تشخیص خواب‌آلودگی، آژیر خطر را به صدا در می‌آورد.", catName: "بینایی ماشین", age: "هنرجوی ۲۴ ساله" },
+          p5: { title: "پلتفرم رزرو آنلاین پزشک", desc: "طراحی صفر تا صد رابط کاربری یک اپلیکیشن نوبت‌دهی پزشکی با تمرکز بر تجربه کاربری سالمندان.", catName: "UI/UX دیزاین", age: "هنرجوی ۱۸ ساله" },
+          p6: { title: "داشبورد مدیریتی مالی داینامیک", desc: "طراحی و پیاده‌سازی یک داشبورد مدرن تحت وب برای مدیریت هزینه‌ها با نمودارهای زنده و پشتیبانی کامل از دارک مود.", catName: "توسعه فرانت‌اند", age: "هنرجوی ۲۲ ساله" },
+          p7: { title: "وب‌سایت سه بعدی گالری هنر", desc: "یک وب‌سایت خیره‌کننده که با استفاده از تکنولوژی‌های سه‌بعدی تحت وب، آثار هنری را در یک موزه مجازی به نمایش می‌گذارد.", catName: "توسعه وب سه‌بعدی", age: "هنرجوی ۲۰ ساله" },
+          p8: { title: "اپلیکیشن مدیریت وظایف تیمی", desc: "یک پلتفرم مدیریت پروژه شبیه ترلو (Trello) با قابلیت جابجایی کارت‌ها (Drag & Drop) و چت زنده.", catName: "توسعه فول‌استک", age: "هنرجوی ۲۵ ساله" },
+          p9: { title: "بازوی رباتیک خط تولید", desc: "ساخت و برنامه‌نویسی صفر تا صد یک بازوی رباتیک ۳ محوره با استفاده از برد آردوینو.", catName: "رباتیک صنعتی", age: "هنرجوی ۱۷ ساله" },
+          p10: { title: "سیستم خانه هوشمند (IoT)", desc: "کنترل لامپ‌ها، دما و درب منزل از طریق اینترنت و گوشی موبایل.", catName: "اینترنت اشیا", age: "هنرجوی ۱۵ ساله" },
+          p11: { title: "ربات مسیریاب مسابقه‌ای", desc: "رباتی سریع و دقیق که با استفاده از سنسورهای مادون قرمز قادر است پیچیده‌ترین مسیرها را طی کند.", catName: "رباتیک دانش‌آموزی", age: "هنرجوی ۱۴ ساله" },
+          p12: { title: "گلدان هوشمند خودآبیار", desc: "گلدانی که رطوبت خاک را می‌سنجد و در صورت نیاز به صورت خودکار به گیاه آب می‌دهد.", catName: "الکترونیک کاربردی", age: "هنرجوی ۱۳ ساله" },
+          p13: { title: "بازی نبرد فضایی", desc: "طراحی یک بازی آرکید هیجان‌انگیز که در آن سفینه کاربر باید به دشمنان فضایی شلیک کند.", catName: "بازی‌سازی کودکان", age: "هنرجوی ۹ ساله" },
+          p14: { title: "بازی سه‌بعدی فرار از مارپیچ", desc: "توسعه یک بازی سه‌بعدی جذاب که پلیر باید در یک هزارتوی تاریک، راه خروج را پیدا کند.", catName: "بازی‌سازی پیشرفته", age: "هنرجوی ۱۶ ساله" },
+          p15: { title: "پلتفرمر جادویی", desc: "یک بازی دو بعدی مشابه ماریو با گرافیک پیکسلی دست‌ساز و سیستم امتیازدهی.", catName: "بازی‌سازی ۲ بعدی", age: "هنرجوی ۱۴ ساله" },
+          p16: { title: "شبیه‌ساز ترافیک شهری", desc: "انیمیشن و شبیه‌سازی هوشمند حرکت خودروها در تقاطع با رعایت چراغ راهنمایی.", catName: "برنامه‌نویسی منطقی", age: "هنرجوی ۱۰ ساله" }
+        }
+      },
+
+      register: {
+        seo: { title: "ثبت‌نام | آکادمی داناورس" },
+        success: { title: "ثبت‌نام شما با موفقیت ثبت شد!", desc: "به زودی با شما تماس می‌گیریم.", redirect: "در حال انتقال به صفحه اصلی..." },
+        form: { title: "پذیرش در آکادمی داناورس", desc: "مسیر تبدیل شدن به یک متخصص از اینجا آغاز می‌شود.", nameLabel: "نام", namePlaceholder: "مثال: علی", surnameLabel: "نام خانوادگی", surnamePlaceholder: "مثال: محمدی", phoneLabel: "شماره تماس (بدون صفر)", phonePlaceholder: "912 345 6789", ageLabel: "سن", agePlaceholder: "مثال: 24", dateLabel: "تاریخ ثبت‌نام", dateBadge: "خودکار", instLabel: "نام مدرسه یا دانشگاه", instPlaceholder: "محل تحصیل فعلی یا فارغ‌التحصیلی", courseLabel: "دوره آموزشی مورد نظر", courseDefault: "انتخاب کنید...", investmentLabel: "سرمایه‌گذاری شما:", currency: "تومان", submitBtn: "تکمیل ثبت‌نام و پرداخت", loadingBtn: "درحال پردازش..." },
+        errors: { generic: "خطایی رخ داد. لطفاً مجدداً تلاش کنید." },
+        courses: { c1: "پایتون مقدماتی", c2: "پایتون پیشرفته", c3: "پایتون کودکان", c4: "ابزارهای هوش مصنوعی", c5: "ماشین لرنینگ", c6: "فتوشاپ (Photoshop)", c7: "ایلاستریتور (Illustrator)", c8: "ایندیزاین (InDesign)", c9: "تصویرسازی اسکیچ", c10: "مهارت‌های هفت‌گانه (ICDL)", c11: "رباتیک بزرگسال", c12: "اسکرچ (Scratch)", c13: "رباتیک دانش‌آموزی" }
+      },
+
+      loginPage: {
+        seo: { title: "ورود / ثبت‌نام | داناورس" },
+        welcomeBack: "خوش برگشتید! برای ورود اطلاعات خود را وارد کنید.",
+        joinUs: "به جمع ما بپیوندید و مسیر یادگیری را شروع کنید.",
+        tabLogin: "ورود",
+        tabRegister: "ثبت‌نام",
+        nameLabel: "نام و نام خانوادگی",
+        namePlaceholder: "مثال: علی رضایی",
+        emailLabel: "ایمیل",
+        emailPlaceholder: "example{'@'}email.com",
+        passwordLabel: "رمز عبور",
+        passwordPlaceholder: "••••••••",
+        forgotPassword: "فراموشی رمز؟",
+        btnLoading: "درحال پردازش...",
+        btnLogin: "ورود به پنل",
+        btnRegister: "ساخت حساب کاربری",
+        msgLoginSuccess: "ورود موفقیت‌آمیز بود! در حال انتقال...",
+        msgRegisterSuccess: "ثبت‌نام با موفقیت انجام شد! حالا می‌توانید وارد شوید.",
+        errInvalidCreds: "ایمیل یا رمز عبور اشتباه است.",
+        errUserExists: "این ایمیل قبلاً ثبت‌نام کرده است.",
+        errGeneric: "خطایی رخ داد: "
+      },
+
       home: { 
         hero: { badge: "پلتفرم جامع آموزش", title1: "آکادمی برنامه‌نویسی و هوش مصنوعی", titleHighlight: "داناورس", desc: "آموزش مهارت‌های آینده با رویکرد ورود مستقیم به بازار کار.", btn: "مشاهده دوره‌های آموزشی" }, 
         benefits: { b1: "آموزش ۱۰۰٪ پروژه‌محور", b2: "منتورینگ اختصاصی", b3: "پشتیبانی بازار کار", b4: "ارائه مدرک معتبر" }, 
@@ -140,32 +243,6 @@ export default defineI18nConfig(() => ({
         }, 
         cta: { badge: "ثبت‌نام ترم جدید آغاز شد", title1: "آماده‌ی", titleHighlight: "تغییر", title2: "هستی؟", desc: "روی تخصصت سرمایه‌گذاری کن. با داناورس، مسیر ورود به بازار کار جهانی از همین‌جا شروع می‌شود.", btn: "شروع یادگیری" }, 
         footer: { desc: "داناورس، پیشگام در آموزش مدرن و پروژه‌محور تکنولوژی. ما اینجا هستیم تا با تلفیق هوش مصنوعی، برنامه‌نویسی و مهارت‌های توسعه فردی، نسل جدیدی از متخصصان را برای بازار کار جهانی تربیت کنیم. داناورس فقط یک آکادمی نیست؛ پلی است از استعدادهای نهفته‌ی شما تا خلق آینده‌ای درخشان در دنیای دیجیتال.", pathsTitle: "مسیرهای اصلی / Paths", contactTitle: "ارتباط / Contact", copyright: "تمامی حقوق محفوظ است.", privacy: "حریم خصوصی", terms: "شرایط استفاده" } 
-      },
-
-      // 👇 دیکشنری اختصاصی صفحه پروژه‌ها (گالری) - زبان فارسی
-      projectsPage: {
-        seo: { title: "گالری پروژه‌ها | آکادمی داناورس", desc: "گالری نمونه کارهای برنامه‌نویسی، هوش مصنوعی، رباتیک و بازی‌سازی هنرجویان آکادمی داناورس." },
-        hero: { badge: "نمایشگاه دستاوردهای هنرجویان", title1: "خلق آینده با", titleHighlight: "کدهای امروز", desc: "شاهد جادوی خلاقیت و تخصص هنرجویان آکادمی داناورس باشید. اینجا جایی است که ایده‌های خام، به پروژه‌های واقعی و شگفت‌انگیز تبدیل می‌شوند." },
-        categories: { all: "همه دستاوردها", ai: "هوش مصنوعی و پایتون", web: "طراحی وب و اپلیکیشن", robotics: "رباتیک و اینترنت اشیا", game: "بازی‌سازی و اسکرچ" },
-        empty: { title: "داده‌ای یافت نشد", desc: "پروژه‌های این بخش در حال بروزرسانی هستند. لطفاً دسته‌بندی دیگری را انتخاب کنید." },
-        list: {
-          p1: { title: "دستیار صوتی هوشمند (شبیه جارویس)", desc: "توسعه یک دستیار صوتی با پایتون که می‌تواند دستورات صوتی فارسی را پردازش کرده، در وب جستجو کند و وسایل هوشمند اتاق را کنترل کند.", catName: "پایتون پیشرفته", age: "هنرجوی ۱۶ ساله" },
-          p2: { title: "سیستم تشخیص سرطان پوست", desc: "یک مدل یادگیری عمیق (Deep Learning) که با دریافت تصویر ضایعه پوستی، احتمال سرطانی بودن آن را با دقت ۹۲٪ پیش‌بینی می‌کند.", catName: "ماشین لرنینگ", age: "هنرجوی ۲۱ ساله" },
-          p3: { title: "ربات معامله‌گر ارز دیجیتال", desc: "رباتی که با استفاده از الگوریتم‌های هوش مصنوعی، نمودارهای قیمتی را تحلیل کرده و سیگنال‌های خرید و فروش صادر می‌کند.", catName: "هوش مصنوعی", age: "هنرجوی ۱۹ ساله" },
-          p4: { title: "تشخیص خستگی راننده", desc: "پروژه‌ای بر پایه بینایی ماشین که با اسکن چشم‌های راننده، در صورت تشخیص خواب‌آلودگی، آژیر خطر را به صدا در می‌آورد.", catName: "بینایی ماشین", age: "هنرجوی ۲۴ ساله" },
-          p5: { title: "پلتفرم رزرو آنلاین پزشک", desc: "طراحی صفر تا صد رابط کاربری یک اپلیکیشن نوبت‌دهی پزشکی با تمرکز بر تجربه کاربری سالمندان.", catName: "UI/UX دیزاین", age: "هنرجوی ۱۸ ساله" },
-          p6: { title: "داشبورد مدیریتی مالی داینامیک", desc: "طراحی و پیاده‌سازی یک داشبورد مدرن تحت وب برای مدیریت هزینه‌ها با نمودارهای زنده و پشتیبانی کامل از دارک مود.", catName: "توسعه فرانت‌اند", age: "هنرجوی ۲۲ ساله" },
-          p7: { title: "وب‌سایت سه بعدی گالری هنر", desc: "یک وب‌سایت خیره‌کننده که با استفاده از تکنولوژی‌های سه‌بعدی تحت وب، آثار هنری را در یک موزه مجازی به نمایش می‌گذارد.", catName: "توسعه وب سه‌بعدی", age: "هنرجوی ۲۰ ساله" },
-          p8: { title: "اپلیکیشن مدیریت وظایف تیمی", desc: "یک پلتفرم مدیریت پروژه شبیه ترلو (Trello) با قابلیت جابجایی کارت‌ها (Drag & Drop) و چت زنده.", catName: "توسعه فول‌استک", age: "هنرجوی ۲۵ ساله" },
-          p9: { title: "بازوی رباتیک خط تولید", desc: "ساخت و برنامه‌نویسی صفر تا صد یک بازوی رباتیک ۳ محوره با استفاده از برد آردوینو.", catName: "رباتیک صنعتی", age: "هنرجوی ۱۷ ساله" },
-          p10: { title: "سیستم خانه هوشمند (IoT)", desc: "کنترل لامپ‌ها، دما و درب منزل از طریق اینترنت و گوشی موبایل.", catName: "اینترنت اشیا", age: "هنرجوی ۱۵ ساله" },
-          p11: { title: "ربات مسیریاب مسابقه‌ای", desc: "رباتی سریع و دقیق که با استفاده از سنسورهای مادون قرمز قادر است پیچیده‌ترین مسیرها را طی کند.", catName: "رباتیک دانش‌آموزی", age: "هنرجوی ۱۴ ساله" },
-          p12: { title: "گلدان هوشمند خودآبیار", desc: "گلدانی که رطوبت خاک را می‌سنجد و در صورت نیاز به صورت خودکار به گیاه آب می‌دهد.", catName: "الکترونیک کاربردی", age: "هنرجوی ۱۳ ساله" },
-          p13: { title: "بازی نبرد فضایی", desc: "طراحی یک بازی آرکید هیجان‌انگیز که در آن سفینه کاربر باید به دشمنان فضایی شلیک کند.", catName: "بازی‌سازی کودکان", age: "هنرجوی ۹ ساله" },
-          p14: { title: "بازی سه‌بعدی فرار از مارپیچ", desc: "توسعه یک بازی سه‌بعدی جذاب که پلیر باید در یک هزارتوی تاریک، راه خروج را پیدا کند.", catName: "بازی‌سازی پیشرفته", age: "هنرجوی ۱۶ ساله" },
-          p15: { title: "پلتفرمر جادویی", desc: "یک بازی دو بعدی مشابه ماریو با گرافیک پیکسلی دست‌ساز و سیستم امتیازدهی.", catName: "بازی‌سازی ۲ بعدی", age: "هنرجوی ۱۴ ساله" },
-          p16: { title: "شبیه‌ساز ترافیک شهری", desc: "انیمیشن و شبیه‌سازی هوشمند حرکت خودروها در تقاطع با رعایت چراغ راهنمایی.", catName: "برنامه‌نویسی منطقی", age: "هنرجوی ۱۰ ساله" }
-        }
       }
     },
 
@@ -174,6 +251,53 @@ export default defineI18nConfig(() => ({
       auth: { adminPanel: "Admin Dashboard", dashboard: "User Dashboard", login: "Login / Register", logout: "Logout" },
       seo: { homeTitle: "Danaverse | Programming Academy", homeDesc: "Project-based coding & AI academy.", homeOgDesc: "Code your future with Danaverse!" },
       
+      // 👈 بخش جدید: صفحه یادگیری (Learning) - انگلیسی
+      learningPage: {
+        seo: {
+          title: "Learning Magazine & Articles | Danaverse",
+          desc: "The latest specialized articles and tutorials on Artificial Intelligence, Programming, UI/UX Design, and Technology."
+        },
+        hero: {
+          title1: "Educational Magazine &",
+          titleHighlight: "Tech Articles",
+          desc: "Read the latest articles and tutorials in the world of <strong>AI</strong> and <strong>Programming</strong>.",
+          searchPlaceholder: "Search articles (title or content)..."
+        },
+        tabs: {
+          all: "All Articles",
+          ai: "AI",
+          programming: "Programming",
+          tech: "Technology",
+          kids: "Kids & Teens",
+          design: "UI/UX Design",
+          career: "Career Path"
+        },
+        featured: {
+          badge: "Featured Article",
+          category: "Artificial Intelligence",
+          date: "May 14, 2024",
+          title: "The Future of Programming with AI",
+          desc: "Will AI replace programmers? In this article, we take a deep dive into the impact of tools like ChatGPT and GitHub Copilot on the future of programming and software engineering jobs.",
+          author: "Education Department",
+          readTime: "8 min read"
+        },
+        ui: {
+          loading: "Fetching articles from database...",
+          readLabel: "Read Article",
+          emptyTitle: "No articles found!",
+          emptyDesc: "Try searching with different keywords or change the category.",
+          loadMoreBtn: "Load More Articles"
+        },
+        manualPosts: {
+          p1: { title: "Teaching Programming Logic to Kids with Scratch", excerpt: "Scratch is the best and most engaging language to start kids coding and teach them logical thinking..." },
+          p2: { title: "Color Psychology Principles in UI Design", excerpt: "How to engage user emotions and create a better user experience using the right colors..." },
+          p3: { title: "Python or JavaScript? Which is better for beginners?", excerpt: "A comprehensive and practical comparison of the two most popular programming languages for those just starting out..." },
+          p4: { title: "Introduction to Basic Machine Learning Algorithms", excerpt: "Basic concepts of machine learning and how to use them to solve everyday problems in smart systems..." },
+          p5: { title: "How to Land Your First Freelance Project Successfully?", excerpt: "A step-by-step guide to entering the freelance market, building a strong resume, and negotiating with clients..." },
+          p6: { title: "The Impact of Game Development on Teen Creativity", excerpt: "Why making simple computer games helps teens develop problem-solving skills and mathematical thinking..." }
+        }
+      },
+
       instructors: { 
         seo: { title: "Best Instructors | Danaverse", desc: "Meet the elite team of Danaverse Academy.", ogTitle: "Danaverse Core Mentors", ogDesc: "Meet the top programming instructors." }, 
         badge: "ACCESS LEVEL: MENTORS", title1: "Mentors & Instructors of", titleHighlight: "Danaverse Core", subtitle: "Meet the elites.", 
@@ -255,6 +379,16 @@ export default defineI18nConfig(() => ({
         questions: { q1: "Do you enjoy solving complex puzzles and logical problems?", q2: "Do you pay a lot of attention to clothing colors or room arrangements?", q3: "Are you curious about how electronic devices work?", q4: "Is finding patterns and order in information fascinating to you?", q5: "Do you pay more attention to the visual graphics of apps than their functionality?", q6: "Do you enjoy building moving crafts or working with tools?", q7: "Is learning the rules of a new language sweet to you?", q8: "Are you interested in photography and creative image editing?", q9: "Do you like watching videos of people assembling motors and gadgets?", q10: "Do you plan your daily tasks step-by-step?", q11: "Do you think about designing characters or creating new stories?", q12: "Do you enjoy putting together 3D puzzles or complex Lego sets?", q13: "In computer games, do you prefer strategy games?", q14: "Is choosing the right font for your presentations important to you?", q15: "Have you ever tried to repair a broken device yourself?" }
       },
 
+      whyUs: {
+        seo: { title: "Why Danaverse? | Differences and Advantages" },
+        hero: { badge: "What is the Danaverse difference?", title1: "Beyond an Academy,", titleHighlight: "A Shortcut to the Job Market", desc: "We have thrown away boring academic theories. At Danaverse, you work like a senior engineer from day one." },
+        projects: { title1: "100%", titleHighlight: "Project-Based", desc: "Goodbye to meaningless code on a blackboard! All our learning paths are designed based on real startup projects. From building AI systems to designing real app interfaces; you build your resume while learning.", bullet1: "Real work environment simulation (Agile/Scrum)", bullet2: "Presentable output on GitHub and Portfolio" },
+        mentoring: { title1: "Dedicated", titleHighlight: "Mentoring", desc: "Learning complex skills requires a caring guide. Our instructors don't just record videos; they review your code weekly, fix your bugs, and tailor your personalized roadmap.", bullet1: "Weekly online Q&A sessions", bullet2: "Direct communication with senior instructors" },
+        career: { title1: "Career", titleHighlight: "Support", desc: "Our goal isn't just education; our goal is your employment! Top students are directly introduced to tech companies, startups, and freelance projects. We are by your side for resume writing and job interviews.", bullet1: "Building international resume and LinkedIn", bullet2: "Direct introduction to partner job networks" },
+        certificate: { title1: "Official", titleHighlight: "Certification", desc: "The end of your course is the beginning of your professional journey. Upon successful completion of final projects, a valid Danaverse Academy certificate (with tracking code) is awarded to you, which holds high credibility.", bullet1: "Bilingual certificate (Persian & English)", bullet2: "Online tracking code on the website" },
+        cta: { title: "Join the Community of Professionals", desc: "You can choose one of our learning paths right now and make a secure investment in your future.", btn: "View Training Courses" }
+      },
+
       roadmapPath: {
         seoTitle: "{title} Learning Path | Danaverse",
         intro: { pathText: "Learning Path", roadmap: "Roadmap", yourExpertise: "Your Expertise", subtitle: "This is not an ordinary path; it's an engineered ascent from zero to a professional career.", phase: "Phase", skillsLabel: "Skills in this phase:" },
@@ -265,14 +399,101 @@ export default defineI18nConfig(() => ({
         design: { title: "UI/UX Design", badge: "Digital Arts Dept", description: "Blending art and technology. In this path, you learn how to create digital products that offer an incredible user experience along with stunning beauty.", steps: { s1: { title: "Basics of Art & Digital Graphics", desc: "Understanding color psychology, typography, negative space, and the basic principles that turn an ordinary design into a masterpiece.", skills: ["Color Theory", "Typography", "Layout"] }, s2: { title: "Mastering Graphic Tools", desc: "Professional learning of Photoshop and Illustrator to create icons, edit images, and create custom vectors.", skills: ["Adobe Photoshop", "Illustrator", "Vector Art"] }, s3: { title: "UI Design with Figma", desc: "Entering the world of UI. Designing web pages and mobile apps in Figma based on global standards.", skills: ["Figma", "UI Design", "Wireframing"] }, s4: { title: "User Experience & Prototyping (UX)", desc: "Analyzing user behavior, usability testing, and animating pages (Prototyping) to present the final project to developers.", skills: ["UX Research", "Prototyping", "User Journey"] } } }
       },
 
-      whyUs: {
-        seo: { title: "Why Danaverse? | Differences and Advantages" },
-        hero: { badge: "What is the Danaverse difference?", title1: "Beyond an Academy,", titleHighlight: "A Shortcut to the Job Market", desc: "We have thrown away boring academic theories. At Danaverse, you work like a senior engineer from day one." },
-        projects: { title1: "100%", titleHighlight: "Project-Based", desc: "Goodbye to meaningless code on a blackboard! All our learning paths are designed based on real startup projects. From building AI systems to designing real app interfaces; you build your resume while learning.", bullet1: "Real work environment simulation (Agile/Scrum)", bullet2: "Presentable output on GitHub and Portfolio" },
-        mentoring: { title1: "Dedicated", titleHighlight: "Mentoring", desc: "Learning complex skills requires a caring guide. Our instructors don't just record videos; they review your code weekly, fix your bugs, and tailor your personalized roadmap.", bullet1: "Weekly online Q&A sessions", bullet2: "Direct communication with senior instructors" },
-        career: { title1: "Career", titleHighlight: "Support", desc: "Our goal isn't just education; our goal is your employment! Top students are directly introduced to tech companies, startups, and freelance projects. We are by your side for resume writing and job interviews.", bullet1: "Building international resume and LinkedIn", bullet2: "Direct introduction to partner job networks" },
-        certificate: { title1: "Official", titleHighlight: "Certification", desc: "The end of your course is the beginning of your professional journey. Upon successful completion of final projects, a valid Danaverse Academy certificate (with tracking code) is awarded to you, which holds high credibility.", bullet1: "Bilingual certificate (Persian & English)", bullet2: "Online tracking code on the website" },
-        cta: { title: "Join the Community of Professionals", desc: "You can choose one of our learning paths right now and make a secure investment in your future.", btn: "View Training Courses" }
+      projectsPage: {
+        seo: { title: "Projects Gallery | Danaverse Academy", desc: "Gallery of programming, AI, robotics, and game development projects by Danaverse Academy students." },
+        hero: { badge: "Student Achievements Exhibition", title1: "Creating the Future with", titleHighlight: "Today's Code", desc: "Witness the magic of creativity and expertise of Danaverse Academy students. This is where raw ideas turn into real, amazing projects." },
+        categories: { all: "All Achievements", ai: "AI & Python", web: "Web & App Design", robotics: "Robotics & IoT", game: "Game Dev & Scratch" },
+        empty: { title: "No Data Found", desc: "Projects in this section are being updated. Please select another category." },
+        list: {
+          p1: { title: "Smart Voice Assistant (Jarvis clone)", desc: "Developing a voice assistant with Python that can process Persian voice commands, search the web, and control smart room devices.", catName: "Advanced Python", age: "16 years old student" },
+          p2: { title: "Skin Cancer Detection System", desc: "A deep learning model that predicts the probability of a skin lesion being cancerous with 92% accuracy by receiving an image.", catName: "Machine Learning", age: "21 years old student" },
+          p3: { title: "Crypto Trading Bot", desc: "A bot that analyzes price charts and issues buy and sell signals using artificial intelligence algorithms.", catName: "Artificial Intelligence", age: "19 years old student" },
+          p4: { title: "Driver Drowsiness Detection", desc: "A computer vision-based project that scans the driver's eyes and sounds an alarm if drowsiness is detected.", catName: "Computer Vision", age: "24 years old student" },
+          p5: { title: "Online Doctor Booking Platform", desc: "End-to-end user interface design of a medical appointment app focusing on elderly user experience.", catName: "UI/UX Design", age: "18 years old student" },
+          p6: { title: "Dynamic Financial Dashboard", desc: "Designing and implementing a modern web-based dashboard for expense management with live charts and full dark mode support.", catName: "Frontend Development", age: "22 years old student" },
+          p7: { title: "3D Art Gallery Website", desc: "A stunning website that showcases artworks in a virtual museum using web-based 3D technologies.", catName: "3D Web Development", age: "20 years old student" },
+          p8: { title: "Team Task Management App", desc: "A project management platform similar to Trello with drag and drop capabilities and live chat.", catName: "Full-Stack Development", age: "25 years old student" },
+          p9: { title: "Production Line Robotic Arm", desc: "Building and programming a 3-axis robotic arm from scratch using an Arduino board.", catName: "Industrial Robotics", age: "17 years old student" },
+          p10: { title: "Smart Home System (IoT)", desc: "Controlling lights, temperature, and home doors via the internet and mobile phone.", catName: "Internet of Things", age: "15 years old student" },
+          p11: { title: "Racing Line Follower Robot", desc: "A fast and precise robot capable of navigating the most complex paths using infrared sensors.", catName: "Student Robotics", age: "14 years old student" },
+          p12: { title: "Self-Watering Smart Pot", desc: "A pot that measures soil moisture and automatically waters the plant when needed.", catName: "Applied Electronics", age: "13 years old student" },
+          p13: { title: "Space Battle Game", desc: "Designing an exciting arcade game where the user's spaceship must shoot space enemies.", catName: "Kids Game Dev", age: "9 years old student" },
+          p14: { title: "3D Maze Escape Game", desc: "Developing an engaging 3D game where the player must find the exit in a dark labyrinth.", catName: "Advanced Game Dev", age: "16 years old student" },
+          p15: { title: "Magic Platformer", desc: "A 2D game similar to Mario with hand-crafted pixel art graphics and a scoring system.", catName: "2D Game Dev", age: "14 years old student" },
+          p16: { title: "City Traffic Simulator", desc: "Smart animation and simulation of car movements at an intersection following traffic lights.", catName: "Logical Programming", age: "10 years old student" }
+        }
+      },
+
+      register: {
+        seo: { title: "Register | Danaverse Academy" },
+        success: {
+          title: "Your registration was successful!",
+          desc: "We will contact you shortly.",
+          redirect: "Redirecting to the home page..."
+        },
+        form: {
+          title: "Admission to Danaverse",
+          desc: "The journey to becoming an expert starts here.",
+          nameLabel: "First Name",
+          namePlaceholder: "e.g., John",
+          surnameLabel: "Last Name",
+          surnamePlaceholder: "e.g., Doe",
+          phoneLabel: "Phone Number",
+          phonePlaceholder: "+1 234 567 8900",
+          ageLabel: "Age",
+          agePlaceholder: "e.g., 24",
+          dateLabel: "Registration Date",
+          dateBadge: "Auto",
+          instLabel: "School or University Name",
+          instPlaceholder: "Current or graduated institution",
+          courseLabel: "Desired Training Course",
+          courseDefault: "Please select...",
+          investmentLabel: "Your Investment:",
+          currency: "Tomans",
+          submitBtn: "Complete Registration & Pay",
+          loadingBtn: "Processing..."
+        },
+        errors: {
+          generic: "An error occurred. Please try again."
+        },
+        courses: {
+          c1: "Python Basics",
+          c2: "Advanced Python",
+          c3: "Python for Kids",
+          c4: "AI Tools Mastery",
+          c5: "Machine Learning",
+          c6: "Adobe Photoshop",
+          c7: "Adobe Illustrator",
+          c8: "Adobe InDesign",
+          c9: "Sketch Illustration",
+          c10: "ICDL (Seven Skills)",
+          c11: "Adult Robotics",
+          c12: "Scratch Programming",
+          c13: "Student Robotics"
+        }
+      },
+
+      loginPage: {
+        seo: { title: "Login / Register | Danaverse" },
+        welcomeBack: "Welcome back! Enter your details to log in.",
+        joinUs: "Join us and start your learning journey.",
+        tabLogin: "Log In",
+        tabRegister: "Sign Up",
+        nameLabel: "Full Name",
+        namePlaceholder: "e.g., John Doe",
+        emailLabel: "Email",
+        emailPlaceholder: "example{'@'}email.com",
+        passwordLabel: "Password",
+        passwordPlaceholder: "••••••••",
+        forgotPassword: "Forgot Password?",
+        btnLoading: "Processing...",
+        btnLogin: "Log Into Dashboard",
+        btnRegister: "Create Account",
+        msgLoginSuccess: "Login successful! Redirecting...",
+        msgRegisterSuccess: "Registration successful! You can now log in.",
+        errInvalidCreds: "Invalid email or password.",
+        errUserExists: "This email is already registered.",
+        errGeneric: "An error occurred: "
       },
 
       home: { 
@@ -306,33 +527,7 @@ export default defineI18nConfig(() => ({
         }, 
         cta: { badge: "New Semester Registration", title1: "Are you ready for", titleHighlight: "Change", title2: "?", desc: "Invest in your expertise. With Danaverse, your journey to the global tech market begins here.", btn: "Start Learning" }, 
         footer: { desc: "Danaverse, a pioneer in modern, project-based tech education. We are here to train a new generation of professionals for the global job market by integrating AI, programming, and personal development skills. Danaverse is more than an academy; it's a bridge from your hidden talents to a brilliant future in the digital world.", pathsTitle: "Paths", contactTitle: "Contact", copyright: "All rights reserved.", privacy: "Privacy Policy", terms: "Terms of Use" } 
-      },
-
-      // 👇 دیکشنری اختصاصی صفحه پروژه‌ها (گالری) - زبان انگلیسی
-      projectsPage: {
-        seo: { title: "Projects Gallery | Danaverse Academy", desc: "Gallery of programming, AI, robotics, and game development projects by Danaverse Academy students." },
-        hero: { badge: "Student Achievements Exhibition", title1: "Creating the Future with", titleHighlight: "Today's Code", desc: "Witness the magic of creativity and expertise of Danaverse Academy students. This is where raw ideas turn into real, amazing projects." },
-        categories: { all: "All Achievements", ai: "AI & Python", web: "Web & App Design", robotics: "Robotics & IoT", game: "Game Dev & Scratch" },
-        empty: { title: "No Data Found", desc: "Projects in this section are being updated. Please select another category." },
-        list: {
-          p1: { title: "Smart Voice Assistant (Jarvis clone)", desc: "Developing a voice assistant with Python that can process Persian voice commands, search the web, and control smart room devices.", catName: "Advanced Python", age: "16 years old student" },
-          p2: { title: "Skin Cancer Detection System", desc: "A deep learning model that predicts the probability of a skin lesion being cancerous with 92% accuracy by receiving an image.", catName: "Machine Learning", age: "21 years old student" },
-          p3: { title: "Crypto Trading Bot", desc: "A bot that analyzes price charts and issues buy and sell signals using artificial intelligence algorithms.", catName: "Artificial Intelligence", age: "19 years old student" },
-          p4: { title: "Driver Drowsiness Detection", desc: "A computer vision-based project that scans the driver's eyes and sounds an alarm if drowsiness is detected.", catName: "Computer Vision", age: "24 years old student" },
-          p5: { title: "Online Doctor Booking Platform", desc: "End-to-end user interface design of a medical appointment app focusing on elderly user experience.", catName: "UI/UX Design", age: "18 years old student" },
-          p6: { title: "Dynamic Financial Dashboard", desc: "Designing and implementing a modern web-based dashboard for expense management with live charts and full dark mode support.", catName: "Frontend Development", age: "22 years old student" },
-          p7: { title: "3D Art Gallery Website", desc: "A stunning website that showcases artworks in a virtual museum using web-based 3D technologies.", catName: "3D Web Development", age: "20 years old student" },
-          p8: { title: "Team Task Management App", desc: "A project management platform similar to Trello with drag and drop capabilities and live chat.", catName: "Full-Stack Development", age: "25 years old student" },
-          p9: { title: "Production Line Robotic Arm", desc: "Building and programming a 3-axis robotic arm from scratch using an Arduino board.", catName: "Industrial Robotics", age: "17 years old student" },
-          p10: { title: "Smart Home System (IoT)", desc: "Controlling lights, temperature, and home doors via the internet and mobile phone.", catName: "Internet of Things", age: "15 years old student" },
-          p11: { title: "Racing Line Follower Robot", desc: "A fast and precise robot capable of navigating the most complex paths using infrared sensors.", catName: "Student Robotics", age: "14 years old student" },
-          p12: { title: "Self-Watering Smart Pot", desc: "A pot that measures soil moisture and automatically waters the plant when needed.", catName: "Applied Electronics", age: "13 years old student" },
-          p13: { title: "Space Battle Game", desc: "Designing an exciting arcade game where the user's spaceship must shoot space enemies.", catName: "Kids Game Dev", age: "9 years old student" },
-          p14: { title: "3D Maze Escape Game", desc: "Developing an engaging 3D game where the player must find the exit in a dark labyrinth.", catName: "Advanced Game Dev", age: "16 years old student" },
-          p15: { title: "Magic Platformer", desc: "A 2D game similar to Mario with hand-crafted pixel art graphics and a scoring system.", catName: "2D Game Dev", age: "14 years old student" },
-          p16: { title: "City Traffic Simulator", desc: "Smart animation and simulation of car movements at an intersection following traffic lights.", catName: "Logical Programming", age: "10 years old student" }
-        }
       }
     }
   }
-}))
+}));
