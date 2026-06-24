@@ -235,13 +235,20 @@ const submitForm = async () => {
     // برای اینکه دیتابیس همیشه مرتب باشه، نام فارسی دوره رو می‌فرستیم
     const courseNameFa = t(`register.courses.${form.value.course}`, 1, { locale: 'fa' });
 
+    // ۱. حذف کاما از قیمت برای جلوگیری از خطای دیتابیس
+    const cleanPrice = courseObj ? parseInt(courseObj.price.replace(/,/g, '')) : 0;
+
+    // ۲. تولید یک تاریخ استاندارد میلادی برای دیتابیس
+    const standardDbDate = new Date().toISOString(); 
+
     const response = await $fetch('/api/register', {
       method: 'POST',
       body: {
         ...form.value,
-        date: formattedDate.value, // گرفتن تاریخِ زبانِ فعلی برای ارسال به سرور
+        date: formattedDate.value, // این را می‌فرستیم (اگر ستون دیتابیس String است)
+        created_at: standardDbDate, // پیشنهاد: در بک‌اند از این تاریخ استفاده کنید
         course: courseNameFa, 
-        price: courseObj ? courseObj.price : '0' 
+        price: cleanPrice // ارسال قیمت به صورت عدد خالص (بدون کاما)
       }
     });
 
@@ -252,6 +259,9 @@ const submitForm = async () => {
     }, 3500);
     
   } catch (error) {
+    // ۳. چاپ خطای دقیق بک‌اند در کنسول مرورگر
+    console.error('🚨 جزئیات خطای ثبت نام سرور/دیتابیس:', error.data || error);
+
     message.value = { text: t('register.errors.generic'), isError: true };
   } finally {
     isLoading.value = false;
