@@ -1,4 +1,3 @@
-// server/api/register.post.ts
 import { serverSupabaseClient } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
@@ -15,20 +14,25 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // ۲. ذخیره در دیتابیس (فیلد date هم اضافه شد)
+  // ۲. چسباندن نام و نام خانوادگی برای ستون full_name
+  const fullName = surname ? `${name} ${surname}` : name
+
+  // ۳. ذخیره در دیتابیس (دقیقاً مطابق با ستون‌های شما)
   const { data, error } = await client
     .from('registrations')
     .insert([{ 
-      full_name: `${name} ${surname}`, 
+      full_name: fullName, 
       phone: phone, 
       course: course,
       age: age,
-      institution: institution,
-      registration_date: date // ذخیره تاریخ شمسی که دریافت کردید
+      institution: institution
+      // 💡 نکته: ستون registration_date را حذف کردیم چون در دیتابیس نبود!
+      // زمان ثبت‌نام توسط خود دیتابیس در ستون created_at به صورت اتوماتیک ثبت می‌شود.
     }])
 
   if (error) {
-    console.error("Supabase Error:", error) // برای اینکه در کنسول سرور ببینید چه مشکلی رخ داده
+    // چاپ خطای دقیق سوپابیس در ترمینال VS Code برای دیباگ راحت‌تر
+    console.error("Supabase Error:", error) 
     throw createError({ statusCode: 500, statusMessage: 'خطا در اتصال به دیتابیس' })
   }
 
