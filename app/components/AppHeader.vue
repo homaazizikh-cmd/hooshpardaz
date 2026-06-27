@@ -130,6 +130,7 @@ const isMobileMenuOpen = ref(false)
 const menuLinks = computed(() => [
   { nameKey: 'nav.home', path: '/' },
   { nameKey: 'nav.courses', path: '/courses' },
+  { nameKey: 'nav.workshop', path: '/workshop' },
   { nameKey: 'nav.learning', path: '/learning' },
   { nameKey: 'nav.talentTest', path: '/talent' },
   { nameKey: 'nav.instructors', path: '/instructors' }, 

@@ -4,7 +4,7 @@ export default defineI18nConfig(() => ({
   fallbackLocale: 'fa',
   messages: {
     fa: {
-      nav: { home: "صفحه اصلی", courses: "دوره‌ها", learning: "یادگیری", talentTest: "استعدادیابی", instructors: "اساتید", about: "درباره ما", contact: "تماس با ما" },
+      nav: { home: "صفحه اصلی", courses: "دوره‌ها", workshop: "ورکشاپ", learning: "یادگیری", talentTest: "استعدادیابی", instructors: "اساتید", about: "درباره ما", contact: "تماس با ما" },
       auth: { adminPanel: "پنل مدیریت", dashboard: "پنل کاربری", login: "ورود / ثبت‌نام", logout: "خروج از حساب" },
       seo: { homeTitle: "آکادمی برنامه‌نویسی و هوش مصنوعی داناورس", homeDesc: "بهترین سایت آموزش پروژه‌محور برنامه‌نویسی و یادگیری هوش مصنوعی (AI) در ایران.", homeOgDesc: "آینده‌ات را با داناورس کدنویسی کن! آموزش پروژه‌محور از صفر تا ورود به بازار کار." },
       
