@@ -34,7 +34,7 @@
 
         <div class="flex flex-wrap justify-center gap-3 text-sm">
           <div class="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-slate-200 flex items-center gap-2">
-            <span>⏱</span> ۲ ساعت آموزش زنده
+            <span>⏱</span> ۲ ساعت آموزش آنلاین
           </div>
           <div class="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-slate-200 flex items-center gap-2">
             <span>💻</span> کاملاً پروژه‌محور
@@ -54,7 +54,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
               </div>
               <h2 class="text-3xl font-black text-white mb-4">صندلی شما رزرو شد! 🎉</h2>
-              <p class="text-slate-300 mb-8 text-lg">اطلاعات شما با موفقیت ثبت شد. لینک ورود به ورکشاپ به‌زودی برای شما ایمیل/پیامک خواهد شد.</p>
+              <p class="text-slate-300 mb-8 text-lg">اطلاعات شما با موفقیت ثبت شد. لینک ورود به ورکشاپ به‌زودی برای شما پیامک خواهد شد.</p>
               
               <NuxtLink to="https://instagram.com/danaverse.ir" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all transform hover:scale-105">
                 <span>📱</span> پیج داناورس را دنبال کنید
